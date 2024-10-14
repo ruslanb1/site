@@ -123,5 +123,5 @@ body {
   display: grid;
   place-items: center;
   transition: background 1s;
-  background: #fff;
+  background: #3C3C3C;
 }
