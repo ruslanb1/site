@@ -21,7 +21,7 @@ li {
 }
 a {text-decoration:none;}
 h2 {
-  font: bold 2.4rem/4rem helvetica, arial, sans-serif;
+  font: bold 2.4rem/4rem "Noto Sans", sans-serif;
   letter-spacing: .1rem;
   margin-top: 0;
   margin-bottom: 2.4rem;
@@ -103,7 +103,7 @@ li {
 .toc,
 .toc ol > li:before,
 .chapter {
-  background-color: #ffffff; }
+  background-color: #3c3c3c; }
 
 .toc li .toc-page:before {
   border-bottom: 1px dotted rgba(0, 0, 0, 0.9); }
