@@ -140,7 +140,7 @@
   font-size: 0.9em;
 }
 .glitch-link {
-  position: relative;
+  position: center;
   display: inline-block;
   color: #fff;
   font-size: 20px;
