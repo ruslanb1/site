@@ -102,7 +102,7 @@ li {
 .toc,
 .toc ol > li:before,
 .chapter {
-  background-color: #f7f9fb; }
+  background-color: #ffffff; }
 
 .toc li .toc-page:before {
   border-bottom: 1px dotted rgba(0, 0, 0, 0.9); }
