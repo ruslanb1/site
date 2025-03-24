@@ -1,1 +1,0 @@
-// WebSlides makes HTML presentations easy. Just the essentials! webslides.tv/demos
