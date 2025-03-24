@@ -1,0 +1,97 @@
+﻿
+
+<!doctype html>
+<html>
+
+<!-- Mirrored from www.seilias.gr/images/stories/html5/displacement.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 14 Oct 2024 10:29:28 GMT -->
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=1000, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	
+	<title>Позиция Перемещение</title>
+	<style>
+		/*
+		.bottom-right {
+			position: absolute;
+			bottom: 2px;
+			right: 4px;
+			font-size: 12px;
+		}
+		*/
+	</style>	
+
+	<!--<script src="files/jquery/external/jquery/jquery-3.4.1.min.js"></script>-->
+	<script src="files/jquery/external/jquery/jquery.js"></script>
+	<script src="files/jquery/jquery-ui.js"></script>
+	<link href="files/jquery/jquery-ui.css" rel="stylesheet">
+	<link href="files/jquery/jquery-ui-1.12.icon-font.min.css" rel="stylesheet">
+	<script src="files/jquery/jquery.ui.touch-punch.min.js"></script>
+	<script src="files/createjs/easeljs.min.js"></script>
+	
+	<link rel="stylesheet" href="files/css/main.css">
+	<link rel="stylesheet" href="files/css/buttons.css">
+	
+	<script src="https://www.seilias.gr/images/stories/html5/files/scripts/cT.min.js"></script>
+	<script src="https://www.seilias.gr/images/stories/html5/myScript.js"></script>
+	
+	<script src="files/scripts/ui.js"></script>
+	<script src="files/scripts/infos.js"></script>
+	<!--<script src="files/scripts/mainButtons.js"></script>-->
+	
+	<script src="displacement/buttons.js"></script>
+	<script src="displacement/dragAndDrop.js"></script>
+	<script src="displacement/functions.js"></script>
+	<script src="displacement/shapes.js"></script>
+	<script src="displacement/app.js"></script>
+	
+</head>
+	
+<body onLoad="init()">
+	<div id="main">
+	<!--ΚΟΥΜΠΙΑ ΚΑΙ CANVAS-->
+	<div id="left" class="floatLeft">
+		<div style="display: table;margin-right: auto; margin-left: auto;">
+			<!--ΚΟΥΜΠΙΑ-->
+			<div id="foo" style="z-index: 1; visibility: hidden; ">
+				
+				<button id="stop" class="withoutBorder">Перезапуск</button>
+				
+				<input type="checkbox" id="allTime" checked/><label for="allTime" class="withoutBorder">Приращения</label>
+				<input type="checkbox" id="infoIsVisible" checked/><label for="infoIsVisible" class="withoutBorder">Расчеты</label>
+				<input type="checkbox" id="position" !checked/><label for="position" class="withoutBorder">Вектор положения</label>
+				  
+				
+			</div>
+			<!--ΚΑΜΒΑΣ-->
+			<canvas id="demoCanvas" width="720" height="420" style="background-color:#ffffff;visibility: hidden">
+				Вам необходимо обновить браузер для поддержки html5
+			</canvas>
+		</div>
+	</div>
+	
+	<!-- ΠΑΡΑΜΕΤΡΟΙ -->
+	<div id="right" class="floatRight" >
+		<div id="variables" style="display: table;margin-right: auto; margin-left: auto;  border: 2px solid #9C9898;background-color:blanchedalmond;visibility: hidden">
+			<!--ΜΕΤΑΒΛΗΤΕΣ-->
+
+			<!--<div id="CI" style="visibility:hidden">
+
+				<div class="bottom-right">
+					© seilias.gr <span class="ui-icon ui-icon-marker "></span>
+				</div>
+				
+			</div>-->
+			
+		</div>
+	</div>
+	</div>
+	<!--
+	<p class="ui-widget-content ui-state-default ui-helper-clearfix">
+		<span style="float: left; margin-right: 0.5em;" class="ui-icon ui-icon-jquery">icon</span> ui-icon-jquery
+	</p>
+	-->
+</body>
+
+<!-- Mirrored from www.seilias.gr/images/stories/html5/displacement.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 14 Oct 2024 10:29:28 GMT -->
+</html>
