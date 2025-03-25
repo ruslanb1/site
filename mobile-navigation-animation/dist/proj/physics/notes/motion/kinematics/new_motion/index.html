@@ -62,7 +62,31 @@
         <h3>1.1. Кинематика</h3>
         
         <p>Основная задача кинематики — математическое описание движения без рассмотрения его причин.</p>
-        
+        <div class="definition">
+            Движение – это действие по изменению местоположения или положения в пространстве. Изучение движения 
+			безотносительно к силам или энергиям, которые могут в нем участвовать, называется <strong>кинематикой</strong> .
+			Это простейшая часть механики. Раздел механики, который рассматривает как движение, так и силы вместе,
+			называется <strong>динамикой</strong> , а изучение сил при отсутствии изменений в движении или энергии называется <strong>статикой</strong>
+        </div>
+        <svg id="matter-SVG" viewBox="0 0 585 150">
+			<rect y="2.5" x="2.5" height="145" width="500" fill="none" stroke="#556" stroke-width="5" rx="5" />
+			<path id="matter-measure" d="" stroke="#f65" fill="none" stroke-dasharray="2 6" stroke-width="1.5" opacity="0.4" />
+
+			<circle id="matter-target" cx="550" cy="75" r="12" fill="#f65" stroke="none" />
+			<g id="matter-vector" transform="translate(550 75) rotate(180)">
+				<line x1="0" y1="0" x2="0" y2="24" fill="none" stroke="#445" stroke-width="1.4" stroke-linecap="round" />
+				<polygon points="0,0 -3,-6.5 0,-5.5 3,-6.5" transform='translate(0 26)' stroke="none" fill="#556" />
+			</g>
+			<circle cx="550" cy="75" r="1.7" fill="#445" stroke="none" />
+
+			<g font-size="18" stroke="none" fill="#556">
+				<text id="matter-x" x="513" y="15">x</text>
+				<text id="matter-y" x="513" y="45">y</text>
+				<text id="matter-Vx" x="513" y="115">Vx</text>
+				<text id="matter-Vy" x="513" y="145">Vy</text>
+			</g>
+			
+		</svg>
         <div class="formula-important">
             \[ v = v_0 + at \]
             \[ s = v_0t + \frac{at^2}{2} \]
