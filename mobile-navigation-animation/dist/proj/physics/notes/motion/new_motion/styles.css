@@ -182,3 +182,41 @@
   75% { transform: translate(3px, -3px); }
   100% { transform: translate(-3px, -3px); }
 }
+.example {
+            background-color: #fffacd;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 5px solid #ffa500;
+        }
+        
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 5px;
+        }
+        
+        .important {
+            background-color: #e6f9ff;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #00b4d8;
+            margin: 20px 0;
+        }
+        
+        .check-yourself {
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #2e7d32;
+            margin: 20px 0;
+        }
+        
+        .conclusion {
+            background-color: #fff0f6;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #ff758f;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: bold;
+        }
