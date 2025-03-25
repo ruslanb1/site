@@ -1,89 +1,154 @@
-/**
- * =============================================
- * ИСПРАВЛЕНИЕ ВЫРАВНИВАНИЯ ФОРМУЛ В МОБИЛЬНОЙ ВЕРСИИ
- * =============================================
- */
-
-/* ===== ОСНОВНЫЕ СТИЛИ ДЛЯ ФОРМУЛ ===== */
-/**
- * 1. Центрируем формулы по горизонтали
- * 2. Добавляем автоматическую прокрутку для длинных формул
- * 3. Сохраняем читаемость на всех устройствах
- */
-.formula-important {
-  display: block; /* Изменяем на блочный элемент */
-  margin: 25px auto; /* Центрирование по горизонтали */
+/* ===== Подключение OTF-шрифтов ===== */
+@font-face {
+    font-family: "Latin Modern Roman";
+    src: url("fonts/lmroman10-regular.otf") format("opentype");
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Latin Modern Sans";
+    src: url("fonts/lmsans10-regular.otf") format("opentype");
+    font-display: swap;
+  }
+  
+  /* ===== Основные стили ===== */
+  body {
+    font-family: "Latin Modern Roman", "Times New Roman", serif;
+    line-height: 1.6;
+    margin: 0 auto;
+    max-width: 900px;
+    padding: 20px;
+    text-align: justify;
+    color: #333;
+    background-color: #f9f9f5;
+  }
+  
+  
+  /* ===== Заголовки ===== */
+  h1, h2, h3 {
+    font-family: "Latin Modern Sans", sans-serif;
+    color: #8B0000;
+    text-align: center;
+    font-weight: normal;
+  }
+  
+  h1 {
+    font-size: 28px;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #8B0000;
+    padding-bottom: 10px;
+  }
+  
+  /* ===== Явно прописанные стили для цитат ===== */
+  .quote {
+    font-family: "Latin Modern Roman", serif;
+    background-color: #f5f5f5;
+    border-left: 4px solid #666;
+    padding: 15px 20px;
+    margin: 25px 0;
+    font-style: italic;
+    color: #555;
+    text-indent: 0;
+    line-height: 1.5;
+    border-radius: 0 4px 4px 0;
+  }
+  .copyright {
+    text-align: center;
+    margin-top: 40px;
+    padding: 15px 0;
+    border-top: 1px solid #ddd;
+    color: #666;
+    font-size: 0.9em;
+}
+  
+/* Стиль для определений */
+.definition {
+  background-color: #f8f8f8;
+  border-left: 4px solid #8B0000;
   padding: 15px;
+  margin: 20px 0;
+  font-style: normal; /* Важно: переопределяем курсив */
+  color: #333;
+  position: relative;
+  border-radius: 0 4px 4px 0;
+}
+
+.definition::before {
+  content: "Определение";
+  display: block;
+  font-weight: bold;
+  color: #8B0000;
+  margin-bottom: 8px;
+  font-size: 0.95em;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Для цитат */
+.quote {
+  background-color: #f5f5f5;
+  border-left: 4px solid #666;
+  padding: 15px 20px;
+  margin: 25px 0;
+  font-style: italic;
+  color: #555;
+  position: relative;
+  border-radius: 0 4px 4px 0;
+}
+
+.quote::before {
+  content: """;
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  font-size: 32px;
+  color: rgba(139, 0, 0, 0.2);
+  font-family: "Times New Roman", serif;
+  line-height: 1;
+}
+/* ТОЛЬКО для основных формул */
+.formula-important {
+  border: 2px solid #8B0000;
+  padding: 15px;
+  margin: 25px auto;
   text-align: center;
   background-color: white;
-  border: 2px solid #8B0000;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(139, 0, 0, 0.1);
-  width: fit-content; /* Ширина по содержимому */
-  max-width: 100%; /* Не шире родительского контейнера */
-  overflow-x: auto; /* Горизонтальная прокрутка при необходимости */
+  max-width: fit-content;
+  position: relative;
 }
 
-/* ===== АДАПТИВНЫЕ СТИЛИ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ ===== */
-@media (max-width: 768px) {
-  /**
-   * Специальные настройки для мобильных устройств:
-   * 1. Убираем фиксированную ширину
-   * 2. Добавляем небольшие отступы по бокам
-   * 3. Сохраняем центрирование
-   */
-  .formula-important {
-    width: 90%; /* Занимаем 90% ширины экрана */
-    margin: 20px auto; /* Центрирование с отступами */
-    padding: 10px 5px; /* Уменьшенные отступы */
-    display: block; /* Обеспечиваем блочное поведение */
-  }
-  
-  /* Дополнительные стили для контейнера формул */
-  .formula-container {
-    padding: 0 10px; /* Добавляем отступы по бокам */
-  }
+/* Все остальные формулы - без рамок */
+.formula,
+.formula-inline,
+.mjx-chtml {
+  border: none !important;
+  padding: 0 !important;
+  background: transparent !important;
+  text-align: center;
+  margin: 0 !important;
 }
 
-/* ===== ДОПОЛНИТЕЛЬНЫЕ ИСПРАВЛЕНИЯ ДЛЯ MathJax ===== */
-/**
- * Обеспечиваем правильное отображение формул MathJax
- * в мобильной версии
- */
-.MathJax_Display {
-  overflow-x: auto; /* Горизонтальная прокрутка */
-  overflow-y: hidden; /* Скрываем вертикальную прокрутку */
-  -webkit-overflow-scrolling: touch; /* Плавная прокрутка на iOS */
-  text-align: center; /* Центрирование содержимого */
-  margin: 1em 0; /* Отступы сверху и снизу */
-  padding: 0 10px; /* Отступы по бокам */
-  max-width: 100%; /* Не шире экрана */
+/* Подпись для основных формул */
+.formula-caption {
+  display: block;
+  text-align: center;
+  font-style: italic;
+  margin-top: 10px;
+  color: #666;
+  font-size: 0.9em;
+}
+.flex-image-container {
+  display: flex;
+  justify-content: center; /* Горизонтальное центрирование */
+  align-items: center; /* Вертикальное центрирование */
+  height: 300px; /* Высота контейнера */
+  background: #F9F9F5; /* Фон для наглядности */
 }
 
-/* Исправление для мобильных устройств */
-@media (max-width: 480px) {
-  .MathJax_Display {
-    padding: 0 5px; /* Уменьшенные отступы */
-    font-size: 90%; /* Немного уменьшаем размер формулы */
-  }
-  
-  /* Специальные стили для переноса длинных формул */
-  .MathJax {
-    white-space: normal !important; /* Разрешаем перенос */
-    word-wrap: break-word !important; /* Перенос длинных слов */
-  }
-}
-
-/* ===== ОБЩИЕ РЕКОМЕНДАЦИИ ПО ВЕРСТКЕ ФОРМУЛ ===== */
-/**
- * 1. Всегда используйте контейнер для формул
- * 2. Добавляйте класс .formula-container к div, содержащему формулу
- * 3. Для очень длинных формул используйте горизонтальную прокрутку
- */
-.formula-container {
-  width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  margin: 1em 0;
-  padding: 0 10px;
+.flex-image {
+  width: 500px; /* Желаемая ширина */
+  height: 300px; /* Желаемая высота */
+  object-fit: cover; /* Как изображение заполнит область (cover/contain) */
 }
