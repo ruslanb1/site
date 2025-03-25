@@ -11,17 +11,25 @@
   }
   
   /* ===== Основные стили ===== */
-  body {
+  
+  body,
+  html {
     font-family: "Latin Modern Roman", "Times New Roman", serif;
     line-height: 1.6;
-    margin: 0 auto;
-    max-width: 900px;
-    padding: 20px;
+    margin: 0;
+    padding: 0;
     text-align: justify;
     color: #333;
     background-color: #f9f9f5;
+    
+    
   }
-  
+
+  html {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
   
   /* ===== Заголовки ===== */
   h1, h2, h3 {
