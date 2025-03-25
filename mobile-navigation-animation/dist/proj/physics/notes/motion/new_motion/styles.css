@@ -121,14 +121,29 @@
 }
 
 /* Все остальные формулы - без рамок */
-.formula,
-.formula-inline,
-.mjx-chtml {
-  border: none !important;
-  padding: 0 !important;
-  background: transparent !important;
-  text-align: center;
-  margin: 0 !important;
+.formula-container {
+    text-align: center;
+    margin: 20px 0;
+}
+.formula {
+    display: inline-block;
+    background-color: #f8f9fa;
+    padding: 15px 25px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.formula-number {
+    display: block;
+    text-align: right;
+    font-style: italic;
+    margin-top: 5px;
+    color: #7f8c8d;
+}
+.figure {
+    text-align: center;
+    margin: 25px 0;
+    font-style: italic;
+    color: #7f8c8d;
 }
 
 /* Подпись для основных формул */
