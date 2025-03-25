@@ -54,7 +54,7 @@ body {
   color: var(--text-color);
   background-color: var(--bg-color);
   padding: 1.5rem;         /* Внутренние отступы */
-  max-width: 900px;        /* Максимальная ширина контента */
+  /*max-width: 900px; */       /* Максимальная ширина контента */
   margin: 0 auto;          /* Центрирование */
   text-align: justify;     /* Выравнивание по ширине */
   
