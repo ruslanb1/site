@@ -1,154 +1,227 @@
-/* ===== Подключение OTF-шрифтов ===== */
+/**
+ * =============================================
+ * АДАПТИВНЫЕ СТИЛИ ДЛЯ УЧЕБНИКА ФИЗИКИ
+ * Версия 1.1 (оптимизирована для всех устройств)
+ * =============================================
+ */
+
+/* ===== КОНФИГУРАЦИЯ ШРИФТОВ ===== */
+/**
+ * Latin Modern Roman - основной шрифт для текста
+ * Latin Modern Sans - для заголовков
+ * Используем font-display: swap для быстрой загрузки
+ */
 @font-face {
-    font-family: "Latin Modern Roman";
-    src: url("fonts/lmroman10-regular.otf") format("opentype");
-    font-display: swap;
-  }
-  @font-face {
-    font-family: "Latin Modern Sans";
-    src: url("fonts/lmsans10-regular.otf") format("opentype");
-    font-display: swap;
-  }
-  
-  /* ===== Основные стили ===== */
-  body {
-    font-family: "Latin Modern Roman", "Times New Roman", serif;
-    line-height: 1.6;
-    margin: 0 auto;
-    max-width: 900px;
-    padding: 20px;
-    text-align: justify;
-    color: #333;
-    background-color: #f9f9f5;
-  }
-  
-  
-  /* ===== Заголовки ===== */
-  h1, h2, h3 {
-    font-family: "Latin Modern Sans", sans-serif;
-    color: #8B0000;
-    text-align: center;
-    font-weight: normal;
-  }
-  
-  h1 {
-    font-size: 28px;
-    margin-top: 40px;
-    margin-bottom: 30px;
-    border-bottom: 1px solid #8B0000;
-    padding-bottom: 10px;
-  }
-  
-  /* ===== Явно прописанные стили для цитат ===== */
-  .quote {
-    font-family: "Latin Modern Roman", serif;
-    background-color: #f5f5f5;
-    border-left: 4px solid #666;
-    padding: 15px 20px;
-    margin: 25px 0;
-    font-style: italic;
-    color: #555;
-    text-indent: 0;
-    line-height: 1.5;
-    border-radius: 0 4px 4px 0;
-  }
-  .copyright {
-    text-align: center;
-    margin-top: 40px;
-    padding: 15px 0;
-    border-top: 1px solid #ddd;
-    color: #666;
-    font-size: 0.9em;
+  font-family: "Latin Modern Roman";
+  src: url("fonts/lmroman10-regular.otf") format("opentype");
+  font-display: swap; /* Показывает fallback-шрифт до загрузки основного */
 }
-  
-/* Стиль для определений */
-.definition {
-  background-color: #f8f8f8;
-  border-left: 4px solid #8B0000;
-  padding: 15px;
-  margin: 20px 0;
-  font-style: normal; /* Важно: переопределяем курсив */
-  color: #333;
-  position: relative;
-  border-radius: 0 4px 4px 0;
+@font-face {
+  font-family: "Latin Modern Sans";
+  src: url("fonts/lmsans10-regular.otf") format("opentype");
+  font-display: swap;
 }
 
-.definition::before {
-  content: "Определение";
-  display: block;
-  font-weight: bold;
-  color: #8B0000;
-  margin-bottom: 8px;
-  font-size: 0.95em;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+/* ===== ГЛОБАЛЬНЫЕ НАСТРОЙКИ ===== */
+:root {
+  /* Цветовая схема в CSS-переменных для удобства изменения */
+  --primary-color: #8B0000;    /* Основной бордовый цвет */
+  --secondary-color: #666;     /* Вторичный серый цвет */
+  --bg-color: #f9f9f5;         /* Цвет фона страницы */
+  --text-color: #333;          /* Основной цвет текста */
+  --quote-bg: #f5f5f5;         /* Фон цитат */
+  --definition-bg: #f8f8f8;    /* Фон определений */
 }
 
-/* Для цитат */
+/* Сброс стандартных отступов и box model */
+* {
+  box-sizing: border-box;  /* Учитываем padding в ширине элементов */
+  margin: 0;
+  padding: 0;
+}
+
+/* Настройки корневого элемента */
+html {
+  font-size: 100%;         /* Базовый размер = 16px для точных расчетов */
+  -webkit-text-size-adjust: 100%; /* Фикс для iOS */
+}
+
+/* ===== ОСНОВНЫЕ СТИЛИ СТРАНИЦЫ ===== */
+body {
+  font-family: "Latin Modern Roman", "Times New Roman", serif;
+  font-size: 1.15rem;      /* Увеличенный основной размер шрифта (~18.4px) */
+  line-height: 1.7;        /* Увеличенный межстрочный интервал */
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  padding: 1.5rem;         /* Внутренние отступы */
+  max-width: 900px;        /* Максимальная ширина контента */
+  margin: 0 auto;          /* Центрирование */
+  text-align: justify;     /* Выравнивание по ширине */
+  
+  /* Плавные переходы для адаптивности */
+  transition: font-size 0.3s ease, padding 0.3s ease;
+}
+
+/* ===== СТИЛИ ЗАГОЛОВКОВ ===== */
+/**
+ * Используем clamp() для плавного масштабирования
+ * min-значение, предпочитаемое значение, max-значение
+ */
+h1, h2, h3 {
+  font-family: "Latin Modern Sans", sans-serif;
+  color: var(--primary-color);
+  text-align: center;
+  font-weight: normal;     /* Отключаем жирное начертание */
+  line-height: 1.3;        /* Оптимальный интервал для заголовков */
+  margin: 1.5em 0 0.8em;   /* Отступы сверху/снизу */
+}
+
+/* Главный заголовок */
+h1 {
+  font-size: clamp(1.8rem, 4vw, 2.2rem); /* Адаптивный размер */
+  border-bottom: 1px solid var(--primary-color);
+  padding-bottom: 0.5em;   /* Отступ под чертой */
+}
+
+/* Заголовки 2 уровня */
+h2 {
+  font-size: clamp(1.5rem, 3vw, 1.8rem);
+}
+
+/* Заголовки 3 уровня */
+h3 {
+  font-size: clamp(1.3rem, 2.5vw, 1.5rem);
+}
+
+/* ===== СПЕЦИАЛЬНЫЕ БЛОКИ ===== */
+/**
+ * Общие стили для цитат, определений и формул
+ * Используем относительные единицы (rem) для адаптивности
+ */
+.quote, 
+.definition, 
+.formula-important {
+  margin: 2rem 0;         /* Большие отступы сверху/снизу */
+  padding: 1.5rem;        /* Внутренние отступы */
+  border-radius: 0 4px 4px 0; /* Скругление только справа */
+}
+
+/* Стили для цитат */
 .quote {
-  background-color: #f5f5f5;
-  border-left: 4px solid #666;
-  padding: 15px 20px;
-  margin: 25px 0;
+  background-color: var(--quote-bg);
+  border-left: 4px solid var(--secondary-color);
   font-style: italic;
   color: #555;
-  position: relative;
-  border-radius: 0 4px 4px 0;
+  position: relative;     /* Для позиционирования декоративного элемента */
 }
 
+/* Декоративные кавычки для цитат */
 .quote::before {
   content: """;
   position: absolute;
   left: 5px;
   top: 5px;
-  font-size: 32px;
-  color: rgba(139, 0, 0, 0.2);
+  font-size: 2rem;        /* Крупные кавычки */
+  color: rgba(139, 0, 0, 0.2); /* Полупрозрачные */
   font-family: "Times New Roman", serif;
-  line-height: 1;
 }
-/* ТОЛЬКО для основных формул */
-.formula-important {
-  border: 2px solid #8B0000;
-  padding: 15px;
-  margin: 25px auto;
-  text-align: center;
-  background-color: white;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(139, 0, 0, 0.1);
-  max-width: fit-content;
+
+/* Стили для блоков определений */
+.definition {
+  background-color: var(--definition-bg);
+  border-left: 4px solid var(--primary-color);
   position: relative;
 }
 
-/* Все остальные формулы - без рамок */
-.formula,
-.formula-inline,
-.mjx-chtml {
-  border: none !important;
-  padding: 0 !important;
-  background: transparent !important;
-  text-align: center;
-  margin: 0 !important;
+/* Заголовок "Определение" перед текстом */
+.definition::before {
+  content: "Определение";
+  display: block;
+  font-weight: bold;
+  color: var(--primary-color);
+  margin-bottom: 0.8rem;
+  font-size: 0.95em;
+  text-transform: uppercase; /* Все буквы заглавные */
+  letter-spacing: 0.5px;    /* Разрежение букв */
 }
 
-/* Подпись для основных формул */
-.formula-caption {
-  display: block;
-  text-align: center;
-  font-style: italic;
-  margin-top: 10px;
-  color: #666;
-  font-size: 0.9em;
+/* Важные формулы с выделением */
+.formula-important {
+  border: 2px solid var(--primary-color);
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(139, 0, 0, 0.1);
+  max-width: fit-content;   /* Ширина по содержимому */
+  margin-left: auto;        /* Центрирование */
+  margin-right: auto;
 }
+
+/* ===== АДАПТИВНЫЕ ИЗОБРАЖЕНИЯ ===== */
 .flex-image-container {
   display: flex;
-  justify-content: center; /* Горизонтальное центрирование */
-  align-items: center; /* Вертикальное центрирование */
-  height: 300px; /* Высота контейнера */
-  background: #F9F9F5; /* Фон для наглядности */
+  justify-content: center;  /* Горизонтальное центрирование */
+  align-items: center;      /* Вертикальное центрирование */
+  height: auto;             /* Автоматическая высота */
+  min-height: 200px;        /* Минимальная высота */
+  margin: 1.5rem 0;         /* Отступы */
+  background: var(--bg-color);
 }
 
+/* Изображения внутри контейнера */
 .flex-image {
-  width: 500px; /* Желаемая ширина */
-  height: 300px; /* Желаемая высота */
-  object-fit: cover; /* Как изображение заполнит область (cover/contain) */
+  max-width: 100%;         /* Не выходит за границы контейнера */
+  height: auto;            /* Сохраняет пропорции */
+  object-fit: contain;     /* Вписывает изображение */
+}
+
+/* ===== ФУТЕР СТРАНИЦЫ ===== */
+.copyright {
+  text-align: center;
+  margin-top: 3rem;        /* Большой отступ сверху */
+  padding: 1rem 0;         /* Внутренние отступы */
+  border-top: 1px solid #ddd; /* Разделительная линия */
+  color: var(--secondary-color);
+  font-size: 0.9em;        /* Немного уменьшенный шрифт */
+}
+
+/* ===== МЕДИА-ЗАПРОСЫ ДЛЯ АДАПТИВНОСТИ ===== */
+
+/* Планшеты и маленькие ноутбуки (768px и меньше) */
+@media (max-width: 768px) {
+  body {
+    font-size: 1.1rem;     /* Немного уменьшаем шрифт */
+    padding: 1rem;         /* Уменьшаем отступы */
+    text-align: left;      /* Выравнивание по левому краю */
+  }
+  
+  /* Уменьшаем отступы в блоках */
+  .quote, 
+  .definition, 
+  .formula-important {
+    margin: 1.5rem 0;
+    padding: 1.2rem;
+  }
+  
+  /* Формулы на всю ширину с прокруткой */
+  .formula-important {
+    width: 100%;
+    overflow-x: auto;      /* Горизонтальная прокрутка при необходимости */
+  }
+}
+
+/* Мобильные устройства (480px и меньше) */
+@media (max-width: 480px) {
+  body {
+    font-size: 1rem;       /* Базовый размер шрифта */
+    line-height: 1.6;       /* Оптимальный интервал */
+  }
+  
+  /* Уменьшаем заголовки */
+  h1 {
+    font-size: 1.6rem;
+  }
+  
+  /* Оптимизация контейнеров с изображениями */
+  .flex-image-container {
+    height: auto;          /* Автоматическая высота */
+  }
 }
