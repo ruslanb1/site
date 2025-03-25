@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="595.275591" height="141.73" viewBox="0 0 595.275591 141.73">
+<defs>
+<filter id="filter-remove-color-and-invert-alpha" x="0%" y="0%" width="100%" height="100%">
+<feColorMatrix color-interpolation-filters="sRGB" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 -1 1"/>
+</filter>
+<filter id="filter-0" x="0%" y="0%" width="100%" height="100%">
+<feImage xlink:href="#compositing-group-1" result="source" x="0" y="0" width="714.330709" height="170.076"/>
+<feImage xlink:href="#compositing-group-2" result="destination" x="0" y="0" width="714.330709" height="170.076"/>
+<feComposite in="source" in2="destination" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" color-interpolation-filters="sRGB"/>
+</filter>
+<filter id="filter-1" x="0%" y="0%" width="100%" height="100%">
+<feImage xlink:href="#compositing-group-4" result="source" x="0" y="0" width="714.330709" height="170.076"/>
+<feImage xlink:href="#compositing-group-5" result="destination" x="0" y="0" width="714.330709" height="170.076"/>
+<feComposite in="source" in2="destination" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" color-interpolation-filters="sRGB"/>
+</filter>
+<g>
+<g id="glyph-0-0">
+<path d="M 1.53125 0 L 1.53125 -24.734375 L 23.203125 -24.734375 L 23.203125 0 Z M 21.671875 -1.53125 L 21.671875 -23.203125 L 3.0625 -23.203125 L 3.0625 -1.53125 Z M 21.671875 -1.53125 "/>
+</g>
+<g id="glyph-0-1">
+<path d="M 14.078125 -5.28125 C 14.078125 -3.832031 13.5625 -2.585938 12.53125 -1.546875 C 11.5 -0.515625 10.253906 0 8.796875 0 L 7.03125 0 C 5.6875 0 4.472656 -0.507812 3.390625 -1.53125 C 2.304688 -2.550781 1.765625 -3.800781 1.765625 -5.28125 L 1.765625 -19.34375 C 1.765625 -20.75 2.269531 -21.976562 3.28125 -23.03125 C 4.300781 -24.082031 5.550781 -24.609375 7.03125 -24.609375 L 8.796875 -24.609375 C 10.234375 -24.609375 11.472656 -24.09375 12.515625 -23.0625 C 13.554688 -22.039062 14.078125 -20.800781 14.078125 -19.34375 Z M 12.328125 -5.28125 L 12.328125 -19.34375 C 12.328125 -20.300781 11.976562 -21.125 11.28125 -21.8125 C 10.59375 -22.507812 9.765625 -22.859375 8.796875 -22.859375 L 7.03125 -22.859375 C 6.0625 -22.859375 5.234375 -22.515625 4.546875 -21.828125 C 3.859375 -21.140625 3.515625 -20.3125 3.515625 -19.34375 L 3.515625 -5.28125 C 3.515625 -4.320312 3.867188 -3.492188 4.578125 -2.796875 C 5.285156 -2.109375 6.101562 -1.765625 7.03125 -1.765625 L 8.796875 -1.765625 C 9.742188 -1.765625 10.566406 -2.097656 11.265625 -2.765625 C 11.972656 -3.429688 12.328125 -4.269531 12.328125 -5.28125 Z M 12.328125 -5.28125 "/>
+</g>
+<g id="glyph-0-2">
+<path d="M 8.03125 -8.8125 L 12.203125 -1.296875 C 12.285156 -1.171875 12.328125 -1.019531 12.328125 -0.84375 C 12.328125 -0.632812 12.234375 -0.4375 12.046875 -0.25 C 11.859375 -0.0820312 11.640625 0 11.390625 0 C 11.066406 0 10.820312 -0.148438 10.65625 -0.453125 L 7.03125 -6.984375 L 3.40625 -0.453125 L 3.09375 -0.125 L 2.65625 0 C 2.394531 0 2.175781 -0.0820312 2 -0.25 C 1.820312 -0.414062 1.734375 -0.617188 1.734375 -0.859375 C 1.734375 -1.003906 1.773438 -1.148438 1.859375 -1.296875 L 6.03125 -8.796875 L 1.859375 -16.3125 L 1.734375 -16.765625 C 1.734375 -16.984375 1.820312 -17.175781 2 -17.34375 C 2.175781 -17.519531 2.398438 -17.609375 2.671875 -17.609375 C 3.003906 -17.609375 3.25 -17.457031 3.40625 -17.15625 L 7.03125 -10.59375 L 10.65625 -17.125 L 10.96875 -17.453125 L 11.40625 -17.578125 C 11.664062 -17.578125 11.882812 -17.492188 12.0625 -17.328125 C 12.238281 -17.171875 12.328125 -16.96875 12.328125 -16.71875 C 12.328125 -16.570312 12.285156 -16.425781 12.203125 -16.28125 Z M 8.03125 -8.8125 "/>
+</g>
+</g>
+<g id="compositing-group-0" transform="translate(59.527559, 14.173)">
+<rect x="-59.527559" y="-14.173" width="714.330709" height="170.076" fill="rgb(0%, 0%, 0%)" fill-opacity="0"/>
+<path fill="none" stroke-width="1.41" stroke-linecap="round" stroke-linejoin="round" stroke="rgb(100%, 100%, 100%)" stroke-opacity="1" stroke-miterlimit="10" d="M 0.761719 79.675781 L 591.707031 79.675781 L 583.160156 74.742188 L 591.707031 79.675781 L 583.160156 84.613281 "/>
+</g>
+<mask id="mask-0">
+<use xlink:href="#compositing-group-0"/>
+</mask>
+<mask id="mask-1">
+<use xlink:href="#compositing-group-0" filter="url(#filter-remove-color-and-invert-alpha)"/>
+</mask>
+<g id="compositing-group-1" mask="url(#mask-0)">
+<g transform="translate(59.527559, 14.173)">
+<rect x="-59.527559" y="-14.173" width="714.330709" height="170.076" fill="rgb(0%, 0%, 0%)" fill-opacity="1"/>
+</g>
+</g>
+<g id="compositing-group-2" mask="url(#mask-1)">
+<g transform="translate(59.527559, 14.173)">
+<path fill-rule="nonzero" fill="rgb(100%, 100%, 100%)" fill-opacity="1" d="M 0 0 L 595.277344 0 L 595.277344 141.730469 L 0 141.730469 Z M 0 0 "/>
+</g>
+</g>
+<g id="compositing-group-3" transform="translate(59.527559, 14.173)">
+<rect x="-59.527559" y="-14.173" width="714.330709" height="170.076" fill="rgb(0%, 0%, 0%)" fill-opacity="0"/>
+<path fill="none" stroke-width="1.41" stroke-linecap="round" stroke-linejoin="round" stroke="rgb(100%, 100%, 100%)" stroke-opacity="1" stroke-miterlimit="10" d="M 291.640625 83.488281 L 291.640625 75.484375 "/>
+</g>
+<mask id="mask-2">
+<use xlink:href="#compositing-group-3"/>
+</mask>
+<mask id="mask-3">
+<use xlink:href="#compositing-group-3" filter="url(#filter-remove-color-and-invert-alpha)"/>
+</mask>
+<g id="compositing-group-4" mask="url(#mask-2)">
+<g transform="translate(59.527559, 14.173)">
+<rect x="-59.527559" y="-14.173" width="714.330709" height="170.076" fill="rgb(0%, 0%, 0%)" fill-opacity="1"/>
+</g>
+</g>
+<g id="compositing-group-5" mask="url(#mask-3)">
+<g transform="translate(59.527559, 14.173)">
+<g filter="url(#filter-0)" transform="translate(-59.527559, -14.173)">
+<rect x="0" y="0" width="714.330709" height="170.076" fill="rgb(0%, 0%, 0%)" fill-opacity="1"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph-0-1" x="288.209071" y="111.045462"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph-0-2" x="563.837587" y="105.327028"/>
+</g>
+</g>
+</g>
+</defs>
+<g filter="url(#filter-1)" transform="translate(-59.527559, -14.173)">
+<rect x="0" y="0" width="714.330709" height="170.076" fill="rgb(0%, 0%, 0%)" fill-opacity="1"/>
+</g>
+</svg>
