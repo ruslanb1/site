@@ -40,6 +40,37 @@
     <script defer src="../../../lib/matter.min.js"></script> <!-- Physics engine -->
     <script defer src="mattersim.js"></script> <!-- Симулятор физики -->
     <script src="../../../lib/function-graph-SVG.js"></script> <!-- Графики функций -->
+    
+    <style>
+        /* Стили для центрирования SVG */
+        svg {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+        }
+        
+        /* Стили для смещения маркированных списков вправо */
+        ul {
+            margin-left: 2em;
+            padding-left: 1em;
+        }
+        
+        /* Дополнительные стили для лучшего отображения */
+        .SVG-shadow {
+            filter: drop-shadow(0 0 5px rgba(0,0,0,0.1));
+        }
+        
+        .figure {
+            text-align: center;
+            margin: 1em auto;
+        }
+        
+        .caption {
+            font-style: italic;
+            text-align: center;
+            margin-top: 0.5em;
+        }
+    </style>
 </head>
 
 <body>
@@ -111,28 +142,31 @@
             </div>
             
             <!-- SVG-графика для визуализации -->
-            <svg id="matter-SVG" viewBox="0 0 785 250" aria-label="Визуализация материальной точки">
-                <!-- Рамка -->
-                <rect y="2.5" x="2.5" height="145" width="500" fill="none" stroke="#556" stroke-width="5" rx="5" />
-                <!-- Измерительная линия -->
-                <path id="matter-measure" d="" stroke="#f65" fill="none" stroke-dasharray="2 6" stroke-width="1.5" opacity="0.4" />
-                <!-- Целевая точка -->
-                <circle id="matter-target" cx="550" cy="75" r="12" fill="#f65" stroke="none" />
-                <!-- Вектор -->
-                <g id="matter-vector" transform="translate(550 75) rotate(180)">
-                    <line x1="0" y1="0" x2="0" y2="24" fill="none" stroke="#445" stroke-width="1.4" stroke-linecap="round" />
-                    <polygon points="0,0 -3,-6.5 0,-5.5 3,-6.5" transform='translate(0 26)' stroke="none" fill="#556" />
-                </g>
-                <!-- Центр точки -->
-                <circle cx="550" cy="75" r="1.7" fill="#445" stroke="none" />
-                <!-- Подписи осей -->
-                <g font-size="18" stroke="none" fill="#556">
-                    <text id="matter-x" x="513" y="15">x</text>
-                    <text id="matter-y" x="513" y="45">y</text>
-                    <text id="matter-Vx" x="513" y="115">Vx</text>
-                    <text id="matter-Vy" x="513" y="145">Vy</text>
-                </g>
-            </svg>
+            <div class="figure">
+                <svg id="matter-SVG" viewBox="0 0 785 250" aria-label="Визуализация материальной точки" class="SVG-shadow">
+                    <!-- Рамка -->
+                    <rect y="2.5" x="2.5" height="145" width="500" fill="none" stroke="#556" stroke-width="5" rx="5" />
+                    <!-- Измерительная линия -->
+                    <path id="matter-measure" d="" stroke="#f65" fill="none" stroke-dasharray="2 6" stroke-width="1.5" opacity="0.4" />
+                    <!-- Целевая точка -->
+                    <circle id="matter-target" cx="550" cy="75" r="12" fill="#f65" stroke="none" />
+                    <!-- Вектор -->
+                    <g id="matter-vector" transform="translate(550 75) rotate(180)">
+                        <line x1="0" y1="0" x2="0" y2="24" fill="none" stroke="#445" stroke-width="1.4" stroke-linecap="round" />
+                        <polygon points="0,0 -3,-6.5 0,-5.5 3,-6.5" transform='translate(0 26)' stroke="none" fill="#556" />
+                    </g>
+                    <!-- Центр точки -->
+                    <circle cx="550" cy="75" r="1.7" fill="#445" stroke="none" />
+                    <!-- Подписи осей -->
+                    <g font-size="18" stroke="none" fill="#556">
+                        <text id="matter-x" x="513" y="15">x</text>
+                        <text id="matter-y" x="513" y="45">y</text>
+                        <text id="matter-Vx" x="513" y="115">Vx</text>
+                        <text id="matter-Vy" x="513" y="145">Vy</text>
+                    </g>
+                </svg>
+                <div class="caption">Рис. 1.1. Визуализация материальной точки</div>
+            </div>
             
             <!-- Подраздел 1.2 -->
             <h3>1.2. Положение тела (точки) на прямой</h3>
@@ -142,20 +176,23 @@
             </p>
             
             <!-- SVG-графика для визуализации движения -->
-            <svg id="motion-1" class="SVG-shadow" viewBox="0 0 780 200" aria-label="Визуализация движения точки">
-                <!-- Показатели движения -->
-                <g font-size="16" stroke="none" fill="#444">
-                    <text id="x-1" x="578" y="20" text-anchor="end">Δx=0</text>
-                    <text id="t-1" x="578" y="45" text-anchor="end">Δt=0</text>
-                    <text id="v-1" x="578" y="70" text-anchor="end">v=0</text>
-                    <text id="a-1" x="578" y="95" text-anchor="end">a=0</text>
-                </g>
-                <!-- Графические элементы -->
-                <g stroke-width="2" stroke-linejoin="square" stroke-linecap="square">
-                    <circle id="circle-1" cx="-290" cy="50" r="40" stroke="none" fill="#f65" />
-                    <path id="distance-1" d="" stroke="#666" fill="none" />
-                </g>
-            </svg>
+            <div class="figure">
+                <svg id="motion-1" class="SVG-shadow" viewBox="0 0 780 200" aria-label="Визуализация движения точки">
+                    <!-- Показатели движения -->
+                    <g font-size="16" stroke="none" fill="#444">
+                        <text id="x-1" x="578" y="20" text-anchor="end">Δx=0</text>
+                        <text id="t-1" x="578" y="45" text-anchor="end">Δt=0</text>
+                        <text id="v-1" x="578" y="70" text-anchor="end">v=0</text>
+                        <text id="a-1" x="578" y="95" text-anchor="end">a=0</text>
+                    </g>
+                    <!-- Графические элементы -->
+                    <g stroke-width="2" stroke-linejoin="square" stroke-linecap="square">
+                        <circle id="circle-1" cx="-290" cy="50" r="40" stroke="none" fill="#f65" />
+                        <path id="distance-1" d="" stroke="#666" fill="none" />
+                    </g>
+                </svg>
+                <div class="caption">Рис. 1.2. Движение материальной точки по прямой</div>
+            </div>
             
             <!-- Пример 1 -->
             <div class="example">
@@ -213,7 +250,7 @@
             <!-- График -->
             <div class="figure">
                 <div id="kinematics-plot" class="plotly-graph"></div>
-                <div class="caption">Рис. 1.1. Графики зависимости скорости и пути от времени</div>
+                <div class="caption">Рис. 1.3. Графики зависимости скорости и пути от времени</div>
             </div>
             
             <!-- Подраздел 1.2 (дублирование?) -->
