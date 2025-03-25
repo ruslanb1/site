@@ -15,8 +15,9 @@
     font-family: "Latin Modern Roman", "Times New Roman", serif;
     line-height: 1.6;
     margin: 0 auto;
-    max-width: 900px;
+    max-width: 605px;
     padding: 20px;
+    font-size: 105%;
     text-align: justify;
     color: #333;
     background-color: #f9f9f5;
