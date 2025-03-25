@@ -1,73 +1,90 @@
 <!DOCTYPE html>
+<!-- 
+  Классический учебник физики - HTML версия
+  Версия 1.2 (адаптивная, с комментариями)
+  © Руслан Басантаев
+-->
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Классический учебник физики</title>
+    <!-- Базовые мета-теги -->
+    <meta charset="UTF-8"> <!-- Кодировка UTF-8 для поддержки всех символов -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Адаптивный viewport -->
+    <title>Классический учебник физики</title> <!-- Заголовок страницы -->
     
-    <!-- MathJax Configuration -->
+    <!-- Конфигурация MathJax для отображения математических формул -->
     <script>
         MathJax = {
             tex: {
-                tags: 'ams',
-                packages: {'[+]': ['physics']},
+                tags: 'ams', // Использование тегов AMS для нумерации формул
+                packages: {'[+]': ['physics']}, // Дополнительный пакет physics
                 fonts: {
-                    tex: ['Latin Modern', 'TeX']
+                    tex: ['Latin Modern', 'TeX'] // Шрифты для формул
                 }
             },
             chtml: {
-                displayAlign: 'left',
-                displayIndent: '0em'
+                displayAlign: 'left', // Выравнивание формул по левому краю
+                displayIndent: '0em' // Без отступа для формул
             },
             options: {
+                // Игнорируемые HTML-теги при обработке формул
                 skipHtmlTags: {'[-]': ['script', 'noscript', 'style', 'textarea']}
             }
         };
     </script>
     
-    <!-- External Resources -->
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-    <script src="https://cdn.plot.ly/plotly-2.14.0.min.js"></script>
-    <script defer src="motionSVG.js"></script>
-    <script defer src="../../../lib/matter.min.js"></script>
-    <script defer src="mattersim.js"></script>
-    <script src="../../../lib/function-graph-SVG.js"></script>
+    <!-- Подключение внешних ресурсов -->
+    <link rel="stylesheet" href="styles.css"> <!-- Основной файл стилей -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script> <!-- MathJax -->
+    <script src="https://cdn.plot.ly/plotly-2.14.0.min.js"></script> <!-- Plotly для графиков -->
+    <script defer src="motionSVG.js"></script> <!-- Скрипт для анимации движения -->
+    <script defer src="../../../lib/matter.min.js"></script> <!-- Physics engine -->
+    <script defer src="mattersim.js"></script> <!-- Симулятор физики -->
+    <script src="../../../lib/function-graph-SVG.js"></script> <!-- Графики функций -->
 </head>
 
 <body>
+    <!-- Основной заголовок страницы -->
     <h1>Конспект лекций по кинематике</h1>
     
+    <!-- Основное содержание -->
     <article>
+        <!-- Раздел 1: Движение -->
         <div class="section">
             <h2>Глава 1. Движение</h2>
             
+            <!-- Цитата -->
             <div class="quote">
                 "Природа проста и не роскошествует излишними причинами вещей."<br>
                 — М.В. Ломоносов
             </div>
             
+            <!-- Вводный текст -->
             <p>Физика создает <strong>модели</strong>, которые описывают реальность с помощью математики. Физические модели достигли поразительного прогресса, но до сих пор ни одна модель полностью не соответствует реальности.</p>
             <p>Традиционно изучение физики начинается с механического движения.</p>
             <p>Классическая механика, основанная на принципах Ньютона, описывает движение тел при скоростях, значительно меньших скорости света. Основные разделы механики:</p>
             
+            <!-- Список разделов механики -->
             <ul>
                 <li>Кинематика (описание движения)</li>
                 <li>Динамика (изучение причин движения)</li>
                 <li>Статика (равновесие тел)</li>
             </ul>
             
+            <!-- Определение кинематики -->
             <p>Изучение движения безотносительно к силам или энергиям, которые могут в нем участвовать, называется <strong>кинематикой</strong>.</p>
             <p>Основная задача кинематики — математическое описание движения без рассмотрения его причин.</p>
             
+            <!-- Определение движения -->
             <div class="definition">
                 <strong>Движение</strong> — это изменение местоположения или положения в пространстве относительно других тел.
             </div>
             
+            <!-- Подраздел 1.1 -->
             <h3>1.1. Материальная точка</h3>
             
             <p><strong>Материальная точка</strong> — это воображаемая маленькая-маленькая точка, которая заменяет большой предмет, когда мы изучаем его движение.</p>
             
+            <!-- Список характеристик материальной точки -->
             <ul>
                 <li>
                     <strong>Что это?</strong><br>
@@ -88,19 +105,27 @@
                 </li>
             </ul>
             
+            <!-- Формальное определение материальной точки -->
             <div class="definition">
                 <p><strong>Материальная точка</strong> – это идеализированная модель тела, размерами которого можно пренебречь, учитывая только его массу и положение в пространстве.</p>
             </div>
             
-            <svg id="matter-SVG" viewBox="0 0 785 250">
+            <!-- SVG-графика для визуализации -->
+            <svg id="matter-SVG" viewBox="0 0 785 250" aria-label="Визуализация материальной точки">
+                <!-- Рамка -->
                 <rect y="2.5" x="2.5" height="145" width="500" fill="none" stroke="#556" stroke-width="5" rx="5" />
+                <!-- Измерительная линия -->
                 <path id="matter-measure" d="" stroke="#f65" fill="none" stroke-dasharray="2 6" stroke-width="1.5" opacity="0.4" />
+                <!-- Целевая точка -->
                 <circle id="matter-target" cx="550" cy="75" r="12" fill="#f65" stroke="none" />
+                <!-- Вектор -->
                 <g id="matter-vector" transform="translate(550 75) rotate(180)">
                     <line x1="0" y1="0" x2="0" y2="24" fill="none" stroke="#445" stroke-width="1.4" stroke-linecap="round" />
                     <polygon points="0,0 -3,-6.5 0,-5.5 3,-6.5" transform='translate(0 26)' stroke="none" fill="#556" />
                 </g>
+                <!-- Центр точки -->
                 <circle cx="550" cy="75" r="1.7" fill="#445" stroke="none" />
+                <!-- Подписи осей -->
                 <g font-size="18" stroke="none" fill="#556">
                     <text id="matter-x" x="513" y="15">x</text>
                     <text id="matter-y" x="513" y="45">y</text>
@@ -109,25 +134,30 @@
                 </g>
             </svg>
             
+            <!-- Подраздел 1.2 -->
             <h3>1.2. Положение тела (точки) на прямой</h3>
             
             <p>
                 Символ <strong>\( x \)</strong> используется для обозначения <strong>положения</strong> в метрах. Возможно, вы привыкли использовать <strong>\( x \)</strong> по-другому, но в физике он зарезервирован для обозначения <strong>положения</strong>.
             </p>
             
-            <svg id="motion-1" class="SVG-shadow" viewBox="0 0 780 200">
+            <!-- SVG-графика для визуализации движения -->
+            <svg id="motion-1" class="SVG-shadow" viewBox="0 0 780 200" aria-label="Визуализация движения точки">
+                <!-- Показатели движения -->
                 <g font-size="16" stroke="none" fill="#444">
                     <text id="x-1" x="578" y="20" text-anchor="end">Δx=0</text>
                     <text id="t-1" x="578" y="45" text-anchor="end">Δt=0</text>
                     <text id="v-1" x="578" y="70" text-anchor="end">v=0</text>
                     <text id="a-1" x="578" y="95" text-anchor="end">a=0</text>
                 </g>
+                <!-- Графические элементы -->
                 <g stroke-width="2" stroke-linejoin="square" stroke-linecap="square">
                     <circle id="circle-1" cx="-290" cy="50" r="40" stroke="none" fill="#f65" />
                     <path id="distance-1" d="" stroke="#666" fill="none" />
                 </g>
             </svg>
             
+            <!-- Пример 1 -->
             <div class="example">
                 <strong>Пример:</strong> Гора Эверест находится на высоте 8848 м над уровнем моря. Базовый лагерь, откуда большинство альпинистов начинают свой поход, находится на высоте 5150 м над уровнем моря. Каково расстояние по вертикали между базовым лагерем и вершиной?
                 <details>
@@ -140,14 +170,15 @@
                 </details>
                 <details>
                     <summary>Доска</summary>
-                    <img src="../../../svg/board_line.svg">
+                    <img src="../../../svg/board_line.svg" alt="Доска с решением">
                 </details>
                 <details>
                     <summary>Калькулятор</summary>
-                    <iframe src="../../dist_scientific-calculator-source-code/index.html" height="500px" width="500px"></iframe>
+                    <iframe src="../../dist_scientific-calculator-source-code/index.html" height="500px" width="500px" title="Научный калькулятор"></iframe>
                 </details>
             </div>
             
+            <!-- Пример 2 -->
             <div class="example">
                 <strong>Преобразуйте:</strong> Переведите ответ из предыдущей задачи в мили и километры. Во что легче преобразовать?
                 <br>1 миля = 1609 метров
@@ -160,62 +191,74 @@
                 </details>
                 <details>
                     <summary>Доска</summary>
-                    <img src="../../../svg/board_line.svg">
+                    <img src="../../../svg/board_line.svg" alt="Доска с решением">
                 </details>
                 <details>
                     <summary>Калькулятор</summary>
-                    <iframe src="../../dist_scientific-calculator-source-code/index.html" height="500px" width="500px"></iframe>
+                    <iframe src="../../dist_scientific-calculator-source-code/index.html" height="500px" width="500px" title="Научный калькулятор"></iframe>
                 </details>
             </div>
             
+            <!-- Подраздел 1.1 (дублирование?) -->
             <h3>1.1. Кинематика</h3>
             
             <p>Основная задача кинематики — математическое описание движения без рассмотрения его причин.</p>
             
+            <!-- Важные формулы -->
             <div class="formula-important">
                 \[ v = v_0 + at \]
                 \[ s = v_0t + \frac{at^2}{2} \]
             </div>
             
+            <!-- График -->
             <div class="figure">
                 <div id="kinematics-plot" class="plotly-graph"></div>
                 <div class="caption">Рис. 1.1. Графики зависимости скорости и пути от времени</div>
             </div>
             
+            <!-- Подраздел 1.2 (дублирование?) -->
             <h3>1.2. Динамика</h3>
             
+            <!-- Определение первого закона Ньютона -->
             <div class="definition">
                 <strong>Первый закон Ньютона:</strong> Существуют системы отсчета, называемые инерциальными, относительно которых свободные тела движутся равномерно и прямолинейно.
             </div>
         </div>
         
+        <!-- Раздел 2: Электродинамика -->
         <div class="section">
             <h2>Глава 2. Электродинамика</h2>
             
             <p>Электродинамика изучает электромагнитные взаимодействия — фундаментальные взаимодействия между электрически заряженными частицами.</p>
             
+            <!-- Формула закона Кулона -->
             <div class="formula-important">
                 \[ \vec{F} = k\frac{q_1q_2}{r^2}\vec{e}_r \]
             </div>
             
+            <!-- Цитата Эйнштейна -->
             <div class="quote">
                 "Самое непостижимое в этом мире — что он постижим."<br>
                 — А. Эйнштейн
             </div>
         </div>
         
+        <!-- Подключение скрипта для графиков -->
         <script src="plots.js"></script>
         
+        <!-- Ссылки на дополнительные ресурсы -->
         <a href="al-html5/displacement_rus.html">Симулятор</a>
         <a href="physics-toolkit/index.html" class="glitch-link">
             <span aria-hidden="true">Задачник</span> Задачник <span aria-hidden="true">Задачник</span>
         </a>
     </article>
     
+    <!-- Футер страницы -->
     <footer class="copyright">
         © <span id="current-year">2023</span> Руслан Басантаев
     </footer>
     
+    <!-- Скрипт для автоматического обновления года в футере -->
     <script>
         document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
