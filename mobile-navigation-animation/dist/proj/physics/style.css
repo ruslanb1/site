@@ -1,4 +1,12 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
+@font-face {
+    font-family: "Latin Modern Roman";
+    src: url("fonts/lmroman10-regular.otf") format("opentype");
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Latin Modern Sans";
+    src: url("fonts/lmsans10-regular.otf") format("opentype");
+    font-display: swap;
 
 :root {
   --bg-color: #2E687E;
@@ -48,7 +56,7 @@ svg:not(:root) {
 
 body {
   margin-top: 1em;
-  font-family: "Roboto", "Helvetica Neue", "Arial", sans-serif;
+  font-family: "Latin Modern Roman", "Times New Roman", serif;
   font-size: 105%;
   color: #333;
   line-height: 1.5;
@@ -82,7 +90,7 @@ h3 {
 }
 
 button {
-  font-family: "Roboto", "Helvetica Neue", "Arial", sans-serif;
+  font-family: "Latin Modern Roman", "Times New Roman", serif;
   font-size: 1em;
   margin: 0.3em;
 }
@@ -319,7 +327,7 @@ header h1 {
   letter-spacing: 1px;
   margin: 0;
   color: #fff;
-  /* font-family: "Times New Roman", Times, serif; */
+  font-family: "Latin Modern Roman", "Times New Roman", serif;
 }
 
 header h1 a {
