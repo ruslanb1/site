@@ -147,12 +147,23 @@ h3 {
 
 /* Важные формулы с выделением */
 .formula-important {
+  border: 2px solid #8B0000;
+  padding: 15px;
+  margin: 25px auto;
+  text-align: center;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(139, 0, 0, 0.1);
+  max-width: fit-content;
+  position: relative;
+}
+/*.formula-important {
   border: 2px solid var(--primary-color);
   background-color: white;
   box-shadow: 0 2px 5px rgba(139, 0, 0, 0.1);
   max-width: fit-content;   /* Ширина по содержимому */
   position: relative;
-}
+}*/
 
 /* ===== АДАПТИВНЫЕ ИЗОБРАЖЕНИЯ ===== */
 .flex-image-container {
