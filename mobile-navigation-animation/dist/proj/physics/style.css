@@ -3,7 +3,7 @@
     src: url("fonts/lmroman10-regular.otf") format("opentype");
     font-display: swap;
   }
-  @font-face {
+@font-face {
     font-family: "Latin Modern Sans";
     src: url("fonts/lmsans10-regular.otf") format("opentype");
     font-display: swap;
