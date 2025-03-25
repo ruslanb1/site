@@ -1,8 +1,20 @@
+/* ===== Подключение OTF-шрифтов ===== */
+@font-face {
+    font-family: "Latin Modern Roman";
+    src: url("fonts/lmroman10-regular.otf") format("opentype");
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Latin Modern Sans";
+    src: url("fonts/lmsans10-regular.otf") format("opentype");
+    font-display: swap;
+  }
+  
 body,
 html {
     margin: 0;
     padding: 0;
-    font: 100%/180% 'Book Antiqua';
+    
     background: #eee;
 }
 
