@@ -49,8 +49,8 @@ html {
 /* ===== ОСНОВНЫЕ СТИЛИ СТРАНИЦЫ ===== */
 body {
   font-family: "Latin Modern Roman", "Times New Roman", serif;
-  font-size: 1.15rem;      /* Увеличенный основной размер шрифта (~18.4px) */
-  line-height: 1.7;        /* Увеличенный межстрочный интервал */
+  font-size: 1.3rem;      /* Увеличенный основной размер шрифта (~18.4px) */
+  line-height: 2;        /* Увеличенный межстрочный интервал */
   color: var(--text-color);
   background-color: var(--bg-color);
   padding: 1.5rem;         /* Внутренние отступы */
