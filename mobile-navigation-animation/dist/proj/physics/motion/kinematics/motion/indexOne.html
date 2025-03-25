@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="ru" >
+<head>
+  <meta charset="UTF-8">
+  <title>Перемещение</title>
+  <link rel="stylesheet" href="styleOne.css">
+  <link rel="stylesheet" type="text/css" href="../../../lib/katex/katex.min.css">
+  
+  <script defer src="motionSVG.js"></script>
+  <script defer src='../../../lib/matter.min.js'></script>
+  <script defer src="mattersim.js"></script>
+  <script src='../../../lib/function-graph-SVG.js'></script>
+ 
+  
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src='http://www.maths.nottingham.ac.uk/personal/drw/LaTeXMathML.js' type='text/javascript'></script>
+</head>
+<body>
+
+<!--Меню-->
+<nav class="toc">
+	<ul>
+		
+		<li><a href="#intro">Введение <mi>b</mi></a></li>
+		<li>
+			<a href="#dev">Прямолинейное движение</a>
+			<ul>
+				<li><a href="#dev-edit-html">Положение тела</a></li>
+				<li><a href="#dev-element-classes">Путь,траектория, перемещение</a></li>
+				<li><a href="#dev-slide-classes">Скорость</a></li>
+				<li><a href="#dev-export-html">Диаграммы скорости</a></li>
+			</ul>
+		</li>
+		<li>
+			<a href="#acc">CSS Editor</a>
+      <ul>
+        <li><a href="#css-fonts">Custom Fonts</a></li>
+        <li><a href="#css-developer-mode">Developer Mode</a></li>
+        <li><a href="#css-examples">Examples</a></li>
+      </ul>
+		</li>
+	</ul>
+  <svg class="toc-marker" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+    <path stroke="#444" stroke-width="3" fill="transparent" stroke-dasharray="0, 0, 0, 1000" stroke-linecap="round" stroke-linejoin="round" transform="translate(-0.5, -0.5)" />
+  </svg>
+</nav>
+<math xmlns="http://www.w3.org/1998/Math/MathML"></math>
+<!--Контент-->
+<article class="contents">
+  <section id="intro">
+	
+    <h2>Введение </h2>
+    <p>
+		Мир и все, что в нем находится, движется. Даже такие, казалось бы, неподвижные вещи, как дорожное полотно, движутся благодаря вращению Земли, орбите Земли вокруг Солнца, орбите Солнца
+		вокруг центра галактики Млечный Путь и перемещением этой галактики относительно других галактик.
+    </p>
+	<!--$$\begin{align}
+    \Delta\mathbf{r}=(x_2-x_1,y_2-y_1,z_2-z_1)\,.
+    \end{align}$$-->
+    <!--<p>
+      The rest of the content below is taken from <a href="https://slides.com/developers" target="_top">slides.com/developers</a>. Take a look at that to see how the progress nav looks on a real page.
+    </p>
+    X<p>
+      Created by Hakim El Hattab | <a href="http://hakim.se" target="_top">hakim.se</a> | <a href="https://twitter.com/hakimel" target="_top">@hakimel</a> 
+    </p>-->
+	<img src="svgOne/1_auto_vvedenie1.svg" alt="изображение в центре параграфа" width=100%/>
+		<h2>Кинематика</h2>
+		<p>
+			Классификация и сравнение движений (так называемая кинематика) часто представляет собой сложную задачу.
+			Надо понимать,что именно необходимо измерять и как сравнивать?
+			<!--<a href="#dev">Developer Mode</a>.-->
+		</p>
+		
+	</section>
+
+	<section>
+		<div id="dev">
+			<h2>Что такое "прямолинейное движение"?</h2>
+			<p>
+				Прежде чем попытаться ответить на этот вопрос, мы рассмотрим некоторые общие свойства
+				движения, которое ограничено тремя способами.
+			</p>
+			<ol>
+				<li>Движение происходит только по прямой линии. Линия может быть вертикальной, горизонтальной или
+					наклонной, но она должна быть прямой.</li>
+				<li>В этой главе мы обсудим только само движение и изменения в нем. Ускоряется ли движущийся объект, замедляется, останавливается или меняет направление движения?
+					Если движение изменяется, то как в этом изменении участвует время?</li>
+				<li>Движущийся объект - это частица (материальная точка, под которой мы понимаем материальный объект)</li>
+			   </ol>
+			<p>
+				Материальная точка (МТ) - часто используемое абстрактное физическое понятие, которое пренебрегает размерами физического тела, если они не важны. 
+			</p>
+      
+    </div>
+
+		<div id="dev-edit-html">
+			<h3>Положение тела (точки) = [<math><mi>x</mi></math>]</h3>
+			<p>
+				Определить местоположение объекта означает найти его положение относительно некоторой точки отсчета, 
+				в том числе начала (или нулевой точки) оси, такой как ось x на риcунке ниже. Положительное направление 
+				оси - это направление увеличения чисел (координаты), которое на рисунке направлено вправо, а противоположное 
+				направление - отрицательное.
+			</p>
+			
+			<p class="aligncenter">
+				<img src="svgOne/1.svg"  width=60%/>
+			</p>
+			<style>
+			.aligncenter {
+				text-align: center;
+			}
+			</style>
+			<p>
+				Например, частица может находиться в точке <math><mi>x</mi></math> = 3 м, что означает, что она находится на расстоянии 3 м 
+				в положительном направлении от начала координат. Если бы она находилась в точке <math><mi>x</mi></math> = -3 м, она была бы 
+				так же удалена от начала координат, но в противоположном направлении. 
+				На оси координата -3 м меньше координаты -1 м, и обе координаты меньше координаты +3 м. 
+				Знак плюс для координаты можно не показывать, а знак минус нужно показывать всегда.
+				<p class="aligncenter">
+					<img src="svgOne/delta.svg"  width=100%/>
+				</p>
+			</p>
+			<p>
+				Смещение из положения <math><mi>x</mi></math><sub>1</sub> в положение <math><mi>x</mi></math><sub>2</sub> будем называть проекцией перемещения <math><mi>r</mi></math><sub><math><mi>x</mi></math></sub> или  Δ<math><mi>x</mi></math>, где 
+
+			</p>
+			<div class='definition'>
+				<br>$$\Delta x=x_{1}-x_{0}$$
+				<p>$$\Delta x-изменение \ положения [м, метры]$$</p>
+				<p>$$x_{0}-начальная \ позиция [м, метры]$$ </p>
+				<p>$$x_{1}-конечная \ позиция [м, метры]$$ </p>							
+			</div>
+			<!--"ЭКСЕМПЛ_min"-->
+			<div class='example'>
+				<strong><h5># МОДЕЛИРОВАНИЕ</h5>  </strong>
+				<hr align="center" width=100% size="2" color="#c0c0c0" />
+				
+				<details>
+					<svg id="motion-1" class="SVG-shadow" viewBox="0 0 580 100">
+						<g font-size="16" stroke="none" fill="#444">
+							<text id="x-1" x="578" y="20" text-anchor="end">Δx=0</text>
+							
+						</g>
+						<g stroke-width="2" stroke-linejoin="square" stroke-linecap="square">
+							<circle id="circle-1" cx="-290" cy="50" r="40" stroke="none" fill="#f65" />
+							<path id="distance-1" d="" stroke="#666" fill="none" />
+						</g>
+					</svg>
+					<img src="../../../svg/clean_OX.svg" width=100%>
+				</details>
+			  </div>
+			<hr align="center" width=100% size="1" color="#c0c0c0" />
+
+			</div>
+			<p>
+				Для одномерного движения смещение по оси (проекцию перемещения) <math><mi>x</mi></math> можно найти как сумму всех смещений вдоль этой оси.
+
+			</p>
+			<p>	Если у вас есть несколько смещений по оси $$ x$$<math><mi>x</mi></math>, например, </p>
+			<br>$$\Delta x_{1}= 5, \Delta x_{2}= -3, \Delta x_{3}= 2, $$
+			<!--<br>$$\Delta x= r_{x}=x_{1}-x_{0}$$
+			<p>	$${R = d_x_1 + d_x_2 + d_x_3 = 4}$$</p>-->
+			<p>	то результирующее перемещение по оси    <math><mi>r</mi></math><sub><math><mi>x</mi></math></sub> будет равно: </p>
+			<br>$$r_{x}=\Delta x=\Delta x_{1}+\Delta x_{2}+\Delta x_{3}=5 - 3 + 2 = 4$$</br>
+			<p>Таким образом, результирующее перемещение по оси <math><mi>x </mi></math> равно четырём единицам длины.</p>
+			
+			
+			
+			<!--"ЭКСЕМПЛ_min"-->
+			<div class='example'>
+				<strong><h5># МОДЕЛИРОВАНИЕ</h5>  </strong>
+				<hr align="center" width=100% size="2" color="#c0c0c0" />
+				
+				
+				<details>
+					<iframe src="../../modelingOne/images/stories/html5/displacement.html" frameborder="0" width="800" height="480"></iframe>
+				</details>
+			<hr align="center" width=100% size="1" color="#c0c0c0" />
+			</div>
+			
+			
+			
+		
+        
+		<div id="dev-element-classes">
+			<h3>Путь и траектория </h3> <!--<a href="/pricing" class="header-secondary-text">(Requires Pro)</a>-->
+			<p>
+				Совокупность всех точек, через которые проходит тело, называется траекторией.
+			</p>
+			<p>
+				Перемещение – это вектор, который начинается с начального положения тела и заканчивается его конечным положением.
+			</p>
+			<p>
+				Один из способов задать вектор — указать величину вектора и угол, который он образует с фиксированным направлением, обычно с осью <math><mi>x</mi></math>. 
+				Эти два числа называются полярными координатами вектора. Для элементарных перемещений величина смещения и длина дуги одинаковы.
+				Но если перемещения не являются элементарными, то мера перемещения и длина дуги (или интервала) равны только тогда, когда движение прямолинейно и 
+				тело не меняет направления движения.
+			</p>
+			
+			<!--"ЭКСЕМПЛ_min"-->
+			<div class='example'>
+				<strong><h5># МОДЕЛИРОВАНИЕ</h5>  </strong>
+				<hr align="center" width=100% size="2" color="#c0c0c0" />
+				
+				
+				<details>
+					<iframe src="../../modelingOne/images/stories/html5/path.html" frameborder="0" width="800" height="580"></iframe>
+				</details>
+			<hr align="center" width=100% size="1" color="#c0c0c0" />
+			</div>
+			
+
+			<!--<iframe src="slider1/index.html" frameborder="0" width="800" height="480"></iframe>-->
+			<p>
+				Here's an example that defines an "upside-down" class using custom CSS and applies it to a text block.
+			</p>
+			<!--<iframe src="test1/index.html" frameborder="0" width="800" height="500"></iframe>-->
+			<pre class="code-block" data-highlight-theme="github-gist"><code class="hljs css">.upside-down {
+            transform: scale( 1, -1 );
+            }</code></pre>
+
+			
+		</div>
+
+		<div id="dev-slide-classes">
+			<h3>Скорость </h3>
+			<p>
+				Говорят, что тело движется, когда оно меняет положение относительно другого тела, которое мы рассматриваем как систему отсчета.
+			</p>
+			<img class="developer-image" src="https://static.slid.es.s3.amazonaws.coм/сite/developers/slides-developer-mode-4.png">
+			<p>
+
+				Система отсчёта состоит из тела отсчёта (объект, относительно которого задаётся положение другого тела), системы координат и прибора для определения времени (часы).
+			</p>
+
+			<p>
+				Чтобы описать, насколько «быстро» движется тело, мы определяем новую величину, которую называем скоростью.
+			</p>
+			<p>
+				Средняя скорость за интервал времени определяется как частное перемещения к соответствующему интервалу времени.
+			</p>
+			<div class='definition'>
+				<br>$$Средняя\ скорость =\frac{Путь}{Время}$$
+										
+			</div>
+			
+			<p>
+				Средняя скорость является векторной величиной и имеет то же направление, что и перемещение.
+			</p>
+			<p>
+				Для расчета средней скорости нас не интересует, как двигалось тело, нас интересует, откуда оно начало движение, куда прибыло и сколько времени это заняло.
+			</p>
+			<p>
+				В прямолинейном движении
+			</p>
+			<table border="0" align="center" cellpadding="5" cellspacing="0">
+				<tr>
+				  <td width="76"><p align="center">&nbsp;</p></td>
+				  <td width="293" bgcolor="#F0F0F0">$$υ_\mathsf{ср}=\frac{Δx}{Δt}$$</td>
+				  <td width="76">$$(1)$$</td>
+				</tr>
+			</table>
+			
+			<p>Средняя скорость обычно зависит от временного интервала.</p>
+			<p>
+				Мгновенной скоростью (или просто скоростью) в данный момент времени мы называем среднюю скорость тела за очень короткий промежуток времени вокруг конкретного момента времени.
+			</p>
+			<table border="0" align="center" cellpadding="5" cellspacing="0">
+				<tr>
+				  <td width="76"><p align="center">&nbsp;</p></td>
+				  <td width="293" bgcolor="#F0F0F0">$$υ=\frac{Δx}{Δt},\ Δt\to 0$$</td>
+				  <td width="76">$$(2)$$</td>
+				</tr>
+			</table>
+			<p>Равномерное прямолинейное движение - это движение, при котором скорость остается постоянной.</p>
+			<p>
+				Поскольку скорость остается постоянной, средняя скорость и мгновенная скорость в любой момент 
+				времени равны друг другу. Поэтому, чтобы вычислить мгновенную скорость, достаточно вычислить 
+				среднюю скорость за любой промежуток времени Δ<math><mi>t</mi></math> $$v=\frac{Δx}{Δt}$$, следовательно, если тело в момент времени
+				<math><mi>t</mi></math> = <math><mi>t</mi></math><sub>0</sub> находится в точке <math><mi>x</mi></math> = <math><mi>x</mi></math><sub>0</sub>, то за любой, случайно выбранный промежуток времени
+			</p>
+				
+				
+			<p>
+				$$υ=\frac{x-x_0}{t-t_0}$$
+				$$x-x_0=υ\left(t-t_0\right)$$
+			</p>
+			<table border="0" align="center" cellpadding="5" cellspacing="0">
+				<tr>
+				  <td width="76"><p align="center">&nbsp;</p></td>
+				  <td width="293" bgcolor="#F0F0F0">$$x=x_0+υ\left(t-t_0\right)$$</td>
+				  <td width="76">$$(3)$$</td>
+				</tr>
+			</table>
+			<p>
+                Если <math><mi>t</mi></math><sub>0</sub> = 0, то
+			</p>
+			<table border="0" align="center" cellpadding="5" cellspacing="0">
+				<tr>
+				  <td width="76"><p align="center">&nbsp;</p></td>
+				  <td width="293" bgcolor="#F0F0F0">$$x=x_0+vt$$</td>
+				  <td width="76">$$(4)$$</td>
+				</tr>
+			  </table>
+			<p>Последнее уравнение - это "уравнение движения" тела. Это уравнение отвечает на вопрос,
+			  где находится тело в момент времени <math><mi>t</mi></math> при движении с постоянной скоростью.</p> 
+			<img src="svgOne/x(t).svg" alt="изображение в центре параграфа" width=100%/>
+			<p>Наклон на диаграмме "положение-время" численно равен скорости. Если наклон большой (крутой), то и скорость большая.</p>
+			<!--$$\ Наклон \ графика =\displaystyle \frac{\Delta x}{\Delta t}=$$
+			$$\ Наклон  = \frac{60\ м}{6.5c}=9.2\frac{\mathrm{м}}{\mathrm{с}}$$
+			$$\displaystyle {\vec{v}_x}=Наклон$$-->
+
+			
+			<div class='example'>
+				<strong><h5># МОДЕЛИРОВАНИЕ</h5>  </strong>
+				<hr align="center" width=100% size="2" color="#c0c0c0" />
+				
+				
+				<details>
+					Отктрыть
+					<iframe src="../../modelingOne/images/stories/html5/omali.html"  width="800px" height="600px"></iframe>
+				</details>
+			<hr align="center" width=100% size="1" color="#c0c0c0" />  
+			</div>
+			
+
+			<!--<pre class="code-block" data-highlight-theme="github-gist"><code class="hljs css">// Targets the slide contents
+				.slides .night-sky svg path {
+					fill: yellow;
+				}
+
+				// Target the slide background
+				.backgrounds .night-sky {
+					background: linear-gradient(0deg, #141528, #0b1bb2);
+				}</code></pre>-->
+				<p>
+					Площадь фигуры на диаграмме "скорость-время", заключенная в графике скорости, оси времени и 
+					линиях <math><mi>t</mi></math> = <math><mi>t</mi></math><sub>1</sub> и <math><mi>t</mi></math> = <math><mi>t</mi></math><sub>2</sub>
+					численно равна перемещению тела в соответствующем интервале времени Δ<math><mi>t</mi></math>.
+				</p>
+				<p>
+					Если в момент времени <math><mi>t</mi></math> = 0 тело находится в начале отсчета, т.е. <math><mi>x</mi></math> = 0, то вышеприведенное уравнение записывается более просто <math><mi>x</mi></math> = <math><mi>v</mi></math><math><mi>t</mi></math> 
+					и диаграмма <math><mi>x</mi></math>(<math><mi>t</mi></math>) - это прямая, проходящая через начало координат.
+				</p>
+				<p>
+				В прямолинейном равномерном движении следующие предложения эквивалентны, то есть если одно из них истинно, то истинны и остальные.
+				<ul>
+					<li>В равное время мы имеем равные перемещения.</li>
+					<li>Скорость постоянна.</li>
+					<li>График постоянной скорости - это линия, параллельная оси времени.
+						<hr align="center" width=100% size="1" color="#c0c0c0" />
+						<details>
+							<p class="aligncenter">
+								<img src="svgOne/2_2.svg"  width=45%/>
+							</p>
+						</details>
+					<hr align="center" width=100% size="1" color="#c0c0c0" />
+					</li>
+					<li>Мгновенная и средняя скорости равны друг другу.</li>
+					<li>Движение задается уравнением <math><mi>x</mi></math> = <math><mi>x</mi></math><sub>0</sub>+<math><mi>v</mi></math><math><mi>t</mi></math></li>
+					<li>На диаграмме <math><mi>x</mi></math>(<math><mi>t</mi></math>) уравнение движения представлено прямой линией.</li>
+				</ul>
+			</p>
+			<p>
+				В экспериментах, связанных с движением, переменные, которые можно измерить напрямую, - это
+				обычно время и либо положение, либо перемещение. Третья переменная, скорость, 
+				часто получается путем вычисления.
+				При равномерном движении скорость постоянна, поэтому перемещение одинаково
+				за равные промежутки времени.
+			</p>
+			<p><img src="svgOne/straus.svg" width="120" height="130" vspace="5" hspace="5">
+				Предположим, что страус, самая быстробегающая птица на земле, пробегает 18 м по прямой на запад каждую секунду в течение 8,0 с. Скорость птицы
+			    стабильна и составляет 18 м/с. Ниже приведена таблица "положение-время", описывающая
+			этого движения, начиная с 0,0 с, показан график этого движения, на котором положение изображено как
+			зависимая переменная от <math><mi>t</mi></math>. Обратите внимание, что для равномерного движения график "положение-время
+			образует прямую линию.</p>
+			
+			<div class='example'>
+				
+				
+				
+				<img src="svgOne/x_i_v_ot_t.svg" alt="изображение в центре параграфа" width=100%/>
+				<p>Вычислим наклон линии на 2 рисунке  и определим, что представляет собой этот наклон.</p>
+				
+				<details>
+					<summary>Решение</summary>
+					$$tgθ=\frac{Δx}{Δt}=\frac{x-x_0}{t-t_0}=\frac{144-0}{8-0}=18(\frac{м}{с})$$
+					<p>Наклон линии равен 18 м/с . Судя по единице измерения, наклон представляет собой среднюю скорость страуса.</p>
+					<p>Если линия на графике положения-времени имеет отрицательный наклон,
+						то расчет наклона дает отрицательное значение, например, -18,0 м/с. Это означает, что проекция скорости отрицательна, т.е. напрвлена противоположно выбранному напрвлению, т.е. на восток</p>
+					<p>На 3 рисунке  приведен график зависимости скорости от времени. </p>
+					<p>График "скорость-время" можно использовать для определения перемещения в различныx
+						временных интервалах. Это достигается путем нахождения площади под линией на графике. </p>
+					<p>
+						Найдем площадь заштрихованной области на рисунке 3. Для прямоугольной формы, 
+						$$s=ab=vΔt=18\cdot2=36(м)$$
+						Площадь заштрихованной области составляет 36 м. Эта величина представляет собой перемещение страуса
+                         от <math><mi>t</mi></math> = 4,0 с до <math><mi>t</mi></math> = 6,0 с. 
+					</p>
+				</details>
+				<details>
+					<summary>Калькулятор</summary>
+					<iframe src="../../dist_scientific-calculator-source-code/index.html" height="300px" width="100px"></iframe>
+				</details>
+			</div>
+			
+			
+			<p class="aligncenter">
+				
+			</p>
+
+
+			<!--<h5># МОДЕЛИРОВАНИЕ</math></h5>
+			<hr align="center" width=100% size="2" color="#c0c0c0" />
+			<iframe src="../../modelingOne/images/stories/html5/averageVelocity.html" frameborder="0" width="810" height="680"></iframe>-->
+
+			
+		</div>
+
+		<div id="dev-export-html">
+			<h3>Диаграммы скорости и координаты</h3>
+			<!--"ЭКСЕМПЛ_min"-->
+			<div class='example'>
+				<strong><h5># МОДЕЛИРОВАНИЕ</h5>  </strong>
+				<hr align="center" width=100% size="1" color="#c0c0c0" />
+				<details>
+					<iframe src="../../modelingOne/images/stories/html5/diagrammataOmalis.html" frameborder="0" width="900" height="640"></iframe>
+				</details>
+			<hr align="center" width=100% size="1" color="#c0c0c0" />
+			</div>
+			
+			
+			<p>
+				You can access the complete HTML for all slides in your deck ﻿inside of the export panel, under "Export to reveal.js"﻿. This provides a way of exporting your deck markup and the core Slides styles to reveal.js. There are a few limitations with exporting this way but it should provide a good starting point.
+			</p>
+			
+
+			<img class="developer-image" src="https://static.slid.es.s3.amazonaws.coм/сite/developers/slides-developer-mode-6.png">
+		</div>
+
+	</section>
+
+	<section>
+    <div id="acc">
+      <h2>Ускорение </h2>
+	  <p>
+		Вы узнали, что равномерное движение происходит, когда объект движется с постоянной
+		скорости по прямой линии. При равномерном движении скорость постоянна; график скорости 
+		и времени представляет собой горизонтальную прямую линию.
+		
+		
+	  </p>
+      <p>
+        The CSS editor lets you author custom styles for your presentation with a real-time preview of the result. It's available as an option inside of the Style panel of the presentation editor.
+      </p>
+	<!--"ЭКСЕМПЛ_min"-->
+	  <div class='example'>
+		<strong><h5># МОДЕЛИРОВАНИЕ</h5>  </strong>
+		<hr align="center" width=100% size="1" color="#c0c0c0" />
+		
+		
+		<details>
+			<iframe src="../../simsOne/ball-up-then-down-ramp/index.html"  width="800px" height="600px"></iframe>
+		</details>
+	  
+		<hr align="center" width=100% size="1" color="#c0c0c0" />
+	   </div>
+	   <!--"ЭКСЕМПЛ_min"-->
+	  
+	   <strong><h5># МОДЕЛИРОВАНИЕ</h5>  </strong>
+		<hr align="center" width=100% size="1" color="#c0c0c0" />
+		
+		
+		<details>
+			<div align="center"><iframe src="../../modelingOne/images/stories/html5/omalaMetabalomeniAcceleration.html" width="700" height="580"></iframe>
+				<a href="../../modelingOne/images/stories/html5/omalaMetabalomeniAcceleration.html" target="_blank">Развернуть</a></div>
+		</details>
+	  
+		<hr align="center" width=100% size="1" color="#c0c0c0" />
+	   </div>
+	   
+	   <p align="justify">
+		Движение называется прямолинейным равноускоренным, если ускорение постоянно (<math><mi>a</mi></math> = <math><mi>const</mi></math>).
+    </p>
+	<p align="justify">
+		Если при <math><mi>t</mi></math>=0  тело  имеет начальную скорость  <math><mi>v</mi></math><sub>0</sub>, а через время <math><mi>t</mi></math> - скорость <math><mi>v</mi></math>, то ускорение определяется как отношение приращения скорости к приращению времени: 
+		<!--<math><mi>t</mi></math> = <math><mi>t</mi></math><sub>1</sub>-->
+	</p>
+	$$a=\frac{Δυ}{Δt}$$
+	<p>
+		или
+	</p>
+	$$a=\frac{υ-υ_0}{t}\ ,$$
+	<p>
+		тогда
+	</p>
+
+	<table border="0" align="center" cellpadding="5" cellspacing="0">
+	<tr>
+		<td width="76"><p align="center">&nbsp;</p></td>
+		<td width="293" bgcolor="#F0F0F0">$$υ=υ_0+at$$</td>
+		<td width="76">$$(5)$$</td>
+	</tr>
+	</table>
+	<p align="justify">
+		Приведенное выше уравнение представляет собой прямую линию на диаграмме v-t. Перемещение в интервале времени от <math><mi>t</mi></math>=0 до <math><mi>t</mi></math> вычисляется по площади фигуры, ограниченной
+		<ul><li>осью времени</li>
+		<li>начальным и конечным временем</li>
+		<li>и графиком скорости</li></ul>
+
+
+	<p align="center"><img src="svgOne/omalaMetabalomeni.svg" width="36%" height="auto" alt=""><!--<br>(σχ. 1)<br> </p>-->
+
+
+	$$Δx=\frac{υ+υ_0}{2}t$$
+	$$Δx=\frac{\left(υ_0+at\right)+υ_0}{2}t$$
+	$$Δx=\frac{2υ_0t+at^2}{2}$$
+
+	<table border="0" align="center" cellpadding="5" cellspacing="0">
+	<tr>
+		<td width="76"><p align="center">&nbsp;</p></td>
+		<td width="293" bgcolor="#F0F0F0">$$Δx=υ_0t+\frac12 at^2$$</td>
+		<td width="76">$$(6)$$</td>
+	</tr>
+	</table>
+
+
+
+	<p align="justify">
+		Приведенное выше уравнение перемещения справедливо в любом случае (независимо от знака начальной скорости и ускорения). На рисунке ниже показан случай, когда начальная скорость положительна, а ускорение отрицательно.
+	</p>
+	<p align="center"><img src="svgOne/omalaMetabalomeni2.svg" width="30%" height="auto" alt=""><!--<br>(σχ. 2)<br> </p>-->
+
+
+	<p align="justify">
+		Об ускорении движения говорят, когда показатель скорости увеличивается или когда векторы ускорения и скорости имеют одинаковое направление. Движение характеризуется как замедляющееся, когда показатель скорости уменьшается или когда векторы имеют противоположные направления. Часто ошибочно полагают, что если ускорение отрицательно, то движение замедляется - это верно только в том случае, если скорость положительна.
+    </p>
+	
+	
+	<p align="justify">
+		Мы видели, что уравнение для расчета смещения имеет вид
+	</p>
+
+	<table border="0" align="center" cellpadding="5" cellspacing="0">
+	<tr>
+		<td width="76"><p align="center">&nbsp;</p></td>
+		<td width="293" bgcolor="#F0F0F0">$$Δx=\frac{υ+υ_0}{2}t$$</td>
+		<td width="76">$$(7)$$</td>
+	</tr>
+	</table>
+	<p align="justify">
+		также из уравнения <math><mi>v</mi></math>=<math><mi>v</mi></math><sub>0</sub> + <math><mi>a</mi></math></li><math><mi>t</mi></math></li>, решая для времени, имеем
+		 
+	</p>
+	$$t=\frac{υ-υ_0}{a}$$
+
+	<p align="justify">
+		объединение двух уравнений
+	</p>
+	$$Δx=\frac{υ+υ_0}{2}\frac{υ-υ_0}{a}$$
+	$$Δx=\frac{υ^2-υ_0^2}{2a}$$
+
+	<table border="0" align="center" cellpadding="5" cellspacing="0">
+	<tr>
+		<td width="76"><p align="center">&nbsp;</p></td>
+		<td width="293" bgcolor="#F0F0F0">$$υ^2=υ_0^2+2aΔx$$</td>
+		<td width="76">$$(8)$$</td>
+	</tr>
+	</table>
+
+	<p align="justify">
+		Последнее представляет собой уравнение, которое дает нам скорость тела, когда известно смещение Δ<math><mi>x</mi></math>, а не время.
+	</p>
+
+	<p align="justify">
+		Когда тело замедляется, время, необходимое для его  остановки, определяется из уравнения <math><mi>v</mi></math> = 0
+	</p>
+
+	$$0=υ_0+at$$
+	<table border="0" align="center" cellpadding="5" cellspacing="0">
+	<tr>
+		<td width="76"><p align="center">&nbsp;</p></td>
+		<td width="293" bgcolor="#F0F0F0">$$t=-\frac{υ_0}{a}$$</td>
+		<td width="76">$$(9)$$</td>
+	</tr>
+	</table>
+	<p align="justify">
+		Нас не должен беспокоить знак минус в уравнении, потому что для остановки тело должно совершить замедляющееся движение, а это значит, что начальная скорость <math><mi>v</mi></math><sub>0</sub> и ускорение <math><mi>a</mi></math> имеют противоположные знаки, в результате чего время становится положительным.</p>
+	<p align="justify">
+		Также из уравнения (8) при его остановке, т.е. <math><mi>v</mi></math> = 0, имеем
+	</p>
+	$$0=υ_0^2+2aΔx$$
+	$$Δx=-\frac{υ_0^2}{2a}$$
+	<p align="justify">
+		Даже в этом случае нас не должен беспокоить знак минус в уравнении, потому что если мы имеем замедляющееся движение с отрицательным ускорением, то смещение будет положительным в том же направлении, что и начальная скорость, а если движение замедляется с положительным ускорением, то смещение будет положительным в том же направлении, что и начальная скорость. ускорение (да есть такое замедляющееся!!), то смещение будет отрицательным и опять же в ту же сторону, что и начальная скорость.
+	</p>
+	<p align="justify">
+		При прямолинейном плавно меняющемся движении если верно одно из следующих утверждений, то верны и все остальные.
+	</p>
+	<ul>
+	<li>В одинаковые моменты времени мы имеем одинаковые изменения скорости</li>
+	<li>Ускорение постоянное</li>
+	<li>Среднее ускорение равно мгновенному ускорению.</li>
+	<li>Скорость задается соотношением <math><mi>v</mi></math>=<math><mi>v</mi></math><sub>0</sub> + <math><mi>a</mi></math><math><mi>t</mi></math></li> </li>
+	<li>Смещение задается соотношением  $$Δx=υ_0t+\frac12 at^2$$</li>
+	<li>График скорости от времени  представляет собой прямую линию с ненулевым наклоном</li>
+	<li>График ускорения от времени - это линия, параллельная оси времени</li>
+	<li>Диаграмма "положение-время" представляет собой параболу.</li>
+	</ul>
+    </p>
+	<div class='example'>
+		<strong><h5># МОДЕЛИРОВАНИЕ</h5>  </strong>
+		<hr align="center" width=100% size="1" color="#c0c0c0" />
+		
+		
+		<details>
+			<div align="center"><iframe src="../../modelingOne/images/stories/html5/omalaMetabalomeni.html" width="720" height="620"></iframe>
+				<a href="../../modelingOne/images/stories/html5/omalaMetabalomeni.html" target="_blank">Развернуть</a></div>
+		</details>
+	  
+		<hr align="center" width=100% size="1" color="#c0c0c0" />
+	</div>
+    
+    </div>
+	<div class='example'></div>
+		<strong><h5># МОДЕЛИРОВАНИЕ</h5>  </strong>
+		<hr align="center" width=100% size="1" color="#c0c0c0" />
+		<details>
+			<div align="center"><iframe src="../../modelingOne/images/stories/html5/diagrammataMetabalomenis.html" width="700" height="580"></iframe>
+				<a href="../../modelingOne/images/stories/html5/diagrammataMetabalomenis.html" target="_blank">Развернуть</a></div>
+		</details>
+		<hr align="center" width=100% size="1" color="#c0c0c0" />
+	<!--"ЭКСЕМПЛ_min"-->
+	<div class='example'>
+		<strong><h5># МОДЕЛИРОВАНИЕ</h5>  </strong>
+		<hr align="center" width=100% size="1" color="#c0c0c0" />
+		
+		
+		<details>
+			<iframe src="../../simsOne/plot-quadratic-drag-functions/index.html"  width="800px" height="900px"></iframe>
+		</details>
+	  
+		<hr align="center" width=100% size="1" color="#c0c0c0" />
+	   </div>
+	   <p align="justify">
+		Мотоциклист при $t=0$ находится в позиции $x=0$ и стартует из состояния покоя с постоянным ускорением $a=+5 {м/с^2}$ двигаясь по прямой линии. В момент $t=1 {с}$ ускорение мотоциклиста обнуляется и до момента $t=3 {с}$ он движется с постоянной скоростью. В этот момент мотоциклист нажимает на тормоза и получает ускорение $a=-5{м/с^2}$ которое он поддерживает до полной остановки.<br>
+	
+	а) Напишем уравнения движения для движения мотоциклиста.<br>
+	β) Найдём положение мотоцикла в момент, когда его скорость равна нулю.
+</p>
+<p>&nbsp;</p>
+<h2>Решение:</h2>
+
+<p align="justify">
+	α) Разделим движение на указанные выше временные интервалы. Так, для временного интервала $0 &lt; t &lt; 1 {с}$ движение плавно изменяется. Уравнение движения имеет вид
+</p>
+
+<table border="0" align="center" cellpadding="5" cellspacing="0">
+  <tr>
+	<td width="76"><p align="center">&nbsp;</p></td>
+	<td width="293" bgcolor="#ffffff">$$x=x_0+υ\left(t-t_0\right)+\frac12 a \left(t-t_0\right)^2$$ $$υ=υ_0+a\left(t-t_0\right)$$</td>
+	<td width="76">$$$$</td>
+  </tr>
+</table>
+
+<p align="justify">
+	при $t_0=0$ имеем $x_0=0$ и $υ_0=0$ тогда
+</p>
+
+$$x=\frac12 \left(5\right)t^2$$
+
+
+<table border="0" align="center" cellpadding="5" cellspacing="0">
+  <tr>
+	<td width="76"><p align="center">&nbsp;</p></td>
+	<td width="293" bgcolor="#ffffff">$$x=2.5t^2$$ $$υ=5t$$</td>
+	<td width="76">$$$$</td>
+  </tr>
+</table>
+
+<p align="justify">
+	во время $t=1{с}$ положение и скорость мотоциклиста будут
+</p>
+$$x=2.5\cdot(1^2)\ \rm{м}$$
+$$x=2.5\ \rm{м}$$
+<p>и </p>
+$$υ=5\cdot1\ \rm{м/с}$$
+$$υ=5\ \rm{м/с}$$
+
+<p align="justify">
+	с момента $t=1 {с}$ и до $t=3{с}$  движение прямолинейное и равномерное, потому что $a=0$. В момент $t_0=1 {с}$ скорость $υ_0=5$ м/с и объект находится в координате $x_0=2.5 {м}$ так что
+</p>
+$$x=x_0+υ\left(t-t_0\right)$$
+
+
+<table border="0" align="center" cellpadding="5" cellspacing="0">
+  <tr>
+	<td width="76"><p align="center">&nbsp;</p></td>
+	<td width="293" bgcolor="#ffffff">$$x=2.5+5\left(t-1\right)$$ $$υ=5\ \rm{м/с}$$</td>
+	<td width="76">$$$$</td>
+  </tr>
+</table>
+
+
+
+<p align="justify">
+	Во время $t=3{c}$ мотоциклист будет находиться в координате
+</p>
+$$x=2.5+5\cdot(3-1)$$
+$$x=12.5\ \rm{м}$$
+
+<p align="justify">
+	с момента $t=3{с}$ и до самой остановки движение прямолинейно и плавно замедляется с $a=-5{м/с^2}$. При $t_0=3{с}$ скорорсть $υ_0=5$ м/с и находится в позиции $x_0=12.5{м}$ так что
+</p>
+$$x=12.5+5\left(t-3\right)+\frac12\left(-5\right)\left(t-3\right)^2$$
+
+<table border="0" align="center" cellpadding="5" cellspacing="0">
+  <tr>
+	<td width="76"><p align="center">&nbsp;</p></td>
+	<td width="293" bgcolor="#ffffff">$$x=12.5+5\left(t-3\right)-2.5\left(t-3\right)^2$$</td>
+	<td width="76">$$$$</td>
+  </tr>
+</table>
+
+
+<p>и</p>
+$$υ=υ_0+a\left(t-t_0\right)$$
+
+<table border="0" align="center" cellpadding="5" cellspacing="0">
+  <tr>
+	<td width="76"><p align="center">&nbsp;</p></td>
+	<td width="293" bgcolor="#F0F0F0">$$υ=5-5\left(t-3\right)\quad\rm{\left(S.I.\right)}$$</td>
+	<td width="76">$$(4)$$</td>
+  </tr>
+</table>
+
+
+<p align="justify">
+	β) Όταν ο μοτοσυκλετιστής σταματήσει τότε η ταχύτητα του θα μηδενιστεί και αυτό συμβαίνει όταν
+</p>
+$$υ=0$$
+$$5-5\left(t-3\right)=0$$
+$$t=4\ \rm{s}$$
+
+<p align="justify">
+	Η θέση του μοτοσυκλετιστή τότε θα είναι
+</p>
+
+$$x=12.5+5\cdot(4-3)-2.5\cdot(4-3)^2$$
+$$x=12.5+5-2.5$$
+$$x=15\ \rm{м}$$
+
+<p align="justify">
+	Για την τελική θέση του μοτοσυκλετιστή θα μπορούσαμε να βρούμε την μετατόπιση του από το εμβαδόν του τραπεζίου, δηλαδή
+</p>
+$$Δx_{(0\to 4)}=\frac{2+4}{2}\cdot 5$$
+$$Δx_{(0\to 4)}=15\ \rm{м}$$
+<p>Όμως</p>
+$$x=x_0+Δx$$
+$$x=0+15$$
+<table border="0" align="center" cellpadding="5" cellspacing="0">
+  <tr>
+	<td width="76"><p align="center">&nbsp;</p></td>
+	<td width="293" bgcolor="#F0F0F0">$$x=15\ \rm{м}$$</td>
+	<td width="76">$$(5)$$</td>
+  </tr>
+</table>
+<div class='example'>
+	<strong><h5># МОДЕЛИРОВАНИЕ</h5>  </strong>
+	<hr align="center" width=100% size="1" color="#c0c0c0" />
+	
+	
+	<details>
+		<div align="center"><iframe src="../../modelingOne/images/stories/html5/twoCars.html" width="720" height="620"></iframe>
+			<a href="../../modelingOne/images/stories/html5/twoCars.html" target="_blank">Развернуть</a></div>
+	</details>
+  
+	<hr align="center" width=100% size="1" color="#c0c0c0" />
+</div>
+	   <div id="css-fonts">
+      <h3>Custom Fonts</h3>
+      <p>
+        You can load custom fonts from Typekit and Google fonts and apply them using custom CSS. <a href="http://help.slides.com/knowledgebase/articles/1077976-custom-fonts-pro">Find out more</a>.
+      </p>
+    </div>
+    <div id="css-developer-mode">
+      <h3>Developer Mode</h3>
+      <p>
+        If you turn on the <a href="#dev">developer mode</a> you can also add custom classes to any focused element. This is a convenient way to easily apply your CSS to specific elements.
+      </p>
+    </div>
+  
+    <div id="css-examples">
+		<h3>Examples</h3>
+		<pre class="code-block" data-highlight-theme="github-gist"><code class="hljs css">// Change presentation background
+&amp; {
+    background: #a83239;
+}
+
+// Change color of body text
+.slides {
+    color: #009999;
+}
+
+// Turn text white if the slide has a dark background
+.has-dark-background {
+    color: #fff;
+}
+
+// Add a blue border to all slides (each slide is a &lt;section&gt;)
+.slides section {
+    outline: 1px solid blue;
+}
+
+// Add a red border to all vertical stacks of slides
+.slides section.stack {
+    outline: 1px solid red;
+}<br>
+// Include a custom font<br>@font-face {<br>&nbsp; font-family: "Cabin Sketch";<br>&nbsp; src: url("https://s3.amazonaws.coм/сtatic.slid.es/fonts/cabinsketch/cabinsketch-regular.woff") format("woff"),<br>&nbsp; &nbsp; &nbsp; &nbsp;url("https://s3.amazonaws.coм/сtatic.slid.es/fonts/cabinsketch/cabinsketch-regular.ttf") format("truetype");<br>}
+<br>.slides h1, .slides h2, .slides h3 {<br>&nbsp; &nbsp; font-family: "Cabin Sketch";<br>}
+
+
+// Change color of controls and progress bar
+﻿@interactiveColor: rgb(200,105,119);
+
+.progress span {
+    background: @interactiveColor !important;
+}
+
+.controls .navigate-left {
+    border-right-color: @interactiveColor !important;
+}
+.controls .navigate-right {
+    border-left-color: @interactiveColor !important;
+}
+.controls .navigate-up {
+    border-bottom-color: @interactiveColor !important;
+}
+.controls .navigate-down {
+    border-top-color: @interactiveColor !important;
+}</code></pre>
+  </div>
+
+	<p>Here's where you can access the CSS editor from inside of the Style panel:</p>
+	<img class="developer-image" src="https://static.slid.es.s3.amazonaws.coм/сite/developers/slides-css-editor-1.png">
+
+	<p>A screenshot of the editor:</p>
+	﻿<img class="developer-image" src="https://static.slid.es.s3.amazonaws.coм/сite/developers/slides-css-editor-2.png">
+
+	</section>
+</article>
+<!-- partial -->
+  <script  src="./scriptOne.js"></script>
+
+</body>
+</html>
