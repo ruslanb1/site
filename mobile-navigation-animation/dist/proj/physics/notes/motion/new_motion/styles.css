@@ -1,230 +1,84 @@
-/* ===== Подключение OTF-шрифтов ===== */
-@font-face {
-    font-family: "Latin Modern Roman";
-    src: url("fonts/lmroman10-regular.otf") format("opentype");
-    font-display: swap;
-  }
-  @font-face {
-    font-family: "Latin Modern Sans";
-    src: url("fonts/lmsans10-regular.otf") format("opentype");
-    font-display: swap;
-  }
-  
-  /* ===== Основные стили ===== */
-  
-  body,
-  html {
-    font-family: "Latin Modern Roman", "Times New Roman", serif;
-    line-height: 1.6;
+body,
+html {
     margin: 0;
     padding: 0;
-    text-align: justify;
-    color: #333;
-    background-color: #f9f9f5;
-    
-    
-  }
+    font: 100%/180% 'Book Antiqua';
+    background: #eee;
+}
 
-  html {
+html {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-  }
-  
-  /* ===== Заголовки ===== */
-  h1, h2, h3 {
-    font-family: "Latin Modern Sans", sans-serif;
-    color: #8B0000;
-    text-align: center;
-    font-weight: normal;
-  }
-  
-  h1 {
-    font-size: 28px;
-    margin-top: 40px;
-    margin-bottom: 30px;
-    border-bottom: 1px solid #8B0000;
-    padding-bottom: 10px;
-  }
-  
-  /* ===== Явно прописанные стили для цитат ===== */
-  .quote {
-    font-family: "Latin Modern Roman", serif;
-    background-color: #f5f5f5;
-    border-left: 4px solid #666;
-    padding: 15px 20px;
-    margin: 25px 0;
-    font-style: italic;
-    color: #555;
-    text-indent: 0;
-    line-height: 1.5;
-    border-radius: 0 4px 4px 0;
-  }
-  .copyright {
-    text-align: center;
-    margin-top: 40px;
-    padding: 15px 0;
-    border-top: 1px solid #ddd;
-    color: #666;
-    font-size: 0.9em;
-}
-  
-/* Стиль для определений */
-.definition {
-  background-color: #f8f8f8;
-  border-left: 4px solid #8B0000;
-  padding: 15px;
-  margin: 20px 0;
-  font-style: normal; /* Важно: переопределяем курсив */
-  color: #333;
-  position: relative;
-  border-radius: 0 4px 4px 0;
 }
 
-.definition::before {
-  content: "Определение";
-  display: block;
-  font-weight: bold;
-  color: #8B0000;
-  margin-bottom: 8px;
-  font-size: 0.95em;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
 }
 
-/* Для цитат */
-.quote {
-  background-color: #f5f5f5;
-  border-left: 4px solid #666;
-  padding: 15px 20px;
-  margin: 25px 0;
-  font-style: italic;
-  color: #555;
-  position: relative;
-  border-radius: 0 4px 4px 0;
+article {
+    height: 100% auto;
+    padding: 5%;
+    background: #fff;
+    margin: 2% auto;
+    max-width: 900px;
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.10);
 }
 
-.quote::before {
-  content: """;
-  position: absolute;
-  left: 5px;
-  top: 5px;
-  font-size: 32px;
-  color: rgba(139, 0, 0, 0.2);
-  font-family: "Times New Roman", serif;
-  line-height: 1;
-}
-/* ТОЛЬКО для основных формул */
-.formula-important {
-  border: 2px solid #8B0000;
-  padding: 15px;
-  margin: 25px auto;
-  text-align: center;
-  background-color: white;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(139, 0, 0, 0.1);
-  max-width: fit-content;
-  position: relative;
+
+.site-header {
+    background: #fff;
+    padding: 20px 5%;
+    box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.23);
+    transition: all .5s ease-in-out;
+    -web-kit-position: sticky;
+    position: sticky;
+    top: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+
 }
 
-/* Все остальные формулы - без рамок */
-.formula,
-.formula-inline,
-.mjx-chtml {
-  border: none !important;
-  padding: 0 !important;
-  background: transparent !important;
-  text-align: center;
-  margin: 0 !important;
+.logo {
+    background-image: url('http://acmelogos.com/images/logo-4.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 200px;
+    height: 60px;
+    background-size: contain;
+    transition: width .5s ease-in-out, height .5s ease-in-out;
 }
 
-/* Подпись для основных формул */
-.formula-caption {
-  display: block;
-  text-align: center;
-  font-style: italic;
-  margin-top: 10px;
-  color: #666;
-  font-size: 0.9em;
+
+.site-header nav {
+    text-align: right;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
 }
-.glitch-link {
-  position: relative;
-  display: inline-block;
-  color: #fff;
-  font-size: 20px;
-  text-decoration: none;
-  padding: 10px 20px;
-  background: #000;
+
+.site-header.is-scrolling {
+    opacity: .8;
+    background: tomato;
+    padding: 10px 5%;
 }
-.glitch-link span {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
+.site-header.is-scrolling .logo {
+    height: 40px;
+    width: 100px;
 }
-.glitch-link span:first-child {
-  transform: translate(-3px, -3px);
-  color: #FF00FF;
-  z-index: -1;
-}
-.glitch-link span:last-child {
-  transform: translate(3px, 3px);
-  color: #00FFFF;
-  z-index: -2;
-}
-.glitch-link:hover span:first-child {
-  animation: glitch 0.3s infinite;
-}
-.glitch-link:hover span:last-child {
-  animation: glitch 0.3s infinite reverse;
-}
-@keyframes glitch {
-  0% { transform: translate(-3px, -3px); }
-  25% { transform: translate(0, 3px); }
-  50% { transform: translate(-3px, 0); }
-  75% { transform: translate(3px, -3px); }
-  100% { transform: translate(-3px, -3px); }
-}
-.example {
-            background-color: #fffacd;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 15px 0;
-            border-left: 5px solid #ffa500;
-        }
-        
-        .emoji {
-            font-size: 1.2em;
-            margin-right: 5px;
-        }
-        
-        .important {
-            background-color: #e6f9ff;
-            padding: 15px;
-            border-radius: 10px;
-            border: 2px solid #00b4d8;
-            margin: 20px 0;
-        }
-        
-        .check-yourself {
-            background-color: #e8f5e9;
-            padding: 15px;
-            border-radius: 10px;
-            border: 2px solid #2e7d32;
-            margin: 20px 0;
-        }
-        
-        .conclusion {
-            background-color: #fff0f6;
-            padding: 15px;
-            border-radius: 10px;
-            border: 2px solid #ff758f;
-            margin: 20px 0;
-            text-align: center;
-            font-weight: bold;
-        }
