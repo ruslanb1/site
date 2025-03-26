@@ -220,8 +220,17 @@ p {
   height: 300px; /* Желаемая высота */
   object-fit: cover; /* Как изображение заполнит область (cover/contain) */
 }
-.img.resize {
-  max-width: 100%; /* Максимальная ширина – 100% */
-  max-height: 500px; /* Максимальная высота – 500px */
-  height: auto; /* Высота автоматическая */
+.image-container {
+    width: 100%;
+    max-width: 100%; /* Не превышает ширину body */
+    height: auto;
+    overflow: hidden; /* Гарантирует обрезку, если нужно */
+    border: 1px solid #eee; /* Для наглядности, можно удалить */
+    }
+    
+    .responsive-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain; /* Сохраняет пропорции */
 }
