@@ -223,128 +223,128 @@
             <p>Меняя координаты мы меняем положение точки на плоскости.</p>
             <!-- Симулятор точки на плоскости -->
             <div class="plotly-container">
-  <div id="interactive-plot" style="width:100%; height:500px;"></div>
-  
-  <div class="plot-controls">
-    <div>
-      <label>X: <input type="range" id="xSlider" min="-5" max="5" step="0.1" value="2"></label>
-      <span id="xValue">2.0</span>
-    </div>
-    <div>
-      <label>Y: <input type="range" id="ySlider" min="-5" max="5" step="0.1" value="3"></label>
-      <span id="yValue">3.0</span>
-    </div>
-  </div>
-</div>
-
-<script src="https://cdn.plot.ly/plotly-2.14.0.min.js"></script>
-<script>
-// Инициализация графика
-function initPlot() {
-  const layout = {
-    xaxis: { 
-      title: {
-        text: 'Ось y',
-        standoff: 10,
-        font: {size: 14},
-        xanchor: 'right',  // Привязка к правому краю
-        yanchor: 'middle', // По вертикали по центру
-        x: 1               // Позиция на правом конце оси
-      },
-      range: [-5, 5],
-      showline: true,
-      zeroline: true,
-      mirror: true,
-      gridcolor: 'rgba(0,0,0,0.1)',
-      zerolinecolor: '#aaa',
-      linecolor: '#333'
-    },
-    yaxis: { 
-      title: {
-        text: 'Ось x',
-        standoff: 10,
-        font: {size: 14},
-        xanchor: 'center', // По горизонтали по центру
-        yanchor: 'top',    // Привязка к верхнему краю
-        y: 1               // Позиция на верхнем конце оси
-      },
-      range: [-5, 5],
-      scaleanchor: 'x',
-      showline: true,
-      zeroline: true,
-      mirror: true,
-      gridcolor: 'rgba(0,0,0,0.1)',
-      zerolinecolor: '#aaa',
-      linecolor: '#333'
-    },
-    margin: {t: 50, b: 50, l: 50, r: 50},
-    plot_bgcolor: 'rgba(0,0,0,0)',
-    paper_bgcolor: 'rgba(0,0,0,0)',
-    showlegend: false,
-    displayModeBar: false
-  };
-
-  const config = {
-    displaylogo: false,
-    displayModeBar: false,
-    responsive: true
-  };
-
-  let x = 2, y = 3;
-
-  function updatePlot() {
-    Plotly.react('interactive-plot', [
-      { 
-        x: [-5,5], y: [0,0], 
-        mode: 'lines', 
-        line: {color: '#333', width: 2},
-        hoverinfo: 'skip'
-      },
-      { 
-        x: [0,0], y: [-5,5], 
-        mode: 'lines', 
-        line: {color: '#333', width: 2},
-        hoverinfo: 'skip'
-      },
-      { 
-        x: [x,x], y: [0,y], 
-        mode: 'lines', 
-        line: {dash: 'dot', width: 1.5, color: '#4285F4'},
-        hoverinfo: 'skip'
-      },
-      { 
-        x: [0,x], y: [y,y], 
-        mode: 'lines', 
-        line: {dash: 'dot', width: 1.5, color: '#34A853'},
-        hoverinfo: 'skip'
-      },
-      { 
-        x: [x], y: [y], 
-        mode: 'markers', 
-        marker: {size: 10, color: '#EA4335', line: {width: 1, color: '#333'}},
-        hoverinfo: 'skip'
-      }
-    ], layout, config);
-  }
-
-  // Обработчики слайдеров
-  document.getElementById('xSlider').addEventListener('input', function(e) {
-    x = parseFloat(e.target.value);
-    document.getElementById('xValue').textContent = x.toFixed(1);
-    updatePlot();
-  });
-
-  document.getElementById('ySlider').addEventListener('input', function(e) {
-    y = parseFloat(e.target.value);
-    document.getElementById('yValue').textContent = y.toFixed(1);
-    updatePlot();
-  });
-
-  updatePlot();
-}
-
-document.addEventListener('DOMContentLoaded', initPlot);
-</script>
+              <div id="interactive-plot" style="width:100%; height:500px;"></div>
+              
+              <div class="plot-controls">
+                <div>
+                  <label>X: <input type="range" id="xSlider" min="-5" max="5" step="0.1" value="2"></label>
+                  <span id="xValue">2.0</span>
+                </div>
+                <div>
+                  <label>Y: <input type="range" id="ySlider" min="-5" max="5" step="0.1" value="3"></label>
+                  <span id="yValue">3.0</span>
+                </div>
+              </div>
+            </div>
+            
+            <script src="https://cdn.plot.ly/plotly-2.14.0.min.js"></script>
+            <script>
+            // Инициализация графика
+            function initPlot() {
+              const layout = {
+                xaxis: { 
+                  title: {
+                    text: 'Ось x -->',
+                    standoff: 10,
+                    font: {size: 14},
+                    xanchor: 'right',  // Привязка к правому краю
+                    yanchor: 'middle', // По вертикали по центру
+                    x: 1               // Позиция на правом конце оси
+                  },
+                  range: [-5, 5],
+                  showline: true,
+                  zeroline: true,
+                  mirror: true,
+                  gridcolor: 'rgba(0,0,0,0.1)',
+                  zerolinecolor: '#aaa',
+                  linecolor: '#333'
+                },
+                yaxis: { 
+                  title: {
+                    text: 'Ось y -->',
+                    standoff: 10,
+                    font: {size: 14},
+                    xanchor: 'center', // По горизонтали по центру
+                    yanchor: 'top',    // Привязка к верхнему краю
+                    y: 1               // Позиция на верхнем конце оси
+                  },
+                  range: [-5, 5],
+                  scaleanchor: 'x',
+                  showline: true,
+                  zeroline: true,
+                  mirror: true,
+                  gridcolor: 'rgba(0,0,0,0.1)',
+                  zerolinecolor: '#aaa',
+                  linecolor: '#333'
+                },
+                margin: {t: 50, b: 50, l: 50, r: 50},
+                plot_bgcolor: 'rgba(0,0,0,0)',
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                showlegend: false,
+                displayModeBar: false
+              };
+            
+              const config = {
+                displaylogo: false,
+                displayModeBar: false,
+                responsive: true
+              };
+            
+              let x = 2, y = 3;
+            
+              function updatePlot() {
+                Plotly.react('interactive-plot', [
+                  { 
+                    x: [-5,5], y: [0,0], 
+                    mode: 'lines', 
+                    line: {color: '#333', width: 2},
+                    hoverinfo: 'skip'
+                  },
+                  { 
+                    x: [0,0], y: [-5,5], 
+                    mode: 'lines', 
+                    line: {color: '#333', width: 2},
+                    hoverinfo: 'skip'
+                  },
+                  { 
+                    x: [x,x], y: [0,y], 
+                    mode: 'lines', 
+                    line: {dash: 'dot', width: 1.5, color: '#4285F4'},
+                    hoverinfo: 'skip'
+                  },
+                  { 
+                    x: [0,x], y: [y,y], 
+                    mode: 'lines', 
+                    line: {dash: 'dot', width: 1.5, color: '#34A853'},
+                    hoverinfo: 'skip'
+                  },
+                  { 
+                    x: [x], y: [y], 
+                    mode: 'markers', 
+                    marker: {size: 10, color: '#EA4335', line: {width: 1, color: '#333'}},
+                    hoverinfo: 'skip'
+                  }
+                ], layout, config);
+              }
+            
+              // Обработчики слайдеров
+              document.getElementById('xSlider').addEventListener('input', function(e) {
+                x = parseFloat(e.target.value);
+                document.getElementById('xValue').textContent = x.toFixed(1);
+                updatePlot();
+              });
+            
+              document.getElementById('ySlider').addEventListener('input', function(e) {
+                y = parseFloat(e.target.value);
+                document.getElementById('yValue').textContent = y.toFixed(1);
+                updatePlot();
+              });
+            
+              updatePlot();
+            }
+            
+            document.addEventListener('DOMContentLoaded', initPlot);
+            </script>
         
             <p>Если тело (точка) может двигаться в пространстве (например, птица в воздухе), то через выбранную на теле отсчета точку (начало координат) проводят три взаимно перпендикулярные оси координат: \( OX, OY \) и \( OZ \). Соответственно этому положение точки в пространстве задается тремя координатами: \( x, y, z \).</p>
               <!-- Симулятор точки в 3D -->
