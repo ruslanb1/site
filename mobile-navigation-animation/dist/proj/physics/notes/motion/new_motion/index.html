@@ -281,7 +281,103 @@
               </script>
         
             <p>Если тело (точка) может двигаться в пространстве (например, птица в воздухе), то через выбранную на теле отсчета точку (начало координат) проводят три взаимно перпендикулярные оси координат: \( OX, OY \) и \( OZ \). Соответственно этому положение точки в пространстве задается тремя координатами: \( x, y, z \).</p>
-             
+  <!-- Симулятор точки в 3D -->
+              <div class="plotly-3d-container">
+              <div id="interactive-3d-plot" class="plotly-3d-graph"></div>
+              
+              <div class="plotly-3d-controls">
+                <div class="plotly-3d-control-group">
+                  <label class="plotly-3d-label">X: 
+                    <input type="range" class="plotly-3d-slider" id="xSlider3d" min="-5" max="5" step="0.1" value="2">
+                    <span class="plotly-3d-value" id="xValue3d">2.0</span>
+                  </label>
+                </div>
+                <div class="plotly-3d-control-group">
+                  <label class="plotly-3d-label">Y: 
+                    <input type="range" class="plotly-3d-slider" id="ySlider3d" min="-5" max="5" step="0.1" value="3">
+                    <span class="plotly-3d-value" id="yValue3d">3.0</span>
+                  </label>
+                </div>
+                <div class="plotly-3d-control-group">
+                  <label class="plotly-3d-label">Z: 
+                    <input type="range" class="plotly-3d-slider" id="zSlider3d" min="-5" max="5" step="0.1" value="1">
+                    <span class="plotly-3d-value" id="zValue3d">1.0</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+            
+            <script src="https://cdn.plot.ly/plotly-2.14.0.min.js"></script>
+            <script>
+            // Инициализация 3D графика с изолированным пространством имен
+            function init3DPlot() {
+              const container = document.querySelector('.plotly-3d-container');
+              if (!container) return;
+            
+              // Стилизация через JavaScript для изоляции
+              container.style.maxWidth = '800px';
+              container.style.margin = '20px auto';
+              container.style.padding = '20px';
+              
+              const graph = document.getElementById('interactive-3d-plot');
+              graph.style.width = '100%';
+              graph.style.height = '500px';
+              
+              const controls = document.querySelector('.plotly-3d-controls');
+              controls.style.display = 'flex';
+              controls.style.flexWrap = 'wrap';
+              controls.style.gap = '15px';
+              controls.style.marginTop = '20px';
+            
+              const layout = {
+                scene: {
+                  xaxis: { title: 'Ось X', range: [-5, 5] },
+                  yaxis: { title: 'Ось Y', range: [-5, 5] },
+                  zaxis: { title: 'Ось Z', range: [-5, 5] },
+                  aspectmode: 'cube'
+                },
+                margin: { t: 30, b: 30, l: 30, r: 30 }
+              };
+            
+              let x = 2, y = 3, z = 1;
+            
+              function updatePlot() {
+                const traces = [
+                  { x: [-5,5], y: [0,0], z: [0,0], type: 'scatter3d', mode: 'lines', line: {color: '#333', width: 3} },
+                  { x: [0,0], y: [-5,5], z: [0,0], type: 'scatter3d', mode: 'lines', line: {color: '#333', width: 3} },
+                  { x: [0,0], y: [0,0], z: [-5,5], type: 'scatter3d', mode: 'lines', line: {color: '#333', width: 3} },
+                  { x: [x,x], y: [y,y], z: [0,z], type: 'scatter3d', mode: 'lines', line: {dash: 'dot', width: 2, color: '#4285F4'} },
+                  { x: [x,x], y: [0,y], z: [z,z], type: 'scatter3d', mode: 'lines', line: {dash: 'dot', width: 2, color: '#34A853'} },
+                  { x: [0,x], y: [y,y], z: [z,z], type: 'scatter3d', mode: 'lines', line: {dash: 'dot', width: 2, color: '#EA4335'} },
+                  { x: [x], y: [y], z: [z], type: 'scatter3d', mode: 'markers', marker: {size: 8, color: '#FF6D00'} }
+                ];
+            
+                Plotly.react('interactive-3d-plot', traces, layout);
+              }
+            
+              document.getElementById('xSlider3d').addEventListener('input', function(e) {
+                x = parseFloat(e.target.value);
+                document.getElementById('xValue3d').textContent = x.toFixed(1);
+                updatePlot();
+              });
+            
+              document.getElementById('ySlider3d').addEventListener('input', function(e) {
+                y = parseFloat(e.target.value);
+                document.getElementById('yValue3d').textContent = y.toFixed(1);
+                updatePlot();
+              });
+            
+              document.getElementById('zSlider3d').addEventListener('input', function(e) {
+                z = parseFloat(e.target.value);
+                document.getElementById('zValue3d').textContent = z.toFixed(1);
+                updatePlot();
+              });
+            
+              updatePlot();
+            }
+            
+            document.addEventListener('DOMContentLoaded', init3DPlot);
+            </script>
             <p>Итак, положение точки на линии, плоскости и в пространстве определяют соответственно одним, двумя или тремя числами — координатами. Пространство, в котором мы живем, — пространство трех измерений, или, как говорят, трехмерное пространство.</p>
         
             <h2>Система отсчета</h2>
