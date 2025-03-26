@@ -669,7 +669,30 @@
             <div class="formula-wrapper">
                 \[v(t_1) = 2At_1\]
             </div>
+            <!--Геометрическая интерпретация мгновенной скорости-->
+            <div class="velocity-plot-container">
+              <div id="velocity-plot" class="velocity-plot-graph"></div>
+              
+              <div class="velocity-controls">
+                <div class="control-group">
+                  <label class="control-label">t₁: 
+                    <input type="range" class="control-slider" id="t1Slider" min="0" max="8" step="0.1" value="2">
+                    <span class="control-value" id="t1Value">2.0</span>
+                  </label>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">t₂: 
+                    <input type="range" class="control-slider" id="t2Slider" min="0.1" max="9" step="0.1" value="4">
+                    <span class="control-value" id="t2Value">4.0</span>
+                  </label>
+                </div>
+              </div>
+            </div>
             
+            <script src="https://cdn.plot.ly/plotly-2.14.0.min.js"></script>
+            <script>
+            /* JS код остаётся без изменений */
+            </script>
             <div class="figure-container">
                 <img src="velocity_graph.png" alt="Графическая интерпретация скорости" style="max-width: 100%; border-radius: 5px;">
                 <div class="figure-caption">
