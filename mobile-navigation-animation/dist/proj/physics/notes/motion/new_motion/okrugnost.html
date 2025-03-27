@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Движение точки по окружности</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body { margin: 0; padding: 20px; font-family: Arial, sans-serif; background: #f5f5f5; }
+        #container { max-width: 700px; margin: 0 auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        #plot { width: 100%; height: 500px; }
+        .control-group { margin: 15px 0; }
+        label { display: inline-block; width: 150px; font-weight: bold; }
+        input[type="range"] { width: 300px; vertical-align: middle; }
+        .value-display { display: inline-block; width: 80px; text-align: right; font-family: monospace; }
+        .info-panel { margin-top: 20px; padding: 15px; background: #f0f8ff; border-radius: 5px; }
+        .info-row { margin: 5px 0; }
+        /* Скрываем иконку Plotly */
+        .modebar { display: none !important; }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h2 style="text-align: center;">Движение точки по окружности</h2>
+        <div id="plot"></div>
+        
+        <div class="control-group">
+            <label for="angle-slider">Угол θ (градусы):</label>
+            <input type="range" id="angle-slider" min="0" max="360" value="45" step="1">
+            <span class="value-display" id="angle-value">45°</span>
+        </div>
+        
+        <div class="control-group">
+            <label for="radius-slider">Радиус R:</label>
+            <input type="range" id="radius-slider" min="1" max="10" value="5" step="0.1">
+            <span class="value-display" id="radius-value">5.0</span>
+        </div>
+        
+        <div class="info-panel">
+            <div class="info-row">
+                <strong>Длина дуги (L):</strong> <span id="arc-length">3.93</span>
+            </div>
+            <div class="info-row">
+                <strong>Координаты точки:</strong> (<span id="point-x">3.54</span>, <span id="point-y">3.54</span>)
+            </div>
+            <div class="info-row">
+                <strong>Вектор перемещения:</strong> (<span id="disp-x">-1.46</span>, <span id="disp-y">3.54</span>)
+            </div>
+            <div class="info-row">
+                <strong>Длина вектора:</strong> <span id="vector-length">3.83</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Инициализация параметров
+        const center = {x: 0, y: 0};
+        let radius = 5;
+        let angle = 45;
+        const initialPoint = {x: radius, y: 0};
+        
+        // Создание графика с частой сеткой
+        const plotDiv = document.getElementById('plot');
+        const layout = {
+            xaxis: {
+                range: [-11, 11], 
+                showgrid: true, 
+                gridwidth: 1,
+                gridcolor: '#eee',
+                zeroline: true, 
+                zerolinewidth: 2,
+                zerolinecolor: '#999',
+                showticklabels: false,
+                dtick: 1 // Шаг сетки - 1 единица
+            },
+            yaxis: {
+                range: [-11, 11], 
+                showgrid: true, 
+                gridwidth: 1,
+                gridcolor: '#eee',
+                zeroline: true, 
+                zerolinewidth: 2,
+                zerolinecolor: '#999',
+                scaleanchor: 'x', 
+                showticklabels: false,
+                dtick: 1 // Шаг сетки - 1 единица
+            },
+            showlegend: false,
+            margin: {l: 50, r: 50, b: 50, t: 50, pad: 4},
+            plot_bgcolor: 'white',
+            paper_bgcolor: 'white',
+            // Отключаем панель инструментов
+            modebar: {
+                orientation: 'v',
+                bgcolor: 'rgba(255,255,255,0.5)',
+                color: 'rgba(0,0,0,0.3)',
+                activecolor: 'rgba(0,0,0,0.7)'
+            }
+        };
+        
+        // Функция для создания стрелки
+        function createArrow(start, end) {
+            const dx = end.x - start.x;
+            const dy = end.y - start.y;
+            const length = Math.sqrt(dx*dx + dy*dy);
+            const angle = Math.atan2(dy, dx);
+            
+            const shaftWidth = 0.05;
+            const headLength = 0.5;
+            const headWidth = 0.2;
+            
+            const points = [];
+            
+            // Острие стрелки
+            points.push(end);
+            
+            // Правая сторона наконечника
+            points.push({
+                x: end.x - headLength * Math.cos(angle) - headWidth * Math.sin(angle),
+                y: end.y - headLength * Math.sin(angle) + headWidth * Math.cos(angle)
+            });
+            
+            // Конец правой стороны вала
+            points.push({
+                x: end.x - headLength * Math.cos(angle) - shaftWidth * Math.sin(angle),
+                y: end.y - headLength * Math.sin(angle) + shaftWidth * Math.cos(angle)
+            });
+            
+            // Начало правой стороны вала
+            points.push({
+                x: start.x - shaftWidth * Math.sin(angle),
+                y: start.y + shaftWidth * Math.cos(angle)
+            });
+            
+            // Начало левой стороны вала
+            points.push({
+                x: start.x + shaftWidth * Math.sin(angle),
+                y: start.y - shaftWidth * Math.cos(angle)
+            });
+            
+            // Конец левой стороны вала
+            points.push({
+                x: end.x - headLength * Math.cos(angle) + shaftWidth * Math.sin(angle),
+                y: end.y - headLength * Math.sin(angle) - shaftWidth * Math.cos(angle)
+            });
+            
+            // Левая сторона наконечника
+            points.push({
+                x: end.x - headLength * Math.cos(angle) + headWidth * Math.sin(angle),
+                y: end.y - headLength * Math.sin(angle) - headWidth * Math.cos(angle)
+            });
+            
+            // Возвращаемся к острию
+            points.push(end);
+            
+            return {
+                x: points.map(p => p.x),
+                y: points.map(p => p.y),
+                mode: 'lines',
+                line: {color: 'red', width: 1},
+                fill: 'toself',
+                fillcolor: 'red',
+                hoverinfo: 'none'
+            };
+        }
+        
+        // Остальные функции остаются без изменений
+        function createArc(startAngle, endAngle, r) {
+            const points = [];
+            const steps = 30;
+            for (let i = 0; i <= steps; i++) {
+                const a = startAngle + (endAngle - startAngle) * i / steps;
+                points.push({
+                    x: center.x + r * Math.cos(a),
+                    y: center.y + r * Math.sin(a)
+                });
+            }
+            return {
+                x: points.map(p => p.x),
+                y: points.map(p => p.y),
+                mode: 'lines',
+                line: {color: 'blue', width: 2},
+                hoverinfo: 'none'
+            };
+        }
+        
+        function createAngleMarker(r, angleRad) {
+            const smallRadius = r * 0.3;
+            const midAngle = angleRad / 2;
+            
+            return [
+                createArc(0, angleRad, smallRadius),
+                {
+                    x: [center.x, center.x + smallRadius * Math.cos(0)],
+                    y: [center.y, center.y + smallRadius * Math.sin(0)],
+                    mode: 'lines',
+                    line: {color: 'black', width: 1, dash: 'dot'},
+                    hoverinfo: 'none'
+                },
+                {
+                    x: [center.x, center.x + smallRadius * Math.cos(angleRad)],
+                    y: [center.y, center.y + smallRadius * Math.sin(angleRad)],
+                    mode: 'lines',
+                    line: {color: 'black', width: 1, dash: 'dot'},
+                    hoverinfo: 'none'
+                },
+                {
+                    x: [center.x + smallRadius * 0.6 * Math.cos(midAngle)],
+                    y: [center.y + smallRadius * 0.6 * Math.sin(midAngle)],
+                    mode: 'text',
+                    text: [`θ = ${angle}°`],
+                    textfont: {size: 12},
+                    hoverinfo: 'none'
+                }
+            ];
+        }
+        
+        function updatePlot() {
+            const angleRad = angle * Math.PI / 180;
+            const currentPoint = {
+                x: center.x + radius * Math.cos(angleRad),
+                y: center.y + radius * Math.sin(angleRad)
+            };
+            
+            const dispX = currentPoint.x - initialPoint.x;
+            const dispY = currentPoint.y - initialPoint.y;
+            const vectorLength = Math.sqrt(dispX*dispX + dispY*dispY);
+            
+            document.getElementById('angle-value').textContent = angle + '°';
+            document.getElementById('radius-value').textContent = radius.toFixed(1);
+            document.getElementById('arc-length').textContent = (radius * angleRad).toFixed(2);
+            document.getElementById('point-x').textContent = currentPoint.x.toFixed(2);
+            document.getElementById('point-y').textContent = currentPoint.y.toFixed(2);
+            document.getElementById('disp-x').textContent = dispX.toFixed(2);
+            document.getElementById('disp-y').textContent = dispY.toFixed(2);
+            document.getElementById('vector-length').textContent = vectorLength.toFixed(2);
+            
+            const traceCircle = {
+                x: [], y: [],
+                mode: 'lines',
+                line: {color: 'black', width: 2},
+                hoverinfo: 'none'
+            };
+            
+            for (let i = 0; i <= 360; i++) {
+                const a = (i / 360) * 2 * Math.PI;
+                traceCircle.x.push(center.x + radius * Math.cos(a));
+                traceCircle.y.push(center.y + radius * Math.sin(a));
+            }
+            
+            const data = [
+                traceCircle,
+                createArc(0, angleRad, radius),
+                createArrow(initialPoint, currentPoint),
+                {
+                    x: [center.x, currentPoint.x],
+                    y: [center.y, currentPoint.y],
+                    mode: 'lines',
+                    line: {color: 'green', width: 2},
+                    hoverinfo: 'none'
+                },
+                {
+                    x: [initialPoint.x], y: [initialPoint.y],
+                    mode: 'markers',
+                    marker: {size: 6, color: 'blue'},
+                    hoverinfo: 'none'
+                },
+                {
+                    x: [currentPoint.x], y: [currentPoint.y],
+                    mode: 'markers',
+                    marker: {size: 8, color: 'red'},
+                    hoverinfo: 'none'
+                },
+                {
+                    x: [center.x], y: [center.y],
+                    mode: 'markers',
+                    marker: {size: 6, color: 'black'},
+                    hoverinfo: 'none'
+                },
+                ...createAngleMarker(radius, angleRad)
+            ];
+            
+            Plotly.react(plotDiv, data, layout);
+        }
+        
+        document.getElementById('angle-slider').addEventListener('input', function() {
+            angle = parseInt(this.value);
+            updatePlot();
+        });
+        
+        document.getElementById('radius-slider').addEventListener('input', function() {
+            radius = parseFloat(this.value);
+            updatePlot();
+        });
+        
+        updatePlot();
+    </script>
+</body>
+</html>
