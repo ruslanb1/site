@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>График скорости</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .velocity-plot-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .velocity-plot-graph {
+            width: 100%;
+            height: 500px;
+        }
+        .velocity-controls {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+        .control-group {
+            margin-bottom: 15px;
+        }
+        .control-label {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+        }
+        .control-slider {
+            flex-grow: 1;
+            margin: 0 10px;
+        }
+        .control-value {
+            display: inline-block;
+            width: 40px;
+            text-align: right;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="velocity-plot-container">
+        <div id="velocity-plot" class="velocity-plot-graph"></div>
+        
+        <div class="velocity-controls">
+            <div class="control-group">
+                <label class="control-label">t₁: 
+                    <input type="range" class="control-slider" id="t1Slider" min="0" max="8" step="0.1" value="2">
+                    <span class="control-value" id="t1Value">2.0</span>
+                </label>
+            </div>
+            <div class="control-group">
+                <label class="control-label">t₂: 
+                    <input type="range" class="control-slider" id="t2Slider" min="0.1" max="9" step="0.1" value="4">
+                    <span class="control-value" id="t2Value">4.0</span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.plot.ly/plotly-2.14.0.min.js"></script>
+    <script>
+    // Функция зависимости координаты от времени
+    function x(t) {
+        return 0.5 * Math.pow(t, 2);
+    }
+    
+    // Производная функции (мгновенная скорость)
+    function v(t) {
+        return t;
+    }
+    
+    // Инициализация графика
+    function initPlot() {
+        const container = document.querySelector('.velocity-plot-container');
+        const graphDiv = document.getElementById('velocity-plot');
+        
+        // Адаптивные размеры
+        const updateSizes = () => {
+            const isMobile = window.innerWidth < 768;
+            graphDiv.style.height = isMobile ? '350px' : '500px';
+        };
+        
+        updateSizes();
+        window.addEventListener('resize', updateSizes);
+    
+        const layout = {
+            xaxis: { 
+                title: 'Время t, с', 
+                range: [0, 10],
+                titlefont: { size: 14 }
+            },
+            yaxis: { 
+                title: 'Координата x, м', 
+                range: [0, 50],
+                titlefont: { size: 14 }
+            },
+            margin: {
+                t: 40, 
+                b: 60, 
+                l: 60, 
+                r: 40,
+                pad: 10
+            },
+            showlegend: true,
+            legend: {
+                x: 0.05,
+                y: 1.1,
+                orientation: 'h'
+            },
+            hovermode: false,
+            transition: {
+                duration: 300,
+                easing: 'cubic-in-out'
+            }
+        };
+    
+        const config = {
+            displayModeBar: false,
+            responsive: true,
+            scrollZoom: true
+        };
+    
+        let t1 = 2, t2 = 4;
+        let isAnimating = false;
+    
+        function updatePlot() {
+            if (isAnimating) return;
+            isAnimating = true;
+            
+            const x1 = x(t1);
+            const x2 = x(t2);
+            const k_secant = (x2 - x1) / (t2 - t1);
+            const k_tangent = v(t1);
+            
+            const tangent_line = {
+                x: [t1 - 2, t1 + 2],
+                y: [x1 - 2*k_tangent, x1 + 2*k_tangent],
+                mode: 'lines',
+                name: 'v<sub>мгн</sub>',
+                line: {color: '#FF6D00', width: 2}
+            };
+            
+            const secant_line = {
+                x: [t1, t2],
+                y: [x1, x2],
+                mode: 'lines',
+                name: 'v<sub>ср</sub>',
+                line: {color: '#4285F4', width: 2, dash: 'dash'}
+            };
+            
+            const main_plot = {
+                x: Array.from({length: 100}, (_, i) => i/10),
+                y: Array.from({length: 100}, (_, i) => x(i/10)),
+                mode: 'lines',
+                name: 'x(t) = 0.5t²',
+                line: {color: '#333', width: 3}
+            };
+            
+            const points = {
+                x: [t1, t2],
+                y: [x1, x2],
+                mode: 'markers',
+                name: 'Точки',
+                marker: {size: 10, color: '#EA4335'}
+            };
+            
+            layout.annotations = [
+                {
+                    x: t1,
+                    y: x1,
+                    text: `v<sub>мгн</sub> = ${k_tangent.toFixed(2)} м/с`,
+                    font: {size: window.innerWidth < 768 ? 12 : 14, color: '#FF6D00'},
+                    showarrow: true,
+                    arrowhead: 4,
+                    ax: 0,
+                    ay: -40
+                },
+                {
+                    x: (t1 + t2)/2,
+                    y: (x1 + x2)/2,
+                    text: `v<sub>ср</sub> = ${k_secant.toFixed(2)} м/с`,
+                    font: {size: window.innerWidth < 768 ? 12 : 14, color: '#4285F4'},
+                    showarrow: true,
+                    arrowhead: 4,
+                    ax: 0,
+                    ay: 40
+                }
+            ];
+            
+            Plotly.react('velocity-plot', [main_plot, secant_line, tangent_line, points], layout, config)
+                .then(() => { isAnimating = false; });
+        }
+    
+        // Обработчики слайдеров
+        const handleSliderChange = () => {
+            t1 = Math.min(parseFloat(document.getElementById('t1Slider').value), t2 - 0.1);
+            t2 = Math.max(parseFloat(document.getElementById('t2Slider').value), t1 + 0.1);
+            
+            document.getElementById('t1Slider').value = t1;
+            document.getElementById('t2Slider').value = t2;
+            document.getElementById('t1Value').textContent = t1.toFixed(1);
+            document.getElementById('t2Value').textContent = t2.toFixed(1);
+            
+            updatePlot();
+        };
+    
+        document.getElementById('t1Slider').addEventListener('input', handleSliderChange);
+        document.getElementById('t2Slider').addEventListener('input', handleSliderChange);
+    
+        updatePlot();
+    }
+    
+    document.addEventListener('DOMContentLoaded', initPlot);
+    </script>
+</body>
+</html>
