@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кинематика равноускоренного движения</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 10px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            width: 900px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        h2 {
+            text-align: center;
+            margin: 10px 0;
+            font-size: 18px;
+            color: #333;
+        }
+        .graph-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            width: 100%;
+        }
+        .graph-wrapper {
+            flex: 1;
+            min-width: 0;
+            background: white;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 8px;
+        }
+        .graph-title {
+            text-align: center;
+            margin-bottom: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+        }
+        .graph-svg {
+            width: 100%;
+            height: 200px;
+        }
+        @media (max-width: 900px) {
+            .container {
+                width: 100%;
+                padding: 5px;
+            }
+            .graph-row {
+                gap: 5px;
+            }
+            .graph-wrapper {
+                padding: 5px;
+            }
+            .graph-svg {
+                height: 170px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Кинематика равноускоренного движения</h2>
+        
+        <div class="graph-row">
+            <div class="graph-wrapper">
+                <div class="graph-title"></div>
+                <svg id="x-t-svg" class="graph-svg" viewBox="0 0 300 200"></svg>
+            </div>
+            <div class="graph-wrapper">
+                <div class="graph-title"></div>
+                <svg id="v-t-svg" class="graph-svg" viewBox="0 0 300 200"></svg>
+            </div>
+            <div class="graph-wrapper">
+                <div class="graph-title"></div>
+                <svg id="a-t-svg" class="graph-svg" viewBox="0 0 300 200"></svg>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Параметры движения
+        const x0 = 5;   // начальная координата
+        const v0 = 10;  // начальная скорость
+        const a = 2;    // ускорение
+        const t = Array.from({length: 101}, (_, i) => i * 0.1); // время от 0 до 10 сек
+        
+        // Рассчитываем данные
+        const x = t.map(ti => x0 + v0*ti + 0.5*a*ti*ti);
+        const v = t.map(ti => v0 + a*ti);
+        const dvdt = t.map(() => a);
+
+        // Общие параметры для SVG
+        const margin = {top: 25, right: 25, bottom: 35, left: 45};
+        const width = 300 - margin.left - margin.right;
+        const height = 200 - margin.top - margin.bottom;
+        const xMax = 10;
+        const colors = {
+            x: '#4285F4',
+            v: '#EA4335',
+            a: '#FBBC05',
+            aLine: '#34A853'
+        };
+
+        // Масштабирование
+        const xScale = (val) => margin.left + (val / xMax) * width;
+        const yScaleX = (val) => margin.top + height - (val / 200) * height;
+        const yScaleV = (val) => margin.top + height - (val / 30) * height;
+        const yScaleA = (val) => margin.top + height - (val / 3) * height;
+
+        // Функция создания SVG графика
+        function createSVGGraph(svgId, data, yScale, yMax, color, yLabel, showALine = false) {
+            const svg = document.getElementById(svgId);
+            
+            // Очистка SVG
+            svg.innerHTML = '';
+            
+            // Сетка
+            for (let i = 0; i <= xMax; i += 2) {
+                const x = xScale(i);
+                svg.innerHTML += `<line x1="${x}" y1="${margin.top}" x2="${x}" y2="${margin.top + height}" stroke="rgba(200,200,200,0.3)" stroke-width="1" />`;
+                
+                for (let j = 0; j <= yMax; j += yMax/5) {
+                    const y = yScale(j);
+                    svg.innerHTML += `<line x1="${margin.left}" y1="${y}" x2="${margin.left + width}" y2="${y}" stroke="rgba(200,200,200,0.3)" stroke-width="1" />`;
+                }
+            }
+            
+            // Оси
+            svg.innerHTML += `
+                <line x1="${margin.left}" y1="${margin.top}" x2="${margin.left}" y2="${margin.top + height}" stroke="black" stroke-width="1.5" />
+                <line x1="${margin.left}" y1="${margin.top + height}" x2="${margin.left + width}" y2="${margin.top + height}" stroke="black" stroke-width="1.5" />
+            `;
+            
+            // Подписи осей (крупнее)
+            svg.innerHTML += `
+                <text x="${margin.left + width/2}" y="${margin.top + height + 25}" text-anchor="middle" font-size="16" font-weight="bold">t, с</text>
+                <text x="${margin.left - 30}" y="${margin.top + height/2}" text-anchor="middle" font-size="16" font-weight="bold" transform="rotate(-90, ${margin.left - 30}, ${margin.top + height/2})">${yLabel}</text>
+            `;
+            
+            // График
+            let path = `M ${xScale(0)} ${yScale(data[0])}`;
+            for (let i = 1; i < data.length; i++) {
+                path += ` L ${xScale(t[i])} ${yScale(data[i])}`;
+            }
+            svg.innerHTML += `<path d="${path}" stroke="${color}" stroke-width="2.5" fill="none" />`;
+            
+            // Линия ускорения
+            if (showALine) {
+                const y = yScaleA(a);
+                svg.innerHTML += `
+                    <line x1="${xScale(0)}" y1="${y}" x2="${xScale(xMax)}" y2="${y}" stroke="${colors.aLine}" stroke-width="2" stroke-dasharray="5,5" />
+                    <text x="${xScale(0) + 10}" y="${y - 7}" font-size="12" font-weight="bold">dv/dt</text>
+                `;
+            }
+        }
+
+        // Создаем графики с крупными подписями
+        createSVGGraph('x-t-svg', x, yScaleX, 200, colors.x, 'x, м');
+        createSVGGraph('v-t-svg', v, yScaleV, 30, colors.v, 'v, м/с');
+        createSVGGraph('a-t-svg', dvdt, yScaleA, 3, colors.a, 'dv/dt, м/с²', true);
+
+        // Адаптация при ресайзе
+        window.addEventListener('resize', function() {
+            createSVGGraph('x-t-svg', x, yScaleX, 200, colors.x, 'x, м');
+            createSVGGraph('v-t-svg', v, yScaleV, 30, colors.v, 'v, м/с');
+            createSVGGraph('a-t-svg', dvdt, yScaleA, 3, colors.a, 'dv/dt, м/с²', true);
+        });
+    </script>
+</body>
+</html>

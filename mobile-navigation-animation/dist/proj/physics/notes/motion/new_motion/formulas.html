@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Формулы кинематики прямолинейного движения</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                packages: {'[+]': ['physics']}
+            },
+            chtml: {
+                displayAlign: 'left'
+            }
+        };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #2c3e50;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            text-align: left;
+        }
+        th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .formula {
+            font-size: 1.1em;
+            text-align: center;
+            padding: 10px;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Формулы кинематики прямолинейного движения</h1>
+    
+    <div class="section">
+        <h2>1. Основные формулы</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Физическая величина</th>
+                    <th>Общий случай</th>
+                    <th>Равномерное движение ($a=0$)</th>
+                    <th>Равноускоренное движение ($a=const$)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Координата</td>
+                    <td class="formula">$x = x(t)$</td>
+                    <td class="formula">$x = x_0 + v_0 t$</td>
+                    <td class="formula">$x = x_0 + v_0 t + \frac{a t^2}{2}$</td>
+                </tr>
+                <tr>
+                    <td>Скорость</td>
+                    <td class="formula">$v = \frac{dx}{dt}$</td>
+                    <td class="formula">$v = v_0 = \text{const}$</td>
+                    <td class="formula">$v = v_0 + a t$</td>
+                </tr>
+                <tr>
+                    <td>Ускорение</td>
+                    <td class="formula">$a = \frac{dv}{dt}$</td>
+                    <td class="formula">$a = 0$</td>
+                    <td class="formula">$a = \text{const}$</td>
+                </tr>
+                <tr>
+                    <td>Связь без времени</td>
+                    <td class="formula">-</td>
+                    <td class="formula">-</td>
+                    <td class="formula">$v^2 - v_0^2 = 2 a (x - x_0)$</td>
+                </tr>
+                <tr>
+                    <td>Средняя скорость</td>
+                    <td class="formula">$\langle v \rangle = \frac{\Delta x}{\Delta t}$</td>
+                    <td class="formula">$\langle v \rangle = v_0$</td>
+                    <td class="formula">$\langle v \rangle = \frac{v_0 + v}{2}$</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>2. Дополнительные соотношения</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Формула</th>
+                    <th>Применение</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="formula">$\Delta x = x - x_0$</td>
+                    <td>Изменение координаты</td>
+                </tr>
+                <tr>
+                    <td class="formula">$\Delta t = t - t_0$</td>
+                    <td>Промежуток времени</td>
+                </tr>
+                <tr>
+                    <td class="formula">$v_{\text{мгн}} = \lim_{\Delta t \to 0} \frac{\Delta x}{\Delta t}$</td>
+                    <td>Мгновенная скорость</td>
+                </tr>
+                <tr>
+                    <td class="formula">$a_{\text{мгн}} = \lim_{\Delta t \to 0} \frac{\Delta v}{\Delta t}$</td>
+                    <td>Мгновенное ускорение</td>
+                </tr>
+                <tr>
+                    <td class="formula">$x(t) = \int v(t) dt + C$</td>
+                    <td>Нахождение координаты через скорость</td>
+                </tr>
+                <tr>
+                    <td class="formula">$v(t) = \int a(t) dt + C$</td>
+                    <td>Нахождение скорости через ускорение</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>3. Частные случаи</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Условие</th>
+                    <th>Формулы</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Начало отсчета ($x_0=0$)</td>
+                    <td class="formula">$x = v_0 t + \frac{a t^2}{2}$</td>
+                </tr>
+                <tr>
+                    <td>Покой ($v_0=0$)</td>
+                    <td class="formula">$x = x_0 + \frac{a t^2}{2}$<br>$v = a t$</td>
+                </tr>
+                <tr>
+                    <td>Торможение ($a<0$)</td>
+                    <td class="formula">$v = v_0 - |a| t$</td>
+                </tr>
+                <tr>
+                    <td>Движение против оси ($v_0<0$)</td>
+                    <td class="formula">$x = x_0 - |v_0| t + \frac{a t^2}{2}$</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>4. Графические зависимости</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>График</th>
+                    <th>Наклон</th>
+                    <th>Площадь под графиком</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>$x(t)$</td>
+                    <td class="formula">Скорость ($v$)</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>$v(t)$</td>
+                    <td class="formula">Ускорение ($a$)</td>
+                    <td class="formula">Перемещение ($\Delta x$)</td>
+                </tr>
+                <tr>
+                    <td>$a(t)$</td>
+                    <td class="formula">Рывок ($\frac{da}{dt}$)</td>
+                    <td class="formula">Изменение скорости ($\Delta v$)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>5. Производные величины</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Производная</th>
+                    <th>Физический смысл</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="formula">$\frac{dx}{dt}$</td>
+                    <td>Скорость</td>
+                </tr>
+                <tr>
+                    <td class="formula">$\frac{dv}{dt}$</td>
+                    <td>Ускорение</td>
+                </tr>
+                <tr>
+                    <td class="formula">$\frac{d^2x}{dt^2}$</td>
+                    <td>Ускорение</td>
+                </tr>
+                <tr>
+                    <td class="formula">$\frac{da}{dt}$</td>
+                    <td>Рывок (изменение ускорения)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="note">
+        <p><strong>Примечание:</strong> Все формулы записаны для движения вдоль оси X. Для других осей заменяйте $x$ на $y$ или $z$.</p>
+        <p><strong>Правило знаков:</strong></p>
+        <ul>
+            <li>$+$ если направление совпадает с направлением оси</li>
+            <li>$-$ если направление противоположно направлению оси</li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,2656 @@
+<!DOCTYPE html>
+<!-- 
+  Классический учебник физики - HTML версия
+  Версия 1.2 (адаптивная, с комментариями)
+  © Руслан Басантаев
+-->
+<html lang="ru">
+<head>
+    <!-- Базовые мета-теги -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Классический учебник физики</title>
+    
+    <!-- Конфигурация MathJax -->
+    <script>
+        MathJax = {
+            tex: {
+                tags: 'ams',
+                packages: {'[+]': ['physics']},
+                fonts: {
+                    tex: ['Latin Modern', 'TeX']
+                }
+            },
+            chtml: {
+                displayAlign: 'left',
+                displayIndent: '0em'
+            },
+            options: {
+                skipHtmlTags: {'[-]': ['script', 'noscript', 'style', 'textarea']}
+            }
+        };
+    </script>
+    
+    <!-- Подключение внешних ресурсов -->
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.14.0.min.js"></script>
+    <script defer src="motionSVG.js"></script>
+    <script defer src="../../../lib/matter.min.js"></script>
+    <script defer src="mattersim.js"></script>
+    <script src="../../../lib/function-graph-SVG.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!--стиль окружности-->
+    
+    
+    
+</head>
+
+<body>
+    <!-- Основное содержание -->
+    <article>
+        <header class="chapter-header">
+            <h1>Глава 1. Кинематика материальной точки</h1>
+            <div class="quote">
+                "Природа проста и не роскошествует излишними причинами вещей."<br>
+                — М.В. Ломоносов
+            </div>
+        </header>
+        <div class="toc-wrapper">
+            <button class="toc-toggle" id="tocToggle">Содержание главы</button>
+            <nav class="toc-nav" id="tocNav">
+                <ol>
+                    <li><a href="#section-1">Введение в кинематику</a></li>
+                    <li><a href="#section-2">Материальная точка</a></li>
+                    <li><a href="#section-3">Система отсчёта</a></li>
+                    <li><a href="#section-4">Перемещение и траектория</a></li>
+                    <li><a href="#section-5">Скорость движения</a></li>
+                    <li><a href="#section-6">Ускорение</a></li>
+                    <li><a href="#section-7">Свободное падение</a></li>
+                </ol>
+            </nav>
+        </div>
+        <!-- Раздел 1: Движение -->
+        <section id="section-1" class="content-section">
+            
+            <h2>§ 1. Введение в кинематику</h2>
+            <!-- Вводный текст -->
+            <p>Физика создает <strong>модели</strong>, которые описывают реальность с помощью математики. Физические модели достигли поразительного прогресса, но до сих пор ни одна модель полностью не соответствует реальности.</p>
+            <p>Традиционно изучение физики начинается с механического движения.</p>
+            <!-- SVG-графика для визуализации -->
+            <div class="figure">
+                <svg id="matter-SVG" viewBox="0 0 685 150" aria-label="Визуализация материальной точки" class="SVG-shadow">
+                    <!-- Рамка -->
+                    <rect y="2.5" x="2.5" height="145" width="500" fill="none" stroke="#556" stroke-width="5" rx="5" />
+                    <!-- Измерительная линия -->
+                    <path id="matter-measure" d="" stroke="#f65" fill="none" stroke-dasharray="2 6" stroke-width="1.5" opacity="0.4" />
+                    <!-- Целевая точка -->
+                    <circle id="matter-target" cx="550" cy="75" r="12" fill="#f65" stroke="none" />
+                    <!-- Вектор -->
+                    <g id="matter-vector" transform="translate(550 75) rotate(180)">
+                        <line x1="0" y1="0" x2="0" y2="24" fill="none" stroke="#445" stroke-width="1.4" stroke-linecap="round" />
+                        <polygon points="0,0 -3,-6.5 0,-5.5 3,-6.5" transform='translate(0 26)' stroke="none" fill="#556" />
+                    </g>
+                    <!-- Центр точки -->
+                    <circle cx="550" cy="75" r="1.7" fill="#445" stroke="none" />
+                    <!-- Подписи осей -->
+                    <g font-size="18" stroke="none" fill="#556">
+                        <text id="matter-x" x="513" y="15">x</text>
+                        <text id="matter-y" x="513" y="45">y</text>
+                        <text id="matter-Vx" x="513" y="115">Vx</text>
+                        <text id="matter-Vy" x="513" y="145">Vy</text>
+                    </g>
+                </svg>
+                <!--<div class="caption">Рис. 1.1. Визуализация материальной точки</div>-->
+            </div>
+            <p>Классическая механика, основанная на принципах Ньютона, описывает движение тел при скоростях, значительно меньших скорости света. </p>
+            <p>Основные разделы механики:</p>
+            
+            <!-- Список разделов механики -->
+            <ul>
+                <li>Кинематика (описание движения)</li>
+                <li>Динамика (изучение причин движения)</li>
+                <li>Статика (равновесие тел)</li>
+            </ul>
+            <!-- Определение движения -->
+            <div class="definition">
+                <strong>Механическое движение</strong> — это изменение местоположения или положения в пространстве относительно других тел.
+            </div>
+            <!-- Определение кинематики -->
+            <p>Изучение движения безотносительно к силам или энергиям, которые могут в нем участвовать, называется <strong>кинематикой</strong>.</p>
+            <p>
+                Кинематика — это фундаментальный раздел механики, изучающий геометрические свойства движения тел без рассмотрения причин, 
+                вызывающих это движение. В отличие от динамики, кинематика не интересуется массами объектов или действующими силами — её задача 
+                чисто описательная. 
+            </p>
+            <p>
+                Исторически кинематика развивалась параллельно с развитием математического анализа. 
+                Галилей в XVII веке впервые строго сформулировал понятия равномерного и равноускоренного движения, 
+                заложив основы классической механики.
+            </p>
+            <p>Основные понятия кинематики:</p>
+            <ul class="concept-list">
+                <li><strong>Тело отсчёта</strong> — объект, относительно которого рассматривается движение</li>
+                <li><strong>Система координат</strong> — математический аппарат для определения положения</li>
+                <li><strong>Траектория</strong> — линия, вдоль которой движется тело</li>
+                <li><strong>Путь</strong> — длина участка траектории (скалярная величина)</li>
+                <li><strong>Перемещение</strong> — вектор, соединяющий начальное и конечное положение</li>
+            </ul>
+            <div class="example-box">
+                <p><strong>Пример:</strong> Автомобиль, движущийся по извилистой горной дороге. Его <em>путь</em> — это общая длина пройденной дороги, а <em>перемещение</em> — прямая линия от начальной до конечной точки маршрута.</p>
+            </div>
+        </section>    
+        <section id="section-2" class="content-section">    
+            
+            <!-- § 2 -->
+            <h2>§ 2. Материальная точка</h2>
+            
+            <p><strong>Материальная точка</strong> — это воображаемая маленькая точка, которая заменяет большой предмет, когда мы изучаем его движение.</p>
+            <p>
+                Понятие материальной точки представляет собой важнейшую абстракцию в физике. Когда мы рассматриваем движение автомобиля
+                на трассе между городами, его габариты несущественны по сравнению с пройденным расстоянием — в этом случае автомобиль 
+                можно считать материальной точкой.
+            </p>
+            <p>
+                Однако при анализе парковки или столкновения тех же автомобилей их размеры становятся критически важными. Таким образом, 
+                выбор модели (материальная точка или протяжённое тело) всегда зависит от конкретной физической задачи. 
+            </p>
+            <div class="definition">
+                <p><strong>Материальная точка</strong> – это идеализированная модель тела, размерами которого можно пренебречь, учитывая только его массу и положение в пространстве.</p>
+            </div>
+            <h3>Критерии применимости модели:</h3>
+            <table class="comparison-table">
+                <tr>
+                    <th>Ситуация</th>
+                    <th>Применимость</th>
+                    <th>Обоснование</th>
+                </tr>
+                <tr>
+                    <td>Планета на орбите</td>
+                    <td class="positive">✅ Да</td>
+                    <td>Размеры ≪ расстояния до звезды</td>
+                </tr>
+                <tr>
+                    <td>Автомобиль в гараже</td>
+                    <td class="negative">❌ Нет</td>
+                    <td>Размеры сравнимы с помещением</td>
+                </tr>
+            </table>
+            <div class="formula-wrapper">
+                <p>Математический критерий применимости:</p>
+                \[ \frac{\text{Характерный размер тела}}{\text{Масштаб задачи}} \ll 1 \]
+            </div>
+        </section>
+        
+        <section id="section-3" class="content-section"></section>    
+            <!-- Подраздел 1.2 -->
+            <h2>§ 3. Система отсчёта</h2>
+            <div class="definition">
+                <strong>Система отсчёта</strong> — совокупность тела отсчёта, связанной с ним системы координат и прибора для измерения времени, необходимых для описания движения.
+            </div>
+            
+            <h3>Компоненты системы отсчёта:</h3>
+            <ol class="component-list">
+                <li><strong>Тело отсчёта</strong> — реальный физический объект (Земля, лаборатория)</li>
+                <li><strong>Система координат</strong>:
+                    <ul>
+                        <li>Декартова (x, y, z)</li>
+                        <li>Полярная (r, φ)</li>
+                        <li>Сферическая (r, θ, φ)</li>
+                    </ul>
+                </li>
+                <li><strong>Синхронизированные часы</strong> — для измерения моментов времени</li>
+            </ol>
+            
+            <p>Как определить положение тела (материальной точки)? Для этого выбирают <strong>тело остчета</strong>, проводят оси координат, и положение любой точки в пространстве можно описать её координатами.</p>
+            <div class="example-box">
+                <p><strong>Пример относительности движения:</strong> Пассажир, сидящий в движущемся поезде:
+                <ul>
+                    <li>Относительно вагона — покоится (v = 0)</li>
+                    <li>Относительно платформы — движется со скоростью поезда</li>
+                </ul>
+                </p>
+            </div>
+            <p>Тело отсчета и система координат, связанная с ним, позволяют задать положение тела в пространстве. Но при движении тела (точки) его положение изменяется со временем. Значит, нужен еще прибор для измерения времени (часы!), связанный с телом отсчета. Вместе они образуют систему отсчета.</p>
+            <div class="definition">
+                <p>Тело отсчета, система координат, связанная с ним, и прибор для измерения времени образуют <strong>систему отсчета</strong>.</p>
+            </div>
+            
+            <p>Относительно выбранной системы отсчета и рассматривается любое движение.</p>
+            
+            <p>
+                Символ <strong>\( x \)</strong> используется для обозначения <strong>положения</strong> в метрах. Возможно, вы привыкли использовать <strong>\( x \)</strong> по-другому, но в физике он зарезервирован для обозначения <strong>положения</strong>.
+            </p>
+           
+            
+            <div class="container-small">
+                <iframe class="responsive-iframe" src="al-html5/displacement_rus.html"></iframe>
+            </div>
+
+            <!--Кнопка - ссылка на верхнюю модель-->
+            
+            <div class="content-container">
+                <!-- Ваш контент здесь -->
+                
+                <div class="floating-tech-button">
+                  <a href="al-html5/displacement_rus.html" class="tech-button-link">
+                    <div class="tech-button-content">
+                      <span class="tech-button-text">Открыть моделирование в новом окне</span>
+                      <span class="tech-button-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M3 17H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M3 7H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M7 3V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M12 3V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M17 3V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                      </span>
+                    </div>
+                  </a>
+                </div>
+            </div>
+            <p>Если тело может двигаться в пределах некоторой плоскости (например, лодка на озере), то из выбранной на плоскости точки (начала координат) проводят две взаимно перпендикулярные оси \( OX \) и \( OY \).</p>
+            
+        
+            <p>Положение точки на плоскости определяют двумя координатами. Например, у красной точки на плосости представленной ниже  координаты такие: \( x = 2 \), \( y = 3 \).</p>
+            
+            <p>Здесь представлен интерактивный график, который демонстрирует работу координатной плоскости. График реагирует на изменения в реальном времени. Вы можете изменять положение точки с помощью ползунков.</p>
+    
+            <div class="graph-container">
+                
+                <div id="interactive-plot"></div>
+                
+                <div class="plot-controls">
+                    <div>
+                        <label>Координата X: <input type="range" id="xSlider" min="-5" max="5" step="0.1" value="2"></label>
+                        <span id="xValue">2.0</span>
+                    </div>
+                    <div>
+                        <label>Координата Y: <input type="range" id="ySlider" min="-5" max="5" step="0.1" value="3"></label>
+                        <span id="yValue">3.0</span>
+                    </div>
+                </div>
+            </div>
+            <script>
+            // Инициализация графика
+            function initPlot() {
+                const layout = {
+                    title: 'Интерактивная координатная плоскость',
+                    xaxis: { 
+                        title: {
+                            text: 'Ось X',
+                            standoff: 10,
+                            font: {size: 14, family: "Latin Modern Roman"},
+                            xanchor: 'right',
+                            yanchor: 'middle',
+                            x: 1
+                        },
+                        range: [-5, 5],
+                        showline: true,
+                        zeroline: true,
+                        mirror: true,
+                        gridcolor: 'rgba(0,0,0,0.1)',
+                        zerolinecolor: '#aaa',
+                        linecolor: '#333'
+                    },
+                    yaxis: { 
+                        title: {
+                            text: 'Ось Y',
+                            standoff: 10,
+                            font: {size: 14, family: "Latin Modern Roman"},
+                            xanchor: 'center',
+                            yanchor: 'top',
+                            y: 1
+                        },
+                        range: [-5, 5],
+                        scaleanchor: 'x',
+                        showline: true,
+                        zeroline: true,
+                        mirror: true,
+                        gridcolor: 'rgba(0,0,0,0.1)',
+                        zerolinecolor: '#aaa',
+                        linecolor: '#333'
+                    },
+                    margin: {t: 50, b: 50, l: 50, r: 50},
+                    plot_bgcolor: 'rgba(0,0,0,0)',
+                    paper_bgcolor: 'rgba(0,0,0,0)',
+                    showlegend: false,
+                    displayModeBar: false,
+                    font: {family: "Latin Modern Roman"}
+                };
+            
+                const config = {
+                    displaylogo: false,
+                    displayModeBar: false,
+                    responsive: true
+                };
+            
+                let x = 2, y = 3;
+            
+                function updatePlot() {
+                    Plotly.react('interactive-plot', [
+                        { 
+                            x: [-5,5], y: [0,0], 
+                            mode: 'lines', 
+                            line: {color: '#333', width: 2},
+                            hoverinfo: 'skip'
+                        },
+                        { 
+                            x: [0,0], y: [-5,5], 
+                            mode: 'lines', 
+                            line: {color: '#333', width: 2},
+                            hoverinfo: 'skip'
+                        },
+                        { 
+                            x: [x,x], y: [0,y], 
+                            mode: 'lines', 
+                            line: {dash: 'dot', width: 1.5, color: '#4285F4'},
+                            hoverinfo: 'skip'
+                        },
+                        { 
+                            x: [0,x], y: [y,y], 
+                            mode: 'lines', 
+                            line: {dash: 'dot', width: 1.5, color: '#34A853'},
+                            hoverinfo: 'skip'
+                        },
+                        { 
+                            x: [x], y: [y], 
+                            mode: 'markers', 
+                            marker: {size: 5, color: '#EA4335', line: {width: 1, color: '#333'}},
+                            hoverinfo: 'skip'
+                        }
+                    ], layout, config);
+                }
+            
+                // Обработчики слайдеров
+                document.getElementById('xSlider').addEventListener('input', function(e) {
+                    x = parseFloat(e.target.value);
+                    document.getElementById('xValue').textContent = x.toFixed(1);
+                    updatePlot();
+                });
+            
+                document.getElementById('ySlider').addEventListener('input', function(e) {
+                    y = parseFloat(e.target.value);
+                    document.getElementById('yValue').textContent = y.toFixed(1);
+                    updatePlot();
+                });
+            
+                updatePlot();
+            }
+            
+            document.addEventListener('DOMContentLoaded', initPlot);
+            </script>
+           
+            <p>Если тело (точка) может двигаться в пространстве (например, птица в воздухе), то через выбранную на теле отсчета точку (начало координат) проводят три взаимно перпендикулярные оси координат: \( OX, OY \) и \( OZ \) (рис. 4). Соответственно этому положение точки в пространстве задается тремя координатами: \( x, y, z \).</p>
+             <!-- Симулятор точки в пространстве -->
+             <div class="graph-container">
+                <div id="interactive-3d-plot"></div>
+                
+                <div class="plot-controls">
+                    <div class="control-group">
+                        <span class="control-label">X:</span>
+                        <input type="range" class="control-slider" id="xSlider3d" min="-5" max="5" step="0.1" value="2">
+                        <span class="control-value" id="xValue3d">2.0</span>
+                    </div>
+                    <div class="control-group">
+                        <span class="control-label">Y:</span>
+                        <input type="range" class="control-slider" id="ySlider3d" min="-5" max="5" step="0.1" value="3">
+                        <span class="control-value" id="yValue3d">3.0</span>
+                    </div>
+                    <div class="control-group">
+                        <span class="control-label">Z:</span>
+                        <input type="range" class="control-slider" id="zSlider3d" min="-5" max="5" step="0.1" value="1">
+                        <span class="control-value" id="zValue3d">1.0</span>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <script>
+            function init3DPlot() {
+                const layout = {
+                    scene: {
+                        xaxis: { 
+                            range: [-5, 5], 
+                            showspikes: false, 
+                            title: 'Ось X',
+                            titlefont: { size: 14, color: '#333' },
+                            backgroundcolor: 'rgba(0,0,0,0)'
+                        },
+                        yaxis: { 
+                            range: [-5, 5], 
+                            showspikes: false, 
+                            title: 'Ось Y',
+                            titlefont: { size: 14, color: '#333' },
+                            backgroundcolor: 'rgba(0,0,0,0)'
+                        },
+                        zaxis: { 
+                            range: [-5, 5], 
+                            showspikes: false, 
+                            title: 'Ось Z',
+                            titlefont: { size: 14, color: '#333' },
+                            backgroundcolor: 'rgba(0,0,0,0)'
+                        },
+                        aspectmode: 'cube',
+                        camera: { eye: { x: 1.5, y: 1.5, z: 1.2 } }
+                    },
+                    margin: { t: 30, b: 30, l: 30, r: 30 },
+                    paper_bgcolor: 'rgba(0,0,0,0)',
+                    hovermode: false,
+                    showLegend: false
+                };
+            
+                const config = {
+                    displaylogo: false,
+                    displayModeBar: false,
+                    scrollZoom: false,
+                    responsive: true,
+                    modeBarButtonsToRemove: [
+                        'zoom3d',
+                        'pan3d',
+                        'orbitRotation',
+                        'tableRotation',
+                        'resetCameraDefault3d',
+                        'resetCameraLastSave3d',
+                        'hoverClosest3d',
+                        'toImage'
+                    ]
+                };
+            
+                let x = 2, y = 3, z = 1;
+            
+                function updatePlot() {
+                    const traces = [
+                        { 
+                            x: [-5,5], y: [0,0], z: [0,0], 
+                            type: 'scatter3d', 
+                            mode: 'lines',
+                            line: { color: '#333', width: 2 },
+                            hoverinfo: 'none'
+                        },
+                        { 
+                            x: [0,0], y: [-5,5], z: [0,0], 
+                            type: 'scatter3d', 
+                            mode: 'lines',
+                            line: { color: '#333', width: 2 },
+                            hoverinfo: 'none'
+                        },
+                        { 
+                            x: [0,0], y: [0,0], z: [-5,5], 
+                            type: 'scatter3d', 
+                            mode: 'lines',
+                            line: { color: '#333', width: 2 },
+                            hoverinfo: 'none'
+                        },
+                        { 
+                            x: [x], y: [y], z: [z], 
+                            type: 'scatter3d', 
+                            mode: 'markers',
+                            marker: { size: 8, color: '#FF6D00' },
+                            hoverinfo: 'none'
+                        },
+                        {
+                            x: [x, x], y: [y, y], z: [0, z],
+                            type: 'scatter3d',
+                            mode: 'lines',
+                            line: { color: '#FF6D00', width: 1, dash: 'dash' },
+                            hoverinfo: 'none'
+                        },
+                        {
+                            x: [x, x], y: [0, y], z: [z, z],
+                            type: 'scatter3d',
+                            mode: 'lines',
+                            line: { color: '#FF6D00', width: 1, dash: 'dash' },
+                            hoverinfo: 'none'
+                        },
+                        {
+                            x: [0, x], y: [y, y], z: [z, z],
+                            type: 'scatter3d',
+                            mode: 'lines',
+                            line: { color: '#FF6D00', width: 1, dash: 'dash' },
+                            hoverinfo: 'none'
+                        },
+                        {
+                            x: [x, 0, 0],
+                            y: [0, y, 0],
+                            z: [0, 0, z],
+                            type: 'scatter3d',
+                            mode: 'markers',
+                            marker: { size: 4, color: '#FF9E40' },
+                            hoverinfo: 'none'
+                        }
+                    ];
+            
+                    Plotly.react('interactive-3d-plot', traces, layout, config);
+                }
+            
+                document.getElementById('xSlider3d').addEventListener('input', function(e) {
+                    x = parseFloat(e.target.value);
+                    document.getElementById('xValue3d').textContent = x.toFixed(1);
+                    updatePlot();
+                });
+            
+                document.getElementById('ySlider3d').addEventListener('input', function(e) {
+                    y = parseFloat(e.target.value);
+                    document.getElementById('yValue3d').textContent = y.toFixed(1);
+                    updatePlot();
+                });
+            
+                document.getElementById('zSlider3d').addEventListener('input', function(e) {
+                    z = parseFloat(e.target.value);
+                    document.getElementById('zValue3d').textContent = z.toFixed(1);
+                    updatePlot();
+                });
+            
+                updatePlot();
+                
+                document.getElementById('interactive-3d-plot').on('plotly_hover', function() { return false; });
+                document.getElementById('interactive-3d-plot').on('plotly_click', function() { return false; });
+                document.getElementById('interactive-3d-plot').on('plotly_doubleclick', function() { return false; });
+            }
+            
+            document.addEventListener('DOMContentLoaded', init3DPlot);
+            </script>
+            <p>Итак, положение точки на линии, плоскости и в пространстве определяют соответственно одним, двумя или тремя числами — координатами. Пространство, в котором мы живем, — пространство трех измерений, или, как говорят, трехмерное пространство.</p>
+        
+            
+            <h3>Изменение величины</h3>
+            <p>С одной стороны, изменение — это процесс смены одного значения физической величины другим его значением. Но, с другой стороны, изменение физической величины — это тоже физическая величина. </p>
+        
+            <p>Величины \( x - x_0, y - y_0 \) и \( z - z_0 \) представляют собой изменения координат \( x, y \) и \( z \). Следовательно, изменения координат — это величины, равные разностям их конечных и начальных значений (но не наоборот!). Это относится к изменениям других физических величин.</p>
+            <p>Изменение величины часто обозначают знаком \(\Delta\) (греческая буква «дельта»), например:</p>
+    
+            <div class="formula-important">
+                \[x - x_0 = \Delta x; \quad y - y_0 = \Delta y;\\
+                 \quad z - z_0 = \Delta z.\]
+            </div>
+            
+            <!-- SVG-графика для визуализации движения -->
+            <div class="figure">
+                <svg id="motion-1" class="SVG-shadow" viewBox="0 0 680 100" aria-label="Визуализация движения точки">
+                    <!-- Показатели движения -->
+                    <g font-size="16" stroke="none" fill="#444">
+                        <text id="x-1" x="578" y="20" text-anchor="end">Δx=0</text>
+                        <text id="t-1" x="578" y="45" text-anchor="end">Δt=0</text>
+                        <text id="v-1" x="578" y="70" text-anchor="end">v=0</text>
+                        <text id="a-1" x="578" y="95" text-anchor="end">a=0</text>
+                    </g>
+                    <!-- Графические элементы -->
+                    <g stroke-width="2" stroke-linejoin="square" stroke-linecap="square">
+                        <circle id="circle-1" cx="-290" cy="50" r="40" stroke="none" fill="#31728B" />
+                        <path id="distance-1" d="" stroke="#666" fill="none" />
+                    </g>
+                    <!-- Ось X -->
+                    <line x1="0" y1="95" x2="620" y2="95" stroke="#000" stroke-width="2"/>
+                    
+                    <!-- Стрелка -->
+                    <polygon points="620,90 630,95 620,100" fill="#000"/>
+                    
+                    <!-- Подпись -->
+                    <text x="635" y="95" font-family="Arial" font-size="14">x</text>
+                                    </svg>
+                <div class="caption"></div>
+            </div>
+           
+        <!-- Раздел 4: Перемещение и траектория -->
+        <section id="section-4" class="content-section">    
+            <!-- Подраздел 1.3 -->
+            <h2>§ 4. Перемещение, траектория и путь</h2>
+
+            <p>С изменениями координат связана первая из величин, вводимых для описания движения, — перемещение. </p>
+        
+            <p>Движущееся тело не просто движется. Оно всегда движется куда-то, в каком-то направлении. И чтобы найти новое положение тела, нужно знать направление отрезка прямой, соединяющего начальное и конечное положение тела. Этот направленный отрезок прямой и есть перемещение тела. Конец отрезка, изображающего перемещение, для наглядности отмечают стрелкой.</p>
+            <div class="definition"> 
+                <p><strong>Перемещением \( \Delta\vec{r} \)</strong> тела (материальной точки) называют направленный отрезок прямой, соединяющий начальное положение тела с его последующим положением.</p>
+            </div>
+            
+            <p>Перемещение тела надо отличать от длины траектории (линии, по которой происходит движение тела). Траектория движения тела может и не совпадать с перемещением, как это видно, например, из модели представленной ниже, где может быт показана траектория, вдоль которой тело переместилось из одного положения в другое, и совершенное телом перемещение.</p>
+            <div class="definition"> 
+                <p><strong>Путь \( S \)</strong> - это длина траектории за время движения.</p>
+            </div>
+            <p>
+                Физическая сущность этих понятий становится особенно ясной при рассмотрении криволинейных траекторий. Путь — это скалярная величина, всегда положительная и монотонно возрастающая по мере движения. Перемещение же является векторной величиной, учитывающей не только пройденное расстояние, но и изменение 
+                положения в пространстве.
+            </p>
+            <p>
+
+            </p>
+            <!--<div class="image-container">
+                Замените src на путь к вашему PNG 
+                <img src="svg/traectoria_peremesh.svg" alt="Описание изображения"class="responsive-image">
+            </div>-->
+            <div class="container-small">
+                <iframe class="responsive-iframe" src="al-html5/path.html"></iframe>
+            </div>
+            <div class="content-container">
+                <!-- Ваш контент здесь -->
+                
+                <div class="floating-tech-button">
+                  <a href="al-html5/path.html" class="tech-button-link">
+                    <div class="tech-button-content">
+                      <span class="tech-button-text">Открыть моделирование в новом окне</span>
+                      <span class="tech-button-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M3 17H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M3 7H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M7 3V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M12 3V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M17 3V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                      </span>
+                    </div>
+                  </a>
+                </div>
+            </div>
+            <div class="formula-wrapper"> 
+                \[ |\Delta\vec{r}| \leq \Delta S \]
+            </div>
+            \[ \text{Связь для малых перемещений:} \]
+            <div class="formula-wrapper">
+                \[ \lim_{\Delta t \to 0} \frac{|\Delta\vec{r}|}{\Delta S} = 1 \]
+            </div>
+            <table class="comparison-table">
+                <tr>
+                    <th>Характеристика</th>
+                    <th>Перемещение (\( \Delta\vec{r} \))</th>
+                    <th>Путь (S)</th>
+                </tr>
+                <tr>
+                    <td>Тип величины</td>
+                    <td>Вектор</td>
+                    <td>Скаляр</td>
+                </tr>
+                <tr>
+                    <td>Зависимость от формы траектории</td>
+                    <td>Нет</td>
+                    <td>Да</td>
+                </tr>
+                <tr>
+                    <td>Для замкнутой траектории</td>
+                    <td>Может быть нулевым</td>
+                    <td>Всегда положителен</td>
+                </tr>
+            </table>
+            <!--Движение по окружности-->
+            <h3>Перемещение точки по окружности</h3>
+            <p>
+                
+            </p>
+            <p>Когда точка движется по окружности, длина её пути равна длине дуги окружности:</p>
+            
+            <div class="formula-important">
+                \[ L = R \cdot \theta \]
+            </div>
+            
+            <p>Где:</p>
+            <ul>
+                <li>\( L \) — длина дуги (путь)</li>
+                <li>\( R \) — радиус окружности</li>
+                <li>\( \theta \) — угол поворота <span class="important">в радианах</span></li>
+            </ul>
+            
+            <div class="example-box">
+                <p>Если радиус \( R = 5 \) м, а угол \( \theta = 45^\circ \) (что равно \( \frac{\pi}{4} \) радиан ≈ 0.785 рад):</p>
+                <p>\[ L = 5 \cdot 0.785 \approx 3.93 \text{ м} \]</p>
+            </div>
+            
+            <h4>Вектор перемещения</h4>
+            <p>Перемещение — это прямая линия (хорда), соединяющая начальную и конечную точки.</p>
+            
+            <div class="formula-important">
+                \[ |\vec{\Delta r}| = 2R \cdot \sin\left(\frac{\theta}{2}\right) \]
+            </div>
+            
+            <p>Где \( |\vec{\Delta r}| \) — длина вектора перемещения.</p>
+            
+            <div class="example-box">
+                <p>Для тех же значений \( R = 5 \) м и \( \theta = 45^\circ \):</p>
+                <p>\[ |\vec{\Delta r}| = 2 \cdot 5 \cdot \sin(22.5^\circ) \approx 3.83 \text{ м} \]</p>
+            </div>
+            
+            <div class="conclusion">
+                <h4>Важные выводы:</h4>
+                <ul>
+                    <li>Чем больше угол поворота \( \theta \), тем больше разница между длиной дуги и перемещением</li>
+                    <li>При очень маленьких углах (\( \theta \approx 0 \)) длина дуги и перемещение почти равны</li>
+                    <li>Перемещение — это кратчайшее расстояние между точками, а длина дуги — реальный пройденный путь</li>
+                    <li>При полном обороте (\( 360^\circ \)) длина дуги \( L = 2\pi R \), а перемещение равно нулю!</li>
+                </ul>
+            </div>
+            
+            <h4>Практическое применение</h4>
+            <p>Эти формулы помогают рассчитать:</p>
+            <ul>
+                <li>Путь, пройденный спутником по орбите</li>
+                <li>Расстояние, которое проходит колесо при вращении</li>
+                <li>Траекторию движения карусели</li>
+            </ul>
+            <h3>Перевод градусов в радианы</h3>
+            <div class="formula-important">
+                
+                \[ \theta_{\text{рад}} = \theta_{\text{град}} \cdot \frac{\pi}{180} \]
+            </div>
+            <p>
+                Интересный парадокс: при движении по замкнутой траектории (например, бег по круговой дорожке стадиона) модуль 
+                перемещения после полного оборота равен нулю, тогда как пройденный путь соответствует длине окружности.
+            </p>
+            <p>В интерактивной модели ниже можно менять радиус и угол, чтобы увидеть, как меняются эти величины!</p>
+            
+            <div class="graph-container">
+                <div id="circle-plot" class="circle-plot-graph"></div>
+                
+                <div class="circle-controls">
+                    <div class="control-group">
+                        <label class="control-label">Угол θ (град): 
+                            <input type="range" class="control-slider" id="angle-slider" min="0" max="360" step="1" value="45">
+                            <span class="control-value" id="angle-value">45</span>
+                        </label>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Радиус R: 
+                            <input type="range" class="control-slider" id="radius-slider" min="1" max="10" step="0.1" value="5">
+                            <span class="control-value" id="radius-value">5.0</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="circle-info">
+                    <div class="info-row">
+                        <span class="info-label">Длина дуги (L):</span>
+                        <span class="info-value" id="arc-length">3.93</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Координаты:</span>
+                        <span class="info-value">(<span id="point-x">3.54</span>, <span id="point-y">3.54</span>)</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Длина вектора:</span>
+                        <span class="info-value" id="vector-length">3.83</span>
+                    </div>
+                </div>
+            </div>
+            
+            <script>
+            // Инициализация параметров
+            const center = {x: 0, y: 0};
+            let radius = 5;
+            let angle = 45;
+            let initialPoint = {x: radius, y: 0};
+            
+            // Основная функция инициализации
+            function initCirclePlot() {
+                const graphDiv = document.getElementById('circle-plot');
+                
+                // Адаптивные размеры
+                const updateSizes = () => {
+                    const isMobile = window.innerWidth < 768;
+                    graphDiv.style.height = isMobile ? '350px' : '500px';
+                };
+                
+                updateSizes();
+                window.addEventListener('resize', updateSizes);
+            
+                // Конфигурация графика
+                const layout = {
+                    xaxis: { 
+                        range: [-11, 11],
+                        showgrid: true,
+                        gridcolor: '#f0f0f0',
+                        zeroline: true,
+                        zerolinecolor: '#ccc',
+                        showticklabels: false,
+                        dtick: 1,
+                        gridwidth: 1,
+                        position: 0.5 // Ось X по центру (снизу + сверху)
+                    },
+                    yaxis: { 
+                        range: [-11, 11],
+                        showgrid: true,
+                        gridcolor: '#f0f0f0',
+                        zeroline: true,
+                        zerolinecolor: '#ccc',
+                        scaleanchor: 'x',
+                        showticklabels: false,
+                        dtick: 1,
+                        gridwidth: 1,
+                        position: 0.5 // Ось Y по центру (слева + справа)
+                    },
+                    
+                    xaxis2: {
+                        range: [-11, 11],
+                        overlaying: 'x',
+                        side: 'top',
+                        showgrid: false,
+                        showticklabels: false,
+                        zeroline: false
+                    },
+                    yaxis2: {
+                        range: [-11, 11],
+                        overlaying: 'y',
+                        side: 'right',
+                        showgrid: false,
+                        showticklabels: false,
+                        zeroline: false
+                    },
+                    margin: {
+                        t: 40, 
+                        b: 40, 
+                        l: 40, 
+                        r: 40,
+                        pad: 10
+                    },
+                    plot_bgcolor: 'white',
+                    paper_bgcolor: 'white',
+                    hovermode: false
+                };
+            
+                const config = {
+                    displayModeBar: false,
+                    responsive: true
+                };
+            
+                // Функция создания окружности
+                function createCircle() {
+                    const points = [];
+                    for (let i = 0; i <= 360; i++) {
+                        const a = (i / 360) * 2 * Math.PI;
+                        points.push({
+                            x: center.x + radius * Math.cos(a),
+                            y: center.y + radius * Math.sin(a)
+                        });
+                    }
+                    return {
+                        x: points.map(p => p.x),
+                        y: points.map(p => p.y),
+                        mode: 'lines',
+                        line: {color: '#333', width: 3},
+                        name: 'Окружность'
+                    };
+                }
+            
+                // Функция создания стрелки (только наконечник)
+                function createArrowHead(start, end) {
+                    const dx = end.x - start.x;
+                    const dy = end.y - start.y;
+                    const angle = Math.atan2(dy, dx);
+                    
+                    const headLength = 0.4;
+                    const headWidth = 0.2;
+                    
+                    const points = [
+                        end,
+                        {
+                            x: end.x - headLength * Math.cos(angle) - headWidth * Math.sin(angle),
+                            y: end.y - headLength * Math.sin(angle) + headWidth * Math.cos(angle)
+                        },
+                        {
+                            x: end.x - headLength * Math.cos(angle) + headWidth * Math.sin(angle),
+                            y: end.y - headLength * Math.sin(angle) - headWidth * Math.cos(angle)
+                        },
+                        end
+                    ];
+                    
+                    return {
+                        x: points.map(p => p.x),
+                        y: points.map(p => p.y),
+                        mode: 'lines',
+                        line: {color: '#FF6D00', width: 1},
+                        fill: 'toself',
+                        fillcolor: '#FF6D00',
+                        name: 'Наконечник вектора'
+                    };
+                }
+            
+                // Функция создания отрезка вектора
+                function createVectorLine(start, end) {
+                    return {
+                        x: [start.x, end.x],
+                        y: [start.y, end.y],
+                        mode: 'lines',
+                        line: {color: '#FF6D00', width: 2},
+                        name: 'Вектор перемещения'
+                    };
+                }
+            
+                // Функция создания дуги
+                function createArc(startAngle, endAngle, r) {
+                    const points = [];
+                    const steps = 30;
+                    for (let i = 0; i <= steps; i++) {
+                        const a = startAngle + (endAngle - startAngle) * i / steps;
+                        points.push({
+                            x: center.x + r * Math.cos(a),
+                            y: center.y + r * Math.sin(a)
+                        });
+                    }
+                    return {
+                        x: points.map(p => p.x),
+                        y: points.map(p => p.y),
+                        mode: 'lines',
+                        line: {color: '#4285F4', width: 2},
+                        name: 'Дуга'
+                    };
+                }
+            
+                // Функция создания маркера угла (возвращена)
+                function createAngleMarker(r, angleRad) {
+                    const smallRadius = r * 0.3;
+                    const midAngle = angleRad / 2;
+                    
+                    // Дуга угла
+                    const angleArc = createArc(0, angleRad, smallRadius);
+                    angleArc.line.color = '#FBBC05';
+                    angleArc.line.width = 1.5;
+                    
+                    // Линии к дуге
+                    const line1 = {
+                        x: [center.x, center.x + smallRadius * Math.cos(0)],
+                        y: [center.y, center.y + smallRadius * Math.sin(0)],
+                        mode: 'lines',
+                        line: {color: '#FBBC05', width: 1, dash: 'dot'},
+                        hoverinfo: 'none'
+                    };
+                    
+                    const line2 = {
+                        x: [center.x, center.x + smallRadius * Math.cos(angleRad)],
+                        y: [center.y, center.y + smallRadius * Math.sin(angleRad)],
+                        mode: 'lines',
+                        line: {color: '#FBBC05', width: 1, dash: 'dot'},
+                        hoverinfo: 'none'
+                    };
+                    
+                    // Текст угла
+                    const angleText = {
+                        x: [center.x + smallRadius * 0.7 * Math.cos(midAngle)],
+                        y: [center.y + smallRadius * 0.7 * Math.sin(midAngle)],
+                        mode: 'text',
+                        text: [`θ = ${angle}°`],
+                        textfont: {size: 12, color: '#FBBC05'},
+                        hoverinfo: 'none'
+                    };
+                    
+                    return [angleArc, line1, line2, angleText];
+                }
+            
+                // Функция обновления графика
+                function updatePlot() {
+                    // Обновляем начальную точку при изменении радиуса
+                    initialPoint = {x: radius, y: 0};
+                    
+                    const angleRad = angle * Math.PI / 180;
+                    const currentPoint = {
+                        x: center.x + radius * Math.cos(angleRad),
+                        y: center.y + radius * Math.sin(angleRad)
+                    };
+            
+                    // Расчет длины вектора перемещения
+                    const dx = currentPoint.x - initialPoint.x;
+                    const dy = currentPoint.y - initialPoint.y;
+                    const vectorLength = Math.sqrt(dx*dx + dy*dy);
+            
+                    // Обновление значений
+                    document.getElementById('angle-value').textContent = angle;
+                    document.getElementById('radius-value').textContent = radius.toFixed(1);
+                    document.getElementById('arc-length').textContent = (radius * angleRad).toFixed(2);
+                    document.getElementById('point-x').textContent = currentPoint.x.toFixed(2);
+                    document.getElementById('point-y').textContent = currentPoint.y.toFixed(2);
+                    document.getElementById('vector-length').textContent = vectorLength.toFixed(2);
+            
+                    // Создание элементов графика
+                    const circle = createCircle();
+                    const arc = createArc(0, angleRad, radius);
+                    const vectorLine = createVectorLine(initialPoint, currentPoint);
+                    const arrowHead = createArrowHead(initialPoint, currentPoint);
+                    const radiusLine = {
+                        x: [center.x, currentPoint.x],
+                        y: [center.y, currentPoint.y],
+                        mode: 'lines',
+                        line: {color: '#34A853', width: 2},
+                        name: 'Радиус'
+                    };
+                    const point = {
+                        x: [currentPoint.x],
+                        y: [currentPoint.y],
+                        mode: 'markers',
+                        marker: {size: 10, color: '#EA4335'},
+                        name: 'Текущая точка'
+                    };
+                    const startPoint = {
+                        x: [initialPoint.x],
+                        y: [initialPoint.y],
+                        mode: 'markers',
+                        marker: {size: 8, color: '#FBBC05'},
+                        name: 'Начальная точка'
+                    };
+                    const angleMarker = createAngleMarker(radius, angleRad); // Возвращен маркер угла
+                    // Проекция на ось X (горизонтальная пунктирная линия)
+                    const xProjection = {
+                        x: [currentPoint.x, currentPoint.x],
+                        y: [0, currentPoint.y],
+                        mode: 'lines',
+                        line: {color: '#888', width: 1, dash: 'dash'},
+                        name: 'Проекция на X'
+                    };
+
+                    // Проекция на ось Y (вертикальная пунктирная линия)
+                    const yProjection = {
+                        x: [0, currentPoint.x],
+                        y: [currentPoint.y, currentPoint.y],
+                        mode: 'lines',
+                        line: {color: '#888', width: 1, dash: 'dash'},
+                        name: 'Проекция на Y'
+                    };
+                    // Обновление графика
+                    Plotly.react(graphDiv, 
+                        [circle, arc, vectorLine, arrowHead, radiusLine, point, startPoint, ...angleMarker, xProjection, yProjection], 
+                        layout, 
+                        config
+                    );
+                }
+            
+                // Обработчики событий
+                document.getElementById('angle-slider').addEventListener('input', function() {
+                    angle = parseInt(this.value);
+                    updatePlot();
+                });
+                
+                document.getElementById('radius-slider').addEventListener('input', function() {
+                    radius = parseFloat(this.value);
+                    updatePlot();
+                });
+            
+                // Первоначальная отрисовка
+                updatePlot();
+            }
+            
+            // Загрузка Plotly при необходимости
+            if(typeof Plotly === 'undefined') {
+                const script = document.createElement('script');
+                script.src = 'https://cdn.plot.ly/plotly-latest.min.js';
+                script.onload = initCirclePlot;
+                document.head.appendChild(script);
+            } else {
+                initCirclePlot();
+            }
+            </script>
+        </section>
+        <section id="section-5" class="content-section"></section>    
+            <h2>§ 4. Скорость</h2>
+
+            <p>В современном мире, насыщенном транспортными средствами, представление о скорости формируется с ранних лет. Автомобильный спидометр демонстрирует текущее значение скорости в километрах или милях в час. Физически скорость характеризует быстроту изменения положения объекта в пространстве.</p>
+            <p>Дадим общее определение скорости:</p>
+            <div class="definition">
+                <p><dfn>Скорость</dfn> — векторная физическая величина, характеризующая быстроту перемещения и направление движения материальной точки. Математически определяется как производная радиус-вектора по времени:</p>
+            </div>  
+            <div class="formula-important">
+                \[\vec{v} = \frac{d\vec{r}}{dt}\]
+            </div>
+            <h4>Виды скорости</h4>
+            <p>В физике существует несколько видов скорости, каждый из которых описывает движение тел в разных аспектах. </p>
+            <ul>
+                <li><strong>Мгновенная скорость</strong> - скорость тела в конкретный момент времени; векторная величина, определяемая как производная радиус-вектора по времени.</li>
+                
+                <li><strong>Модуль вектора скорости</strong> - абсолютное значение скорости без учета направления; скалярная величина, всегда неотрицательная.</li>
+              
+                <li><strong>Средняя скорость</strong> - векторная величина, равная отношению перемещения тела к промежутку времени; характеризует общее изменение положения.</li>
+              
+                <li><strong>Средняя путевая скорость</strong> - скалярная величина, равная отношению пройденного пути ко времени; всегда положительна и учитывает всю длину траектории.</li>
+              </ul>
+            
+            <table class="comparison-table">
+                <tr>
+                    <th>Тип</th>
+                    <th>Определение</th>
+                    <th>Формула</th>
+                </tr>
+                <tr>
+                    <td>1. Мгновенная скорость</td>
+                    <td>Скорость тела в конкретный момент времени</td>
+                    <td>\[ \vec{v} = \frac{d\vec{r}}{dt} \]</td>
+                </tr>
+                <tr>
+                    <td>2. Модуль вектора скорости</td>
+                    <td>Длина вектора мгновенной скорости (скалярная величина)</td>
+                    <td>\[ v = |\vec{v}| = \sqrt{v_x^2 + v_y^2 + v_z^2} \]</td>
+                </tr>
+                <tr>
+                    <td>3. Средняя скорость ⟨v⟩</td>
+                    <td>Отношение перемещения ко времени</td>
+                    <td>\[ \langle \vec{v} \rangle = \frac{\Delta \vec{r}}{\Delta t} \]</td>
+                </tr>
+                <tr>
+                    <td>4. Средняя путевая скорость ⟨v<sub>путь</sub>⟩</td>
+                    <td>Отношение пройденного пути ко времени</td>
+                    <td>\[ \langle v_{\text{путь}} \rangle = \frac{S}{\Delta t} \]</td>
+                </tr>
+            </table>
+            <p>Однако, на данном этапе речь пойдет о прямолинейном движении вдоль координатной оси и мы будем рассматривать проекции скоростей на одномерную систему координат.</p>
+            <h3>Равномерное движение</h3>
+            <p><strong>Равномерное движение возможно только по прямой</strong>, поскольку оно требует постоянства вектора скорости - как его модуля, так и направления. В физике равномерным называется движение, при котором тело за любые равные промежутки времени проходит равные расстояния, при этом вектор скорости <strong>v</strong> остаётся неизменным во времени. Если траектория искривляется (например, при движении по окружности или любой другой кривой), направление скорости непрерывно изменяется, даже если её модуль сохраняется постоянным. Это означает, что вектор скорости уже не является постоянным, следовательно, движение перестаёт быть равномерным.</p>
+
+    <div class="highlight">
+        <p>Ключевое условие равномерного движения: вектор скорости должен оставаться постоянным (<strong>v</strong> = const). Это возможно только при движении по прямой линии, где отсутствует изменение направления скорости.</p>
+    </div>
+
+    <p><strong>С математической точки зрения</strong>, равномерное движение описывается уравнением:</p>
+
+    <div class="formula-important">
+        \(\vec{r}(t) = \vec{r}_0 + \vec{v} \cdot t\)
+    </div>
+
+    <p>Где:
+    
+    <ul>
+        <li>\(\vec{r}(t)\) - радиус-вектор в момент времени t</li>
+        <li>\(\vec{r}_0\) - начальный радиус-вектор</li>
+        <li>\(\vec{v}\) - вектор скорости (постоянный)</li>
+        <li>\(t\) - время</li>
+    </ul>
+
+    <p>которое представляет собой параметрическое уравнение прямой линии в векторной форме. Любое отклонение от прямолинейной траектории приводит к появлению ускорения, связанного с изменением направления вектора скорости. Например, при движении по окружности с постоянной по модулю скоростью возникает центростремительное ускорение, направленное к центру кривизны траектории. Это доказывает, что криволинейное движение <span class="important">всегда является ускоренным</span>, даже если модуль скорости не изменяется.</p>
+
+    <p><strong>Физическая интерпретация</strong> этого явления заключается в том, что для изменения направления движения (необходимого при криволинейном движении) требуется сила, создающая ускорение. В случае равномерного движения по окружности эту роль выполняет центростремительная сила, вызывающая постоянное центростремительное ускорение.</p>
+
+    <p><strong>Таким образом</strong>, условие равномерности (отсутствие ускорения) выполняется исключительно при движении по прямой. Во всех других случаях изменение направления скорости приводит к появлению ускорения, что делает движение неравномерным, даже если величина скорости остаётся неизменной. Это фундаментальное свойство кинематики, устанавливающее прямую связь между геометрией траектории и динамикой движения.</p>
+            
+            <p>При движении с неизменной скоростью пройденный путь прямо пропорционален времени в пути, что выражается соотношением \( x = v_x t \). Если в момент времени \( t_0 \) тело находилось в позиции \( x = x_0 \), то:</p>
+            
+            <div class="formula-important">
+                \[ x - x_0 = v_x(t - t_0) \]
+            </div>
+            
+            <p>или</p>
+            
+            <div class="formula-important">
+                \[ v_x = \frac{x - x_0}{t - t_0} \]
+            </div>
+            
+            <p>при условии постоянства величины \( v_x \).</p>
+            <p>
+                Графическое представление движения было разработано французским философом и математиком Николя Оремом ещё в XIV веке. 
+                Сегодня графики зависимости координаты, скорости и ускорения от времени являются мощным инструментом анализа.  
+            </p>
+            <p>
+                Особую ценность графический метод приобретает при изучении сложных движений, когда аналитическое описание затруднено. 
+                Например, по графику скорости легко определить пройденный путь как площадь под кривой — это прямое следствие физического смысла интеграла.
+            </p>
+            <div align="center">
+                <iframe src="al-html5/omali.html" width="720" height="665" scrolling="no"></iframe><br/>
+                <div class="content-container">
+                    <!-- Ваш контент здесь -->
+                    
+                    <div class="floating-tech-button">
+                      <a href="al-html5/omali.html" class="tech-button-link">
+                        <div class="tech-button-content">
+                          <span class="tech-button-text">Открыть моделирование в новом окне</span>
+                          <span class="tech-button-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M3 17H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                              <path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                              <path d="M3 7H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                              <path d="M7 3V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                              <path d="M12 3V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                              <path d="M17 3V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                          </span>
+                        </div>
+                      </a>
+                    </div>
+                </div>
+            </div>
+            <div class="container-large-big">
+                <iframe class="responsive-iframe" src="al-html5/omali.html"></iframe>
+                <div class="content-container">
+                    <!-- Ваш контент здесь -->
+                    
+                    <div class="floating-tech-button">
+                      <a href="al-html5/omali.html" class="tech-button-link">
+                        <div class="tech-button-content">
+                          <span class="tech-button-text">Открыть моделирование в новом окне</span>
+                          <span class="tech-button-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M3 17H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                              <path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                              <path d="M3 7H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                              <path d="M7 3V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                              <path d="M12 3V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                              <path d="M17 3V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                          </span>
+                        </div>
+                      </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="figure">
+                Рис. 2-1. Графическая зависимость координаты от времени
+            </div>
+            
+            <p>Значение скорости \( v_x \) может быть как положительным, так и отрицательным, указывая направление движения. Отрицательное значение означает перемещение в сторону уменьшения координаты \( x \).</p>
+            
+            <p>На практике часто требуется преобразовывать единицы измерения. Используя метод подстановок, получаем:</p>
+            
+            <divcontainer">
+                <div>
+                    \[ \frac{60\,\text{миль}}{1\,\text{ч}} = \frac{60 \times 5280\,\text{фут}}{3600\,\text{с}} = 88\,\text{фут/с} \]
+                </div>
+            </div>
+            
+            <p>Таким образом, \( 60\,\text{миль/ч} = 88\,\text{фут/с} \). Учитывая, что \( 1\,\text{миля} \approx 1,61\,\text{км} \), находим \( 60\,\text{миль/ч} \approx 96,6\,\text{км/ч} = 26,8\,\text{м/с} \).</p>  
+            <h3>Средняя скорость</h3>
+    
+            <p>В этом параграфе мы выведем формулу для средней скорости</p>
+            
+            <div class="formula-important">
+                \[\langle v_x \rangle = \frac{x - x_0}{t} \quad , \]
+            </div>
+            
+            <p>где \( x - x_0 \) — расстояние, пройденное за время t.</p>
+            
+            <p>Для вычисления среднего значения необходимо учитывать весовой множитель каждой величины, дающий вклад в среднее. Например, если в интервале времени \( t_1 \) скорость автомобиля была равна \( v_1 \), а на интервале \( t_2 \) она равнялась \( v_2 \), средняя по времени скорость записывается в виде</p>
+            
+            <div class="formula-important">
+                \[\langle v_x \rangle = \frac{v_{x1} t_1 + v_{x2} t_2}{t_1 + t_2}.\]
+            </div>
+            
+            <p>Рассмотрим более общий случай — переменную скорость движения; это случай, когда скорость равна \( v_1 \) в течение короткого промежутка времени \( t_1 \), \( v_2 \) в течение \( t_2 \), \( v_3 \) в течение \( t_3 \) и т. п. Тогда средняя скорость запишется в виде</p>
+        
+            <div class="formula-important">
+                \[\langle v_x \rangle = \frac{v_{x1} t_1 + v_{x2} t_2 + \ldots + v_{xn} t_n}{t},\]
+            </div> 
+            <p>где \( t = t_1 + t_2 + \ldots + t_n \). Заметим, что \( v_i t_j = x_j \) при любом \( i \), где \( x_j \) — расстояние, пройденное за время \( t_j \). Поэтому предыдущую формулу можно записать следующим образом:</p>
+
+            <div class="formula-important">
+                \[\langle v_x \rangle = \frac{x_1 + x_2 + \ldots + x_n}{t}\]
+            </div>
+        
+            <p>Алгебраическая сумма \( x_1 + x_2 + \ldots + x_n \) представляет собой результирующее перемещение, равное \( x - x_0 \), где \( x_0 \) — начальное положение тела, а \( x \) — положение тела спустя время \( t \).</p>
+        
+            <p>Таким образом, мы вывели формулу для средней скорости \( \langle v \rangle = (x - x_0)/t \). Следует заметить, что если тело движется с постоянной скоростью 60 км/ч, а затем мгновенно разворачивается и с той же скоростью возвращается в исходное положение, то средняя скорость будет равна нулю, хотя скорость его перемещения (среднее значение \( |v| \)) остается равной 60 км/ч.</p> 
+            
+            
+            <!--3 отрезка с разными скоростями-->
+            <div class="graph-container">
+                <div id="v_t_velocity_plot" class="v_t-plot"></div>
+                
+                <div class="velocity-controls v_t-controls">
+                  <div class="control-group compact v_t-control-group">
+                    <label for="v_t_v1Slider" class="v_t-label">v₁ (м/с)</label>
+                    <div class="slider-container v_t-slider-container">
+                      <input type="range" id="v_t_v1Slider" min="0" max="20" step="1" value="5">
+                      <span class="slider-value v_t-slider-value" id="v_t_v1Value">5</span>
+                    </div>
+                  </div>
+                  <div class="control-group compact v_t-control-group">
+                    <label for="v_t_v2Slider" class="v_t-label">v₂ (м/с)</label>
+                    <div class="slider-container v_t-slider-container">
+                      <input type="range" id="v_t_v2Slider" min="0" max="20" step="1" value="10">
+                      <span class="slider-value v_t-slider-value" id="v_t_v2Value">10</span>
+                    </div>
+                  </div>
+                  <div class="control-group compact v_t-control-group">
+                    <label for="v_t_v3Slider" class="v_t-label">v₃ (м/с)</label>
+                    <div class="slider-container v_t-slider-container">
+                      <input type="range" id="v_t_v3Slider" min="0" max="20" step="1" value="8">
+                      <span class="slider-value v_t-slider-value" id="v_t_v3Value">8</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="path-info v_t-path-info">
+                  <p class="v_t-path-text">Пройденный путь:</p>
+                  <p class="v_t-path-text">S₁ = <span id="v_t_s1Value">0</span> м (0-3 с)</p>
+                  <p class="v_t-path-text">S₂ = <span id="v_t_s2Value">0</span> м (3-6 с)</p>
+                  <p class="v_t-path-text">S₃ = <span id="v_t_s3Value">0</span> м (6-9 с)</p>
+                  <p class="v_t-path-text"><strong>Общий путь: S = <span id="v_t_totalPath">0</span> м</strong></p>
+                </div>
+            </div>
+            
+            
+            <script>
+            // Изолированный код для графика v(t)
+            (function() {
+              // Уникальные названия переменных с префиксом v_t_
+              const v_t_initVelocityPlot = function() {
+                // Фиксированные временные интервалы
+                const v_t_t1 = 3;
+                const v_t_t2 = 6;
+                const v_t_t3 = 9;
+                
+                // Значения скоростей
+                const v_t_values = {
+                  v1: 5,
+                  v2: 10,
+                  v3: 8
+                };
+            
+                const v_t_layout = {
+                    title: 'График скорости v(t)',
+                    xaxis: { 
+                        title: 'Время, с', 
+                        range: [0, 12],
+                        showgrid: true,
+                        gridcolor: '#f0f0f0',
+                        zeroline: true,
+                        dtick: 1 // Шаг сетки 1 секунда
+                    },
+                    yaxis: { 
+                        title: 'Скорость, м/с', 
+                        range: [0, 25],
+                        showgrid: true,
+                        gridcolor: '#f0f0f0',
+                        zeroline: true,
+                        dtick: 2 // Шаг сетки 2 м/с
+                    },
+                    showlegend: false,
+                    plot_bgcolor: 'white',
+                    paper_bgcolor: 'white',
+                    shapes: [],
+                    margin: {t: 40, b: 60, l: 60, r: 40},
+                    autosize: true // Добавили авторазмер
+                    };
+
+                    // Добавляем обработчик ресайза окна
+                    window.addEventListener('resize', function() {
+                    if (document.getElementById('v_t_velocity_plot')) {
+                        Plotly.Plots.resize('v_t_velocity_plot');
+                    }
+                    });
+            
+                const v_t_updatePlot = function() {
+                  const v_t_s1 = v_t_values.v1 * v_t_t1;
+                  const v_t_s2 = v_t_values.v2 * (v_t_t2 - v_t_t1);
+                  const v_t_s3 = v_t_values.v3 * (v_t_t3 - v_t_t2);
+                  const v_t_totalPath = v_t_s1 + v_t_s2 + v_t_s3;
+            
+                  document.getElementById('v_t_s1Value').textContent = v_t_s1;
+                  document.getElementById('v_t_s2Value').textContent = v_t_s2;
+                  document.getElementById('v_t_s3Value').textContent = v_t_s3;
+                  document.getElementById('v_t_totalPath').textContent = v_t_totalPath;
+            
+                  const v_t_trace = {
+                    x: [0, v_t_t1, v_t_t1, v_t_t2, v_t_t2, v_t_t3, v_t_t3],
+                    y: [v_t_values.v1, v_t_values.v1, v_t_values.v2, v_t_values.v2, v_t_values.v3, v_t_values.v3, 0],
+                    mode: 'lines',
+                    line: {
+                      shape: 'hv', 
+                      width: 3, 
+                      color: '#333'
+                    },
+                    fill: 'tozeroy',
+                    fillcolor: 'rgba(100, 149, 237, 0.3)'
+                  };
+            
+                  v_t_layout.shapes = [
+                    {
+                      type: 'rect', 
+                      x0: 0, 
+                      x1: v_t_t1, 
+                      y0: 0, 
+                      y1: v_t_values.v1, 
+                      fillcolor: 'rgba(65, 105, 225, 0.3)', 
+                      line: {width: 0}
+                    },
+                    {
+                      type: 'rect', 
+                      x0: v_t_t1, 
+                      x1: v_t_t2, 
+                      y0: 0, 
+                      y1: v_t_values.v2, 
+                      fillcolor: 'rgba(70, 130, 180, 0.3)', 
+                      line: {width: 0}
+                    },
+                    {
+                      type: 'rect', 
+                      x0: v_t_t2, 
+                      x1: v_t_t3, 
+                      y0: 0, 
+                      y1: v_t_values.v3, 
+                      fillcolor: 'rgba(30, 144, 255, 0.3)', 
+                      line: {width: 0}
+                    }
+                  ];
+            
+                  Plotly.react('v_t_velocity_plot', [v_t_trace], v_t_layout, {displayModeBar: false});
+                };
+            
+                // Назначение обработчиков с уникальными именами
+                const v_t_setupSlider = function(sliderId, valueId, valueKey) {
+                  const slider = document.getElementById(sliderId);
+                  const valueDisplay = document.getElementById(valueId);
+                  
+                  slider.addEventListener('input', function(e) {
+                    v_t_values[valueKey] = parseInt(e.target.value);
+                    valueDisplay.textContent = v_t_values[valueKey];
+                    v_t_updatePlot();
+                  });
+                }
+            
+                v_t_setupSlider('v_t_v1Slider', 'v_t_v1Value', 'v1');
+                v_t_setupSlider('v_t_v2Slider', 'v_t_v2Value', 'v2');
+                v_t_setupSlider('v_t_v3Slider', 'v_t_v3Value', 'v3');
+            
+                v_t_updatePlot();
+              }
+            
+              // Запуск после загрузки DOM с проверкой уникального ID
+              if(document.getElementById('v_t_velocity_plot')) {
+                document.addEventListener('DOMContentLoaded', v_t_initVelocityPlot);
+              }
+            })();
+            </script>
+
+            <div class="container-large-medium">
+                <iframe class="responsive-iframe" src="al-html5/diagrammataOmalis.html"></iframe>
+            </div>
+            <div class="content-container">
+                <!-- Ваш контент здесь -->
+                
+                <div class="floating-tech-button">
+                <a href="al-html5/diagrammataOmalis.html" class="tech-button-link">
+                    <div class="tech-button-content">
+                    <span class="tech-button-text">Открыть моделирование в новом окне</span>
+                    <span class="tech-button-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 17H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M3 7H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M7 3V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M12 3V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M17 3V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </span>
+                    </div>
+                </a>
+                </div>
+            </div>
+            <h3>Определение мгновенной скорости</h3>
+
+            <p>При изменении скорости движения (разгоне или торможении) показания спидометра автомобиля не соответствуют расчётам по стандартной формуле скорости, если рассматривать большие промежутки пути. Точное совпадение наблюдается только для <span class="highlight">крайне малых перемещений</span>.</p>
+            
+            <p>В физике принято обозначать:</p>
+            <ul>
+                <li>\( \Delta x \) — малое изменение положения</li>
+                <li>\( \Delta t \) — короткий промежуток времени</li>
+            </ul>
+            
+            <p>Мгновенная скорость определяется как предельное значение отношения перемещения к временному интервалу, когда последний стремится к нулю:</p>
+            
+            <div class="formula-important">
+                \[v_x = \lim_{\Delta t \to 0} \frac{\Delta x}{\Delta t}\]
+            </div>
+            
+            <p>Это выражение идентично математическому определению производной координаты по времени. В дифференциальной записи:</p>
+            
+            <div class="formula-important">
+                \[v_x = \frac{dx}{dt}\]
+            </div>
+            <p>
+                Современное понимание мгновенной скорости как производной координаты по времени было введено в математический аппарат физики Ньютоном и Лейбницем. 
+                Если средняя скорость характеризует движение на некотором интервале, то мгновенная скорость показывает, как быстро изменяется положение тела в 
+                конкретный момент.
+            </p>
+            <p>
+                Аналогично, ускорение представляет собой производную скорости по времени. Такой подход позволяет описывать не только равномерные, но и любые 
+                произвольные движения с переменным ускорением, что особенно важно в современных задачах навигации и управления движением.
+            </p>
+            <div class="example-box">
+                
+                <p><strong>Условие:</strong> Положение тела изменяется пропорционально квадрату времени: \( x(t) = At^2 \). Определить мгновенную скорость.</p>
+                
+                <p><strong>Решение:</strong></p>
+                <div class="formula-wrapper">
+                    \[v_x = \frac{d}{dt} (At^2) = 2At\]
+                </div>
+                <p>Таким образом, в конкретный момент \( t_1 \) скорость составит \( v = 2At_1 \).</p>
+            </div>
+            
+            <p>Общее правило дифференцирования степенных функций:</p>
+            <div class="formula-wrapper">
+                \[\frac{d}{dt} (t^n) = n t^{n-1}\]
+            </div>
+            
+            <p>Рассмотрим альтернативный подход без использования производных. Для моментов времени \( t_1 \) и \( t_2 = t_1 + \Delta t \):</p>
+            
+            <div class="formula-wrapper">
+                \[\frac{\Delta x}{\Delta t} = \frac{A(t_1 + \Delta t)^2 - At_1^2}{\Delta t} = 2At_1 + A\Delta t\]
+            </div>
+            
+            <p>При \( \Delta t \to 0 \) второе слагаемое исчезает, подтверждая полученный ранее результат:</p>
+            
+            <div class="formula-wrapper">
+                \[v_x(t_1) = 2At_1\]
+            </div>
+            <div class="graph-container">
+                <div id="velocity-plot" class="velocity-plot-graph"></div>
+                
+                <div class="velocity-controls">
+                    <div class="control-group">
+                        <label class="control-label">t₁: 
+                            <input type="range" class="control-slider" id="t1Slider" min="0" max="8" step="0.1" value="2">
+                            <span class="control-value" id="t1Value">2.0</span>
+                        </label>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">t₂: 
+                            <input type="range" class="control-slider" id="t2Slider" min="0.1" max="9" step="0.1" value="4">
+                            <span class="control-value" id="t2Value">4.0</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        
+            
+            <script>
+            // Функция зависимости координаты от времени
+            function x(t) {
+                return 0.5 * Math.pow(t, 2);
+            }
+            
+            // Производная функции (мгновенная скорость)
+            function v(t) {
+                return t;
+            }
+            
+            // Инициализация графика
+            function initPlot() {
+                const container = document.querySelector('.velocity-plot-container');
+                const graphDiv = document.getElementById('velocity-plot');
+                
+                // Адаптивные размеры
+                const updateSizes = () => {
+                    const isMobile = window.innerWidth < 768;
+                    graphDiv.style.height = isMobile ? '350px' : '500px';
+                };
+                
+                updateSizes();
+                window.addEventListener('resize', updateSizes);
+            
+                const layout = {
+                    xaxis: { 
+                        title: 'Время t, с', 
+                        range: [0, 10],
+                        titlefont: { size: 14 }
+                    },
+                    yaxis: { 
+                        title: 'Координата x, м', 
+                        range: [0, 50],
+                        titlefont: { size: 14 }
+                    },
+                    margin: {
+                        t: 40, 
+                        b: 60, 
+                        l: 60, 
+                        r: 40,
+                        pad: 10
+                    },
+                    showlegend: true,
+                    legend: {
+                        x: 0.05,
+                        y: 1.1,
+                        orientation: 'h'
+                    },
+                    hovermode: false,
+                    transition: {
+                        duration: 300,
+                        easing: 'cubic-in-out'
+                    }
+                };
+            
+                const config = {
+                    displayModeBar: false,
+                    responsive: true,
+                    scrollZoom: true
+                };
+            
+                let t1 = 2, t2 = 4;
+                let isAnimating = false;
+            
+                function updatePlot() {
+                    if (isAnimating) return;
+                    isAnimating = true;
+                    
+                    const x1 = x(t1);
+                    const x2 = x(t2);
+                    const k_secant = (x2 - x1) / (t2 - t1);
+                    const k_tangent = v(t1);
+                    
+                    const tangent_line = {
+                        x: [t1 - 2, t1 + 2],
+                        y: [x1 - 2*k_tangent, x1 + 2*k_tangent],
+                        mode: 'lines',
+                        name: 'v<sub>мгн</sub>',
+                        line: {color: '#FF6D00', width: 2}
+                    };
+                    
+                    const secant_line = {
+                        x: [t1, t2],
+                        y: [x1, x2],
+                        mode: 'lines',
+                        name: 'v<sub>ср</sub>',
+                        line: {color: '#4285F4', width: 2, dash: 'dash'}
+                    };
+                    
+                    const main_plot = {
+                        x: Array.from({length: 100}, (_, i) => i/10),
+                        y: Array.from({length: 100}, (_, i) => x(i/10)),
+                        mode: 'lines',
+                        name: 'x(t) = 0.5t²',
+                        line: {color: '#333', width: 3}
+                    };
+                    
+                    const points = {
+                        x: [t1, t2],
+                        y: [x1, x2],
+                        mode: 'markers',
+                        name: 'Точки',
+                        marker: {size: 10, color: '#EA4335'}
+                    };
+                    
+                    layout.annotations = [
+                        {
+                            x: t1,
+                            y: x1,
+                            text: `v<sub>мгн</sub> = ${k_tangent.toFixed(2)} м/с`,
+                            font: {size: window.innerWidth < 768 ? 12 : 14, color: '#FF6D00'},
+                            showarrow: true,
+                            arrowhead: 4,
+                            ax: 0,
+                            ay: -40
+                        },
+                        {
+                            x: (t1 + t2)/2,
+                            y: (x1 + x2)/2,
+                            text: `v<sub>ср</sub> = ${k_secant.toFixed(2)} м/с`,
+                            font: {size: window.innerWidth < 768 ? 12 : 14, color: '#4285F4'},
+                            showarrow: true,
+                            arrowhead: 4,
+                            ax: 0,
+                            ay: 40
+                        }
+                    ];
+                    
+                    Plotly.react('velocity-plot', [main_plot, secant_line, tangent_line, points], layout, config)
+                        .then(() => { isAnimating = false; });
+                }
+            
+                // Обработчики слайдеров
+                const handleSliderChange = () => {
+                    t1 = Math.min(parseFloat(document.getElementById('t1Slider').value), t2 - 0.1);
+                    t2 = Math.max(parseFloat(document.getElementById('t2Slider').value), t1 + 0.1);
+                    
+                    document.getElementById('t1Slider').value = t1;
+                    document.getElementById('t2Slider').value = t2;
+                    document.getElementById('t1Value').textContent = t1.toFixed(1);
+                    document.getElementById('t2Value').textContent = t2.toFixed(1);
+                    
+                    updatePlot();
+                };
+            
+                document.getElementById('t1Slider').addEventListener('input', handleSliderChange);
+                document.getElementById('t2Slider').addEventListener('input', handleSliderChange);
+            
+                updatePlot();
+            }
+            
+            document.addEventListener('DOMContentLoaded', initPlot);
+            </script>
+            
+              
+            <div class="figure-container">
+                
+                <div class="figure-caption">
+                     Геометрическая интерпретация мгновенной скорости как углового коэффициента касательной к графику зависимости координаты от времени. Наклон секущей линии \( \frac{x_2-x_1}{t_2-t_1} \) стремится к наклону касательной при сближении точек.
+                    <br><em>Примечание: под наклоном понимается тангенс угла наклона.</em>
+                </div>
+            </div>
+            
+            <div class="container-small-medium">
+                <iframe class="responsive-iframe" src="al-html5/averageVelocity.html"></iframe>
+            </div>
+            <div class="content-container">
+                <!-- Ваш контент здесь -->
+                
+                <div class="floating-tech-button">
+                  <a href="al-html5/averageVelocity.html" class="tech-button-link">
+                    <div class="tech-button-content">
+                      <span class="tech-button-text">Открыть моделирование в новом окне</span>
+                      <span class="tech-button-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M3 17H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M3 7H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M7 3V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M12 3V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M17 3V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                      </span>
+                    </div>
+                  </a>
+                </div>
+            </div>
+            <div class="container-large-medium">
+                <iframe class="responsive-iframe" src="al-html5/twoCars.html"></iframe>
+            </div>
+            <div class="content-container">
+                <!-- Ваш контент здесь -->
+                
+                <div class="floating-tech-button">
+                  <a href="al-html5/twoCars.html" class="tech-button-link">
+                    <div class="tech-button-content">
+                      <span class="tech-button-text">Открыть моделирование в новом окне</span>
+                      <span class="tech-button-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M3 17H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M3 7H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M7 3V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M12 3V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M17 3V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                      </span>
+                    </div>
+                  </a>
+                </div>
+            </div>
+                 
+            <!-- Цитата Эйнштейна 
+            <div class="quote">
+                "Самое непостижимое в этом мире — что он постижим."<br>
+                — А. Эйнштейн
+            </div>-->
+        </div>
+        
+        <!-- Подключение скрипта для графиков -->
+        <script src="plots.js"></script>
+        
+        <!-- Ссылки на дополнительные ресурсы -->
+        
+        <a href="physics-toolkit/index.html" class="glitch-link">
+            <span aria-hidden="true">Задачник</span> Задачник <span aria-hidden="true">Задачник</span>
+        </a>
+            <h2>§1.3. Ускорение</h2>
+            <p>
+                Качественное представление об ускорении известно каждому. Автомобиль ускоряется нажатием педали газа. Чем сильнее
+                нажимается педаль, тем больше ускорение. При ускорении возрастает скорость и пассажиров прижимает к
+                спинкам кресел. Это давление спинок служит количественной мерой ускорения. Нажатие на педаль тормоза приводит
+                к аналогичному эффекту только теперь это отрицательное ускорение (уменьшение скорости) . <strong>Ускорение - это быстрота изменения скорости.</strong>
+            </p>
+            <p>
+                Галилеевские эксперименты с наклонными плоскостями (1604 г.) впервые продемонстрировали, что при постоянном ускорении пройденный путь пропорционален квадрату времени. 
+                Это открытие опровергло аристотелевскую концепцию движения и заложило основы экспериментального метода в физике. 
+            </p>
+            <p>
+                Сегодня закон равноускоренного движения находит применение в самых разных областях — от расчёта тормозного пути автомобилей до проектирования систем мягкой посадки 
+                космических аппаратов.  
+            </p>
+            <div class="definition">
+                <strong>Ускорение</strong> — векторная величина, характеризующая быстроту изменения скорости как по величине, так и по направлению.
+            </div>
+            
+            <div class="formula-important">
+                \[ \text{Среднее ускорение: } \langle \vec{a} \rangle = \frac{\Delta \vec{v}}{\Delta t} \]
+                \[ \text{Мгновенное ускорение: } \vec{a} = \frac{d\vec{v}}{dt} = \frac{d^2\vec{r}}{dt^2} \]
+            </div>
+            
+            <h3>Типы движения по характеру ускорения:</h3>
+            <table class="comparison-table">
+                <tr>
+                    <th>Тип движения</th>
+                    <th>Ускорение</th>
+                    <th>Пример</th>
+                </tr>
+                <tr>
+                    <td>Равномерное</td>
+                    <td>$\vec{a} = 0$</td>
+                    <td>Движение с постоянной скоростью</td>
+                </tr>
+                <tr>
+                    <td>Равноускоренное</td>
+                    <td>$\vec{a} = const$</td>
+                    <td>Свободное падение</td>
+                </tr>
+                <tr>
+                    <td>Неравномерное</td>
+                    <td>$\vec{a} = \vec{a}(t)$</td>
+                    <td>Колебательное движение</td>
+                </tr>
+            </table>
+            <h3>Постоянное ускорение</h3>
+            <p>По определению тело движется с постоянным ускорением, если его скорость равномерно возрастает во времени. Если ускорение \( a \) постоянно, то:</p>
+            <div class="formula-important">
+                \[ v_x - v_{x0}=  a_x t \]
+            </div>
+            <p>или</p>
+            
+            <div class="formula-important">
+                \[ a_x = \frac{v_x - v_{x0}}{t} \]
+            </div>
+            
+            <p>где \( v_x - v_{x0} \) — приращение скорости за время \( t \). В системе СИ ускорение \( a_x \) измеряется в метрах на секунду в квадрате (\( \text{м/с}^2 \)).</p>
+            <div class="example-box">
+                
+            <p><strong>Пример:</strong> Если автомобиль увеличивает скорость с 20 м/с до 30 м/с за 5 секунд, его ускорение:</p>
+            <div class="formula-wrapper">
+                \[ a_x = \frac{30 - 20}{5} = 2 \, \text{м/с}^2 \]
+            </div>
+            
+            </div>
+
+
+            <h3>Равномерно ускоренное движение</h2>
+    
+            <p>Таким образом, у нас имеется выражение, позволяющее найти скорость, если известны ускорение и время движения. Однако зачастую нас интересует не скорость тела, а его положение. Нам нужно найти выражение для \( x \) через \( a \), \( t \) и начальную скорость \( v_0 \). Координату через время \( t \) описывает следующее выражение для \( x \):</p>
+            <div class="formula-important">
+                \[x = x_0 + \langle v_x \rangle t.\]
+            </div>
+            
+            <div class="container-large">
+                <iframe class="responsive-iframe" src="al-html5/omalaMetabalomeni.html"></iframe>
+            </div>
+            <div class="content-container">
+                <!-- Ваш контент здесь -->
+                
+                <div class="floating-tech-button">
+                  <a href="al-html5/omalaMetabalomeni.html" class="tech-button-link">
+                    <div class="tech-button-content">
+                      <span class="tech-button-text">Открыть моделирование в новом окне</span>
+                      <span class="tech-button-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M3 17H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M3 7H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M7 3V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M12 3V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M17 3V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                      </span>
+                    </div>
+                  </a>
+                </div>
+            </div>
+            
+            <p>При равноускоренном движении скорость равномерно увеличивается от начального значения \( v_{x0} \) до \( v_x \). Из рис. 2-3 мы видим, что среднее значение скорости равно средней ординате, т. е.</p>
+            <div class="formula-important">
+                \[\langle v_x \rangle = \frac{1}{2}(v_{x0} + v_x).\]
+            </div>
+            
+            <div class="vt-graph-container">
+                <div id="vt-plot" class="vt-plot"></div>
+                
+                <div class="vt-controls">
+                    <div class="vt-controls-container">
+                        <div class="vt-control-group">
+                            <label class="vt-control-label">Начальное время (t₀)</label>
+                            <div class="vt-slider-wrapper">
+                                <input type="range" class="vt-control-slider" id="vt-t0Slider" min="0" max="10" step="0.1" value="0">
+                                <span class="vt-control-value" id="vt-t0Value">0.0</span>
+                            </div>
+                        </div>
+                        
+                        <div class="vt-control-group">
+                            <label class="vt-control-label">Нач. скорость (v₀)</label>
+                            <div class="vt-slider-wrapper">
+                                <input type="range" class="vt-control-slider" id="vt-v0Slider" min="0" max="50" step="1" value="10">
+                                <span class="vt-control-value" id="vt-v0Value">10</span>
+                            </div>
+                        </div>
+                        
+                        <div class="vt-control-group">
+                            <label class="vt-control-label">Конечное время (t)</label>
+                            <div class="vt-slider-wrapper">
+                                <input type="range" class="vt-control-slider" id="vt-t1Slider" min="0.1" max="10" step="0.1" value="5">
+                                <span class="vt-control-value" id="vt-t1Value">5.0</span>
+                            </div>
+                        </div>
+                        
+                        <div class="vt-control-group">
+                            <label class="vt-control-label">Кон. скорость (v)</label>
+                            <div class="vt-slider-wrapper">
+                                <input type="range" class="vt-control-slider" id="vt-v1Slider" min="0" max="50" step="1" value="30">
+                                <span class="vt-control-value" id="vt-v1Value">30</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <script>
+            // Инициализация vt-графика
+            function initVtPlot() {
+                const vtGraphDiv = document.getElementById('vt-plot');
+                
+                // Адаптивные размеры vt-графика
+                const updateVtSizes = () => {
+                    const isMobile = window.innerWidth < 768;
+                    vtGraphDiv.style.height = isMobile ? '350px' : '400px';
+                };
+                
+                updateVtSizes();
+                window.addEventListener('resize', updateVtSizes);
+            
+                const vtLayout = {
+                    title: 'График зависимости скорости от времени v(t)',
+                    xaxis: { 
+                        title: 'Время t, с',
+                        range: [0, 10],
+                        dtick: 1, // Шаг 1 секунда
+                        gridcolor: 'rgba(200, 200, 200, 0.5)', // Полупрозрачный серый
+                        showgrid: true, // Включить сетку
+                        minor: {
+                            ticklen: 4, // Длина второстепенных делений
+                            gridcolor: 'rgba(220, 220, 220, 0.3)' // Светлая сетка для промежуточных делений
+                        }
+                    },
+                    yaxis: {
+                        title: 'Скорость v, м/с',
+                        range: [0, 50],
+                        dtick: 5, // Шаг 5 м/с
+                        gridcolor: 'rgba(200, 200, 200, 0.5)',
+                        showgrid: true,
+                        minor: {
+                            ticklen: 4,
+                            gridcolor: 'rgba(220, 220, 220, 0.3)'
+                        }
+                    },
+                    margin: {
+                        t: 60, 
+                        b: 60, 
+                        l: 60, 
+                        r: 40,
+                        pad: 10
+                    },
+                    showlegend: true,
+                    legend: {
+                        x: 0.05,
+                        y: 1.1,
+                        orientation: 'h'
+                    },
+                    hovermode: false
+                };
+            
+                const vtConfig = {
+                    displayModeBar: false,
+                    responsive: true
+                };
+            
+                let vt_t0 = 0, vt_v0 = 10;
+                let vt_t1 = 5, vt_v1 = 30;
+            
+                function updateVtPlot() {
+                    const vt_avgSpeed = (vt_v0 + vt_v1) / 2;
+                    
+                    const vt_speed_line = {
+                        x: [vt_t0, vt_t1],
+                        y: [vt_v0, vt_v1],
+                        mode: 'lines+markers',
+                        name: 'Скорость (vt)',
+                        line: {color: '#4285F4', width: 2},
+                        marker: {size: 10, color: '#EA4335'}
+                    };
+                    
+                    const vt_avg_line = {
+                        x: [vt_t0, vt_t1],
+                        y: [vt_avgSpeed, vt_avgSpeed],
+                        mode: 'lines',
+                        name: 'Средняя скорость (vt)',
+                        line: {color: '#34A853', width: 2, dash: 'dash'}
+                    };
+                    
+                    const vt_avg_point = {
+                        x: [(vt_t0 + vt_t1)/2],
+                        y: [vt_avgSpeed],
+                        mode: 'markers',
+                        name: 'v<sub>ср</sub> (vt)',
+                        marker: {size: 12, color: '#FF6D00'}
+                    };
+                    
+                    vtLayout.annotations = [
+                        {
+                            x: (vt_t0 + vt_t1)/2,
+                            y: vt_avgSpeed,
+                            text: `v<sub>ср</sub> = ${vt_avgSpeed.toFixed(1)} м/с (vt)`,
+                            font: {size: window.innerWidth < 768 ? 12 : 14, color: '#FF6D00'},
+                            showarrow: true,
+                            arrowhead: 4,
+                            ax: 0,
+                            ay: -40
+                        }
+                    ];
+                    
+                    Plotly.react('vt-plot', [vt_speed_line, vt_avg_line, vt_avg_point], vtLayout, vtConfig);
+                }
+            
+                // Обработчики vt-слайдеров
+                const handleVtSliderChange = () => {
+                    vt_t0 = parseFloat(document.getElementById('vt-t0Slider').value);
+                    vt_v0 = parseInt(document.getElementById('vt-v0Slider').value);
+                    vt_t1 = parseFloat(document.getElementById('vt-t1Slider').value);
+                    vt_v1 = parseInt(document.getElementById('vt-v1Slider').value);
+                    
+                    document.getElementById('vt-t0Value').textContent = vt_t0.toFixed(1);
+                    document.getElementById('vt-v0Value').textContent = vt_v0;
+                    document.getElementById('vt-t1Value').textContent = vt_t1.toFixed(1);
+                    document.getElementById('vt-v1Value').textContent = vt_v1;
+                    
+                    updateVtPlot();
+                };
+            
+                document.getElementById('vt-t0Slider').addEventListener('input', handleVtSliderChange);
+                document.getElementById('vt-v0Slider').addEventListener('input', handleVtSliderChange);
+                document.getElementById('vt-t1Slider').addEventListener('input', handleVtSliderChange);
+                document.getElementById('vt-v1Slider').addEventListener('input', handleVtSliderChange);
+            
+                updateVtPlot();
+            }
+            
+            document.addEventListener('DOMContentLoaded', initVtPlot);
+            </script>
+
+
+            
+      
+
+
+
+            <div class="figure">
+                <strong>Рис. 2-3.</strong> График зависимости \( v_x \) от \( t \). Средняя скорость равна ординате средней точки кривой.
+            </div>
+            
+            <p>Если в \( x \) вместо \( \langle v_x \rangle \) подставить \(\frac{1}{2}(v_{x0} + v_x)\), то можно записать:</p>
+            <div class="formula-important">
+                \[x = x_0 + \frac{1}{2}(v_{x0} + v_x) t.\]
+            </div>
+            
+            
+            <p>Из определения ускорения имеем \( v_x = v_{x0} + a_xt \). Подставим это значение \( v \) в предыдущее выражение:</p>
+            <div class="formula-important">
+                \[x = x_0 + \frac{1}{2}[v_{x0} + (v_{x0} + a_xt)] t,\]
+            </div>
+            
+            
+            <p>или</p>
+            <div class="formula-important">
+                \[x = x_0 + v_{x0} t + \frac{1}{2} a_xt^2 \quad (\text{при постоянном } a_x).\]
+            </div>
+            
+            
+            
+            <p>Мы видим, что при равноускоренном движении перемещение тела, находившегося в состоянии покоя, меняется пропорционально квадрату времени. Например, тело, свободно падающее из состояния покоя, проходит расстояние</p>
+            <div class="formula-wrapper">
+                \[h = \frac{gt^2}{2} \]
+            </div>
+            
+            
+            <p>На ниже построена зависимость в соответствии с уравнением равноускоренного движения. Если обе части этого уравнения продифференцировать по времени, то мы получим</p>
+            
+            <p>\[\frac{dx}{dt} = v_{x0} + a_xt.\]</p>
+
+            <div class="image-container">
+                <img src="svg/xvdvdt.svg" alt="Описание изображения"class="responsive-image">
+            </div>
+            <p>Производная в левой части по определению является скоростью \( v_x \); на рис. 2-5, \( \overline{v} \) представлена ее зависимость от времени. Дифференцируя последнее выражение еще раз, получаем \( \frac{d^2x}{dt^2} = a \); эта зависимость показана на рис. 2-5, \( a \). Левая часть последнего равенства представляет собой \( \frac{dv}{dt} \), т. е. ускорение.</p>
+            
+            <div class="example">
+                <strong>Пример 6.</strong> Переделайте графики, приведенные на рис. 2-5, для случая отрицательной начальной скорости \( v_0 \). Через какое время \( t_1 \) скорость движения окажется равна нулю?
+                
+                <p><strong>Решение:</strong> Графики в случае отрицательных \( v_0 \) приведены на рис. 2-6. Чтобы найти значение \( t \), при котором \( v = 0 \), нужно решить уравнение (2-6) относительно \( t \) и подставить в решение \( v = 0 \):</p>
+                
+                <p>\[t = \frac{v - v_0}{a},\]</p>
+                
+                <p>\[t_1 = \frac{0 - v_0}{a} = -\frac{v_0}{a}.\]</p>
+                
+                <p>Следует заметить, что при отрицательных \( v_0 \) и положительных \( a \) время \( t \) будет положительным.</p>
+            </div>
+            <h3>\[x(t) = x_0 + v_{0x}t + \frac{a_xt^2}{2}\]</h3>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Тип движения</th>
+                            <th>Условия</th>
+                            <th>Уравнение координаты</th>
+                            <th>Уравнение скорости</th>
+                            <th>График x(t)</th>
+                            <th>График v(t)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 1. Покой -->
+                        <tr>
+                            <td>Покой</td>
+                            <td>
+                                \(v_{0x} = 0\)<br>
+                                \(a_x = 0\)
+                            </td>
+                            <td>\[x(t) = x_0\]</td>
+                            <td>\[v_x(t) = 0\]</td>
+                            <td>Горизонтальная прямая</td>
+                            <td>Совпадает с осью t</td>
+                        </tr>
+
+                        <!-- 2. Равномерное движение -->
+                        <tr>
+                            <td>Равномерное</td>
+                            <td>
+                                \(v_{0x} \neq 0\)<br>
+                                \(a_x = 0\)
+                            </td>
+                            <td>\[x(t) = x_0 + v_{0x}t\]</td>
+                            <td>\[v_x(t) = v_{0x}\]</td>
+                            <td>Наклонная прямая</td>
+                            <td>Горизонтальная прямая</td>
+                        </tr>
+
+                        <!-- 3. Разгон из состояния покоя -->
+                        <tr>
+                            <td>Разгон (из покоя)</td>
+                            <td>
+                                \(v_{0x} = 0\)<br>
+                                \(a_x > 0\)
+                            </td>
+                            <td>\[x(t) = x_0 + \frac{a_xt^2}{2}\]</td>
+                            <td>\[v_x(t) = a_xt\]</td>
+                            <td>Парабола, ветви вверх</td>
+                            <td>Наклонная прямая</td>
+                        </tr>
+
+                        <!-- 4. Торможение до полной остановки -->
+                        <tr>
+                            <td>Торможение</td>
+                            <td>
+                                \(v_{0x} > 0\)<br>
+                                \(a_x < 0\)
+                            </td>
+                            <td>\[x(t) = x_0 + v_{0x}t - \frac{|a_x|t^2}{2}\]</td>
+                            <td>\[v_x(t) = v_{0x} - |a_x|t\]</td>
+                            <td>Парабола, ветви вниз</td>
+                            <td>Наклонная прямая</td>
+                        </tr>
+
+                        <!-- 5. Разгон с начальной скоростью -->
+                        <tr>
+                            <td>Разгон (с начальной скоростью)</td>
+                            <td>
+                                \(v_{0x} > 0\)<br>
+                                \(a_x > 0\)
+                            </td>
+                            <td>\[x(t) = x_0 + v_{0x}t + \frac{a_xt^2}{2}\]</td>
+                            <td>\[v_x(t) = v_{0x} + a_xt\]</td>
+                            <td>Парабола, ветви вверх</td>
+                            <td>Наклонная прямая</td>
+                        </tr>
+
+                        <!-- 6. Движение против оси с торможением -->
+                        <tr>
+                            <td>Движение против оси (+торможение)</td>
+                            <td>
+                                \(v_{0x} < 0\)<br>
+                                \(a_x > 0\)
+                            </td>
+                            <td>\[x(t) = x_0 - |v_{0x}|t + \frac{a_xt^2}{2}\]</td>
+                            <td>\[v_x(t) = -|v_{0x}| + a_xt\]</td>
+                            <td>Парабола, ветви вверх</td>
+                            <td>Наклонная прямая</td>
+                        </tr>
+
+                        <!-- 7. Реверсивное движение -->
+                        <tr>
+                            <td>Реверсивное движение</td>
+                            <td>
+                                \(v_{0x} > 0\)<br>
+                                \(a_x < 0\)<br>
+                                До остановки и обратно
+                            </td>
+                            <td>\[x(t) = x_0 + v_{0x}t - \frac{|a_x|t^2}{2}\]</td>
+                            <td>\[v_x(t) = v_{0x} - |a_x|t\]</td>
+                            <td>Парабола с максимумом</td>
+                            <td>Пересекает ось t</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="table-container">
+                <h3>Дополнительные характеристики движения</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Параметр</th>
+                            <th>Формула</th>
+                            <th>Пояснение</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Время до остановки</td>
+                            <td>\[t_{stop} = \frac{v_{0x}}{|a_x|}\]</td>
+                            <td>Только при торможении (aₓ < 0)</td>
+                        </tr>
+                        <tr>
+                            <td>Путь до остановки</td>
+                            <td>\[S = \frac{v_{0x}^2}{2|a_x|}\]</td>
+                            <td>Максимальное расстояние при торможении</td>
+                        </tr>
+                        <tr>
+                            <td>Средняя скорость</td>
+                            <td>\[\overline{v}_x = \frac{v_{0x} + v_x}{2}\]</td>
+                            <td>Для любого равноускоренного движения</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!--<script>
+                window.MathJax = {
+                    tex: {
+                        inlineMath: [['$', '$'], ['\\(', '\\)']],
+                        displayMath: [['\\[', '\\]']],
+                        processEscapes: true,
+                        packages: {'[+]': ['ams']}
+                    },
+                    chtml: {
+                        scale: 1.05,
+                        mtextInheritFont: true
+                    }
+                };
+            </script>-->
+            <h3>Переменное ускорение</h3>
+
+            <p>
+                Рассмотрим случай  кусочно-заданного движения, где на каждом временном интервале тело 
+                движется с постоянным, но различным ускорением. Такой тип движения характерен для многих физических систем, где внешние 
+                воздействия изменяются скачкообразно. 
+            </p>
+            <p>   
+                На первом участке тело разгоняется с положительным ускорением, приобретая скорость. 
+                На втором участке движение становится равномерным (ускорение равно нулю), что соответствует случаю, когда сумма всех 
+                действующих сил становится равной нулю. Третий участок демонстрирует равнозамедленное движение с отрицательным ускорением, 
+                что может быть вызвано появлением тормозящей силы. Переходы между участками предполагают мгновенное изменение ускорения, 
+                что является идеализацией - в реальных системах такие переходы занимают конечное время. 
+            </p>
+            <p>   
+                Кинематические характеристики (координата, скорость) при этом изменяются непрерывно, что является следствием 
+                физических законов движения. Такой пример наглядно показывает, как последовательное изменение ускорения влияет на 
+                характер движения тела во времени.
+            </p>
+
+            <div class="container-large-big">
+                <iframe class="responsive-iframe" src="al-html5/diagrammataMetabalomenis.html"></iframe>
+            </div>
+            <div class="content-container">
+                <!-- Ваш контент здесь -->
+                
+                <div class="floating-tech-button">
+                  <a href="al-html5/diagrammataMetabalomenis.html" class="tech-button-link">
+                    <div class="tech-button-content">
+                      <span class="tech-button-text">Открыть моделирование в новом окне</span>
+                      <span class="tech-button-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M3 17H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M3 7H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M7 3V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M12 3V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                          <path d="M17 3V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                      </span>
+                    </div>
+                  </a>
+                </div>
+            </div>
+
+
+
+            <h3>Мгновенное ускорение</h3>
+        
+            <p>Если ускорение меняется во времени, то следует измерить изменение скорости \( \Delta v \) за небольшой интервал времени \( \Delta t \). Тогда:</p>
+            
+            <div class="formula-important">
+                \[ a = \lim_{\Delta t \to 0} \left( \frac{\Delta v}{\Delta t} \right) \]
+            </div>
+            
+            <p>или</p>
+            
+            <div class="formula-important">
+                \[ a = \frac{dv}{dt}  \]
+            </div>
+            
+            <p>В этой и следующих главах мы рассмотрим равномерно ускоренное движение. Позднее, при изучении простого гармонического движения и сил, обратно пропорциональных квадрату расстояния, мы встретимся с ускорением, меняющимся со временем и от точки к точке.</p>
+        
+            
+            <h3>§1.&. Падение тел</h3>
+            
+        <h2>Свободное падение</h3>
+        <p>
+            Гениальность Галилея проявилась в понимании того, что свободное падение тел является равноускоренным 
+            движением независимо от их массы. Современные эксперименты в вакууме подтверждают — перо и молоток на Луне (где нет атмосферы) 
+            действительно будут падать с одинаковым ускорением.
+        </p>
+        <p>
+            Экспериментально установлено, что вблизи поверхности Земли любой свободный предмет падает по направлению к центру 
+            Земли с ускорением 9,8 м/с\(^2\). Самое замечательное заключается в том, что ускорение не зависит ни от массы, ни от состава, ни от начальной скорости тела. (Если сопротивление воздуха является существенным, то ускорение оказывается меньше.) Это ускорение принято обозначать буквой \( g \).</p>
+        
+        <p>
+            Любопытно, что точное значение ускорения свободного падения g варьируется в зависимости от географической широты и высоты над 
+            уровнем моря, что учитывается в системах спутниковой навигации. 
+        </p>
+        
+        <p>Мы будем всегда считать \( g \) положительной величиной. Поэтому, если ось \( x \) направлена вверх, то ускорение \( a = -g \).</p>
+
+
+
+
+        <p>
+            В эпоху автономных транспортных средств и космических полётов кинематические расчёты приобрели новое значение. 
+            Системы автоматического управления используют дифференциальные уравнения движения в реальном времени для прогнозирования траекторий.
+            
+        </p>
+            Интересный факт: при стыковке космических кораблей учитывается не только их взаимное движение, но и кривизна траектории, обусловленная 
+            орбитальной механикой — это пример усложнения классических кинематических моделей.
+            <p>Свободное падение — движение тела под действием только силы тяжести (без учета сопротивления воздуха). Основные характеристики:</p>
+            <ul>
+                <li>Ускорение свободного падения: \( g = 9.81\ м/с² \)</li>
+                <li>Движение равноускоренное (\( a = \pm g \))</li>
+                <li>Начальная скорость \( v_0 \) может быть нулевой или направленной вертикально</li>
+            </ul>
+        
+            <h2>Уравнения движения в разных системах координат</h2>
+        
+            <h3>1. Система координат с осью Y вверх (+)</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Ситуация</th>
+                            <th>Начальные условия</th>
+                            <th>Уравнение координаты</th>
+                            <th>Уравнение скорости</th>
+                            <th>Пример (t=2c)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Падение</td>
+                            <td>\( v_0 = 0 \), \( y_0 = 20\ м \)</td>
+                            <td>\( y = 20 - \frac{9.81t^2}{2} \)</td>
+                            <td>\( v = -9.81t \)</td>
+                            <td>\( y = 0.4\ м \), \( v = -19.62\ м/с \)</td>
+                        </tr>
+                        <tr>
+                            <td>Бросок вверх</td>
+                            <td>\( v_0 = 15\ м/с \)</td>
+                            <td>\( y = 15t - \frac{9.81t^2}{2} \)</td>
+                            <td>\( v = 15 - 9.81t \)</td>
+                            <td>\( y = 10.38\ м \), \( v = -4.62\ м/с \)</td>
+                        </tr>
+                        <tr>
+                            <td>Бросок вниз</td>
+                            <td>\( v_0 = -10\ м/с \), \( y_0 = 20\ м \)</td>
+                            <td>\( y = 20 - 10t - \frac{9.81t^2}{2} \)</td>
+                            <td>\( v = -10 - 9.81t \)</td>
+                            <td>\( y = -19.62\ м \), \( v = -29.62\ м/с \)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        
+            <h3>2. Система координат с осью Y вниз (+)</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Ситуация</th>
+                            <th>Начальные условия</th>
+                            <th>Уравнение координаты</th>
+                            <th>Уравнение скорости</th>
+                            <th>Пример (t=2c)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Падение</td>
+                            <td>\( v_0 = 0 \), \( y_0 = 0 \)</td>
+                            <td>\( y = \frac{9.81t^2}{2} \)</td>
+                            <td>\( v = 9.81t \)</td>
+                            <td>\( y = 19.62\ м \), \( v = 19.62\ м/с \)</td>
+                        </tr>
+                        <tr>
+                            <td>Бросок вверх</td>
+                            <td>\( v_0 = 15\ м/с \), \( y_0 = 0 \)</td>
+                            <td>\( y = -15t + \frac{9.81t^2}{2} \)</td>
+                            <td>\( v = -15 + 9.81t \)</td>
+                            <td>\( y = -10.38\ м \), \( v = 4.62\ м/с \)</td>
+                        </tr>
+                        <tr>
+                            <td>Бросок вниз</td>
+                            <td>\( v_0 = 10\ м/с \), \( y_0 = 0 \)</td>
+                            <td>\( y = 10t + \frac{9.81t^2}{2} \)</td>
+                            <td>\( v = 10 + 9.81t \)</td>
+                            <td>\( y = 39.62\ м \), \( v = 29.62\ м/с \)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        
+            <h2>Сравнение систем координат</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Параметр</th>
+                            <th>Ось Y вверх (+)</th>
+                            <th>Ось Y вниз (+)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Направление "+"</td>
+                            <td>Вверх</td>
+                            <td>Вниз</td>
+                        </tr>
+                        <tr>
+                            <td>Ускорение \( a \)</td>
+                            <td>\( -g \)</td>
+                            <td>\( +g \)</td>
+                        </tr>
+                        <tr>
+                            <td>Высота</td>
+                            <td>\( y > 0 \) - над землей</td>
+                            <td>\( y < 0 \) - "ниже" старта</td>
+                        </tr>
+                        <tr>
+                            <td>Пример: падение с 20м, t=1c</td>
+                            <td>\( y = 15.1\ м \), \( v = -9.81\ м/с \)</td>
+                            <td>\( y = 4.9\ м \), \( v = 9.81\ м/с \)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        
+            <h2>Дополнительные расчеты</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Параметр</th>
+                            <th>Формула</th>
+                            <th>Пример расчета</th>
+                            <th>Результат</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Максимальная высота</td>
+                            <td>\( h_{max} = \frac{v_0^2}{2g} \)</td>
+                            <td>\( v_0 = 20\ м/с \)</td>
+                            <td>\( \approx 20.39\ м \)</td>
+                        </tr>
+                        <tr>
+                            <td>Время подъема</td>
+                            <td>\( t_p = \frac{v_0}{g} \)</td>
+                            <td>\( v_0 = 20\ м/с \)</td>
+                            <td>\( \approx 2.04\ с \)</td>
+                        </tr>
+                        <tr>
+                            <td>Время падения</td>
+                            <td>\( t = \sqrt{\frac{2y_0}{g}} \)</td>
+                            <td>\( y_0 = 20\ м \)</td>
+                            <td>\( \approx 2.02\ с \)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        
+            <div class="note">
+                <h3>Важные замечания:</h3>
+                <ul>
+                    <li>Все примеры используют \( g = 9.81\ м/с² \)</li>
+                    <li>Физические результаты одинаковы в обеих системах координат</li>
+                    <li>Отрицательная скорость означает движение против направления оси Y</li>
+                    <li>Для сложных задач рекомендуется делать схематический рисунок</li>
+                    
+                </ul>
+            </div>
+        
+        
+        
+        
+        
+            <p>
+            
+        </p>
+
+        <p>
+            
+        </p>
+        <div class="container-large-big">
+            <iframe class="responsive-iframe" src="al-html5/freeFall.html"></iframe>
+        </div>
+        <div class="content-container">
+            <!-- Ваш контент здесь -->
+            
+            <div class="floating-tech-button">
+              <a href="al-html5/freeFall.html" class="tech-button-link">
+                <div class="tech-button-content">
+                  <span class="tech-button-text">Открыть моделирование в новом окне</span>
+                  <span class="tech-button-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M3 17H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                      <path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                      <path d="M3 7H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                      <path d="M7 3V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                      <path d="M12 3V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                      <path d="M17 3V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                  </span>
+                </div>
+              </a>
+            </div>
+        </div>
+        
+    
+    <article>
+    <!-- Футер страницы -->
+    <footer class="copyright">
+        © <span id="current-year">2023</span> Руслан Басантаев
+    </footer>
+    
+    <!-- Скрипт для автоматического обновления года в футере -->
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+    <!-- Подключение в конце страницы -->
+    <link rel="stylesheet" href="plotly.css">
+    <script src="plotly-graph.js"></script>
+    <script>
+        // Простая демонстрация: при наведении подсвечиваем строку
+        document.querySelectorAll('tbody tr').forEach(row => {
+            row.addEventListener('mouseenter', () => {
+                row.style.backgroundColor = '#e6f7ff';
+            });
+            row.addEventListener('mouseleave', () => {
+                row.style.backgroundColor = '';
+            });
+        });
+    </script>
+    <script>
+        // Управление выпадающим оглавлением
+        document.addEventListener('DOMContentLoaded', function() {
+            const tocToggle = document.getElementById('tocToggle');
+            const tocNav = document.getElementById('tocNav');
+            
+            // Обработчик клика по кнопке
+            tocToggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+                tocNav.classList.toggle('active');
+            });
+            
+            // Закрытие при клике на пункт меню (опционально)
+            const tocLinks = tocNav.querySelectorAll('a');
+            tocLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    tocToggle.classList.remove('active');
+                    tocNav.classList.remove('active');
+                });
+            });
+            
+            // Автоматическое открытие при загрузке (опционально)
+            // tocToggle.classList.add('active');
+            // tocNav.classList.add('active');
+        });
+    </script>
+    <button class="back-to-top" id="backToTop" aria-label="Вернуться к началу страницы" title="Наверх"></button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const backToTopButton = document.getElementById('backToTop');
+            
+            // Показываем кнопку сразу при загрузке (для теста)
+            // backToTopButton.classList.add('visible');
+            
+            // Показываем/скрываем кнопку при прокрутке
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
+                }
+            });
+            
+            // Плавная прокрутка вверх
+            backToTopButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+                
+                // Анимация нажатия
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1.1)';
+                }, 100);
+            });
+            
+            // Альтернативный вариант с requestAnimationFrame
+            function smoothScroll() {
+                const currentPosition = window.pageYOffset;
+                if (currentPosition > 0) {
+                    window.requestAnimationFrame(smoothScroll);
+                    window.scrollTo(0, currentPosition - currentPosition / 8);
+                }
+            }
+            
+            // Можно использовать этот вариант вместо стандартного:
+            // backToTopButton.addEventListener('click', smoothScroll);
+        });
+    </script>
+</body>
+
+</html>

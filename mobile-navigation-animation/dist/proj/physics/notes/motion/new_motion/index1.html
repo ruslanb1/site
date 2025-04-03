@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!-- 
+  Классический учебник физики - HTML версия
+  Версия 1.2 (адаптивная, с комментариями)
+  © Руслан Басантаев
+-->
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Классическая механика: Кинематика</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        MathJax = {
+            tex: {
+                tags: 'ams',
+                packages: {'[+]': ['physics']},
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            chtml: {
+                displayAlign: 'left'
+            }
+        };
+    </script>
+    <!-- Подключение внешних ресурсов -->
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.14.0.min.js"></script>
+    <script defer src="motionSVG.js"></script>
+    <script defer src="../../../lib/matter.min.js"></script>
+    <script defer src="mattersim.js"></script>
+    <script src="../../../lib/function-graph-SVG.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!--стиль окружности-->
+</head>
+<body>
+
+    <h1>Кинематика частиц</h1>
+    
+    <div class="clearfix">
+        <img src="svg/traectoria.svg" alt="Движение частицы" class="img-right">
+        
+        
+        <p>Кинематика — это раздел динамики, который описывает движение тел без учета сил, вызывающих это движение. В данной главе мы рассматриваем движение частиц — идеализированных объектов, размеры которых малы по сравнению с радиусом кривизны их траектории.</p>
+        
+        <div class="formula">
+            \[ v = \frac{ds}{dt} \quad \text{(Скорость)} \]
+        </div>
+        
+        <p>Это фундаментальное уравнение связывает скорость частицы с изменением её положения. На рисунке справа показана траектория движения частицы в прямоугольных координатах.</p>
+    </div>
+    
+    <div class="clearfix">
+        <img src="svg/49.svg" alt="Прямолинейное движение" class="img-left">
+        
+        
+        <p>При прямолинейном движении траектория частицы представляет собой прямую линию. Положение частицы можно описать одной координатой:</p>
+        
+        <div class="formula">
+            \[ s = s(t) \]
+        </div>
+        
+        <p>Как показано на рисунке слева, ускорение при таком движении может быть как постоянным, так и переменным. Важными частными случаями являются:</p>
+        
+        <ul>
+            <li>Равномерное движение (\(a = 0\))</li>
+            <li>Равноускоренное движение (\(a = const\))</li>
+        </ul>
+    </div>
+    
+    <div class="figure">
+        <img src="velocity_graph.png" alt="График скорости">
+        <div class="caption">Рис. 2.3: Зависимость скорости от времени при равноускоренном движении</div>
+    </div>
+    
+    <h3>Графическая интерпретация</h3>
+    <p>Графики движения позволяют наглядно представить зависимость между параметрами:</p>
+    
+    <div class="clearfix">
+        <img src="acceleration_graph.png" alt="График ускорения" class="img-right" style="max-width: 250px;">
+        
+        <p>Наклон касательной к графику \(s(t)\) в любой точке определяет мгновенную скорость частицы:</p>
+        
+        <div class="formula">
+            \[ v = \lim_{\Delta t \to 0} \frac{\Delta s}{\Delta t} = \frac{ds}{dt} \]
+        </div>
+        
+        <p>Аналогично, ускорение определяется как производная скорости по времени. На графике справа показан характер изменения ускорения для различных типов движения.</p>
+    </div>
+    
+    <h2>Пример задачи</h2>
+    <div class="clearfix">
+        <img src="problem_scheme.png" alt="Схема задачи" class="img-left" style="max-width: 200px;">
+        
+        <p><strong>Задача 2/1.</strong> Положение частицы задано уравнением \( s = 2t^3 - 24t + 6 \) (метры, секунды). Определить скорость при t = 3 с.</p>
+        
+        <div class="formula">
+            \[ v = \frac{ds}{dt} = 6t^2 - 24 \]
+            \[ v(3) = 6 \cdot 9 - 24 = 30 \, \text{м/с} \]
+        </div>
+        
+        <p>На схеме слева показано движение частицы вдоль оси s. Обратите внимание на изменение направления движения при изменении знака скорости.</p>
+    </div>
+    
+    </body>
+</html>

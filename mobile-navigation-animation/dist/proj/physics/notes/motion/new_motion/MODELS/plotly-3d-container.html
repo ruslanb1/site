@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D График в академическом стиле</title>
+    <style>
+        body {
+            font-family: "Latin Modern Roman", "Times New Roman", serif;
+            line-height: 1.6;
+            margin: 0 auto;
+            max-width: 900px;
+            padding: 20px;
+            font-size: 1.05em;
+            text-align: justify;
+            color: #333;
+            background-color: #f9f9f5;
+        }
+        
+        .graph-container {
+            margin: 30px 0;
+            padding: 25px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            border: 1px solid #e0e0e0;
+        }
+        
+        .graph-title {
+            font-family: "Latin Modern Roman", serif;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #444;
+            font-size: 1.4em;
+            font-weight: normal;
+            letter-spacing: 0.5px;
+        }
+        
+        #interactive-3d-plot {
+            width: 100%;
+            height: 500px;
+            margin: 0 auto;
+        }
+        
+        .plot-controls {
+            margin-top: 25px;
+            padding: 18px;
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            justify-content: center;
+        }
+        
+        .control-group {
+            display: flex;
+            align-items: center;
+            min-width: 250px;
+            max-width: 350px;
+            background: white;
+            padding: 10px 15px;
+            border-radius: 4px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .control-label {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            font-weight: bold;
+            margin-right: 12px;
+            font-family: "Latin Modern Roman", serif;
+            color: #555;
+            font-size: 0.95em;
+        }
+        
+        .control-slider {
+            flex-grow: 1;
+            margin: 0 12px;
+            cursor: pointer;
+            height: 6px;
+            border-radius: 3px;
+        }
+        
+        .control-value {
+            display: inline-block;
+            width: 42px;
+            text-align: center;
+            font-family: "Latin Modern Roman", monospace;
+            color: #222;
+            background: #f0f0f0;
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        
+        .axis-label {
+            font-family: "Latin Modern Roman", serif;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>Трехмерная визуализация координат</h1>
+    
+    <p>Ниже представлен интерактивный 3D-график, демонстрирующий положение точки в трехмерном пространстве. Используйте ползунки для изменения координат по осям X, Y и Z.</p>
+    
+    <div class="graph-container">
+        <h2 class="graph-title">Трехмерная система координат</h2>
+        <div id="interactive-3d-plot"></div>
+        
+        <div class="plot-controls">
+            <div class="control-group">
+                <label class="control-label">Ось X:</label>
+                <input type="range" class="control-slider" id="xSlider3d" min="-5" max="5" step="0.1" value="2">
+                <span class="control-value" id="xValue3d">2.0</span>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Ось Y:</label>
+                <input type="range" class="control-slider" id="ySlider3d" min="-5" max="5" step="0.1" value="3">
+                <span class="control-value" id="yValue3d">3.0</span>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Ось Z:</label>
+                <input type="range" class="control-slider" id="zSlider3d" min="-5" max="5" step="0.1" value="1">
+                <span class="control-value" id="zValue3d">1.0</span>
+            </div>
+        </div>
+    </div>
+    
+    <p>График в реальном времени отображает изменения положения точки. Проекции на координатные плоскости показаны пунктирными линиями соответствующих цветов.</p>
+
+    <script src="https://cdn.plot.ly/plotly-2.14.0.min.js"></script>
+    <script>
+    function init3DPlot() {
+        const layout = {
+            scene: {
+                xaxis: { 
+                    title: {text: 'Ось X', font: {family: "Latin Modern Roman", size: 12}},
+                    range: [-5, 5],
+                    showspikes: false,
+                    backgroundcolor: 'rgba(0,0,0,0)',
+                    tickfont: {family: "Latin Modern Roman", size: 10}
+                },
+                yaxis: { 
+                    title: {text: 'Ось Y', font: {family: "Latin Modern Roman", size: 12}},
+                    range: [-5, 5],
+                    showspikes: false,
+                    backgroundcolor: 'rgba(0,0,0,0)',
+                    tickfont: {family: "Latin Modern Roman", size: 10}
+                },
+                zaxis: { 
+                    title: {text: 'Ось Z', font: {family: "Latin Modern Roman", size: 12}},
+                    range: [-5, 5],
+                    showspikes: false,
+                    backgroundcolor: 'rgba(0,0,0,0)',
+                    tickfont: {family: "Latin Modern Roman", size: 10}
+                },
+                aspectmode: 'cube',
+                camera: {
+                    eye: { x: 1.5, y: 1.5, z: 1.2 }
+                }
+            },
+            margin: { t: 40, b: 40, l: 40, r: 40 },
+            paper_bgcolor: 'rgba(0,0,0,0)',
+            font: {family: "Latin Modern Roman"},
+            displayModeBar: false,
+            showLegend: false,
+            hovermode: false
+        };
+    
+        const config = {
+            displaylogo: false,
+            displayModeBar: false,
+            scrollZoom: false,
+            responsive: true,
+            modeBarButtonsToRemove: [
+                'zoom3d',
+                'pan3d',
+                'orbitRotation',
+                'tableRotation',
+                'resetCameraDefault3d',
+                'resetCameraLastSave3d',
+                'hoverClosest3d'
+            ]
+        };
+    
+        let x = 2, y = 3, z = 1;
+    
+        function updatePlot() {
+            const traces = [
+                // Оси координат
+                { 
+                    x: [-5,5], y: [0,0], z: [0,0], 
+                    type: 'scatter3d', 
+                    mode: 'lines',
+                    line: { color: '#333', width: 2 },
+                    hoverinfo: 'skip'
+                },
+                { 
+                    x: [0,0], y: [-5,5], z: [0,0], 
+                    type: 'scatter3d', 
+                    mode: 'lines',
+                    line: { color: '#333', width: 2 },
+                    hoverinfo: 'skip'
+                },
+                { 
+                    x: [0,0], y: [0,0], z: [-5,5], 
+                    type: 'scatter3d', 
+                    mode: 'lines',
+                    line: { color: '#333', width: 2 },
+                    hoverinfo: 'skip'
+                },
+                
+                // Проекции
+                { 
+                    x: [x,x], y: [y,y], z: [0,z], 
+                    type: 'scatter3d', 
+                    mode: 'lines',
+                    line: { dash: 'dot', width: 1.5, color: '#4285F4' },
+                    hoverinfo: 'skip'
+                },
+                { 
+                    x: [x,x], y: [0,y], z: [z,z], 
+                    type: 'scatter3d', 
+                    mode: 'lines',
+                    line: { dash: 'dot', width: 1.5, color: '#34A853' },
+                    hoverinfo: 'skip'
+                },
+                { 
+                    x: [0,x], y: [y,y], z: [z,z], 
+                    type: 'scatter3d', 
+                    mode: 'lines',
+                    line: { dash: 'dot', width: 1.5, color: '#EA4335' },
+                    hoverinfo: 'skip'
+                },
+                
+                // Точка
+                { 
+                    x: [x], y: [y], z: [z], 
+                    type: 'scatter3d', 
+                    mode: 'markers',
+                    marker: { size: 6, color: '#B36B00', line: {width: 0.5, color: '#333'} },
+                    hoverinfo: 'skip'
+                }
+            ];
+    
+            Plotly.react('interactive-3d-plot', traces, layout, config);
+        }
+    
+        // Обработчики слайдеров
+        document.getElementById('xSlider3d').addEventListener('input', function(e) {
+            x = parseFloat(e.target.value);
+            document.getElementById('xValue3d').textContent = x.toFixed(1);
+            updatePlot();
+        });
+    
+        document.getElementById('ySlider3d').addEventListener('input', function(e) {
+            y = parseFloat(e.target.value);
+            document.getElementById('yValue3d').textContent = y.toFixed(1);
+            updatePlot();
+        });
+    
+        document.getElementById('zSlider3d').addEventListener('input', function(e) {
+            z = parseFloat(e.target.value);
+            document.getElementById('zValue3d').textContent = z.toFixed(1);
+            updatePlot();
+        });
+    
+        updatePlot();
+        
+        // Предотвращаем появление тулбара при двойном клике
+        document.getElementById('interactive-3d-plot').addEventListener('dblclick', function(e) {
+            e.preventDefault();
+            return false;
+        });
+    }
+    
+    document.addEventListener('DOMContentLoaded', init3DPlot);
+    </script>
+</body>
+</html>
