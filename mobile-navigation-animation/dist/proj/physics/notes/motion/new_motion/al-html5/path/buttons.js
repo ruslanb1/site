@@ -1,0 +1,6 @@
+﻿/*!
+* © by Sitsanlis Ilias
+* This notice shall be included in all copies or substantial portions of the Software.
+* Creative Commons 4.0/CC BY - NC - SA 4.0. 
+*/
+$(function(){$("#ruler").button({text:!1}).click(function(){ruler.visible=$(this).is(":checked"),stage.update()}),$("#grid").button({text:!1,icon:!1}).click(function(){grid.visible=$(this).is(":checked"),stage.update()}),$("#axis").button({text:!1,icon:!1}).click(function(){dotlines.visible=xAxis.visible=yAxis.visible=$(this).is(":checked"),stage.update()}),$("#play").button({text:!1,label:"Έναρξη",icons:{primary:"ui-icon-play"}}).click(function(){$(this).text();var i=playMovie?(framePlay=!1,playMovie=!1,{label:"Έναρξη",icons:{primary:"ui-icon-play"}}):(playRecord(),{label:"Παύση",icons:{primary:"ui-icon-pause"}});$(this).button("option",i)}),$("#stop").button({text:!1,icons:{primary:"ui-icon-arrowrefresh-1-e"}}).click(function(){playMovie=!1,dt=dtSlow,restart(),$("#play").button("option",{label:"Έναρξη",icons:{primary:"ui-icon-play"}})})}),$(function(){$("#ruler").button({icon:!1})});

@@ -1,0 +1,76 @@
+**
+ * Создает текстовый элемент для обозначения скорости (v) в метрах в секунду (m/s)
+ * с применением стилизации и эффектов
+ * @return {createjs.Text} Текстовый объект CreateJS с настройками
+ */
+function vGraphTextShape() {
+    // Создаем новый текстовый объект с:
+    // - содержимым "v (m/s)" (скорость в м/с)
+    // - курсивным шрифтом Times New Roman размером 16px 
+    // - основным цветом текста #28394B (темно-синий)
+    var text = new createjs.Text("v (m/s)", "italic 16px 'Times New Roman'", "#28394B");
+    
+    // Добавляем тень тексту с параметрами:
+    // - цвет черный (#000000) 
+    // - смещение по X: 2px
+    // - смещение по Y: 2px
+    // - размытие: 4px
+    text.shadow = new createjs.Shadow("#000000", 2, 2, 4);
+    
+    // Устанавливаем обводку (outline) текста:
+    // - толщина обводки: 1px
+    text.outline = 1;
+    
+    // Цвет обводки - белый (#FFFFFF)
+    text.outlineColor = "#FFFFFF";
+    
+    // Масштабирование текста:
+    // - уменьшаем размер до 90% от оригинального (0.9)
+    // scaleX и scaleY - отдельно по осям для возможного искажения
+    text.scaleX = text.scaleY = 0.9;
+    
+    // Возвращаем готовый текстовый объект
+    return text;
+}
+
+
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+function aGraphTextShape() {
+    var text = new createjs.Text("a (м/с²)", "italic 16px 'STIX Two Math'", "#000000");
+    text.regX = -10;
+    text.outline = 0;
+    text.outlineColor = "#FFFFFF";
+    text.scaleX = text.scaleY = 0.9;
+    return text;
+    
+}
+
+function vGraphTextShape() {
+	var text = new createjs.Text(" υ (м/с)", "italic 16px 'STIX Two Math'", "#000000");
+    /*text.shadow = new createjs.Shadow("#000000", 2, 2, 1);*/
+    text.outline = 0;
+    text.outlineColor = "#FFFFFF";
+    text.scaleX = text.scaleY = 0.9;
+    return text;
+}
+
+function xGraphTextShape() {
+	var text = new createjs.Text("  y (м)", "italic 16px 'STIX Two Math'", "#000000");
+    /*text.shadow = new createjs.Shadow("#000000", 2, 2, 1);*/
+    text.outline = 0;
+    text.outlineColor = "#FFFFFF";
+    text.scaleX = text.scaleY = 0.9;
+    return text;
+}
+function tGraphTextShape() {
+	var text = new createjs.Text("t(c)", "italic 16px 'STIX Two Math'", "#000000");
+    
+    text.regX = 20;
+    // Стилевые настройки (как в оригинале)
+    text.outline = 0;
+    text.outlineColor = "#FFFFFF";
+    text.scaleX = text.scaleY = 0.9;
+    
+    return text;
+}

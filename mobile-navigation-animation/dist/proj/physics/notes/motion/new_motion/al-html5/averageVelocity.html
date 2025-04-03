@@ -1,0 +1,125 @@
+﻿
+
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=1000, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	
+	<title>Средняя скорость</title>
+	<style>
+		
+	</style>	
+
+	
+	<script src="files/jquery/external/jquery/jquery.js"></script>
+	<script src="files/jquery/jquery-ui.js"></script>
+	<link href="files/jquery/jquery-ui.css" rel="stylesheet">
+	<link href="files/jquery/jquery-ui-1.12.icon-font.min.css" rel="stylesheet">
+	<script src="files/jquery/jquery.ui.touch-punch.min.js"></script>
+	<script src="files/createjs/easeljs.min.js"></script>
+	
+	<link rel="stylesheet" href="files/css/main.css">
+	<link rel="stylesheet" href="files/css/buttons.css">
+	
+	<!--<script src="https://www.seilias.gr/images/stories/html5/files/scripts/cT.min.js"></script>-->
+	<script src="../../../../../../cT.min.js"></script>
+	<script src="myScript.js"></script>
+	
+	<script src="files/scripts/ui.js"></script>
+	<script src="infos.js"></script>
+	<script src="files/scripts/mainButtons.js"></script>
+	
+	<script src="averageVelocity/buttons.js"></script>
+	<script src="averageVelocity/dragAndDrop.js"></script>
+	<script src="averageVelocity/functions.js"></script>
+	<script src="averageVelocity/appFunctions.js"></script>
+	<script src="averageVelocity/shapes.js"></script>
+	<script src="averageVelocity/app.js"></script>
+	
+</head>
+	
+<body onLoad="init()">
+	<div id="main">
+	
+	<div id="left" class="floatLeft">
+		<div style="display: table;margin-right: auto; margin-left: auto;">
+			
+			<div id="foo" style="z-index: 1; visibility: hidden; ">
+				<button id="rewind" class="withoutBorder">Медленное движение назад</button>
+				<button id="stop" class="withoutBorder">Перезапустите</button>
+				<button id="forward" class="withoutBorder">Замедленное движение вперед</button>
+				<button id="beginning" class="withoutBorder">Кадр назад</button>
+				<button id="play" class="withoutBorder">&#9658;Пуск</button>
+				<button id="end" class="withoutBorder">Кадр вперед</button>
+				
+				<input type="checkbox" id="slowMotion" /><label for="slowMotion" class="withoutBorder">Замедлить</label>
+				
+				  
+				
+			</div>
+			
+			<canvas id="demoCanvas" width="720" height="420" style="background-color:rgba(255, 255, 255, 1.00);visibility: hidden">
+				Обновите браузер
+			</canvas>
+		</div>
+	</div>
+	
+	<!-- ΠΑΡΑΜΕΤΡΟΙ -->
+	<div id="right" class="floatRight" >
+		<div id="variables" style="display: table;margin-right: auto; margin-left: auto;  border: 2px solid #9C9898;background-color:#F8F9FA;visibility: hidden">
+			<!--ΜΕΤΑΒΛΗΤΕΣ-->
+			<div style="padding: 5px; text-align: center">
+				<!--ΤΑΧΥΤΗΤΑ-->
+				<div class="widget">
+					<fieldset>
+						<legend>Средняя скорость в интервале времени от <span class="math">t</span><span class="units"><sub>1</sub></span> до <span class="math">t</span><span class="units"><sub>2</sub></span> </legend>
+						
+						<fixLen>
+							<label for="t1Spinner" class="ui-controlgroup-label"><span class="math">t</span><span class="units"><sub>1</sub> = </span></label>
+							<input id="t1Spinner"><span class="units"> c&nbsp;</span>
+						</fixLen>
+						
+						<fixLen>
+							<label for="t2Spinner" class="ui-controlgroup-label"><span class="math">t</span><span class="units"><sub>2</sub> = </span></label>
+							<input id="t2Spinner"><span class="units"> c&nbsp;</span>
+						</fixLen>
+
+						<div id="tSlider" style="width: 12em"></div>
+					</fieldset>
+				</div>
+				
+				<div class="widget">
+					<div class="widget">
+						<input type="checkbox" id="car" checked/><label for="car" style="border-radius: 3px;">Авто</label>
+					</div>
+					<div class="widget">
+						<input type="checkbox" id="moto" checked/><label for="moto" style="border-radius: 3px;">Мото</label>
+					</div>
+				</div>
+				
+				<!--<div id="progressbar-1"></div> -->
+				
+				
+				<input type="hidden" id="refresh" value="no">
+			</div>
+
+			<!--<div id="CI" style="visibility:hidden">
+
+				<div class="bottom-right">
+					© seilias.gr <span class="ui-icon ui-icon-marker "></span>
+				</div>
+				
+			</div>-->
+			
+		</div>
+	</div>
+	</div>
+	<!--
+	<p class="ui-widget-content ui-state-default ui-helper-clearfix">
+		<span style="float: left; margin-right: 0.5em;" class="ui-icon ui-icon-jquery">icon</span> ui-icon-jquery
+	</p>
+	-->
+</body>
+</html>

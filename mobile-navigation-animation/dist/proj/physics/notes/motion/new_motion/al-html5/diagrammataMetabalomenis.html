@@ -1,0 +1,148 @@
+﻿<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=1202, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	
+	<title>Графики равноускоренного движения</title>
+	<style>
+		html {
+			touch-action: pan-x pan-y;
+		}
+		canvas {
+			touch-action: none;
+		}
+	</style>	
+
+	<script src="files/jquery/external/jquery/jquery.js"></script>
+	<script src="files/jquery/jquery-ui.js"></script>
+	<link href="files/jquery/jquery-ui.css" rel="stylesheet">
+	<link href="files/jquery/jquery-ui-1.12.icon-font.min.css" rel="stylesheet">
+	<script src="files/jquery/jquery.ui.touch-punch.min.js"></script>
+	<script src="files/createjs/easeljs.min.js"></script>
+	
+	<link rel="stylesheet" href="files/css/main.css">
+	<link rel="stylesheet" href="files/css/buttons.css">
+	
+	<script src="../../../../../../cT.min.js"></script>
+    <script src="myScript.js"></script>
+    
+    <script src="files/scripts/ui.js"></script>
+    <script src="infos.js"></script>
+    <script src="files/scripts/mainButtons.js"></script>
+	
+	<script src="diagrammataMetabalomenis/buttons.js"></script>
+	<script src="diagrammataMetabalomenis/dragAndDrop.js"></script>
+	<script src="diagrammataMetabalomenis/functions.js"></script>
+	<script src="diagrammataMetabalomenis/appFunctions.js"></script>
+	<script src="diagrammataMetabalomenis/shapes.js"></script>
+	<script src="diagrammataMetabalomenis/app.js"></script>
+	
+</head>
+	
+<body onLoad="init()">
+	<div id="main">
+	<!--КНОПКИ И ХОЛСТ-->
+	<div id="left" class="floatLeft">
+		<div style="display: table;margin-right: auto; margin-left: auto;">
+			<!--КНОПКИ-->
+			<div id="foo" style="z-index: 1; visibility: hidden; ">
+				<button id="rewind" class="withoutBorder">Медленно назад</button>
+				<button id="stop" class="withoutBorder">Сброс</button>
+				<button id="forward" class="withoutBorder">Медленно вперед</button>
+				<button id="beginning" class="withoutBorder">Кадр назад</button>
+				<button id="play" class="withoutBorder">&#9658;Старт</button>
+				<button id="end" class="withoutBorder">Кадр вперед</button>
+				
+				<input type="checkbox" id="grid" checked/><label for="grid" class="withoutBorder">Сетка</label>
+				<input type="checkbox" id="slowMotion" /><label for="slowMotion" class="withoutBorder">Замедление</label>
+			</div>
+			<!--ХОЛСТ-->
+			<canvas id="demoCanvas" width="720" height="420" style="background-color:rgba(255, 255, 255, 1.00);visibility: hidden">
+				Ваш браузер не поддерживает HTML5
+			</canvas>
+		</div>
+	</div>
+	
+	<!-- ПАРАМЕТРЫ -->
+	<div id="right" class="floatRight" >
+		<div id="variables" style="display: table;margin-right: auto; margin-left: auto;  border: 2px solid #9C9898;background-color:#ffffff;visibility: hidden">
+			<div style="padding: 5px; text-align: center">
+				<div align="center">
+					<div class="widget" style="width:202px">
+						<fieldset>
+							<legend>Количество точек</legend>
+							<div id="numberOfPointsSlider"></div>
+						</fieldset>
+					</div>
+					
+					<!--МАСШТАБ X -->
+					<div class="widget">
+						<div class="widget" style="width:202px">
+							<fieldset>
+								<legend>Масштаб оси <span class="math">x'x</span></legend>
+								<div id="xScaleSlider"></div>
+							</fieldset>
+						</div>
+					</div>
+					
+					<!--МАСШТАБ T -->
+					<div class="widget">
+						<div class="widget" style="width:202px">
+							<fieldset>
+								<legend>Масштаб времени <span class="math">t</span></legend>
+								<div id="tGraphScaleSlider"></div>
+							</fieldset>
+						</div>
+					</div>
+
+					<!--МАСШТАБ X -->
+					<div class="widget">
+						<div class="widget" style="width:202px">
+							<fieldset>
+								<legend>Масштаб положения</legend>
+								<div id="xGraphScaleSlider"></div>
+							</fieldset>
+						</div>
+					</div>
+
+					<!--МАСШТАБ V -->
+					<div class="widget">
+						<div class="widget" style="width:202px">
+							<fieldset>
+								<legend>Масштаб скорости</legend>
+								<div id="vGraphScaleSlider"></div>
+							</fieldset>
+						</div>
+					</div>
+
+					<!--МАСШТАБ A -->
+					<div class="widget">
+						<div class="widget" style="width:202px">
+							<fieldset>
+								<legend>Масштаб ускорения</legend>
+								<div id="aGraphScaleSlider"></div>
+							</fieldset>
+						</div>
+					</div>
+					
+					<div class="widget" style="width:202px">
+						<fieldset>
+							<legend>Масштаб векторов</legend>
+							<div id="vectorScaleSlider"></div>
+						</fieldset>
+					</div>
+				</div>
+				
+				<div class="widget">
+					<input type="checkbox" id="clones" /><label for="clones" >След</label>
+				</div>
+				
+				<input type="hidden" id="refresh" value="no">
+			</div>
+		</div>
+	</div>
+	</div>
+</body>
+</html>
