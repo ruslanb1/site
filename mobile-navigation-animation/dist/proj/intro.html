@@ -119,7 +119,7 @@
             text-align: center;
         }
 
-        .svg-container svg {
+        .svg-container img {
             max-width: 100%;
             height: auto;
             display: block;
@@ -264,99 +264,98 @@
                 height: 250px;
             }
         }
+
+        /* Защита от копирования только для текстовых элементов */
+        .text-content, .caption, h1, h2, h3, p, li {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Разрешаем выделение для интерактивных элементов */
+        input, textarea, .plotly-container, .iframe-container {
+            -webkit-user-select: auto !important;
+            -moz-user-select: auto !important;
+            -ms-user-select: auto !important;
+            user-select: auto !important;
+        }
     </style>
 </head>
 <body>
     <div class="card">
         <h1>Законы Ньютона</h1>
         
-        <p>Три закона Ньютона лежат в основе классической механики и описывают движение тел под действием сил.</p>
-        
-        <h2>Первый закон Ньютона (Закон инерции)</h2>
-        <p>Тело сохраняет состояние покоя или равномерного прямолинейного движения, пока внешние силы не заставят его изменить это состояние.</p>
-        
-        <div class="formula">
-            \[ \sum \vec{F} = 0 \Rightarrow \vec{v} = \text{const} \]
-        </div>
-        
-        <div class="media-container">
-            <div class="svg-container">
-                <svg width="100%" height="200" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="100%" height="100%" fill="#f8f9fa"/>
-                    <line x1="50" y1="150" x2="350" y2="150" stroke="#5f6368" stroke-width="2" stroke-dasharray="5,5"/>
-                    <circle cx="100" cy="150" r="15" fill="#4285f4"/>
-                    <circle cx="200" cy="150" r="15" fill="#34a853"/>
-                    <circle cx="300" cy="150" r="15" fill="#ea4335"/>
-                    <text x="100" y="120" text-anchor="middle" font-size="14" fill="#5f6368">v=0</text>
-                    <text x="200" y="120" text-anchor="middle" font-size="14" fill="#5f6368">v=const</text>
-                    <text x="300" y="120" text-anchor="middle" font-size="14" fill="#5f6368">v=const</text>
-                    <path d="M200 150 L230 150 M220 145 L230 150 L220 155" fill="none" stroke="#34a853" stroke-width="2"/>
-                    <path d="M300 150 L330 150 M320 145 L330 150 L320 155" fill="none" stroke="#ea4335" stroke-width="2"/>
-                </svg>
-            </div>
-            <div class="caption">Рис. 1: Иллюстрация первого закона Ньютона — тело сохраняет скорость без действия сил</div>
-        </div>
-        
-        <h2>Второй закон Ньютона</h2>
-        <p>Ускорение тела прямо пропорционально действующей на него силе и обратно пропорционально его массе.</p>
-        
-        <div class="formula">
-            \[ \vec{F} = m\vec{a} \]
-            <p>где <i>F</i> — сила (Н), <i>m</i> — масса (кг), <i>a</i> — ускорение (м/с²)</p>
-        </div>
-        
-        <div class="interactive">
-            <h3>Интерактивный эксперимент</h3>
-            <p>Исследуйте зависимость ускорения от силы и массы:</p>
+        <div class="text-content">
+            <p>Три закона Ньютона лежат в основе классической механики и описывают движение тел под действием сил.</p>
             
-            <div class="controls">
-                <div class="control-group">
-                    <label for="force">Сила, Н</label>
-                    <input type="range" id="force" min="1" max="20" value="5" step="1">
-                    <div class="value-display" id="force-value">5 Н</div>
-                </div>
-                <div class="control-group">
-                    <label for="mass">Масса, кг</label>
-                    <input type="range" id="mass" min="0.5" max="10" value="1" step="0.5">
-                    <div class="value-display" id="mass-value">1 кг</div>
-                </div>
+            <h2>Первый закон Ньютона (Закон инерции)</h2>
+            <p>Тело сохраняет состояние покоя или равномерного прямолинейного движения, пока внешние силы не заставят его изменить это состояние.</p>
+            
+            <div class="formula">
+                \[ \sum \vec{F} = 0 \Rightarrow \vec{v} = \text{const} \]
             </div>
             
             <div class="media-container">
-                <div id="plotly-graph" class="plotly-container"></div>
-                <div class="caption">График зависимости скорости от времени при заданных параметрах</div>
+                <div class="svg-container">
+                    <!-- Локальный SVG файл -->
+                    <img src="newton-first-law.svg" alt="Первый закон Ньютона">
+                </div>
+                <div class="caption">Рис. 1: Иллюстрация первого закона Ньютона — тело сохраняет скорость без действия сил</div>
             </div>
-        </div>
-        
-        <h2>Третий закон Ньютона</h2>
-        <p>Силы взаимодействия двух тел равны по величине и противоположны по направлению.</p>
-        
-        <div class="formula">
-            \[ \vec{F}_{1→2} = -\vec{F}_{2→1} \]
-        </div>
-        
-        <div class="media-container">
-            <div class="svg-container">
-                <svg width="100%" height="200" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="100%" height="100%" fill="#f8f9fa"/>
-                    <circle cx="150" cy="100" r="30" fill="#4285f4"/>
-                    <circle cx="250" cy="100" r="30" fill="#ea4335"/>
-                    <path d="M180 100 L220 100" stroke="#5f6368" stroke-width="3" stroke-dasharray="5,5"/>
-                    <path d="M150 100 L130 100 M140 95 L130 100 L140 105" fill="none" stroke="#4285f4" stroke-width="3"/>
-                    <path d="M250 100 L270 100 M260 95 L270 100 L260 105" fill="none" stroke="#ea4335" stroke-width="3"/>
-                    <text x="150" y="60" text-anchor="middle" font-size="14" fill="#5f6368">F<sub>2→1</sub></text>
-                    <text x="250" y="60" text-anchor="middle" font-size="14" fill="#5f6368">F<sub>1→2</sub></text>
-                    <text x="200" y="170" text-anchor="middle" font-size="14" fill="#5f6368">F<sub>1→2</sub> = -F<sub>2→1</sub></text>
-                </svg>
+            
+            <h2>Второй закон Ньютона</h2>
+            <p>Ускорение тела прямо пропорционально действующей на него силе и обратно пропорционально его массе.</p>
+            
+            <div class="formula">
+                \[ \vec{F} = m\vec{a} \]
+                <p>где <i>F</i> — сила (Н), <i>m</i> — масса (кг), <i>a</i> — ускорение (м/с²)</p>
             </div>
-            <div class="caption">Рис. 2: Иллюстрация третьего закона Ньютона — силы действия и противодействия</div>
-        </div>
-        
-        <div class="media-container">
-            <div class="iframe-container">
-                <iframe src="https://phet.colorado.edu/sims/html/forces-and-motion-basics/latest/forces-and-motion-basics_ru.html" allowfullscreen></iframe>
+            
+            <div class="interactive">
+                <h3>Интерактивный эксперимент</h3>
+                <p>Исследуйте зависимость ускорения от силы и массы:</p>
+                
+                <div class="controls">
+                    <div class="control-group">
+                        <label for="force">Сила, Н</label>
+                        <input type="range" id="force" min="1" max="20" value="5" step="1">
+                        <div class="value-display" id="force-value">5 Н</div>
+                    </div>
+                    <div class="control-group">
+                        <label for="mass">Масса, кг</label>
+                        <input type="range" id="mass" min="0.5" max="10" value="1" step="0.5">
+                        <div class="value-display" id="mass-value">1 кг</div>
+                    </div>
+                </div>
+                
+                <div class="media-container">
+                    <div id="plotly-graph" class="plotly-container"></div>
+                    <div class="caption">График зависимости скорости от времени при заданных параметрах</div>
+                </div>
             </div>
-            <div class="caption">Интерактивный симулятор: Исследуйте законы Ньютона на практике (PhET)</div>
+            
+            <h2>Третий закон Ньютона</h2>
+            <p>Силы взаимодействия двух тел равны по величине и противоположны по направлению.</p>
+            
+            <div class="formula">
+                \[ \vec{F}_{1→2} = -\vec{F}_{2→1} \]
+            </div>
+            
+            <div class="media-container">
+                <div class="svg-container">
+                    <!-- Локальный SVG файл -->
+                    <img src="newton-third-law.svg" alt="Третий закон Ньютона">
+                </div>
+                <div class="caption">Рис. 2: Иллюстрация третьего закона Ньютона — силы действия и противодействия</div>
+            </div>
+            
+            <div class="media-container">
+                <div class="iframe-container">
+                    <iframe src="https://phet.colorado.edu/sims/html/forces-and-motion-basics/latest/forces-and-motion-basics_ru.html" allowfullscreen></iframe>
+                </div>
+                <div class="caption">Интерактивный симулятор: Исследуйте законы Ньютона на практике (PhET)</div>
+            </div>
         </div>
     </div>
 
@@ -413,6 +412,23 @@
             
             // Инициализация графика
             updateGraph();
+        });
+
+        // Защита от копирования (только для текстового контента)
+        document.addEventListener('contextmenu', function(e) {
+            // Разрешаем контекстное меню для интерактивных элементов
+            if (e.target.tagName === 'INPUT' || e.target.closest('.plotly-container') || e.target.closest('.iframe-container')) {
+                return;
+            }
+            e.preventDefault();
+        });
+
+        // Блокировка выделения для всего документа, кроме интерактивных элементов
+        document.addEventListener('selectstart', function(e) {
+            if (e.target.tagName === 'INPUT' || e.target.closest('.plotly-container') || e.target.closest('.iframe-container')) {
+                return;
+            }
+            e.preventDefault();
         });
     </script>
 </body>
