@@ -1,0 +1,30 @@
+.wrapper {
+  margin-top: 20px;
+  height: 100vh;
+  /*This part is important for centering*/
+  display: grid;
+  place-items: center;
+}
+
+.typing-demo {
+  margin-top: 20px;
+  width: 28ch;
+  animation: typing 3s steps(30), blink .5s step-end infinite alternate;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid;
+  font-family: "Roboto", "Helvetica Neue", "Arial", sans-serif;;
+  font-size: 2em;
+}
+
+@keyframes typing {
+  from {
+    width: 0
+  }
+}
+    
+@keyframes blink {
+  50% {
+    border-color: transparent
+  }
+}
