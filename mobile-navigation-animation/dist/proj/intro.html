@@ -14,152 +14,154 @@
 </head>
 <body>
     <div class="card">
-        <h1>Законы Ньютона</h1>
+        <h1>
+            <p style= "font-family: 'Hombre', sans-serif; font-size: 42px; ">
+                1. Введение в кинематику
+            </p>
+        </h1>
         
         <div class="text-content">
-            <p>Три закона Ньютона лежат в основе классической механики и описывают движение тел под действием сил.</p>
             
-            <h2>Первый закон Ньютона (Закон инерции)</h2>
-            <p>Тело сохраняет состояние покоя или равномерного прямолинейного движения, пока внешние силы не заставят его изменить это состояние.</p>
+            
+            <p>
+                Кинематика изучает движение тел без рассмотрения причин, вызывающих это движение.
+            </p>
+            
+            <div class="media-container">
+                <div class="iframe-container">
+                    <iframe src="reveal.js-master/demo.html" allowfullscreen></iframe>
+                </div>
+                <div class="caption">Интерактивный симулятор: Исследуйте законы Ньютона на практике (PhET)</div>
+            </div>
+            <h2 style= "font-family: 'Hombre', sans-serif; transform: rotate(0deg);">Основные понятия</h2>
+            
+            <p style= "font-family: 'sriracha', sans-serif; font-size: 16px; color: #000000;">
+                <strong>Материальная точка</strong> — это тело обладающее массой, но не обладающее размерами! 
+                
+            </p>
+            <div class="definition">
+                <p><strong>Материальная точка</strong> – это идеализированная модель тела, размерами которого можно пренебречь, учитывая только его массу и положение в пространстве.</p>
+            </div>
+            <p>Материальную точку удобно показывать на координатных осях.</p>
+            <div class="media-container">
+                <div class="svg-container">
+                    <img src="intro/SVG/svg2roughjs (13).svg" alt="Кинематика движения">
+                    <div class="svg-protection"></div>
+                </div>
+                <div class="caption" style= "font-family: 'sriracha', sans-serif; font-size: 12px; color: #030303;">Рис. 1: Точка на прямой</div>
+            </div>
+
+            <p>
+                Если даны две точки A(x<sub>1</sub>) и B(x<sub>2</sub>), расстояние между ними: d = |x<sub>1</sub> − x<sub>2</sub>|.        
+
+            </p>
+
+            <p>
+                Точка на плоскости задаётся двумя координатами (x, y) в декартовой системе.
+            </p>
+            <p>Квадратный корень: &radic;x</p>
+
+            <p>Если в \( x \) вместо \( \langle v_x \rangle \) подставить \(\frac{1}{2}(v_{x0} + v_x)\), то можно записать:</p>
+								<div class="formula-important">
+									\[x = x_0 + \frac{1}{2}(v_{x0} + v_x) t.\]
+								</div>
+
+
+
+            <p>Перемещение — вектор, соединяющий начальное и конечное положение тела.</p>
             
             <div class="formula">
-                \[ \sum \vec{F} = 0 \Rightarrow \vec{v} = \text{const} \]
+                \[ \vec{r} = \vec{r}(t) \]
+                <p>где <i>r</i> — радиус-вектор положения тела в момент времени <i>t</i></p>
             </div>
             
             <div class="media-container">
                 <div class="svg-container">
-                    <!-- Локальный SVG файл -->
-                    <img src="newton-first-law.svg" alt="Первый закон Ньютона">
+                    <img src="kinematics.svg" alt="Кинематика движения">
+                    <div class="svg-protection"></div>
                 </div>
-                <div class="caption">Рис. 1: Иллюстрация первого закона Ньютона — тело сохраняет скорость без действия сил</div>
+                <div class="caption">Рис. 1: Траектория движения тела</div>
             </div>
             
-            <h2>Второй закон Ньютона</h2>
-            <p>Ускорение тела прямо пропорционально действующей на него силе и обратно пропорционально его массе.</p>
+            <h2>Скорость</h2>
+            <p>Скорость — векторная величина, характеризующая быстроту изменения положения тела.</p>
             
             <div class="formula">
-                \[ \vec{F} = m\vec{a} \]
-                <p>где <i>F</i> — сила (Н), <i>m</i> — масса (кг), <i>a</i> — ускорение (м/с²)</p>
+                \[ \vec{v} = \frac{d\vec{r}}{dt} \]
             </div>
             
             <div class="interactive">
-                <h3>Интерактивный эксперимент</h3>
-                <p>Исследуйте зависимость ускорения от силы и массы:</p>
-                
-                <div class="controls">
-                    <div class="control-group">
-                        <label for="force">Сила, Н</label>
-                        <input type="range" id="force" min="1" max="20" value="5" step="1">
-                        <div class="value-display" id="force-value">5 Н</div>
-                    </div>
-                    <div class="control-group">
-                        <label for="mass">Масса, кг</label>
-                        <input type="range" id="mass" min="0.5" max="10" value="1" step="0.5">
-                        <div class="value-display" id="mass-value">1 кг</div>
-                    </div>
-                </div>
+                <h3>Симуляция 1: Графики движения</h3>
+                <p>Исследуйте зависимость координаты и скорости от времени:</p>
                 
                 <div class="media-container">
-                    <div id="plotly-graph" class="plotly-container"></div>
-                    <div class="caption">График зависимости скорости от времени при заданных параметрах</div>
+                    <div id="plotly-motion" class="plotly-container"></div>
                 </div>
             </div>
-            
-            <h2>Третий закон Ньютона</h2>
-            <p>Силы взаимодействия двух тел равны по величине и противоположны по направлению.</p>
-            
-            <div class="formula">
-                \[ \vec{F}_{1→2} = -\vec{F}_{2→1} \]
-            </div>
-            
-            <div class="media-container">
-                <div class="svg-container">
-                    <!-- Локальный SVG файл -->
-                    <img src="./intro/SVG/XY_MT.svg" alt="Третий закон Ньютона">
-                </div>
-                <div class="caption">Рис. 2: Иллюстрация третьего закона Ньютона — силы действия и противодействия</div>
-            </div>
-            
             <div class="media-container">
                 <div class="iframe-container">
                     <iframe src="https://phet.colorado.edu/sims/html/forces-and-motion-basics/latest/forces-and-motion-basics_ru.html" allowfullscreen></iframe>
                 </div>
                 <div class="caption">Интерактивный симулятор: Исследуйте законы Ньютона на практике (PhET)</div>
             </div>
+            
+            <h2>Ускорение</h2>
+            <p>Ускорение — векторная величина, характеризующая быстроту изменения скорости.</p>
+            
+            <div class="formula">
+                \[ \vec{a} = \frac{d\vec{v}}{dt} = \frac{d^2\vec{r}}{dt^2} \]
+            </div>
+            
+            <!--<div class="interactive">
+                <h3>Симуляция 2: Движение с ускорением</h3>
+                <p>Исследуйте движение тела с постоянным ускорением:</p>
+                
+                <div class="media-container">
+                    <div id="plotly-acceleration" class="plotly-container"></div>
+                </div>
+            </div>-->
+            
+            <div class="media-container">
+                <div class="svg-container">
+                    <img src="acceleration.svg" alt="Движение с ускорением">
+                    <div class="svg-protection"></div>
+                </div>
+                <div class="caption">Рис. 2: Векторы скорости и ускорения</div>
+            </div>
         </div>
     </div>
 
     <script>
-        // Инициализация интерактивного графика
+        // Защита от копирования
         document.addEventListener('DOMContentLoaded', function() {
-            // Элементы управления
-            const forceSlider = document.getElementById('force');
-            const massSlider = document.getElementById('mass');
-            const forceValue = document.getElementById('force-value');
-            const massValue = document.getElementById('mass-value');
-            
-            // Данные для графика
-            let force = parseFloat(forceSlider.value);
-            let mass = parseFloat(massSlider.value);
-            
-            // Функция обновления графика
-            function updateGraph() {
-                force = parseFloat(forceSlider.value);
-                mass = parseFloat(massSlider.value);
+            // Блокировка контекстного меню для всего документа
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                return false;
+            });
+
+            // Блокировка долгого нажатия для SVG
+            document.querySelectorAll('.svg-protection').forEach(el => {
+                el.addEventListener('touchstart', function(e) {
+                    e.preventDefault();
+                }, { passive: false });
                 
-                forceValue.textContent = force + ' Н';
-                massValue.textContent = mass + ' кг';
-                
-                const time = [0, 1, 2, 3, 4, 5];
-                const velocity = time.map(t => (force/mass) * t);
-                
-                const data = [{
-                    x: time,
-                    y: velocity,
-                    mode: 'lines+markers',
-                    type: 'scatter',
-                    name: `F = ${force} Н, m = ${mass} кг`,
-                    line: {color: '#4285f4', width: 3},
-                    marker: {size: 8, color: '#34a853'}
-                }];
-                
-                const layout = {
-                    title: `Зависимость скорости от времени (a = ${(force/mass).toFixed(2)} м/с²)`,
-                    xaxis: {title: 'Время, с'},
-                    yaxis: {title: 'Скорость, м/с'},
-                    margin: {t: 40, l: 60, r: 30, b: 60},
-                    showlegend: true,
-                    legend: {orientation: 'h', y: 1.1},
-                    font: {family: 'var(--font-base)'}
-                };
-                
-                Plotly.react('plotly-graph', data, layout);
-            }
-            
-            // Обработчики событий
-            forceSlider.addEventListener('input', updateGraph);
-            massSlider.addEventListener('input', updateGraph);
-            
-            // Инициализация графика
-            updateGraph();
+                el.addEventListener('mousedown', function(e) {
+                    if (e.button === 2) {
+                        e.preventDefault();
+                    }
+                });
+            });
+
+            // Разрешаем стандартное поведение для интерактивных элементов
+            document.querySelectorAll('input, .plotly-container, .iframe-container').forEach(el => {
+                el.addEventListener('contextmenu', function(e) {
+                    e.stopPropagation();
+                });
+            });
         });
 
-        // Защита от копирования (только для текстового контента)
-        document.addEventListener('contextmenu', function(e) {
-            // Разрешаем контекстное меню для интерактивных элементов
-            if (e.target.tagName === 'INPUT' || e.target.closest('.plotly-container') || e.target.closest('.iframe-container')) {
-                return;
-            }
-            e.preventDefault();
-        });
-
-        // Блокировка выделения для всего документа, кроме интерактивных элементов
-        document.addEventListener('selectstart', function(e) {
-            if (e.target.tagName === 'INPUT' || e.target.closest('.plotly-container') || e.target.closest('.iframe-container')) {
-                return;
-            }
-            e.preventDefault();
-        });
+        
     </script>
 </body>
 </html>
