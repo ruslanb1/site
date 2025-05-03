@@ -1,14 +1,14 @@
 :root {
     --primary-color: #4285f4;
-    --secondary-color: #34a853;
+    
     --accent-color: #ea4335;
     --text-color: #202124;
-    --bg-color: #ffffff;
-    --light-bg: #f8f9fa;
+    
+    
     --border-color: #dadce0;
     --border-radius: 8px;
     --box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-    --padding: 16px;
+    --padding: 10px;
     --margin: 12px;
     --font-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     --font-mono: "Roboto Mono", Menlo, Monaco, Consolas, "Courier New", monospace;
@@ -36,11 +36,20 @@ body {
 
 .card {
     background: var(--bg-color);
-    border-radius: var(--border-radius);
+    background-image: url('introSVG/intro2.svg');
     box-shadow: var(--box-shadow);
     padding: var(--padding);
     margin: 0 auto;
     max-width: 800px;
+    overflow: hidden;
+}
+.card_2 {
+    background: var(--bg-color);
+    background-color: var(--bg-color);
+    box-shadow: var(--box-shadow);
+    padding: var(--padding);
+    margin: 0 auto;
+    max-width: 850px;
     overflow: hidden;
 }
 
@@ -93,34 +102,79 @@ ul, ol {
 
 .media-container {
     width: 100%;
-    margin: 1.5rem 0;
+    margin: 0.7rem auto; /* auto по бокам для центрирования блока */
     border-radius: var(--border-radius);
     overflow: hidden;
     background: var(--light-bg);
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /* центрирование по горизонтали */
+    align-items: center;     /* центрирование по вертикали */
     flex-direction: column;
-    padding: 0.5rem;
+    padding: 0.rem;             /* исправлено: было "0.rem" */
+    position: relative;      /* исправлено: было "position: r" */
 }
-
+/* Модифицируем .svg-container для лучшей адаптивности */
 .svg-container {
+    margin-top: 0rem;
     width: 100%;
     text-align: center;
+    position: relative;
+    margin: 1rem 0;
+    margin-top: 0px;
 }
 
-.svg-container img {
+.svg-container svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+.svg-responsive {
     max-width: 100%;
     height: auto;
     display: block;
     margin: 0 auto;
 }
 
+/* Для встроенных SVG через img */
+.svg-container img[src$=".svg"] {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Адаптивные корректировки для SVG */
+@media (max-width: 768px) {
+    .card {
+        background-size: cover; /* Меняем на cover для мобильных */
+    }
+    
+    .svg-container {
+        width: 95%;
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        background-image: url('introSVG/intro2-mobile.svg'); /* Можно добавить мобильную версию */
+    }
+    
+    .svg-container svg,
+    .svg-container img[src$=".svg"] {
+        max-width: 95%;
+    }
+}
+
 .iframe-container {
     width: 100%;
     height: 0;
-    padding-bottom: 75%;
+    padding-bottom: 60%;
     position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень */
+    
+    border-radius: 4px; /* Закругленные углы (опционально) */
+    overflow: hidden; /* Чтобы тень не обрезалась */
 }
 
 .iframe-container iframe {
@@ -180,6 +234,16 @@ input[type="range"] {
     color: var(--primary-color);
     text-align: center;
     margin-top: 0.3rem;
+}
+
+.svg-protection {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background: transparent;
 }
 
 @media (max-width: 768px) {
@@ -255,12 +319,13 @@ input[type="range"] {
     }
 }
 
-/* Защита от копирования только для текстовых элементов */
+/* Защита от копирования */
 .text-content, .caption, h1, h2, h3, p, li {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    margin-left: 30px; /* Отступ текста от левого края */
 }
 
 /* Разрешаем выделение для интерактивных элементов */
@@ -270,3 +335,736 @@ input, textarea, .plotly-container, .iframe-container {
     -ms-user-select: auto !important;
     user-select: auto !important;
 }
+@font-face {
+    font-family: 'Hombre';
+    src: url('./fonts/Hombre Italic Italic.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'denistina';
+    src: url('./fonts/denistina_en.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'sriracha';
+    src: url('./fonts/sriracha-cyrillic.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'beer money';
+    src: url('./fonts/beer money.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'libertinusmath';
+    src: url('./fonts/libertinusmath-regular.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Laptev';
+    src: url('./fonts/Laptev_Brush.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'katherine';
+    src: url('./fonts/katherine_plus.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'DuduCyrillic';
+    src: url('./fonts/DuduCyrillic-BrWw.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.canvas-text {
+    position: absolute;
+    font-family: 'denistina', sans-serif;
+    color: #000;
+    transform-origin: 0 0;
+    white-space: nowrap;
+    pointer-events: none;
+}
+.canvas-container {
+    width: 100%;
+    max-width: 800px; /* Максимальная ширина */
+    margin: 0 auto;
+    position: relative;
+}
+
+.canvas-container::before {
+    content: "";
+    display: block;
+    padding-top: 0%; /* Соотношение 16:9 (можно изменить) */
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+    background: #f0f0f0;
+}
+.text-small { font-size: 16px; }
+.text-medium { font-size: 24px; }
+.text-large { font-size: 32px; }
+.text-clean1 { font-size: 32px; }
+.text-clean { font-size: 18px; }
+
+.text-bg {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 5px 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    pointer-events: auto;
+}
+
+.text-border {
+    border: 2px solid #ddd;
+}
+
+.text-highlight {
+    background-color: rgba(255, 255, 200, 0.9);
+}
+/* Стили для iframe */
+.canvas-object iframe {
+    pointer-events: auto;
+    border: none;
+    background: white;
+}
+
+/* Стили для SVG */
+.canvas-object img[src$=".svg"],
+.canvas-object svg {
+    pointer-events: none;
+    will-change: auto;
+    transform: translateZ(0);
+}
+/* Добавляем стили для стикера */
+
+
+.sticker:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+.sticker {
+    cursor: pointer; /* Курсор при наведении */
+    transition: transform 0.3s ease; /* Плавный переход при наведении */
+    filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.3)); /* Эффект тени */
+}
+
+.sticker:hover {
+    transform: scale(1.05); /* Увеличение при наведении */
+}
+
+.shine {
+    animation: shine 1.5s infinite; /* Анимация блеска */
+}
+
+@keyframes shine {
+    0% {
+        opacity: 0.5;
+        transform: translateX(-100%);
+    }
+    50% {
+        opacity: 0.7;
+        transform: translateX(100%);
+    }
+    100% {
+        opacity: 0.5;
+        transform: translateX(100%);
+    }
+}
+
+@media (max-width: 480px) {
+    .sticker {
+        width: 80px;
+        height: 80px;
+        bottom: 10px;
+        right: 10px;
+    }
+}
+/* Стили для кнопок-ссылок */
+.content-trigger {
+    font-family: 'Hombre';
+    font-size: 28px; 
+    color: #f506e1; 
+    cursor: pointer;
+    text-decoration: none;
+    margin: 10px 0;
+    display: inline-block;
+}
+
+/* Фон затемнения */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Само модальное окно */
+.modal-container {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    width: 90%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow: auto;
+    position: relative;
+    animation: fadeIn 0.3s;
+}
+
+/* Заголовок окна */
+.modal-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 10;
+}
+
+/* Кнопка закрытия */
+.modal-close {
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    color: #666;
+}
+
+/* Тело модального окна */
+.modal-body {
+    padding: 20px;
+}
+
+/* Адаптивные iframe */
+.responsive-iframe {
+    width: 100%;
+    height: 75vh;
+    border: none;
+}
+.responsive-iframe-middle {
+    width: 100%;
+    height: 40vh;
+    border: none;
+}
+
+/* Анимация появления */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Для мобильных устройств */
+@media (max-width: 768px) {
+    .modal-container {
+        width: 95%;
+        max-height: 85vh;
+    }
+    
+    .modal-body {
+        padding: 15px;
+    }
+}
+
+/* Стили для кнопок-ссылок */
+.content-trigger {
+
+    text-align: right;
+    color: #fc03c6;
+    cursor: pointer;
+    text-decoration: underline;
+    margin: 10px 0;
+    display: inline-block;
+}
+.content-trigger.right-align {
+    
+    
+    text-align: center;
+    width: 100%; /* чтобы было что выравнивать */
+    display: block; /* если элемент не блочный */
+    
+}
+
+/* Фон затемнения */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Само модальное окно */
+.modal-container {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    width: 90%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow: auto;
+    position: relative;
+    animation: fadeIn 0.3s;
+}
+
+/* Заголовок окна */
+.modal-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 10;
+}
+
+/* Кнопка закрытия */
+.modal-close {
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    color: #666;
+}
+/* Стили для изображений с обтеканием */
+.img-left {
+    float: left;
+    margin: 0 20px 15px 0;
+    max-width: 300px;
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+
+.img-right {
+    float: right;
+    margin: 0 0 15px 10px;
+    max-width: 500px;
+    border: 0.5px solid #ddd;
+    padding: 5px;
+}
+.img-right {
+    margin: 0 auto 15px; /* Отступы вокруг абзаца */
+}
+
+.figure {
+    padding: 15px 20px;
+    width: 70%;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.caption {
+    font-style: italic;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+@media (max-width: 600px) {
+    .img-left,
+    .img-right {
+        float: none;
+        display: block;
+        margin: 15px auto;
+        max-width: 100%;
+    }
+}
+img {
+    transition: transform 0.3s;
+}
+img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.definition {
+    border: 1px dotted var(--accent-color);
+    padding: 10px 18px;
+    margin: 25px 0;
+    background-color: rgba(139, 0, 0, 0.03);
+}
+
+.definition:before {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+}
+.sticker-note {
+    background: #fff9c4 url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0,0 L100,0 L95,5 L100,10 L0,10 Z" fill="%23fff9c4"/></svg>') bottom / 100% 10px no-repeat;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 5px 5px 0 0;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.sticker-note::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        transparent,
+        transparent 24px,
+        rgba(0, 0, 0, 0.1) 25px
+    );
+    opacity: 0.2;
+    pointer-events: none;
+}
+/* Стили для изображений с обтеканием */
+.img-left {
+    float: left;
+    margin: 0 20px 15px 0;
+    max-width: 300px;
+    border: 1px solid #ddd;
+    padding: 5px;
+  }
+  
+  .img-right {
+    float: right;
+    margin: 0 0 15px 20px;
+    max-width: 400px;
+    border: 0px solid #ddd;
+    padding: 5px;
+  }
+  
+  .figure {
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  .caption {
+    font-style: italic;
+    font-size: 0.9em;
+    margin-top: 5px;
+  }
+  
+  .clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  @media (max-width: 600px) {
+    .img-left, .img-right {
+        float: none;
+        display: block;
+        margin: 15px auto;
+        max-width: 100%;
+    }
+  }
+    /* Основные стили таблицы */
+    .table-title {
+        text-align: center;
+        margin: 25px 0 15px;
+       
+        font-size: 1.4em;
+        font-weight: 600;
+        border-bottom: 2px solid #4285f4;
+        padding-bottom: 8px;
+        display: inline-block;
+        width: 100%;
+      }
+    .table-container {
+        width: 100%;
+        overflow-x: auto;
+        margin: 20px 0;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+    }
+    
+    /* Заголовки таблицы */
+    th {
+       
+        position: sticky;
+        top: 0;
+        font-weight: bold;
+        
+    }
+    
+    /* Общие стили ячеек */
+    th, td {
+        padding: 10px;
+        text-align: center;
+        border: 0px solid #ddd;
+        vertical-align: middle; /* Центрирование по высоте */
+    }
+    
+    /* Колонка с типом движения - по содержимому */
+    .content-width {
+        width: auto;
+        min-width: 160px;
+        max-width: 220px;
+        text-align: left;
+    }
+    
+    /* Широкая формула */
+    .formula-wide {
+        width: 30%;
+        min-width: 180px;
+        font-family: "Latin Modern Roman", "Times New Roman", serif;
+        color: #070707;
+    }
+    
+    /* Узкая формула */
+    .formula-narrow {
+        width: 25%;
+        min-width: 150px;
+        font-family: "Latin Modern Roman", "Times New Roman", serif;
+        color: #0a0a0a;
+    }
+    
+    /* Узкие колонки графиков */
+    .graph-col {
+        width: 12%;
+        min-width: 70px;
+        max-width: 90px;
+        font-size: 0.85em;
+    }
+    
+    /* Чередование цвета строк */
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    
+    /* Мобильная адаптация */
+    @media (max-width: 768px) {
+        .table-container {
+            border-radius: 0;
+            box-shadow: none;
+        }
+        
+        .formula-wide, .formula-narrow {
+            min-width: 120px;
+            font-size: 0.9em;
+        }
+        
+        .graph-col {
+            min-width: 60px;
+            font-size: 0.8em;
+        }
+        
+        th, td {
+            padding: 8px 4px;
+            vertical-align: middle; /* Центрирование по высоте */
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .content-width {
+            min-width: 140px;
+            font-size: 0.9em;
+        }
+        
+        .formula-wide, .formula-narrow {
+            min-width: 100px;
+            font-size: 0.85em;
+        }
+        
+        .graph-col {
+            min-width: 50px;
+            font-size: 0.75em;
+        }
+    }
+    /* Анимации для появления при скролле */
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scroll-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Задержки для последовательного появления */
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+
+
+.txt{
+    align-content: center;
+    font-family: 'Laptev', sans-serif;
+    font-size: 20px; 
+    color: #0202ab; 
+    margin-bottom: 10px; 
+    margin-right: 20px;
+    line-height: 1.1;
+    
+}
+.linked{
+
+}
+.vector {
+    position: relative;
+    display: inline-block;
+    padding-right: 2px;
+  }
+  .vector::after {
+    content: "→";
+    position: absolute;
+    top: -1px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 0.7em;
+  }
+.mono-formula {
+    background-color: #f8f8f8;
+    border-left: 4px solid #4285f4;
+    padding: 10px 15px;
+    margin: 15px 0;
+    overflow-x: auto;
+}
+.div1 {
+    position: relative;
+    width: 600px;
+    margin: auto;
+    padding: 1rem;
+    background-color: transparent;
+    background-image: linear-gradient(-45deg, transparent, transparent 2%, white 2%, white 85%, transparent, 85%, transparent), linear-gradient(to bottom right, #2ad, #2ad 90%, transparent 90%);
+    background-position: top left, 0.2em 0.2em;
+    background-repeat: no-repeat;
+  }
+  
+  .div1::before,
+  .div1::after {
+    position: absolute;
+    z-index: -1;
+    display: block;
+    width: 3rem;
+    height: 4rem;
+    content: "";
+    z-index: 0;
+    font-size: 8rem;
+    font-family: Georgia, Times, Garamond, serif;
+  }
+  
+  .div1::before {
+    top: -2rem;
+    left: 1rem;
+    content: open-quote;
+  }
+  
+  .div1::after {
+    bottom: -1rem;
+    right: 1rem;
+    content: close-quote;
+  }
+  
+  .div1::before,
+  .div1::after,
+  .div1 h2 {
+    text-shadow: -2px 2px #fff, -1.5px 1.5px #fff, -1px 1px #fff, -0.5px 0.5px #fff;
+  }
+/*цитата*/
+.quote-container {
+    position: relative;
+    width: 600px;
+    margin: auto;
+    padding: 2rem;
+    background-color: #f8f8f8;
+    background-image: 
+      linear-gradient(-45deg, transparent, transparent 2%, white 2%, white 85%, transparent 85%, transparent), 
+      linear-gradient(to bottom right, #3498db, #3498db 90%, transparent 90%);
+    background-position: top left, 0.2em 0.2em;
+    background-repeat: no-repeat;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+
+  .quote-container::before,
+  .quote-container::after {
+    position: absolute;
+    z-index: 0;
+    display: block;
+    width: 3rem;
+    height: 4rem;
+    content: "";
+    font-size: 8rem;
+    font-family: Georgia, serif;
+    color: rgba(52, 152, 219, 0.2);
+  }
+
+  .quote-container::before {
+    top: -1rem;
+    left: 1rem;
+    content: "„"; /* Перевёрнутая открывающая кавычка */
+    transform: rotate(180deg);
+  }
+
+  .quote-container::after {
+    bottom: -2rem;
+    right: 1rem;
+    content: "“"; /* Обычная закрывающая кавычка */
+  }
+
+  
+
+  .quote-text {
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    text-align: justify;
+    position: relative;
+    z-index: 1;
+  }
+
+  .author {
+    text-align: right;
+    font-style: italic;
+    color: #2c3e50;
+    font-size: 1.1em;
+    margin-top: 1rem;
+  }
+
+  .note {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px dashed #ccc;
+  }
