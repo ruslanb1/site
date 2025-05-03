@@ -1,136 +1,648 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Физика: Законы Ньютона</title>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <link rel="stylesheet" href="main.css">
-    <style>
-        
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Физика: Законы кинематики</title>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="https://cdn.plot.ly/plotly-2.14.0.min.js"></script>
+<script>
+    MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            packages: {'[+]': ['ams']}
+        },
+        chtml: {
+            fontURL: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2'
+        }
+    };
+</script>
+    
+<link rel="stylesheet" href="main.css">
+    
 </head>
 <body>
+    
     <div class="card">
-        <h1>
-            <p style= "font-family: 'Hombre', sans-serif; font-size: 42px; ">
-                1. Введение в кинематику
-            </p>
-        </h1>
-        
         <div class="text-content">
+            <p style= "font-family: 'Hombre', sans-serif; font-size: 42px; color: #404041; " class="scroll-animate">Лекция №1. Введение </p>
+            <table style="width:100%; border: 0px solid #ffffff;  margin: 0px 0; font-family: Arial, sans-serif;">
+                <tr>
+                  <td class="txt scroll-animate delay-2 " style="padding: 0px 0px; text-align: center;"> 
+                    <div class="media-container"style="width: 280px;" >
+                        <div class="svg-container">
+                            <img src="introSVG/drawio.svg" alt="Кинематика движения" class="svg-responsive">
+                            <div class="svg-protection"></div> 
+                        </div>          
+                    </div>
+                  </td>           
+                  <td class="txt scroll-animate delay-2 " style="padding-left: -20px 0px; margin: 10px; text-align: left; "> 
+                    <p class="txt scroll-animate delay-2 ">
+                        <p class="txt scroll-animate delay-2 ">Ньютон утверждал, что абсолютного покоя не существует — движение всегда определяется относительно выбранной системы отсчёта.</br></br>
+                        Опыт с ведром показал, что одно и тоже явление объясняется и выглядит по-разному для разных наблюдателей. Именно поэтому всегда необходимо указывать, относительно каких тел рассматривается движение
+                            
+                            <div class="content-trigger right-align" style="font-family: 'Laptev', sans-serif; font-size: 20px; color: #080808;" 
+                             onclick="openModal('3D График', 'newthon')">
+                             &#128073; Цитата И. Ньютона
+                            </div>
+                        <div id="newthon" style="display:none;">
+                            <iframe class="responsive-iframe-middle" src="citate/newthon.html"></iframe>
+                        </div>
+                        </p>
+                    </p>
+                  </td>
+                 </tr>
+            </table>
             
             
-            <p>
-                Кинематика изучает движение тел без рассмотрения причин, вызывающих это движение.
+            
+             
+             <table style="width:100%; border: 0px solid #ffffff;  margin: 0px 0; font-family: Arial, sans-serif;">
+                <tr>
+                    <td class="txt scroll-animate delay-2 " style="padding-left: -20px 0px; margin: 10px; text-align: left; "> 
+                        <ol class="txt scroll-animate delay-2 ">
+                            <strong>Система отсчёта:</strong>
+                            <li><strong>Тело отсчёта</strong> — реальный физический объект (Земля, лаборатория)</li>
+                            <li><strong>Система координат</strong>:
+                                <ul>
+                                    <li>Декартова (x, y, z)</li>
+                                    <li>Полярная (r, φ)</li>
+                                    <li>Сферическая (r, θ, φ)</li>
+                                </ul>
+                            </li>
+                            <li><strong>Синхронизированные часы</strong> — для измерения моментов времени</li>
+                        </ol>
+                    </td>
+                     <td class="txt scroll-animate delay-2 " style="padding: 0px 0px; text-align: center;"> 
+                       
+                            <div class="svg-container" style="width: 280px;">
+                                <img src="introSVG/so.svg" alt="Кинематика движения" class="svg-responsive">
+                                <div class="svg-protection"></div>
+                                
+                            </div>
+                      </td>
+                  </td>
+                </tr>
+            </table>
+            
+            
+            <p class="txt scroll-animate delay-2 ">
+                Для определения положения тела выбирают тело остчета, проводят оси координат, и положение точки в пространстве можно описать координатами.
             </p>
+             
             
-            <div class="media-container">
-                <div class="iframe-container">
-                    <iframe src="reveal.js-master/demo.html" allowfullscreen></iframe>
-                </div>
-                <div class="caption">Интерактивный симулятор: Исследуйте законы Ньютона на практике (PhET)</div>
+            <div class="content-trigger scroll-animate delay-2" style=" text-decoration: none; font-family: 'Laptev', sans-serif; font-size: 20px;text-align: left; margin-left: 20px; color: #000000;  " ;  onclick="openModal('Обязательно к изучению!!!', 'text-content')" >
+            
+                &#128073; Для описания положения и движения тела удобно использовать материальную точку (М.Т.).
             </div>
-            <h2 style= "font-family: 'Hombre', sans-serif; transform: rotate(0deg);">Основные понятия</h2>
             
-            <p style= "font-family: 'sriracha', sans-serif; font-size: 16px; color: #000000;">
-                <strong>Материальная точка</strong> — это тело обладающее массой, но не обладающее размерами! 
+            
+            
+            
+            <!--текст на первую ссылку-->
+            
+            <div id="text-content" style="display:none;">
+                
+                <p class="scroll-animate delay-2"><strong>Материальная точка</strong> — это воображаемая маленькая точка, которая заменяет большой предмет, когда мы изучаем его движение.</p>
+                <p class="scroll-animate delay-2">
+                    Понятие материальной точки представляет собой важнейшую абстракцию в физике. Когда мы рассматриваем движение автомобиля
+                    на трассе между городами, его габариты несущественны по сравнению с пройденным расстоянием — в этом случае автомобиль 
+                    можно считать материальной точкой.
+                </p>
+                <p class="scroll-animate delay-2">
+                    Однако при анализе парковки или столкновения тех же автомобилей их размеры становятся критически важными. Таким образом, 
+                    выбор модели (материальная точка или протяжённое тело) всегда зависит от конкретной физической задачи. 
+                </p>
+                <div class="definition">
+                    <p class="scroll-animate delay-2"><strong>Материальная точка</strong> – это идеализированная модель тела, размерами которого можно пренебречь, учитывая только его массу и положение в пространстве.</p>
+                </div>
+                <h4>Критерии применимости модели:</h4>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Ситуация</th>
+                        <th>Применимость</th>
+                        <th>Обоснование</th>
+                    </tr>
+                    <tr>
+                        <td>Планета на орбите</td>
+                        <td class="positive">✅ Да</td>
+                        <td>Размеры ≪ расстояния до звезды</td>
+                    </tr>
+                    <tr>
+                        <td>Автомобиль в гараже</td>
+                        <td class="negative">❌ Нет</td>
+                        <td>Размеры сравнимы с помещением</td>
+                    </tr>
+                </table>
+                <p class="scroll-animate delay-2">Математический критерий применимости:</p>
+                <div class="formula">
+                    
+                    \[ \frac{\text{Характерный размер тела}}{\text{Масштаб задачи}} \ll 1 \]
+                    
+                </div>
+            </div>
+            <p class="txt scroll-animate delay-2 ">
+                <strong>Есть три способа описания движения точки</strong>
+            </p>
+
+
+
+
+            <p class="txt scroll-animate delay-2 ">
+                <strong>Траекторный (естественный способ):</strong> </br>
+            </p>
+            <table style="width:100%; border: 0px solid #ffffff;  margin: 0px 0; font-family: Arial, sans-serif;">
+                <tr>
+                    <td class="txt scroll-animate delay-2 " style=" text-align: right; margin-left: 40px; "> 
+                        <p class="txt scroll-animate delay-2 ">Пусть материальная точка движется по некоторой кривой. Тогда положение точки определяется дуговой координатой S - расстоянием вдоль траектории от выбранного начала отсчета О:   </p>
+                        <div class="equation scroll-animate delay-2" style=" color: #0202ab;"  >
+                            \[\mathtt{ S = S(t) \quad (1.1)}\]
+                        </div>
+                    </td>
+                
+                    <td class="txt scroll-animate delay-2 " style="padding: 0px 0px; text-align: center;"> 
+                       
+                            <div class="svg-container" style="width: 400px; margin-right: 40px;">
+                                <img src="introSVG/traektornii.svg" alt="Кинематика движения" class="svg-responsive">
+                                <div class="svg-protection"></div>
+                                
+                            </div>
+                        
+                            
+                        
+                      </td>
+                  </td>
+                </tr>
+            </table>
+            </br>
+        </br>
+    </br>
+</br>
+            
+
+            
+
+            <!--<p class="txt scroll-animate delay-2 ">
+                 
+            </p>-->
+            <table style="width:100%; border: 0px solid #ffffff;  margin: 0px 0; font-family: Arial, sans-serif;">
+                <tr>
+                    
+                    
+                    <td class="txt scroll-animate delay-2 " style="padding: 0px 0px; text-align: center;"> 
+                       
+                            <div class="svg-container" style="width: 320px; margin-left: 40px;">
+                                <strong>Векторный способ:</strong>
+                                <img src="introSVG/vect1.svg" alt="Кинематика движения" class="svg-responsive">
+                                <div class="svg-protection"></div>
+                                
+                            </div>
+                        
+                      </td>
+                     </td>
+                    <td class="txt scroll-animate delay-2 " style=" text-align:left; margin-right: 40px; "> 
+                        Проведём из произвольной точки О выбранной системы отсчёта радиус-вектор \( \mathtt{ \vec{r} } \) в точку A. Тогда положение точки A в пространстве полностью определяется как </br>
+                        <div class="equation scroll-animate delay-2" style=" color: #0202ab;"  >
+                        \[ \mathtt{ \mathtt{\vec{r}=\vec{r}(t)}  \quad (1.2) }\]
+                        </div>
+                        <div class="content-trigger right-align" style="font-family: 'Laptev', sans-serif; font-size: 20px; color: #fa0404;" ;  onclick="openModal('Обязательно к изучению!!!', 'vectors')" >
+            
+                            &#128073; Шпаргалка и моделирование векторов.
+                        </div>
+                    </td>
+                  
+                  
+                  
+                </tr>
+            </table>
+            
+           
+            <p class="txt scroll-animate delay-2 ">
+                 
+            </p>
+            <table style="width:100%; border: 0px solid #ffffff;  margin: 0px 0; font-family: Arial, sans-serif;">
+                <tr>
+                    <td class="txt scroll-animate delay-2 " style=" text-align: right; margin-left: 40px; "> 
+                        <p class="txt scroll-animate delay-2 ">В прямоугольной системе координат \( \mathtt{ X, Y, Z } \) радиус-вектор \( \mathtt{ \vec{r}(t) } \) можно заменить его проекциями. Кинематические уранения полностью описывают положение тела в пространстве: </p>
+                        <div class="equation scroll-animate delay-2" style=" color: #0202ab;"  >
+                            \[
+                            \begin{cases}
+                            \mathtt{x = x(t)} \\
+                            \mathtt{y = y(t)} \\
+                            \mathtt{z = z(t)}
+                            \end{cases} \quad (1.3)
+                            \]
+                        </div>
+                    </td>
+                
+                    <td class="txt scroll-animate delay-2 " style="padding: 0px 0px; text-align: center;"> 
+                        
+                            <div class="svg-container" style="width: 400px; align: center;">
+                                <strong>Координатный способ:</strong></br>
+                                <img src="introSVG/koordinata.svg" alt="Кинематика движения" class="svg-responsive">
+                                <div class="svg-protection"></div>
+                                
+                            </div>
+                        
+                      </td>
+                  </td>
+                 
+                </tr>
+            </table>
+    
+    
+            <p class="txt scroll-animate delay-2 " >
+                Если известны кинематические уравнения движения материальной точки, можно найти траекторию движения.</p>
+            <p class="txt scroll-animate delay-2 " style=" color: #050505;" >
+                Пример:
+                
+                    \[
+                    \begin{cases}
+                    \mathtt{x = a\cos(\omega t)} \\
+                    \mathtt{y = b\sin(\omega t)}
+                    \end{cases}
+                    \]
+
+                    Чтобы найти уравнение траектории, надо исключить время. Для этого возведем в квадрат и разделим исходные уравнения:
+                    
+                    
+            </p>
+
+
+            <table style="width:100%; border: 0px solid #ffffff;  margin: 0px 0; font-family: Arial, sans-serif;">
+                <tr>
+                    <td class="txt scroll-animate delay-2 " style=" text-align: center; margin-left: 40px; "> 
+                        <div class="equation scroll-animate delay-2" style=" color: #000000;"  >
+                            \[
+                            \mathtt{\left(\frac{x}{a}\right)^2 + \left(\frac{y}{b}\right)^2 = \cos^2(\omega t) + \sin^2(\omega t) = 1}
+                            \]
+
+                            Итоговое уравнение траектории:
+                            \[
+                            \boxed{\mathtt{\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1}}
+                            \]
+                            Это уравнение эллипса с полуосями \( a \) и \( b \).
+                        </div>
+                    </td>
+                    
+                    <td class="txt scroll-animate delay-2 " style="padding: 0px 0px; text-align: center;"> 
+                       
+                            <div class="svg-container" style="width: 400px; align: center;">
+                                <img src="introSVG/ellipce.svg" alt="Кинематика движения" class="svg-responsive">
+                                
+                            </div>
+                      </td>
+                  </td>
+                </tr>
+            </table>
+ 
+            <p class="txt scroll-animate delay-2 ">
                 
             </p>
-            <div class="definition">
-                <p><strong>Материальная точка</strong> – это идеализированная модель тела, размерами которого можно пренебречь, учитывая только его массу и положение в пространстве.</p>
-            </div>
-            <p>Материальную точку удобно показывать на координатных осях.</p>
-            <div class="media-container">
-                <div class="svg-container">
-                    <img src="intro/SVG/svg2roughjs (13).svg" alt="Кинематика движения">
-                    <div class="svg-protection"></div>
-                </div>
-                <div class="caption" style= "font-family: 'sriracha', sans-serif; font-size: 12px; color: #030303;">Рис. 1: Точка на прямой</div>
-            </div>
+            <table style="width:100%; border: 0px solid #ffffff; ">
+                <tr>
+                    <td class="txt scroll-animate delay-2 " style=" text-align: right; margin-left: 40px; "> 
+                        С изменениями координат связана первая из величин, вводимых для описания движения — <strong>перемещение</strong>.</br>
+                        Пусть с течением времени t материальная точка движется по кривой от т. А до т. В.
+                        Перемещением за время t - это физическая величина, численно равная хорде <strong>АВ</strong>.
+                    </td>
+                
+                    <td class="txt scroll-animate delay-2 " style="padding: 0px 0px; text-align: center;"> 
+                       
+                            <div class="svg-container" style="width: 400px; align: center;">
+                                <img src="introSVG/displacement.svg" alt="перемещение" class="svg-responsive">
+                                <div class="svg-protection"></div>
+                                
+                            </div>
+                            
+                     
+                      </td>
+                  </td>
+                  
+                </tr>
+            </table>
+            <div class="content-trigger right-align" style="font-family: 'Laptev', sans-serif; font-size: 20px; color: #080808;" 
+                             onclick="openModal('', 'path')">
+                             &#128073; Открыть моделирование
+                            </div>
+                            <div id="path" style="display:none;">
+                                
+                                <iframe class="responsive-iframe-middle" src="./al-html5/path.html"></iframe>
+                            </div>
+        
+            <p class="txt scroll-animate delay-2 ">
+                 
+                <strong>Перемещением \( \Delta\vec{r} \)</strong> тела (материальной точки) называют направленный отрезок прямой, соединяющий начальное положение тела с его последующим положением. </br> 
+                </br>Перемещение надо отличать от длины траектории (линии, по которой происходит движение тела). </br>
+                <strong>Путь \( S \)</strong> - это длина траектории за время движения. </br></br>
+                 Физическая сущность этих понятий становится особенно ясной при рассмотрении криволинейных траекторий. Путь — это скалярная величина, всегда положительная и монотонно возрастающая по мере движения. Перемещение же является векторной величиной, учитывающей не только пройденное расстояние, но и изменение 
+                положения в пространстве.
+                
 
-            <p>
-                Если даны две точки A(x<sub>1</sub>) и B(x<sub>2</sub>), расстояние между ними: d = |x<sub>1</sub> − x<sub>2</sub>|.        
+                 \[ \mathtt{|\Delta\vec{r}| \leq \Delta S \quad (1.4)}\]
+                
+                Связь для малых перемещений:
+                
+                 \[ \mathtt{\lim_{\Delta t \to 0} \frac{|\Delta\vec{r}|}{\Delta S} = 1 \quad (1.5)}\]
+                
+            </p>
+            <table class="comparison-table sticker-note scroll-animate delay-2" style="width:90%; color: #090909;  margin-left: 15px; font-family: Arial, sans-serif;">
+                <tr>
+                    <th>Характеристика</th>
+                    <th>Перемещение (\( \Delta\vec{r} \))</th>
+                    <th>Путь (S)</th>
+                </tr>
+                <tr>
+                    <td>Тип величины</td>
+                    <td>Вектор</td>
+                    <td>Скаляр</td>
+                </tr>
+                <tr>
+                    <td>Зависимость от формы траектории</td>
+                    <td>Нет</td>
+                    <td>Да</td>
+                </tr>
+                <tr>
+                    <td>Для замкнутой траектории</td>
+                    <td>Может быть нулевым</td>
+                    <td>Всегда положителен</td>
+                </tr>
+            </table>
+            <p class="txt scroll-animate delay-2 ">
+                \[ 
+                \mathtt{\Delta \vec{r} = \sum_{i=1}^n \Delta \vec{r}_i = \Delta \vec{r}_1 + \Delta \vec{r}_2 + \dots + \Delta \vec{r}_n \to \int d\vec{r} \quad (1.6)}
+                \]
+                или в более строгой записи:
+                \[
+                \mathtt{\Delta \vec{r} = \lim_{n\to\infty} \sum_{i=1}^n \Delta \vec{r}_i = \int_{t_1}^{t_2} \frac{d\vec{r}}{dt} dt = \vec{r}(t_2) - \vec{r}(t_1) \quad (1.7)}
+                \]
+            
+                \[ 
+                \mathtt{S = \sum_{i=1}^n |\Delta \vec{r}_i| = |\Delta \vec{r}_1| + |\Delta \vec{r}_2| + \dots + |\Delta \vec{r}_n| \to \int ds = \int_{t_1}^{t_2} \left|\frac{d\vec{r}}{dt}\right| dt \quad (1.8)}
+                \]
 
             </p>
-
-            <p>
-                Точка на плоскости задаётся двумя координатами (x, y) в декартовой системе.
-            </p>
-            <p>Квадратный корень: &radic;x</p>
-
-            <p>Если в \( x \) вместо \( \langle v_x \rangle \) подставить \(\frac{1}{2}(v_{x0} + v_x)\), то можно записать:</p>
-								<div class="formula-important">
-									\[x = x_0 + \frac{1}{2}(v_{x0} + v_x) t.\]
-								</div>
-
-
-
-            <p>Перемещение — вектор, соединяющий начальное и конечное положение тела.</p>
-            
-            <div class="formula">
-                \[ \vec{r} = \vec{r}(t) \]
-                <p>где <i>r</i> — радиус-вектор положения тела в момент времени <i>t</i></p>
+        
+            <!--Перемещение-->
+           
+            <div class="content-trigger right-align" style="font-family: 'Laptev', sans-serif; font-size: 20px; color: #080808;" onclick="openModal('', 'displacement_rus')">
+                &#128073; Открыть моделирование
             </div>
-            
-            <div class="media-container">
-                <div class="svg-container">
-                    <img src="kinematics.svg" alt="Кинематика движения">
-                    <div class="svg-protection"></div>
-                </div>
-                <div class="caption">Рис. 1: Траектория движения тела</div>
-            </div>
-            
-            <h2>Скорость</h2>
-            <p>Скорость — векторная величина, характеризующая быстроту изменения положения тела.</p>
-            
-            <div class="formula">
-                \[ \vec{v} = \frac{d\vec{r}}{dt} \]
-            </div>
-            
-            <div class="interactive">
-                <h3>Симуляция 1: Графики движения</h3>
-                <p>Исследуйте зависимость координаты и скорости от времени:</p>
+            <div id="displacement_rus" style="display:none;">
                 
-                <div class="media-container">
-                    <div id="plotly-motion" class="plotly-container"></div>
+                <iframe class="responsive-iframe-middle" src="./al-html5/displacement.html"></iframe>
+            </div>
+            
+            
+        
+
+           
+            
+            
+            
+            
+            <!--шпаргалка по векторам-->
+            
+            <div id="vectors" style="display:none;">
+                <div class="media-container scroll-animate delay-2 ">
+                    <div class="iframe-container">
+                        <iframe src="geofiz/komponentVect/komponentVect.html" allowfullscreen></iframe>
+                    </div>
+                    
                 </div>
-            </div>
-            <div class="media-container">
-                <div class="iframe-container">
-                    <iframe src="https://phet.colorado.edu/sims/html/forces-and-motion-basics/latest/forces-and-motion-basics_ru.html" allowfullscreen></iframe>
-                </div>
-                <div class="caption">Интерактивный симулятор: Исследуйте законы Ньютона на практике (PhET)</div>
-            </div>
-            
-            <h2>Ускорение</h2>
-            <p>Ускорение — векторная величина, характеризующая быстроту изменения скорости.</p>
-            
-            <div class="formula">
-                \[ \vec{a} = \frac{d\vec{v}}{dt} = \frac{d^2\vec{r}}{dt^2} \]
-            </div>
-            
-            <!--<div class="interactive">
-                <h3>Симуляция 2: Движение с ускорением</h3>
-                <p>Исследуйте движение тела с постоянным ускорением:</p>
+                <p class="txt scroll-animate delay-2 " style=" color: #050505;" > Векторы <strong>i, j, k</strong> — это специальные векторы, которые:
+
+                    <table style="width:100%; border: 0px solid #ffffff;  margin: 0px 0; font-family: Arial, sans-serif;">
+                        <tr>
+                            <td class="txt scroll-animate delay-2 " style="padding-left: -20px 0px; margin: 10px; text-align: left; "> 
+                                <ul>
+                                    <li><strong>i</strong> — единичный вектор вдоль оси X</li>
+                                    <li><strong>j</strong> — единичный вектор вдоль оси Y</li>
+                                    <li><strong>k</strong> — единичный вектор вдоль оси Z</li>
+                                </ul>
+                            </td>
+                            <td class="txt scroll-animate delay-2 "> 
+                               
+                                <p class="txt scroll-animate delay-2 " style=" color: #050505; margin-right: 100px;" >
+                                    \[
+                                    \mathtt{\vec{i} = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}, \quad}
+                                    \mathtt{\vec{j} = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}, \quad}
+                                    \mathtt{\vec{k} = \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}}
+                                    \]
+                                </p> 
+                                
+                              </td>
+                          </td>
+                        </tr>
+                    </table>
+    
+    
                 
-                <div class="media-container">
-                    <div id="plotly-acceleration" class="plotly-container"></div>
+                </p>
+    
+                
+    
+                <p class="txt scroll-animate delay-2 ">
+                    Любой вектор в пространстве можно выразить через эти базисные векторы: 
+                </p>
+                <div class="equation scroll-animate delay-2" style=" color: #0202ab;"  >
+                    \[
+                    \mathtt{\vec{r}(t) = x(t) \vec{i} + y(t) \vec{j} + z(t) \vec{k}\quad (2.1)}
+                    \]
+                    
                 </div>
-            </div>-->
-            
-            <div class="media-container">
-                <div class="svg-container">
-                    <img src="acceleration.svg" alt="Движение с ускорением">
-                    <div class="svg-protection"></div>
+                
+                <div class="media-container scroll-animate delay-2 ">
+                    <div class="iframe-container">
+                        <iframe src="geofiz/k1_2/Vector tridimensional (1).html" allowfullscreen></iframe>
+                    </div>
+                    
                 </div>
-                <div class="caption">Рис. 2: Векторы скорости и ускорения</div>
+    
+                <p class="txt scroll-animate delay-2 ">
+                    Например, вектор с координатами ( 3, -2, 5 ) можно записать как:
+                    \(
+                    \mathtt{\vec{a} = 3\vec{i} - 2\vec{j} + 5\vec{k}}
+                    \)
+                </p>
+                    
+                <p class="txt scroll-animate delay-2">
+                    Рассмотрим два вектора на плоскости:
+                    \[
+                    \mathtt{\vec{r}_1 = (r_{1x}, r_{1y}), \quad \vec{r}_2 = (r_{2x}, r_{2y})}
+                    \]
+                  </p>
+                  
+                  <ul class="txt scroll-animate delay-2">
+                    <li>Сумма векторов:
+                      \[
+                      \mathtt{\vec{r}_1 + \vec{r}_2 = (r_{1x} + r_{2x}, r_{1y} + r_{2y})}
+                      \]
+                    </li>
+                  </ul>
+                    <div class="media-container scroll-animate delay-2 ">
+                        <div class="iframe-container">
+                            <iframe src="geofiz/summVect/summVect.html" allowfullscreen></iframe>
+                        </div>
+                        
+                    </div>
+                    <li>Разность векторов:
+                        \[
+                        \mathtt{\vec{r}_1 - \vec{r}_2 = (r_{1x} - r_{2x}, r_{1y} - r_{2y})}
+                        \]
+                    </li>
+                    <div class="media-container scroll-animate delay-2 ">
+                        <div class="iframe-container">
+                            <iframe src="geofiz/raznostVect/raznostVect.html" allowfullscreen></iframe>
+                        </div>
+                        
+                    </div>
+
+                    <li>Умножение на скаляр (k ∈ ℝ):
+                        \[
+                        \mathtt{k \vec{v} = (k v_x, k v_y)}
+                        \]
+                    </li>
+
+                    <div class="media-container scroll-animate delay-2 ">
+                        <div class="iframe-container">
+                            <iframe src="geofiz/umnVectChislo/umnVectChislo.html" allowfullscreen></iframe>
+                        </div>
+                        
+                    </div>
+
+
+                    <li>Скалярное произведение:
+                        \[
+                        \mathtt{\vec{r}_1 \cdot \vec{r}_2 = r_{1x} r_{2x} + r_{1y} r_{2y} = |\vec{r}_1| |\vec{r}_2| \cos \theta}
+                        \]
+                    </li>
+                    <li>Векторное произведение (псевдоскаляр в ℝ²):
+                        \[
+                        \mathtt{\vec{r}_1 \times \vec{r}_2 = r_{1x} r_{2y} - r_{1y} r_{2x} = |\vec{r}_1| |\vec{r}_2| \sin \theta}
+                        \]
+                    </li>
+                </ul>
+            </br>
+                <ul class="txt scroll-animate delay-2 ">
+                    <li>Модуль вектора:
+                        \[
+                        \mathtt{|\vec{r}_1| = \sqrt{r_{1x}^2 + r_{1y}^2}}
+                        \]
+                    </li>
+                    <li>Нормализация (единичный вектор):
+                        \[
+                        \mathtt{\hat{r}_1 = \frac{\vec{r}_1}{|\vec{r}_1|} = \left( \frac{r_{1x}}{|\vec{r}_1|}, \frac{r_{1y}}{|\vec{r}_1|} \right)}
+                        \]
+                    </li>
+                    <li>Угол между векторами:
+                        \[
+                        \mathtt{\theta = \arccos \left( \frac{\vec{r}_1 \cdot \vec{r}_2}{|\vec{r}_1| |\vec{r}_2|} \right)}
+                        \]
+                    </li>
+                    <li>Длина вектора:
+                        \[
+                        \mathtt{\text{Длина} = \sqrt{\text{(проекция на X)}^2 + \text{(проекция на Y)}^2 + \text{(проекция на Z)}^2}}
+                        \]
+                        \[
+                        |\vec{r}| = \sqrt{r_x^2 + r_y^2 + r_z^2}
+                        \]
+                        
+                    </li>
+                    <li>Длина единичных векторов: 
+                        \[
+                        \mathtt{|\vec{i}| = |\vec{j}| = |\vec{k}| = 1}
+                        \]
+                    </li>
+                    <li>Длина нулевого вектора: 
+                        \[
+                        \mathtt{|\vec{0}| = 0}
+                        \]
+                    </li>
+                    
+                </ul>
+                
+                
+                
             </div>
+
+            
+            
+          
+
+     
+            
+
+            
+
+            
+
+
+      
+            <!--<pre style="white-space:pre-line"><code>Кинематика
+
+
+                Положение тела
+
+                “Цель физика — описать движения тел полностью и в
+                максимально возможно упрощенной форме.
+
+
+
+                 Кirchhoff (1824-1886)
+                                                                             ”
+
+
+
+
+            </code></pre>-->
+
+            
+
+
+
+
+            
+
+           
+            
+
+           
+            
+
+           
+            <!-- Структура модального окна -->
+            <div id="modal-overlay" class="modal-overlay">
+                <div class="modal-container">
+                    <div class="modal-header">
+                        <h3 id="modal-title">Заголовок</h3>
+                        <span class="modal-close" onclick="closeModal()">×</span>
+                    </div>
+                    <div class="modal-body" id="modal-body">
+                        <!-- Сюда подгружается контент -->
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
         </div>
+     
+         
     </div>
+    
+  
+    <script>
+        document.querySelectorAll('iframe').forEach(iframe => {
+            iframe.addEventListener('load', () => {
+                iframe.closest('.scroll-animate')?.classList.add('visible');
+            });
+        });
 
+    </script>
     <script>
         // Защита от копирования
         document.addEventListener('DOMContentLoaded', function() {
@@ -163,5 +675,93 @@
 
         
     </script>
+    
+    <script>
+        // Открытие модального окна
+        function openModal(title, contentId, callback) {
+            const modal = document.getElementById('modal-overlay');
+            const modalTitle = document.getElementById('modal-title');
+            const modalBody = document.getElementById('modal-body');
+            
+            // Загружаем контент
+            const content = document.getElementById(contentId).innerHTML;
+            
+            // Устанавливаем заголовок и содержимое
+            modalTitle.textContent = title;
+            modalBody.innerHTML = content;
+            
+            // Показываем окно
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Блокируем прокрутку страницы
+            // === анимация ===
+            setTimeout(() => {
+                const modalElements = document.querySelectorAll('#modal-body .scroll-animate');
+                modalElements.forEach((el, index) => {
+                    setTimeout(() => {
+                        el.classList.add('visible');
+                    }, index * 100);
+                });
+            }, 50);
+            // === КОНЕЦ ВСТАВКИ ===
+            // Вызываем callback если он есть
+            if (callback) callback();
+        }
+        
+        // Закрытие модального окна
+        function closeModal() {
+            document.getElementById('modal-overlay').style.display = 'none';
+            document.body.style.overflow = 'auto'; // Возвращаем прокрутку
+        }
+        
+        // Закрытие по клику на фон
+        document.getElementById('modal-overlay').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+        
+        // Инициализация Plotly (только при открытии)
+        function initPlotly() {
+            if (typeof Plotly !== 'undefined' && !document.querySelector('#plotly-chart').hasChildNodes()) {
+                var data = [{
+                    x: [1, 2, 3, 4, 5],
+                    y: [1, 4, 9, 16, 25],
+                    type: 'scatter',
+                    mode: 'lines+markers',
+                    marker: { color: 'red' }
+                }];
+                Plotly.newPlot('plotly-chart', data, { title: 'Пример графика Plotly' });
+            }
+        }
+    </script>
+    <script>
+        // Постепенная загрузка при прокрутке
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateElements = document.querySelectorAll('.scroll-animate');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+        
+            animateElements.forEach(el => observer.observe(el));
+        });
+        </script>
+        <script>
+            function resizeCanvas() {
+            const canvas = document.getElementById('myCanvas');
+            if (canvas) {
+                canvas.width = canvas.parentElement.offsetWidth;
+                canvas.height = canvas.parentElement.offsetHeight;
+                drawContent(); // Убедитесь, что эта функция существует
+            }
+        }
+        </script>
+    
 </body>
 </html>
