@@ -1,23 +1,22 @@
 :root {
     --primary-color: #4285f4;
-    
+    --secondary-color: #34a853; /* Добавлен для h1 */
     --accent-color: #ea4335;
     --text-color: #202124;
-    
-    
+    --bg-color: #ffffff; /* Убедимся, что фон белый по умолчанию */
+    --light-bg: #f8f9fa; /* Светлый фон для formula и media-container */
     --border-color: #dadce0;
     --border-radius: 8px;
     --box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-    --padding: 10px;
-    --margin: 12px;
+    --padding: 16px; /* Увеличим базовый padding */
+    --margin: 16px; /* Увеличим базовый margin */
     --font-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     --font-mono: "Roboto Mono", Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
+/* Сброс стилей и базовые настройки */
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
 body {
@@ -25,34 +24,46 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--bg-color);
-    padding: var(--padding);
+    padding: var(--padding); /* Базовый padding */
     max-width: 100%;
     overflow-x: hidden;
     -webkit-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
     text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
+    margin: 0; /* Убедимся, что нет лишних отступов у body */
+}
+
+/* Стили для карточек/блоков контента */
+.card, .card_2 {
+    background: var(--bg-color);
+    box-shadow: var(--box-shadow);
+    padding: var(--padding); /* Используем переменную */
+    margin: var(--margin) auto; /* Используем переменную для верхнего/нижнего отступа */
+    max-width: 850px; /* Максимальная ширина для card_2 */
+    border-radius: var(--border-radius); /* Добавим скругление углов */
+    position: relative; /* Возможно понадобится для позиционирования фона */
+    overflow: hidden; /* Скрываем все, что выходит за границы */
+    background-repeat: no-repeat; /* Убедимся, что фон не повторяется по умолчанию */
+    background-size: cover; /* По умолчанию cover для лучшей адаптивности */
+    background-position: center center; /* Центрируем фон */
 }
 
 .card {
-    background: var(--bg-color);
+     /* Фоновое изображение для .card */
     background-image: url('introSVG/intro2.svg');
-    box-shadow: var(--box-shadow);
-    padding: var(--padding);
-    margin: 0 auto;
-    max-width: 800px;
-    overflow: hidden;
-}
-.card_2 {
-    background: var(--bg-color);
-    background-color: var(--bg-color);
-    box-shadow: var(--box-shadow);
-    padding: var(--padding);
-    margin: 0 auto;
-    max-width: 850px;
-    overflow: hidden;
+    max-width: 800px; /* Максимальная ширина для card */
 }
 
+.card_2 {
+    /* Если card_2 не имеет специфичного SVG фона, можно просто использовать background: var(--bg-color); */
+    /* Или добавить другое фоновое изображение */
+     /* background-image: url('path/to/another/svg.svg'); */
+     background-size: cover; /* или contain, repeat - зависит от дизайна */
+}
+
+
+/* Типографика */
 h1, h2, h3 {
     color: var(--primary-color);
     font-weight: 500;
@@ -61,21 +72,21 @@ h1, h2, h3 {
 }
 
 h1 {
-    font-size: 1.8rem;
+    font-size: 2rem; /* Увеличим базовый размер */
     border-bottom: 2px solid var(--secondary-color);
     padding-bottom: 0.5rem;
 }
 
 h2 {
-    font-size: 1.5rem;
+    font-size: 1.7rem; /* Увеличим базовый размер */
 }
 
 h3 {
-    font-size: 1.3rem;
+    font-size: 1.4rem; /* Увеличим базовый размер */
 }
 
 p, li {
-    font-size: 1rem;
+    font-size: 1.1rem; /* Увеличим базовый размер текста */
     margin-bottom: 1rem;
 }
 
@@ -84,97 +95,75 @@ ul, ol {
     margin-bottom: 1.5rem;
 }
 
+/* Стили для формул */
 .formula {
     background-color: var(--light-bg);
     padding: 1rem;
     border-radius: var(--border-radius);
     margin: 1.5rem 0;
-    overflow-x: auto;
+    overflow-x: auto; /* Позволяет прокручивать горизонтально на мобильных */
     -webkit-overflow-scrolling: touch;
     font-family: var(--font-mono);
     border-left: 3px solid var(--primary-color);
+    white-space: pre-wrap; /* Перенос строк в формулах */
+    word-wrap: break-word; /* Перенос длинных слов */
 }
 
 .formula p {
-    font-family: var(--font-base);
+    font-family: var(--font-base); /* Текст внутри формулы */
     margin-bottom: 0.5rem;
+    white-space: normal; /* Обычный перенос строк для текста */
 }
 
+/* Контейнер для медиа (изображения, SVG, видео) */
 .media-container {
     width: 100%;
-    margin: 0.7rem auto; /* auto по бокам для центрирования блока */
+    margin: 1rem auto; /* Отступ сверху/снизу, центрирование по бокам */
     border-radius: var(--border-radius);
     overflow: hidden;
     background: var(--light-bg);
     display: flex;
-    justify-content: center; /* центрирование по горизонтали */
-    align-items: center;     /* центрирование по вертикали */
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
-    padding: 0.rem;             /* исправлено: было "0.rem" */
-    position: relative;      /* исправлено: было "position: r" */
-}
-/* Модифицируем .svg-container для лучшей адаптивности */
-.svg-container {
-    margin-top: 0rem;
-    width: 100%;
-    text-align: center;
+    padding: 0; /* Убираем padding у контейнера */
     position: relative;
-    margin: 1rem 0;
-    margin-top: 0px;
 }
 
-.svg-container svg {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-}
-.svg-responsive {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
+/* Контейнер для SVG */
+.svg-container {
+    width: 100%; /* Занимает всю доступную ширину родителя */
+    text-align: center; /* Центрирует встроенные SVG/изображения */
+    position: relative;
+    margin: 0; /* Убираем лишние margin */
+    padding-bottom: 56.25%; /* Соотношение сторон 16:9 (можно изменить) - для сохранения пропорций */
+    height: 0;
+    overflow: hidden; /* Скрываем лишнее */
 }
 
-/* Для встроенных SVG через img */
+.svg-container svg,
 .svg-container img[src$=".svg"] {
-    max-width: 100%;
-    height: auto;
+    position: absolute; /* Позиционируем абсолютно внутри .svg-container */
+    top: 0;
+    left: 0;
+    width: 100%; /* Растягиваем по ширине контейнера */
+    height: 100%; /* Растягиваем по высоте контейнера */
     display: block;
-    margin: 0 auto;
+    object-fit: contain; /* Сохраняем пропорции SVG внутри контейнера */
 }
 
-/* Адаптивные корректировки для SVG */
-@media (max-width: 768px) {
-    .card {
-        background-size: cover; /* Меняем на cover для мобильных */
-    }
-    
-    .svg-container {
-        width: 95%;
-    }
-}
-
-@media (max-width: 480px) {
-    .card {
-        background-image: url('introSVG/intro2-mobile.svg'); /* Можно добавить мобильную версию */
-    }
-    
-    .svg-container svg,
-    .svg-container img[src$=".svg"] {
-        max-width: 95%;
-    }
-}
-
+/* Адаптивный iframe контейнер */
 .iframe-container {
     width: 100%;
-    height: 0;
-    padding-bottom: 60%;
+    /* height: 0; */ /* Убираем фиксированную высоту */
+    /* padding-bottom: 60%; */ /* Используем для сохранения пропорций, если нужно */
     position: relative;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень */
-    
-    border-radius: 4px; /* Закругленные углы (опционально) */
-    overflow: hidden; /* Чтобы тень не обрезалась */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    overflow: hidden;
+    /* Устанавливаем минимальную/максимальную высоту для адаптивности */
+    min-height: 250px; /* Минимальная высота на мобильных */
+    height: auto; /* Автоматическая высота */
 }
 
 .iframe-container iframe {
@@ -186,17 +175,23 @@ ul, ol {
     border: none;
 }
 
+/* Адаптивный Plotly контейнер */
 .plotly-container {
     width: 100%;
-    height: 400px;
+    /* height: 400px; */ /* Убираем фиксированную высоту */
+    /* Устанавливаем минимальную/максимальную высоту для адаптивности */
+    min-height: 300px; /* Минимальная высота на мобильных */
+    height: auto; /* Автоматическая высота */
+    display: block; /* Чтобы занимал всю ширину */
 }
 
 .caption {
-    font-size: 0.85rem;
+    font-size: 0.9rem; /* Немного увеличим размер подписи */
     color: #5f6368;
     text-align: center;
     margin-top: 0.5rem;
     line-height: 1.4;
+    padding: 0 5px; /* Добавим небольшой горизонтальный padding */
 }
 
 .interactive {
@@ -208,20 +203,20 @@ ul, ol {
 
 .controls {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Разрешаем перенос элементов */
     gap: 1rem;
     margin-bottom: 1rem;
 }
 
 .control-group {
-    flex: 1;
+    flex: 1 1 150px; /* Гибкий элемент, базовая ширина 150px */
     min-width: 120px;
 }
 
 label {
     display: block;
     margin-bottom: 0.3rem;
-    font-size: 0.9rem;
+    font-size: 0.95rem; /* Немного увеличим размер */
     color: #5f6368;
 }
 
@@ -230,114 +225,37 @@ input[type="range"] {
 }
 
 .value-display {
-    font-size: 0.9rem;
+    font-size: 0.95rem; /* Немного увеличим размер */
     color: var(--primary-color);
     text-align: center;
     margin-top: 0.3rem;
 }
 
-.svg-protection {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    background: transparent;
-}
-
-@media (max-width: 768px) {
-    .card {
-        padding: 12px;
-    }
-
-    h1 {
-        font-size: 1.6rem;
-    }
-
-    h2 {
-        font-size: 1.4rem;
-    }
-
-    h3 {
-        font-size: 1.2rem;
-    }
-
-    .plotly-container {
-        height: 350px;
-    }
-}
-
-@media (max-width: 480px) {
-    :root {
-        --padding: 12px;
-        --margin: 10px;
-    }
-
-    h1 {
-        font-size: 1.4rem;
-    }
-
-    h2 {
-        font-size: 1.3rem;
-    }
-
-    h3 {
-        font-size: 1.1rem;
-    }
-
-    p, li {
-        font-size: 0.95rem;
-    }
-
-    .plotly-container {
-        height: 300px;
-    }
-
-    .controls {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-    .control-group {
-        min-width: 100%;
-    }
-}
-
-@media (max-width: 360px) {
-    h1 {
-        font-size: 1.3rem;
-    }
-
-    .formula {
-        padding: 0.8rem;
-        font-size: 0.9rem;
-    }
-
-    .plotly-container {
-        height: 250px;
-    }
-}
-
-/* Защита от копирования */
+/* Защита от копирования (осторожно с этим, может мешать пользователям) */
 .text-content, .caption, h1, h2, h3, p, li {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    margin-left: 30px; /* Отступ текста от левого края */
+    /* -webkit-user-select: none; */ /* Закомментируем, если нужно разрешить выделение */
+    /* -moz-user-select: none; */
+    /* -ms-user-select: none; */
+    /* user-select: none; */
+    margin-left: 0; /* Убираем фиксированный отступ, он может мешать на мобильных */
+    padding-left: 0; /* Убедимся, что нет лишнего padding */
 }
 
 /* Разрешаем выделение для интерактивных элементов */
-input, textarea, .plotly-container, .iframe-container {
+input, textarea, .plotly-container, .iframe-container, .formula {
     -webkit-user-select: auto !important;
     -moz-user-select: auto !important;
     -ms-user-select: auto !important;
     user-select: auto !important;
 }
+
+/* Шрифты */
 @font-face {
     font-family: 'Hombre';
-    src: url('./fonts/Hombre Italic Italic.otf') format('truetype');
+    src: url('./fonts/Hombre Italic Italic.otf') format('opentype'); /* Исправлен формат */
+    font-weight: normal;
+    font-style: italic; /* Указан стиль */
+    font-display: swap;
 }
 
 @font-face {
@@ -349,7 +267,7 @@ input, textarea, .plotly-container, .iframe-container {
 }
 @font-face {
     font-family: 'sriracha';
-    src: url('./fonts/sriracha-cyrillic.otf') format('truetype');
+    src: url('./fonts/sriracha-cyrillic.otf') format('opentype'); /* Исправлен формат */
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -363,14 +281,14 @@ input, textarea, .plotly-container, .iframe-container {
 }
 @font-face {
     font-family: 'libertinusmath';
-    src: url('./fonts/libertinusmath-regular.otf') format('truetype');
+    src: url('./fonts/libertinusmath-regular.otf') format('opentype'); /* Исправлен формат */
     font-weight: normal;
     font-style: normal;
     font-display: swap;
 }
 @font-face {
     font-family: 'Laptev';
-    src: url('./fonts/Laptev_Brush.otf') format('truetype');
+    src: url('./fonts/Laptev_Brush.otf') format('opentype'); /* Исправлен формат */
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -390,6 +308,7 @@ input, textarea, .plotly-container, .iframe-container {
     font-display: swap;
 }
 
+/* Стили для текста на канвасе (если используется) */
 .canvas-text {
     position: absolute;
     font-family: 'denistina', sans-serif;
@@ -400,15 +319,14 @@ input, textarea, .plotly-container, .iframe-container {
 }
 .canvas-container {
     width: 100%;
-    max-width: 800px; /* Максимальная ширина */
-    margin: 0 auto;
+    max-width: 800px;
+    margin: var(--margin) auto; /* Используем переменную */
     position: relative;
-}
-
-.canvas-container::before {
-    content: "";
-    display: block;
-    padding-top: 0%; /* Соотношение 16:9 (можно изменить) */
+    /* Удаляем padding-top, если canvas должен заполнять контейнер */
+    /* padding-top: 0%; */
+    /* Устанавливаем минимальную высоту, если canvas должен быть видимым */
+    min-height: 200px;
+    height: auto; /* Автоматическая высота */
 }
 
 canvas {
@@ -420,12 +338,14 @@ canvas {
     display: block;
     background: #f0f0f0;
 }
+/* Размеры текста для канваса (могут потребовать JavaScript для масштабирования) */
 .text-small { font-size: 16px; }
 .text-medium { font-size: 24px; }
 .text-large { font-size: 32px; }
 .text-clean1 { font-size: 32px; }
 .text-clean { font-size: 18px; }
 
+/* Стили для текста на канвасе с фоном/рамкой */
 .text-bg {
     background-color: rgba(255, 255, 255, 0.9);
     padding: 5px 10px;
@@ -441,474 +361,333 @@ canvas {
 .text-highlight {
     background-color: rgba(255, 255, 200, 0.9);
 }
-/* Стили для iframe */
+/* Стили для объектов на канвасе (iframe, SVG) */
 .canvas-object iframe {
     pointer-events: auto;
     border: none;
     background: white;
 }
 
-/* Стили для SVG */
 .canvas-object img[src$=".svg"],
 .canvas-object svg {
-    pointer-events: none;
+    /* pointer-events: none; */ /* Возможно, нужно разрешить pointer-events для интерактивности */
     will-change: auto;
     transform: translateZ(0);
 }
-/* Добавляем стили для стикера */
 
-
-.sticker:hover {
-    transform: scale(1.1) rotate(5deg);
-}
+/* Стили для стикера */
 .sticker {
-    cursor: pointer; /* Курсор при наведении */
-    transition: transform 0.3s ease; /* Плавный переход при наведении */
-    filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.3)); /* Эффект тени */
+    cursor: pointer;
+    transition: transform 0.3s ease, filter 0.3s ease; /* Добавлена анимация для тени */
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2)); /* Немного уменьшим тень по умолчанию */
+    position: fixed; /* Если стикер должен быть фиксированным */
+    bottom: 20px; /* Позиция снизу */
+    right: 20px; /* Позиция справа */
+    width: 100px; /* Размер стикера */
+    height: 100px;
+    z-index: 500; /* Высокий z-index, чтобы был поверх всего */
+    display: block; /* Убедимся, что блочный */
 }
 
 .sticker:hover {
-    transform: scale(1.05); /* Увеличение при наведении */
+    transform: scale(1.1); /* Увеличение при наведении */
+    filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.3)); /* Увеличим тень при наведении */
 }
 
-.shine {
-    animation: shine 1.5s infinite; /* Анимация блеска */
+/* Анимация блеска */
+/* Возможно, стоит использовать псевдоэлемент для анимации блеска, чтобы не влиять на сам стикер */
+/* .shine {
+    animation: shine 1.5s infinite;
+} */
+
+/* @keyframes shine {
+    0% { opacity: 0.5; transform: translateX(-100%); }
+    50% { opacity: 0.7; transform: translateX(100%); }
+    100% { opacity: 0.5; transform: translateX(100%); }
+} */
+
+
+/* Медиазапросы для адаптивности */
+
+/* Планшеты и мелкие десктопы */
+@media (max-width: 1024px) {
+    :root {
+        --padding: 14px;
+        --margin: 14px;
+    }
+
+    h1 { font-size: 1.9rem; }
+    h2 { font-size: 1.6rem; }
+    h3 { font-size: 1.3rem; }
+    p, li { font-size: 1.05rem; }
+
+    .card, .card_2 {
+        margin: var(--margin) auto;
+        padding: var(--padding);
+    }
+
+    .formula {
+        padding: 0.9rem;
+    }
+
+    .plotly-container {
+        min-height: 350px;
+    }
+
+    .iframe-container {
+         min-height: 200px; /* Немного уменьшим */
+    }
+
+     .sticker {
+        width: 90px;
+        height: 90px;
+        bottom: 15px;
+        right: 15px;
+    }
 }
 
-@keyframes shine {
-    0% {
-        opacity: 0.5;
-        transform: translateX(-100%);
-    }
-    50% {
-        opacity: 0.7;
-        transform: translateX(100%);
-    }
-    100% {
-        opacity: 0.5;
-        transform: translateX(100%);
-    }
-}
 
-@media (max-width: 480px) {
+/* Смартфоны (ландшафтная ориентация) и мелкие планшеты */
+@media (max-width: 768px) {
+    :root {
+        --padding: 12px;
+        --margin: 12px;
+    }
+
+    h1 { font-size: 1.7rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.3rem; }
+    p, li { font-size: 1rem; }
+
+    .card, .card_2 {
+        padding: var(--padding);
+        margin: var(--margin) auto;
+        /* Для SVG фона на мобильных */
+        background-size: cover; /* cover обычно лучше для фона */
+        background-position: center center;
+    }
+
+    .formula {
+        padding: 0.8rem;
+        font-size: 0.95rem;
+    }
+
+    .plotly-container {
+        min-height: 300px;
+    }
+
+     .iframe-container {
+         min-height: 180px; /* Еще уменьшим */
+    }
+
     .sticker {
         width: 80px;
         height: 80px;
         bottom: 10px;
         right: 10px;
     }
-}
-/* Стили для кнопок-ссылок */
-.content-trigger {
-    font-family: 'Hombre';
-    font-size: 28px; 
-    color: #f506e1; 
-    cursor: pointer;
-    text-decoration: none;
-    margin: 10px 0;
-    display: inline-block;
-}
 
-/* Фон затемнения */
-.modal-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.7);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Само модальное окно */
-.modal-container {
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
-    width: 90%;
-    max-width: 900px;
-    max-height: 90vh;
-    overflow: auto;
-    position: relative;
-    animation: fadeIn 0.3s;
-}
-
-/* Заголовок окна */
-.modal-header {
-    padding: 15px 20px;
-    border-bottom: 1px solid #eee;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    background: white;
-    z-index: 10;
-}
-
-/* Кнопка закрытия */
-.modal-close {
-    cursor: pointer;
-    font-size: 24px;
-    font-weight: bold;
-    color: #666;
-}
-
-/* Тело модального окна */
-.modal-body {
-    padding: 20px;
-}
-
-/* Адаптивные iframe */
-.responsive-iframe {
-    width: 100%;
-    height: 75vh;
-    border: none;
-}
-.responsive-iframe-middle {
-    width: 100%;
-    height: 40vh;
-    border: none;
-}
-
-/* Анимация появления */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Для мобильных устройств */
-@media (max-width: 768px) {
-    .modal-container {
-        width: 95%;
-        max-height: 85vh;
-    }
-    
-    .modal-body {
-        padding: 15px;
-    }
-}
-
-/* Стили для кнопок-ссылок */
-.content-trigger {
-
-    text-align: right;
-    color: #fc03c6;
-    cursor: pointer;
-    text-decoration: underline;
-    margin: 10px 0;
-    display: inline-block;
-}
-.content-trigger.right-align {
-    
-    
-    text-align: center;
-    width: 100%; /* чтобы было что выравнивать */
-    display: block; /* если элемент не блочный */
-    
-}
-
-/* Фон затемнения */
-.modal-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.7);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Само модальное окно */
-.modal-container {
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
-    width: 90%;
-    max-width: 900px;
-    max-height: 90vh;
-    overflow: auto;
-    position: relative;
-    animation: fadeIn 0.3s;
-}
-
-/* Заголовок окна */
-.modal-header {
-    padding: 15px 20px;
-    border-bottom: 1px solid #eee;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    background: white;
-    z-index: 10;
-}
-
-/* Кнопка закрытия */
-.modal-close {
-    cursor: pointer;
-    font-size: 24px;
-    font-weight: bold;
-    color: #666;
-}
-/* Стили для изображений с обтеканием */
-.img-left {
-    float: left;
-    margin: 0 20px 15px 0;
-    max-width: 300px;
-    border: 1px solid #ddd;
-    padding: 5px;
-}
-
-.img-right {
-    float: right;
-    margin: 0 0 15px 10px;
-    max-width: 500px;
-    border: 0.5px solid #ddd;
-    padding: 5px;
-}
-.img-right {
-    margin: 0 auto 15px; /* Отступы вокруг абзаца */
-}
-
-.figure {
-    padding: 15px 20px;
-    width: 70%;
-    text-align: center;
-    margin: 20px 0;
-}
-
-.caption {
-    font-style: italic;
-    font-size: 0.9em;
-    margin-top: 5px;
-}
-
-.clearfix::after {
-    content: "";
-    display: table;
-    clear: both;
-}
-@media (max-width: 600px) {
+    /* Адаптация обтекающих изображений */
     .img-left,
     .img-right {
-        float: none;
-        display: block;
-        margin: 15px auto;
-        max-width: 100%;
+        float: none; /* Убираем обтекание */
+        display: block; /* Делаем блочным */
+        margin: 15px auto; /* Центрируем и добавляем отступы */
+        max-width: 100%; /* Занимает всю доступную ширину */
+        padding: 5px; /* Убедимся, что padding сохраняется */
     }
-}
-img {
-    transition: transform 0.3s;
-}
-img:hover {
-    transform: scale(1.02);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-.definition {
-    border: 1px dotted var(--accent-color);
-    padding: 10px 18px;
-    margin: 25px 0;
-    background-color: rgba(139, 0, 0, 0.03);
-}
 
-.definition:before {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 8px;
-}
-.sticker-note {
-    background: #fff9c4 url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0,0 L100,0 L95,5 L100,10 L0,10 Z" fill="%23fff9c4"/></svg>') bottom / 100% 10px no-repeat;
-    padding: 20px;
-    margin: 20px;
-    border-radius: 5px 5px 0 0;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-}
+    .figure {
+        width: 100%; /* Занимает всю ширину */
+        margin: 20px 0; /* Отступы */
+        padding: 0 5px; /* Небольшой горизонтальный padding */
+    }
 
-.sticker-note::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: repeating-linear-gradient(
-        transparent,
-        transparent 24px,
-        rgba(0, 0, 0, 0.1) 25px
-    );
-    opacity: 0.2;
-    pointer-events: none;
-}
-/* Стили для изображений с обтеканием */
-.img-left {
-    float: left;
-    margin: 0 20px 15px 0;
-    max-width: 300px;
-    border: 1px solid #ddd;
-    padding: 5px;
-  }
-  
-  .img-right {
-    float: right;
-    margin: 0 0 15px 20px;
-    max-width: 400px;
-    border: 0px solid #ddd;
-    padding: 5px;
-  }
-  
-  .figure {
-    text-align: center;
-    margin: 20px 0;
-  }
-  
-  .caption {
-    font-style: italic;
-    font-size: 0.9em;
-    margin-top: 5px;
-  }
-  
-  .clearfix::after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-  @media (max-width: 600px) {
-    .img-left, .img-right {
-        float: none;
-        display: block;
-        margin: 15px auto;
-        max-width: 100%;
+     /* Адаптация таблиц */
+     .table-container {
+        border-radius: 0; /* Убираем скругление */
+        box-shadow: none; /* Убираем тень */
+        margin: 15px 0; /* Немного уменьшим отступ */
     }
-  }
-    /* Основные стили таблицы */
-    .table-title {
-        text-align: center;
-        margin: 25px 0 15px;
-       
-        font-size: 1.4em;
-        font-weight: 600;
-        border-bottom: 2px solid #4285f4;
-        padding-bottom: 8px;
-        display: inline-block;
-        width: 100%;
-      }
-    .table-container {
-        width: 100%;
-        overflow-x: auto;
-        margin: 20px 0;
-        background: white;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        table-layout: fixed;
-    }
-    
-    /* Заголовки таблицы */
-    th {
-       
-        position: sticky;
-        top: 0;
-        font-weight: bold;
-        
-    }
-    
-    /* Общие стили ячеек */
+
     th, td {
-        padding: 10px;
-        text-align: center;
-        border: 0px solid #ddd;
-        vertical-align: middle; /* Центрирование по высоте */
+        padding: 8px 5px; /* Уменьшаем padding */
     }
-    
-    /* Колонка с типом движения - по содержимому */
-    .content-width {
-        width: auto;
-        min-width: 160px;
-        max-width: 220px;
-        text-align: left;
+
+     /* Уменьшаем минимальную ширину колонок для мобильных */
+    .content-width { min-width: 120px; }
+    .formula-wide { min-width: 100px; font-size: 0.9em; }
+    .formula-narrow { min-width: 90px; font-size: 0.9em; }
+    .graph-col { min-width: 50px; font-size: 0.8em; }
+
+     /* Адаптация цитаты */
+    .quote-container {
+        width: 95%; /* Занимает почти всю ширину */
+        padding: 1.5rem; /* Уменьшаем padding */
+        margin: 1.5rem auto; /* Отступы */
+        background-size: cover; /* Адаптируем фон */
     }
-    
-    /* Широкая формула */
-    .formula-wide {
-        width: 30%;
-        min-width: 180px;
-        font-family: "Latin Modern Roman", "Times New Roman", serif;
-        color: #070707;
+
+    .quote-container::before,
+    .quote-container::after {
+         font-size: 6rem; /* Уменьшаем размер кавычек */
+         width: 2rem;
+         height: 3rem;
     }
-    
-    /* Узкая формула */
-    .formula-narrow {
-        width: 25%;
-        min-width: 150px;
-        font-family: "Latin Modern Roman", "Times New Roman", serif;
-        color: #0a0a0a;
+
+    .quote-container::before { top: -0.5rem; left: 0.5rem; }
+    .quote-container::after { bottom: -1.5rem; right: 0.5rem; }
+
+    .quote-text {
+        font-size: 1.1em; /* Немного уменьшаем размер текста цитаты */
     }
-    
-    /* Узкие колонки графиков */
-    .graph-col {
-        width: 12%;
-        min-width: 70px;
-        max-width: 90px;
-        font-size: 0.85em;
+
+    .author {
+        font-size: 1em;
     }
-    
-    /* Чередование цвета строк */
-    tr:nth-child(even) {
-        background-color: #f9f9f9;
+
+}
+
+/* Смартфоны (портретная ориентация) */
+@media (max-width: 480px) {
+    :root {
+        --padding: 10px;
+        --margin: 10px;
     }
-    
-    /* Мобильная адаптация */
-    @media (max-width: 768px) {
-        .table-container {
-            border-radius: 0;
-            box-shadow: none;
-        }
-        
-        .formula-wide, .formula-narrow {
-            min-width: 120px;
-            font-size: 0.9em;
-        }
-        
-        .graph-col {
-            min-width: 60px;
-            font-size: 0.8em;
-        }
-        
-        th, td {
-            padding: 8px 4px;
-            vertical-align: middle; /* Центрирование по высоте */
-        }
+
+    h1 { font-size: 1.5rem; }
+    h2 { font-size: 1.3rem; }
+    h3 { font-size: 1.1rem; }
+    p, li { font-size: 0.95rem; }
+
+    .card, .card_2 {
+        padding: var(--padding);
+        margin: var(--margin) auto;
+        /* Возможно, использовать другое SVG для самого маленького разрешения */
+        /* background-image: url('introSVG/intro2-small.svg'); */
+        background-size: cover;
     }
-    
-    @media (max-width: 480px) {
-        .content-width {
-            min-width: 140px;
-            font-size: 0.9em;
-        }
-        
-        .formula-wide, .formula-narrow {
-            min-width: 100px;
-            font-size: 0.85em;
-        }
-        
-        .graph-col {
-            min-width: 50px;
-            font-size: 0.75em;
-        }
+
+    .formula {
+        padding: 0.7rem;
+        font-size: 0.9rem;
     }
-    /* Анимации для появления при скролле */
+
+    .plotly-container {
+        min-height: 250px;
+    }
+
+     .iframe-container {
+         min-height: 150px; /* Минимальная высота на самых маленьких экранах */
+    }
+
+
+    .controls {
+        flex-direction: column; /* Элементы управления в столбец */
+        gap: 0.5rem;
+    }
+
+    .control-group {
+        min-width: 100%; /* Занимает всю ширину */
+    }
+
+    .sticker {
+        width: 70px;
+        height: 70px;
+        bottom: 5px;
+        right: 5px;
+    }
+
+    .caption {
+        font-size: 0.8rem; /* Уменьшим размер подписи */
+    }
+
+     /* Адаптация таблиц */
+     th, td {
+        padding: 6px 3px; /* Еще уменьшаем padding */
+    }
+
+     /* Еще уменьшаем минимальную ширину колонок */
+    .content-width { min-width: 100px; }
+    .formula-wide { min-width: 80px; font-size: 0.8em; }
+    .formula-narrow { min-width: 70px; font-size: 0.8em; }
+    .graph-col { min-width: 40px; font-size: 0.7em; }
+
+     /* Адаптация цитаты */
+     .quote-container {
+        width: 98%; /* Почти вся ширина */
+        padding: 1rem; /* Еще уменьшаем padding */
+        margin: 1rem auto; /* Отступы */
+    }
+
+    .quote-container::before,
+    .quote-container::after {
+         font-size: 5rem; /* Еще уменьшаем размер кавычек */
+         width: 1.5rem;
+         height: 2rem;
+    }
+
+    .quote-container::before { top: -0.3rem; left: 0.3rem; }
+    .quote-container::after { bottom: -1rem; right: 0.3rem; }
+
+     .quote-text {
+        font-size: 1em; /* Немного уменьшаем размер текста цитаты */
+    }
+}
+
+/* Дополнительный медиазапрос для очень маленьких экранов */
+@media (max-width: 360px) {
+     h1 { font-size: 1.4rem; }
+    h2 { font-size: 1.2rem; }
+    h3 { font-size: 1rem; }
+     p, li { font-size: 0.9rem; }
+
+     .formula {
+        padding: 0.6rem;
+        font-size: 0.85rem;
+    }
+
+     .plotly-container {
+        min-height: 200px;
+    }
+
+     .iframe-container {
+         min-height: 120px;
+    }
+
+     .sticker {
+        width: 60px;
+        height: 60px;
+        bottom: 5px;
+        right: 5px;
+    }
+
+     /* Адаптация таблиц */
+     th, td {
+        padding: 5px 2px; /* Минимальный padding */
+    }
+
+     /* Минимальная ширина колонок */
+    .content-width { min-width: 80px; }
+    .formula-wide { min-width: 60px; font-size: 0.75em; }
+    .formula-narrow { min-width: 50px; font-size: 0.75em; }
+    .graph-col { min-width: 30px; font-size: 0.65em; }
+
+     /* Адаптация цитаты */
+     .quote-container {
+        padding: 0.8rem;
+    }
+
+     .quote-container::before,
+    .quote-container::after {
+         font-size: 4rem;
+         width: 1rem;
+         height: 1.5rem;
+    }
+}
+
+
+/* Анимации для появления при скролле */
 .scroll-animate {
     opacity: 0;
     transform: translateY(30px);
@@ -926,94 +705,71 @@ img:hover {
 .delay-3 { transition-delay: 0.3s; }
 
 
+/* Стили для текста с шрифтом Laptev */
 .txt{
-    align-content: center;
+    /* align-content: center; */ /* Это свойство для flexbox/grid, здесь не применимо */
+    text-align: center; /* Центрирование текста */
     font-family: 'Laptev', sans-serif;
-    font-size: 20px; 
-    color: #0202ab; 
-    margin-bottom: 10px; 
-    margin-right: 20px;
-    line-height: 1.1;
-    
+    font-size: 22px; /* Немного увеличим базовый размер */
+    color: #0202ab;
+    margin-bottom: 15px; /* Увеличим нижний отступ */
+    /* margin-right: 20px; */ /* Уберем фиксированный правый отступ */
+    line-height: 1.2; /* Немного увеличим межстрочный интервал */
+    padding: 0 10px; /* Добавим горизонтальный padding для адаптивности */
 }
-.linked{
 
+.linked{
+    /* Стили для ссылок внутри .txt, если они есть */
+    /* text-decoration: underline; */
+    /* color: inherit; */
 }
+
+/* Стили для символа вектора */
 .vector {
     position: relative;
     display: inline-block;
-    padding-right: 2px;
+    padding-right: 2px; /* Небольшой отступ справа */
   }
   .vector::after {
     content: "→";
     position: absolute;
-    top: -1px;
-    left: 0;
-    right: 0;
-    text-align: center;
-    font-size: 0.7em;
+    top: -1px; /* Немного поднять стрелку */
+    left: 50%; /* Центрировать по горизонтали */
+    transform: translateX(-50%); /* Точное центрирование */
+    font-size: 0.8em; /* Размер стрелки относительно шрифта */
+    line-height: 1; /* Убираем лишний интервал у стрелки */
   }
+
+/* Стили для моноширинной формулы */
 .mono-formula {
     background-color: #f8f8f8;
-    border-left: 4px solid #4285f4;
-    padding: 10px 15px;
+    border-left: 4px solid var(--primary-color); /* Используем переменную */
+    padding: 12px 15px; /* Немного увеличим padding */
     margin: 15px 0;
-    overflow-x: auto;
+    overflow-x: auto; /* Прокрутка для длинных формул */
+    -webkit-overflow-scrolling: touch;
+    font-family: var(--font-mono);
+    white-space: pre-wrap; /* Перенос строк */
+    word-wrap: break-word; /* Перенос длинных слов */
 }
-.div1 {
-    position: relative;
-    width: 600px;
-    margin: auto;
-    padding: 1rem;
-    background-color: transparent;
-    background-image: linear-gradient(-45deg, transparent, transparent 2%, white 2%, white 85%, transparent, 85%, transparent), linear-gradient(to bottom right, #2ad, #2ad 90%, transparent 90%);
-    background-position: top left, 0.2em 0.2em;
-    background-repeat: no-repeat;
-  }
-  
-  .div1::before,
-  .div1::after {
-    position: absolute;
-    z-index: -1;
-    display: block;
-    width: 3rem;
-    height: 4rem;
-    content: "";
-    z-index: 0;
-    font-size: 8rem;
-    font-family: Georgia, Times, Garamond, serif;
-  }
-  
-  .div1::before {
-    top: -2rem;
-    left: 1rem;
-    content: open-quote;
-  }
-  
-  .div1::after {
-    bottom: -1rem;
-    right: 1rem;
-    content: close-quote;
-  }
-  
-  .div1::before,
-  .div1::after,
-  .div1 h2 {
-    text-shadow: -2px 2px #fff, -1.5px 1.5px #fff, -1px 1px #fff, -0.5px 0.5px #fff;
-  }
-/*цитата*/
+
+
+/* Стили для цитаты */
 .quote-container {
     position: relative;
-    width: 600px;
-    margin: auto;
+    width: 90%; /* Сделаем адаптивным по умолчанию */
+    max-width: 600px; /* Максимальная ширина */
+    margin: 2rem auto; /* Отступы и центрирование */
     padding: 2rem;
-    background-color: #f8f8f8;
-    background-image: 
-      linear-gradient(-45deg, transparent, transparent 2%, white 2%, white 85%, transparent 85%, transparent), 
-      linear-gradient(to bottom right, #3498db, #3498db 90%, transparent 90%);
+    background-color: var(--light-bg); /* Используем переменную */
+    background-image:
+      linear-gradient(-45deg, transparent, transparent 2%, white 2%, white 85%, transparent 85%, transparent),
+      linear-gradient(to bottom right, var(--primary-color), var(--primary-color) 90%, transparent 90%); /* Используем переменную */
     background-position: top left, 0.2em 0.2em;
     background-repeat: no-repeat;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: var(--box-shadow); /* Используем переменную */
+    border-radius: var(--border-radius); /* Используем переменную */
+    overflow: hidden; /* Убедимся, что ничего не вылезает */
   }
 
   .quote-container::before,
@@ -1026,23 +782,23 @@ img:hover {
     content: "";
     font-size: 8rem;
     font-family: Georgia, serif;
-    color: rgba(52, 152, 219, 0.2);
+    color: rgba(var(--primary-color-rgb, 66, 133, 244), 0.2); /* Используем RGB для прозрачности, если доступно */
+    /* Если нет RGB переменной, можно использовать фиксированный цвет: */
+    /* color: rgba(52, 152, 219, 0.2); */
   }
 
   .quote-container::before {
     top: -1rem;
     left: 1rem;
-    content: "„"; /* Перевёрнутая открывающая кавычка */
+    content: "„";
     transform: rotate(180deg);
   }
 
   .quote-container::after {
     bottom: -2rem;
     right: 1rem;
-    content: "“"; /* Обычная закрывающая кавычка */
+    content: "“";
   }
-
-  
 
   .quote-text {
     font-size: 1.2em;
@@ -1051,20 +807,209 @@ img:hover {
     text-align: justify;
     position: relative;
     z-index: 1;
+    color: var(--text-color); /* Убедимся, что текст использует основный цвет */
   }
 
   .author {
     text-align: right;
     font-style: italic;
-    color: #2c3e50;
+    color: #5f6368; /* Используем цвет подписи */
     font-size: 1.1em;
     margin-top: 1rem;
   }
 
   .note {
     font-size: 0.9em;
-    color: #666;
+    color: #5f6368; /* Используем цвет подписи */
     margin-top: 2rem;
     padding-top: 1rem;
     border-top: 1px dashed #ccc;
   }
+
+
+/* Стили для стикера-заметки */
+.sticker-note {
+    background: #fff9c4; /* Фоновый цвет */
+    /* Убираем SVG фон из background, добавим его как псевдоэлемент или отдельный элемент если нужно */
+    padding: 20px;
+    margin: 20px;
+    border-radius: 5px; /* Простые скругления */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    position: relative; /* Для позиционирования псевдоэлемента с линиями */
+    overflow: hidden; /* Скрываем все, что вылезает */
+}
+
+.sticker-note::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        transparent,
+        transparent 24px,
+        rgba(0, 0, 0, 0.1) 25px
+    );
+    opacity: 0.2;
+    pointer-events: none;
+    z-index: 0; /* Убедимся, что линии под текстом */
+}
+
+.sticker-note > * {
+    position: relative;
+    z-index: 1; /* Убедимся, что контент над линиями */
+}
+
+
+/* Стили для модальных окон */
+.modal-overlay {
+    display: none; /* Скрыто по умолчанию */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    /* Используем flexbox для центрирования */
+    display: flex; /* Показываем оверлей, когда нужно */
+}
+
+.modal-container {
+    background: white;
+    border-radius: var(--border-radius); /* Используем переменную */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    width: 95%; /* Ширина по умолчанию на мобильных */
+    max-width: 900px;
+    max-height: 95vh; /* Увеличим максимальную высоту */
+    overflow: auto;
+    position: relative;
+    animation: fadeIn 0.3s ease-out; /* Добавим анимацию */
+}
+
+.modal-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky; /* Фиксируем заголовок при прокрутке */
+    top: 0;
+    background: white;
+    z-index: 10;
+}
+
+.modal-close {
+    cursor: pointer;
+    font-size: 28px; /* Немного увеличим размер крестика */
+    font-weight: bold;
+    color: #666;
+    padding: 5px; /* Добавим padding для удобства клика */
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+/* Адаптивные iframe в модальных окнах */
+.responsive-iframe {
+    width: 100%;
+    height: 75vh; /* Высота относительно высоты вьюпорта */
+    max-height: 600px; /* Максимальная высота */
+    border: none;
+    display: block; /* Убедимся, что занимает всю ширину */
+}
+.responsive-iframe-middle {
+    width: 100%;
+    height: 40vh; /* Высота относительно высоты вьюпорта */
+    max-height: 300px; /* Максимальная высота */
+    border: none;
+    display: block;
+}
+
+/* Анимация появления модального окна */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Стили для кнопок-ссылок */
+.content-trigger {
+    font-family: 'Hombre', sans-serif; /* Используем переменную */
+    font-size: 28px;
+    color: #f506e1;
+    cursor: pointer;
+    text-decoration: underline; /* Подчеркивание для ясности */
+    margin: 10px 0;
+    display: inline-block; /* Или block, если нужно занимать всю ширину */
+    text-align: right; /* Выравнивание по правому краю */
+    width: 100%; /* Чтобы text-align: right работал */
+}
+
+.content-trigger.right-align {
+     /* Этот класс теперь не нужен, так как .content-trigger уже right-align */
+     /* Если нужно центрировать, можно добавить отдельный класс */
+     /* text-align: center; */
+}
+
+/* Стили для модальных окон на мобильных */
+@media (max-width: 768px) {
+    .modal-container {
+        width: 98%; /* Еще немного увеличим ширину */
+        max-height: 90vh; /* Увеличим максимальную высоту */
+    }
+
+    .modal-body {
+        padding: 15px;
+    }
+
+    .responsive-iframe {
+        height: 60vh; /* Уменьшим высоту iframe */
+        max-height: 400px;
+    }
+     .responsive-iframe-middle {
+        height: 30vh; /* Уменьшим высоту iframe */
+        max-height: 200px;
+    }
+
+    .content-trigger {
+        font-size: 24px; /* Уменьшим размер шрифта */
+        margin: 8px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-container {
+        width: 98%;
+        max-height: 95vh; /* Максимально используем экран */
+    }
+
+    .modal-header {
+        padding: 10px 15px;
+    }
+
+    .modal-close {
+        font-size: 24px;
+    }
+
+    .modal-body {
+        padding: 10px;
+    }
+
+     .responsive-iframe {
+        height: 50vh; /* Еще уменьшим высоту iframe */
+        min-height: 250px; /* Минимальная высота */
+    }
+     .responsive-iframe-middle {
+        height: 25vh; /* Еще уменьшим высоту iframe */
+        min-height: 150px; /* Минимальная высота */
+    }
+
+    .content-trigger {
+        font-size: 20px; /* Еще уменьшим размер шрифта */
+        margin: 6px 0;
+    }
+}
