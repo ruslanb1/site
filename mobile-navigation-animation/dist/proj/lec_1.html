@@ -1,0 +1,1032 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Идеально центрированный iframe</title>
+    
+    <!-- Reveal.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="./dist/reset.css">
+    <link rel="stylesheet" href="./dist/reveal.css">
+    <link rel="stylesheet" href="./dist/theme/white.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.14.0.min.js"></script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                packages: {'[+]': ['ams']}
+            },
+            chtml: {
+                fontURL: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2'
+            }
+        };
+    </script>
+
+<style>
+    /* Главный контейнер для центрирования */
+    .slide-container {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        position: relative;
+    }
+
+    /* Контейнер iframe с perfect centering */
+    .ultimate-iframe-container {
+        width: 78%;
+        height: 70vh;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: translateZ(0);
+        backface-visibility: hidden;
+        perspective: 1000px;
+    }
+
+    /* Сам iframe */
+    .ultimate-iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        background: white;
+        box-shadow: -40px 4px 20px rgba(243, 242, 242, 0.1);
+        transform: scale(1.001);
+        image-rendering: crisp-edges;
+        image-rendering: -webkit-optimize-contrast;
+    }
+
+    /* Фикс для Retina */
+    @media (-webkit-min-device-pixel-ratio: 2) {
+        .ultimate-iframe {
+            width: 99.95%;
+        }
+    }
+
+    /* Модальное окно для изображений с фоном */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.9);
+        overflow: auto;
+        animation: fadeIn 0.3s;
+    }
+
+    @keyframes fadeIn {
+        from {opacity: 0;}
+        to {opacity: 1;}
+    }
+
+    .modal-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        z-index: -1;
+        opacity: 0.5;
+        filter: blur(2px);
+    }
+
+    .modal-content {
+        margin: auto;
+        display: block;
+        width: 90%;
+        max-width: 800px;
+        max-height: 90vh;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: zoomIn 0.3s;
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+
+    @keyframes zoomIn {
+        from {transform: translate(-50%, -50%) scale(0.9);}
+        to {transform: translate(-50%, -50%) scale(1);}
+    }
+
+    .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    .close:hover {
+        color: #bbb;
+        transform: rotate(90deg);
+    }
+
+    /* Адаптивные таблицы */
+    .reveal table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+    }
+
+    .reveal table td, .reveal table th {
+        padding: 10px;
+        border: 0px solid #ddd;
+        text-align: left;
+    }
+
+    /* Адаптивные изображения */
+    .svg-responsive {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+        transition: transform 0.2s;
+        border: 0px solid #eee;
+        background-color: white;
+        padding: 5px;
+    }
+
+    .svg-responsive:hover {
+        transform: scale(1.02);
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    /* Текст и заголовки */
+    .txt {
+        font-family: 'Laptev', sans-serif;
+        font-size: 40px; /* Этот размер будет переопределен clamp() в медиа-запросах */
+        color: #0202ab;
+        line-height: 1.4;
+    }
+    /* Управление переполнением текста - Добавлен .txt */
+    .reveal p, .reveal li, .reveal td, .reveal th, .definition, .txt {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+     /* Шрифты для заголовков */
+     .reveal h1 {
+        font-family: 'Hombre', sans-serif;
+        font-size: clamp(2em, 5vw, 3em); /* Адаптивный размер для H1 */
+        color: #404041;
+        text-align: center;
+        margin-bottom: 0.5em;
+     }
+
+      .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+         font-family: 'Hombre', sans-serif;
+         color: #5d5d5d;
+         text-transform: none;
+         border-bottom: none;
+         margin-bottom: 15px;
+         padding-bottom: 0;
+      }
+
+      .reveal h2 {
+         color: #5d5d5d;
+         font-size: clamp(1.5em, 4vw, 2em); /* Адаптивный размер для H2 */
+         margin-top: 0.8em;
+         margin-bottom: 0.5em;
+      }
+
+       .reveal h3 {
+          color: #555;
+           font-size: 1.4em; /* Можно добавить clamp() и сюда */
+           margin-top: 0.6em;
+           margin-bottom: 0.4em;
+       }
+
+        .reveal h4 {
+             color: #777;
+             font-size: 1.2em; /* Можно добавить clamp() и сюда */
+             margin-top: 0.5em;
+             margin-bottom: 0.3em;
+        }
+
+    .reveal p {
+        margin-bottom: 0.8em;
+        font-size: clamp(0.9rem, 2vw, 1.1rem); /* Адаптивный размер шрифта для параграфов */
+        line-height: 1.5; /* Улучшаем читаемость */
+        text-align: left;
+    }
+
+     .reveal ul, .reveal ol {
+         margin-bottom: 0.8em;
+         padding-left: 1.2em;
+         text-align: left;
+     }
+
+      .reveal li {
+          margin-bottom: 0.4em;
+      }
+
+    .reveal strong {
+        color: #3498db;
+    }
+
+    /* Определение блока - Использование em для отступов */
+    .definition {
+        border-left: 4px solid #0202ab;
+        padding: 0.8em 1.5em; /* Использование em */
+        margin: 1.5em 0; /* Использование em */
+        background-color: #f0f0f0;
+        font-style: italic;
+    }
+
+     /* Управление переполнением текста */
+    .reveal p, .reveal li, .reveal td, .reveal th, .definition {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    /* Минимальные размеры для интерактивных элементов (пример) */
+    /* Добавьте классы или селекторы для ваших реальных интерактивных элементов */
+    .reveal button, .reveal a.interactive, .reveal input[type="button"], .reveal input[type="submit"] {
+        min-width: 44px;
+        min-height: 44px;
+        padding: 0.5em 1em; /* Использование em для padding */
+        box-sizing: border-box; /* Учитываем padding в размере */
+    }
+
+
+    /* Медиа-запросы для адаптивности */
+
+    /* Дополнительный медиа-запрос для очень широких экранов */
+    @media (min-width: 1200px) {
+        .ultimate-iframe-container {
+            width: 70%; /* Чуть меньше на очень широких экранах */
+            height: 75vh;
+        }
+        /* .txt { /* Если .txt используется только для крупных заголовков */
+            /* font-size: 48px; /* Больше на очень широких экранах */
+        /* } */
+    }
+
+    /* Медиа-запрос для планшетов и десктопов среднего размера */
+    @media (max-width: 1024px) {
+        .txt {
+            font-size: clamp(20px, 3vw, 30px); /* Адаптивный размер для .txt */
+        }
+
+        .ultimate-iframe-container {
+            width: 85%;
+            height: 60vh;
+        }
+    }
+
+    /* Медиа-запрос для планшетов в альбомной ориентации */
+    @media (orientation: landscape) and (max-width: 1024px) {
+        .ultimate-iframe-container {
+            height: 80vh; /* Больше высоты доступно в альбомной ориентации */
+        }
+    }
+
+    /* Медиа-запрос для мобильных устройств и планшетов в портретной ориентации */
+    @media (max-width: 768px) {
+        /* На мобильных таблицы превращаем в блоки */
+        .reveal table, .reveal thead, .reveal tbody,
+        .reveal th, .reveal td, .reveal tr {
+            display: block;
+        }
+
+        .reveal thead tr {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+
+        .reveal tr {
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+        }
+
+        .reveal td {
+            border: none;
+            position: relative;
+            padding-left: 50%;
+        }
+
+        .reveal td:before {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 45%;
+            padding-right: 10px;
+            white-space: nowrap;
+            content: attr(data-label);
+            font-weight: bold;
+        }
+
+        /* Если .txt используется как крупный заголовок, можно его адаптировать */
+        .txt {
+             font-size: clamp(18px, 4vw, 25px); /* Адаптивный размер для .txt на меньших экранах */
+        }
+
+        .ultimate-iframe-container {
+            width: 90%;
+            height: 50vh;
+        }
+
+        /* На мобильных картинки над текстом (для таблиц) */
+        .reveal table tr {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .reveal table td {
+            width: 100% !important;
+            padding-left: 10px; /* Убираем padding-left: 50%; */
+        }
+
+        .reveal table td:before {
+            position: static; /* Убираем абсолютное позиционирование */
+            margin-bottom: 5px;
+            display: block; /* Чтобы метка была на отдельной строке */
+            padding-right: 0;
+            width: auto;
+        }
+
+        /* Адаптация модального окна */
+        .modal-content {
+            width: 95%;
+            padding: 10px;
+        }
+    }
+
+    /* Медиа-запрос для очень маленьких мобильных устройств */
+    @media (max-width: 480px) {
+         /* .txt { /* Если .txt используется для очень крупного текста */
+             /* font-size: clamp(16px, 5vw, 20px); */
+         /* } */
+
+        .ultimate-iframe-container {
+            width: 95%;
+            height: 40vh;
+        }
+
+        /* Адаптация размеров шрифтов, если они были заданы инлайн или специфично */
+        /* Эти правила могут быть избыточны, если вы используете clamp() для всех текстов */
+        /*
+        p[style*="font-size: 40px"],
+        p[style*="font-size: 42px"] {
+            font-size: 28px !important;
+        }
+
+        p[style*="font-size: 28px"] {
+            font-size: 20px !important;
+        }
+        */
+    }
+
+    /* Дополнительные стили для Reveal.js фрагментов */
+    .reveal .slides section .fragment {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px); /* Анимация появления снизу */
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out, visibility 0.6s ease-out;
+    }
+
+    .reveal .slides section .fragment.visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+</style>
+</head>
+
+<body>
+    <!-- Модальное окно для изображений с фоном -->
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <div class="modal-background"></div>
+        <img class="modal-content" id="modalImage">
+        <div id="caption" style="color: white; text-align: center; margin-top: 20px;"></div>
+    </div>
+
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h2>Лекция №1.</br> Введение в Кинематику</h2>	
+            </section>
+            <section>
+                <section>
+                    <!-- h2 настроен на Laptev -->
+                    <h2>Введение в Кинематику</h2>
+                    <p class="txt fragment">
+                        Кинематика — раздел механики, изучающий движение тел без рассмотрения причин этого движения (сил). Основные понятия кинематики: путь, перемещение, скорость, ускорение.
+                    </p>
+                    <!-- Возможно, здесь можно вставить какую-то вводную иллюстрацию или анимацию -->
+                </section>
+                <section>
+                    
+                        <ul class="txt">
+                            <strong>Основные понятия:</strong>
+                            <li>Материальная точка</li>
+                            <li>Система отсчёта</li>
+                            <li>Траектория</li>
+                            <li>Перемещение</li>
+                            <li>Путь</li>
+                            <li>Скорость</li>
+                            <li>Ускорение</li>
+                            <li>Равномерное прямолинейное движение</li>
+                            <li>Неравномерное движение</li>
+                            <li>Равнопеременное движение</li>
+                            <li>Свободное падение</li>
+                            <li>Движение по окружности</li>
+                            <li>Относительность движения</li>
+                            
+                        </ul>
+                   
+    
+                </section>
+                <section>
+                <h2>Материальная точка</h2>
+                    <div class="txt">
+                        <p class="txt fragment"><strong>Материальная точка</strong> — это воображаемая маленькая точка, которая заменяет большой предмет, когда мы изучаем его движение.</p>
+                        <p class="txt fragment"><strong>Материальная точка</strong> – это идеализированная модель тела, размерами которого можно пренебречь, учитывая только его массу и положение в пространстве.</p>
+                        <p class="txt fragment" style="color: #080808;">Критерии применимости модели:</p>
+                        <table class="reveal table txt fragment" style="font-size: 0.8em;">
+                            <tr>
+                                <th>Ситуация</th>
+                                <th>Применимость</th>
+                                <th>Обоснование</th>
+                            </tr>
+                            <tr>
+                                <td>Планета на орбите</td>
+                                <td class="positive">✅ Да</td>
+                                <td>Размеры ≪ расстояния до звезды</td>
+                            </tr>
+                            <tr>
+                                <td>Автомобиль в гараже</td>
+                                <td class="negative">❌ Нет</td>
+                                <td>Размеры сравнимы с помещением</td>
+                            </tr>
+                        </table>
+                        <p class="txt fragment" style="color: #080808;">Математический критерий применимости:</p>
+                        <div class="txt fragment">
+                            \[ \mathtt{\frac{\text{Характерный размер тела}}{\text{Масштаб задачи}} \ll 1 }\]
+                        </div>
+                    </div>
+                </section>
+
+
+
+
+                <section>
+                    <h2>Система отсчёта</h2>
+                    <div class="media-container fragment" style="width: 480px;">
+                        <div class="svg-responsive">
+                            <img src="introSVG/drawio.svg" class="modal-image" data-preview-image="introSVG/so.svg" data-bg="introSVG/bg-pattern.svg" alt="Компоненты системы отсчета">
+                            <div class="svg-protection"></div>
+                        </div> 
+                    </div>
+                    <p class="txt fragment">Ньютон утверждал, что абсолютного покоя не существует — движение всегда определяется относительно выбранной системы отсчёта.</p></br>
+                    <p class="txt fragment">Опыт с ведром показал, что одно и тоже явление объясняется и выглядит по-разному для разных наблюдателей. Именно поэтому всегда необходимо указывать, относительно каких тел рассматривается движение</p>
+                </section>
+                <section>
+                    <div>
+                        <ol class="txt">
+                            <strong>Система отсчёта состоит из 3-х компонент:</strong><br>
+                            <li class="fragment"><strong>Тело отсчёта</strong> — реальный физический объект (Земля, лаборатория)</li>
+                            <li class="fragment"><strong>Система координат</strong>:
+                                <ul class="fragment" >
+                                    <li>Декартова (x, y, z)</li>
+                                    <li>Полярная (r, φ)</li>
+                                    <li>Сферическая (r, θ, φ)</li>
+                                </ul>
+                            </li>
+                            <li class="fragment"><strong>Синхронизированные часы</strong> — для измерения моментов времени</li>
+                        </ol>
+                    </div>
+                    <div class="media-container fragment" style="width: 480px;">
+                        <div class="svg-responsive">
+                            <img src="introSVG/so.svg" class="modal-image" data-preview-image="introSVG/so.svg" data-bg="introSVG/bg-pattern.svg" alt="Компоненты системы отсчета">
+                            <div class="svg-protection"></div>
+                        </div> 
+                    </div>
+
+                </section>
+
+
+                <section>
+                    <h2>Есть три способа описания движения точки:</h2>
+                    <ul class="fragment">
+                        <li class="txt">Естественный</li>
+                        <li class="txt">Векторный</li>
+                        <li class="txt">Координатный</li>
+                    </ul>
+
+                </section>
+
+
+
+                <section>
+                    <h2>Траекторный (естественный способ)</h2>
+                    <p class="txt fragment">Пусть материальная точка движется по некоторой кривой. Тогда положение точки определяется дуговой координатой S - расстоянием вдоль траектории от выбранного начала отсчета О:</p>
+                    <div class="media-container fragment" style="width: 480px;">
+                        <div class="svg-responsive">
+                            <img src="introSVG/traektornii.svg" class="modal-image" data-preview-image="introSVG/traektornii.svg" data-bg="introSVG/bg-pattern.svg" alt="Траекторный способ">
+                            <div class="svg-protection"></div>
+                        </div> 
+                    </div>
+                    <div class="txt fragment">
+                        \[\mathtt{ S = S(t) \quad (1.1)}\]
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Векторный способ</h2>
+                    <p class="txt fragment">Проведём из произвольной точки О выбранной системы отсчёта радиус-вектор \( \mathtt{ \vec{r} } \) в точку A. Тогда положение точки A в пространстве полностью определяется как:</p>
+                    <div class="media-container fragment" style="width: 480px;">
+                        <div class="svg-responsive">
+                            <img src="introSVG/vect1.svg" class="modal-image" data-preview-image="introSVG/traektornii.svg" data-bg="introSVG/bg-pattern.svg" alt="Траекторный способ">
+                            <div class="svg-protection"></div>
+                        </div> 
+                    </div>
+                    <div class="txt fragment">
+                        \[ \mathtt{ \mathtt{\vec{r}=\vec{r}(t)} \quad (1.2) }\]
+                    </div>
+                </section>
+
+
+
+
+                <section>
+                    <h2>Координатный способ</h2>
+                    <p class="txt fragment">В прямоугольной системе координат \( \mathtt{ X, Y, Z } \) радиус-вектор \( \mathtt{ \vec{r}(t) } \) можно заменить его проекциями. Кинематические уранения полностью описывают положение тела в пространстве:</p>
+                    <div class="media-container fragment" style="width: 480px;">
+                        <div class="svg-responsive">
+                            <img src="introSVG/koordinata.svg" class="modal-image" data-preview-image="introSVG/traektornii.svg" data-bg="introSVG/bg-pattern.svg" alt="Траекторный способ">
+                            <div class="svg-protection"></div>
+                        </div> 
+                    </div>
+                    <div class="txt fragment">
+                        \[
+                        \begin{cases}
+                        \mathtt{x = x(t)} \\
+                        \mathtt{y = y(t)} \\
+                        \mathtt{z = z(t)}
+                        \end{cases} \quad (1.3)
+                        \]
+                    </div>
+                </section>
+                <section>
+                    
+                    <div class="txt fragment">
+                        Пример:</br>
+                        Если известны кинематические уравнения движения материальной точки, можно найти траекторию движения
+                        \[
+                        \begin{cases}
+                        \mathtt{x = a\cos(\omega t)} \\
+                        \mathtt{y = b\sin(\omega t)}
+                        \end{cases}
+                        \]
+                    </div>
+                    <div class="txt fragment">
+                        Чтобы найти уравнение траектории, надо исключить время. Для этого возведем в квадрат и разделим исходные уравнения:
+                        \[
+                        \mathtt{\left(\frac{x}{a}\right)^2 + \left(\frac{y}{b}\right)^2 = \cos^2(\omega t) + \sin^2(\omega t) = 1}
+                        \]
+                    </div>
+                </section>
+                <section>    
+                    <div class="txt">
+                        Итоговое уравнение траектории:
+                        \[
+                        \boxed{\mathtt{\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1}}
+                        \]
+                    
+                        Это уравнение эллипса с полуосями \( a \) и \( b \):
+                    </div>
+                    <div class="media-container fragment" style="width: 480px;">
+                        <div class="svg-responsive">
+                            <img src="introSVG/ellipce.svg" class="modal-image" data-preview-image="introSVG/traektornii.svg" data-bg="introSVG/bg-pattern.svg" alt="Траекторный способ">
+                            <div class="svg-protection"></div>
+                        </div> 
+                    </div>
+                </section>
+            </section>
+            
+            
+            
+            
+            
+            
+            <section>
+                <section>
+                    <h2>Векторы</h2>
+                    
+                    <div class="txt fragment">
+                            \[
+                            \begin{cases}
+                            r_x = |\vec{r}| \cos \alpha \\
+                            r_y = |\vec{r}| \sin \alpha \\
+                            |\vec{r}| = \sqrt{r_x^2 + r_y^2} \\
+                            \text{tg}(\alpha) = \frac{r_y}{r_x}
+                            \end{cases}
+                            \]
+                    </div>
+                </section>
+                <section>
+                    <h2>Компоненты вектора</h2>
+                    
+                    <div class="ultimate-iframe-container fragment">
+                        <iframe 
+                        src="./geofiz/komponentVect/komponentVect.html"
+                        class="ultimate-iframe"
+                        allowfullscreen>
+                        </iframe>
+                    </div>
+                </section>
+
+
+
+                <section>
+                    <h2>Векторы i, j, k</h2>
+                    
+                    <table class="reveal table txt fragment" style="font-size: 0.8em;">
+                        <tr>
+                            <div class="txt fragment">
+                                Векторы <strong>i, j, k</strong> — это специальные векторы, которые:
+                            </div>
+                            <td class="txt fragment" > 
+                                <ul>
+                                    <li><strong>i</strong> — единичный вектор вдоль оси X</li>
+                                    <li><strong>j</strong> — единичный вектор вдоль оси Y</li>
+                                    <li><strong>k</strong> — единичный вектор вдоль оси Z</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="txt fragment">
+                                    \[
+                                    \mathtt{\vec{i} = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}, \quad}
+                                    \mathtt{\vec{j} = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}, \quad}
+                                    \mathtt{\vec{k} = \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}}
+                                    \]
+                            </td>
+                        </tr>
+                    </table> 
+                </section>
+                <section>
+                    <h2>Векторы i, j, k</h2>
+                    <p class="txt fragment" >
+                        Любой вектор в пространстве можно выразить через эти базисные векторы: 
+                        \[
+                        \mathtt{\vec{r}(t) = x(t) \vec{i} + y(t) \vec{j} + z(t) \vec{k}}
+                        \]
+                        Например, вектор с координатами ( 3, -2, 5 ) можно записать как:
+                        \(
+                        \mathtt{\vec{a} = 3\vec{i} - 2\vec{j} + 5\vec{k}}
+                        \)
+                    </p>
+
+                </section>
+                <section>
+                    <h2>Векторы i, j, k</h2>
+                    <p class="txt fragment" >
+                        \[
+                        \mathtt{\vec{r}(t) = x(t) \vec{i} + y(t) \vec{j} + z(t) \vec{k}}
+                        \]
+                    </p>
+                    <div class="ultimate-iframe-container fragment">
+                        <iframe 
+                        src="./geofiz/k1_2/Vector tridimensional (1).html"
+                        class="ultimate-iframe"
+                        allowfullscreen>
+                        </iframe>
+                    </div>
+
+
+                </section>
+                <section>
+                    <p class="txt fragment" >
+                        Сумма векторов:
+						\[
+						\mathtt{\vec{r}_1 = (r_{1x}, r_{1y}), \quad \vec{r}_2 = (r_{2x}, r_{2y})}
+						\]
+                   
+                                \[
+                                \mathtt{\vec{r}_1 + \vec{r}_2 = (r_{1x} + r_{2x}, r_{1y} + r_{2y})}
+                                \]
+                    </p>
+                    <div class="ultimate-iframe-container fragment">
+                        <iframe 
+                        src="./geofiz/summVect/summVect.html"
+                        class="ultimate-iframe"
+                        allowfullscreen>
+                        </iframe>
+                    </div>
+                </section>
+                <section>
+                  
+                    <p class="txt fragment" >
+                        Разность векторов:
+                        \[
+                        \mathtt{\vec{r}_1 - \vec{r}_2 = (r_{1x} - r_{2x}, r_{1y} - r_{2y})}
+                        \]
+                    </p>
+                    <div class="ultimate-iframe-container fragment">
+                        <iframe 
+                        src="./geofiz/raznostVect/raznostVect.html"
+                        class="ultimate-iframe"
+                        allowfullscreen>
+                        </iframe>
+                    </div>
+                </section>
+                <section>
+                   
+                    <p class="txt fragment" >
+                        Умножение на скаляр (k ∈ ℝ):
+                        \[
+                        \mathtt{k \vec{v} = (k v_x, k v_y)}
+                        \]
+                    </p>
+                    <div class="ultimate-iframe-container fragment">
+                        <iframe 
+                        src="./geofiz/umnVectChislo/umnVectChislo.html"
+                        class="ultimate-iframe"
+                        allowfullscreen>
+                        </iframe>
+                    </div>
+                </section>
+                <section>
+                    <h2>Длина вектора:</h2>
+                    <p class="txt fragment" >
+                        \[
+                        \mathtt{|\vec{r}_1| = \sqrt{r_{1x}^2 + r_{1y}^2}}
+                        \]
+                       
+                    </p>
+                    <p class="txt fragment" >
+                        \[
+                        \mathtt{\text{Длина} = \sqrt{\text{(проекция на X)}^2 + \text{(проекция на Y)}^2 + \text{(проекция на Z)}^2}}
+                        \]
+                        \[
+                        |\vec{r}| = \sqrt{r_x^2 + r_y^2 + r_z^2}
+                        \]
+                       
+                    </p>
+                    
+                </section>
+                <section>
+                    
+                    <p class="txt fragment" >
+                        Длина единичных векторов: 
+                        \[
+                        \mathtt{|\vec{i}| = |\vec{j}| = |\vec{k}| = 1}
+                        \]
+                    </p>
+                    <p class="txt fragment" >
+                        Длина нулевого вектора: 
+							\[
+							\mathtt{|\vec{0}| = 0}
+							\]
+                    </p>
+                    
+                </section>
+
+            </section>
+            
+
+			
+            <section>
+                	
+                
+            </section>
+			
+			
+				
+
+            <section>
+                <section>
+                    <p style="font-family: 'Hombre', sans-serif; font-size: 40px; color: #000000;">
+                        Перемещение <br>
+                    </p>
+                    <table class="reveal table" style="width:100%; border: 0px solid #ffffff; margin: 0px 0; font-family: Arial, sans-serif;">
+                        <tr>
+                            <td class="txt"> 
+                                <p class="txt"> С изменениями координат связана первая из величин, вводимых для описания движения — <strong>перемещение</strong>.<br>
+                                    Пусть с течением времени t материальная точка движется по кривой от т. А до т. В.
+                                    Перемещением за время t - это физическая величина, численно равная хорде <strong>АВ</strong>.</p>
+                                <div style="color: #0202ab;">
+                                    \[ \mathtt{ \mathtt{\vec{r}=\vec{r}(t)} \quad (1.2) }\]
+                                </div>
+                            </td>
+                            <td class="txt" style="padding: 0px 0px; text-align: center;"> 
+                                <div class="svg-responsive" style="width: 580px;">
+                                    <img src="introSVG/displacement.svg" class="modal-image" data-preview-image="introSVG/displacement.svg" data-bg="introSVG/bg-pattern.svg" alt="Перемещение">
+                                    <div class="svg-protection"></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <p class="txt">
+                        <strong>Перемещением \( \Delta\vec{r} \)</strong> тела (материальной точки) называют направленный отрезок прямой, соединяющий начальное положение тела с его последующим положением. <br> 
+                        <br>Перемещение надо отличать от длины траектории (линии, по которой происходит движение тела). <br>
+                        <strong>Путь \( S \)</strong> - это длина траектории за время движения. <br><br>
+                    </p>
+                    <p style="font-family: 'Hombre', sans-serif; font-size: 28px; color: #fa0b02;"></p>
+                <br><br>&#128071;
+                </section>
+                <section>
+                    <p class="txt">
+                        Физическая сущность этих понятий становится особенно ясной при рассмотрении криволинейных траекторий. Путь — это скалярная величина, всегда положительная и монотонно возрастающая по мере движения. Перемещение же является векторной величиной, учитывающей не только пройденное расстояние, но и изменение 
+                        положения в пространстве.
+                        \[ \mathtt{|\Delta\vec{r}| \leq \Delta S \quad (1.4)}\]
+                        
+                        Связь для малых перемещений:
+                        
+                        \[ \mathtt{\lim_{\Delta t \to 0} \frac{|\Delta\vec{r}|}{\Delta S} = 1 \quad (1.5)}\]
+                    </p>
+                </section>
+				<section class="slide-container">
+                    <div class="ultimate-iframe-container">
+                        <iframe 
+                        src="./al-html5/path.html"
+                        class="ultimate-iframe"
+                        allowfullscreen>
+                        </iframe>
+                    </div>
+                </section>
+                <section>
+                    <table class="reveal table" class="txt">
+                        <tr>
+                            <th>Характеристика</th>
+                            <th>Перемещение (\( \Delta\vec{r} \))</th>
+                            <th>Путь (S)</th>
+                        </tr>
+                        <tr>
+                            <td>Тип величины</td>
+                            <td>Вектор</td>
+                            <td>Скаляр</td>
+                        </tr>
+                        <tr>
+                            <td>Зависимость от формы траектории</td>
+                            <td>Нет</td>
+                            <td>Да</td>
+                        </tr>
+                        <tr>
+                            <td>Для замкнутой траектории</td>
+                            <td>Может быть нулевым</td>
+                            <td>Всегда положителен</td>
+                        </tr>
+                    </table>
+                </section>
+                <section>
+                    <p class="txt">
+                        \[ 
+                        \mathtt{\Delta \vec{r} = \sum_{i=1}^n \Delta \vec{r}_i = \Delta \vec{r}_1 + \Delta \vec{r}_2 + \dots + \Delta \vec{r}_n \to \int d\vec{r} \quad (1.6)}
+                        \]
+                        или в более строгой записи:
+                        \[
+                        \mathtt{\Delta \vec{r} = \lim_{n\to\infty} \sum_{i=1}^n \Delta \vec{r}_i = \int_{t_1}^{t_2} \frac{d\vec{r}}{dt} dt = \vec{r}(t_2) - \vec{r}(t_1) \quad (1.7)}
+                        \]
+                    
+                        \[ 
+                        \mathtt{S = \sum_{i=1}^n |\Delta \vec{r}_i| = |\Delta \vec{r}_1| + |\Delta \vec{r}_2| + \dots + |\Delta \vec{r}_n| \to \int ds = \int_{t_1}^{t_2} \left|\frac{d\vec{r}}{dt}\right| dt \quad (1.8)}
+                        \]
+                    </p>
+                </section>
+			
+                <section class="slide-container">
+                    <p class="txt">\[\mathtt{ S = \sum_{i=1}^n |\Delta x_i| = |\Delta x_1| + |\Delta x_2| + \dots + |\Delta x_n| }\]</p>
+                    <div class="ultimate-iframe-container">
+                        <iframe 
+                        src="./al-html5/displacement.html"
+                        class="ultimate-iframe"
+                        allowfullscreen>
+                        </iframe>
+                    </div>
+                </section>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        Reveal.initialize({
+            width: 1280,
+            height: 720,
+            margin: 0,
+            minScale: 1.0,
+            maxScale: 1.0,
+            mobileView: 'width',
+            transition: 'none',
+            plugins: []
+        });
+
+        // Скрипт для модального окна изображений с фоном
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById("imageModal");
+            const modalImg = document.getElementById("modalImage");
+            const modalBg = document.querySelector('.modal-background');
+            const captionText = document.getElementById("caption");
+            const closeBtn = document.querySelector('.close');
+            
+            // Обработчик для всех SVG изображений
+            document.querySelectorAll('img[src*=".svg"]').forEach(img => {
+                img.classList.add('modal-image');
+                img.style.cursor = 'zoom-in';
+                
+                img.onclick = function() {
+                    modal.style.display = "block";
+                    modalImg.src = this.src;
+                    captionText.innerHTML = this.alt || "";
+                    
+                    // Установка фона если указан data-bg
+                    const bgUrl = this.getAttribute('data-bg');
+                    if (bgUrl) {
+                        modalBg.style.backgroundImage = `url(${bgUrl})`;
+                        modalBg.style.display = 'block';
+                    } else {
+                        modalBg.style.display = 'none';
+                    }
+                }
+            });
+            
+            // Закрытие модального окна
+            closeBtn.onclick = function() {
+                modal.style.display = "none";
+            }
+            
+            // Закрытие при клике вне изображения
+            modal.onclick = function(event) {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            }
+            
+            // Адаптация для мобильных устройств
+            function adaptForMobile() {
+                if (window.innerWidth <= 768) {
+                    // Для мобильных - добавляем data-label для ячеек таблицы
+                    document.querySelectorAll('.reveal table td').forEach(cell => {
+                        const header = cell.closest('table').querySelector('th:nth-child(' + (cell.cellIndex + 1) + ')');
+                        if (header) {
+                            cell.setAttribute('data-label', header.textContent);
+                        }
+                    });
+                    
+                    // Перемещаем изображения над текстом в таблицах
+                    document.querySelectorAll('.reveal table tr').forEach(row => {
+                        const imgCell = row.querySelector('td:has(img)');
+                        const textCell = row.querySelector('td:not(:has(img))');
+                        if (imgCell && textCell) {
+                            row.insertBefore(imgCell, textCell);
+                        }
+                    });
+                }
+            }
+            
+            // Адаптация iframe
+            function adaptIframe() {
+                const container = document.querySelector('.ultimate-iframe-container');
+                if (window.innerWidth < 768) {
+                    container.style.width = '95%';
+                    container.style.height = '50vh';
+                } else {
+                    container.style.width = '78%';
+                    container.style.height = '70vh';
+                }
+            }
+            
+            // Инициализация
+            adaptForMobile();
+            adaptIframe();
+            window.addEventListener('resize', () => {
+                adaptForMobile();
+                adaptIframe();
+            });
+            
+            // Предзагрузка фоновых изображений
+            const bgImages = new Set();
+            document.querySelectorAll('img[data-bg]').forEach(img => {
+                bgImages.add(img.getAttribute('data-bg'));
+            });
+            
+            bgImages.forEach(url => {
+                const img = new Image();
+                img.src = url;
+            });
+        });
+    </script>
+</body>
+</html>
