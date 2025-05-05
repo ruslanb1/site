@@ -1,0 +1,629 @@
+/* Импорт шрифта Source Sans Pro */
+@import url(../../../fonts/source-sans-pro/source-sans-pro.css);
+
+/* Стили для темного фона - меняет цвет текста на белый */
+section.has-dark-background, 
+section.has-dark-background h1, 
+section.has-dark-background h2, 
+section.has-dark-background h3, 
+section.has-dark-background h4, 
+section.has-dark-background h5, 
+section.has-dark-background h6 {
+  color: #fff;
+}
+
+/* Основные CSS-переменные для настройки внешнего вида */
+:root {
+  --r-background-color: #fff; /* Цвет фона по умолчанию */
+  --r-main-font: Source Sans Pro, Helvetica, sans-serif; /* Основной шрифт */
+  --r-main-font-size: 42px; /* Размер основного шрифта */
+  --r-main-color: #222; /* Основной цвет текста */
+  --r-block-margin: 10px; /* Отступы между блоками */
+  
+  /* Настройки заголовков */
+  --r-heading-margin: 0 0 20px 0;
+  --r-heading-font: Source Sans Pro, Helvetica, sans-serif;
+  --r-heading-color: #222;
+  --r-heading-line-height: 1.2;
+  --r-heading-letter-spacing: normal;
+  --r-heading-text-transform: uppercase;
+  --r-heading-text-shadow: none;
+  --r-heading-font-weight: 600;
+  
+  /* Размеры заголовков разных уровней */
+  --r-heading1-text-shadow: none;
+  --r-heading1-size: 2.5em;
+  --r-heading2-size: 1.6em;
+  --r-heading3-size: 1.3em;
+  --r-heading4-size: 1em;
+  
+  /* Настройки для кода */
+  --r-code-font: monospace;
+  
+  /* Цвета ссылок */
+  --r-link-color: #2a76dd;
+  --r-link-color-dark: #1a53a1;
+  --r-link-color-hover: #6ca0e8;
+  
+  /* Настройки выделения текста */
+  --r-selection-background-color: #98bdef;
+  --r-selection-color: #fff;
+}
+
+/* Основной контейнер презентации */
+.reveal-viewport {
+  background: #fff;
+  background-color: var(--r-background-color);
+}
+
+/* Стили для основного содержимого */
+.reveal {
+  font-family: var(--r-main-font);
+  font-size: var(--r-main-font-size);
+  font-weight: normal;
+  color: var(--r-main-color);
+}
+
+/* Стили для выделенного текста */
+.reveal ::selection {
+  color: var(--r-selection-color);
+  background: var(--r-selection-background-color);
+  text-shadow: none;
+}
+
+.reveal ::-moz-selection {
+  color: var(--r-selection-color);
+  background: var(--r-selection-background-color);
+  text-shadow: none;
+}
+
+/* Стили для слайдов */
+.reveal .slides section,
+.reveal .slides section > section {
+  line-height: 1.3;
+  font-weight: inherit;
+}
+
+/*********************************************
+ * СТИЛИ ЗАГОЛОВКОВ
+ *********************************************/
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  margin: var(--r-heading-margin);
+  color: var(--r-heading-color);
+  font-family: var(--r-heading-font);
+  font-weight: var(--r-heading-font-weight);
+  line-height: var(--r-heading-line-height);
+  letter-spacing: var(--r-heading-letter-spacing);
+  text-transform: var(--r-heading-text-transform);
+  text-shadow: var(--r-heading-text-shadow);
+  word-wrap: break-word;
+}
+
+/* Размеры заголовков разных уровней */
+.reveal h1 { font-size: var(--r-heading1-size); }
+.reveal h2 { font-size: var(--r-heading2-size); }
+.reveal h3 { font-size: var(--r-heading3-size); }
+.reveal h4 { font-size: var(--r-heading4-size); }
+
+/* Тень для заголовка первого уровня */
+.reveal h1 {
+  text-shadow: var(--r-heading1-text-shadow);
+}
+
+/*********************************************
+ * ОБЩИЕ СТИЛИ
+ *********************************************/
+.reveal p {
+  margin: var(--r-block-margin) 0;
+  line-height: 1.3;
+}
+
+/* Удаление нижнего отступа у последнего заголовка */
+.reveal h1:last-child,
+.reveal h2:last-child,
+.reveal h3:last-child,
+.reveal h4:last-child,
+.reveal h5:last-child,
+.reveal h6:last-child {
+  margin-bottom: 0;
+}
+
+/* Ограничение размеров медиа-элементов */
+.reveal img,
+.reveal video,
+.reveal iframe {
+  max-width: 95%;
+  max-height: 95%;
+}
+
+/* Стили для текста */
+.reveal strong,
+.reveal b { font-weight: bold; }
+.reveal em { font-style: italic; }
+
+/* Стили для списков */
+.reveal ol,
+.reveal dl,
+.reveal ul {
+  display: inline-block;
+  text-align: left;
+  margin: 0 0 0 1em;
+}
+
+.reveal ol { list-style-type: decimal; }
+.reveal ul { list-style-type: disc; }
+.reveal ul ul { list-style-type: square; }
+.reveal ul ul ul { list-style-type: circle; }
+
+/* Вложенные списки */
+.reveal ul ul,
+.reveal ul ol,
+.reveal ol ol,
+.reveal ol ul {
+  display: block;
+  margin-left: 40px;
+}
+
+/* Стили для определений */
+.reveal dt { font-weight: bold; }
+.reveal dd { margin-left: 40px; }
+
+/* Стили для цитат */
+.reveal blockquote {
+  display: block;
+  position: relative;
+  width: 70%;
+  margin: var(--r-block-margin) auto;
+  padding: 5px;
+  font-style: italic;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+}
+
+.reveal blockquote p:first-child,
+.reveal blockquote p:last-child {
+  display: inline-block;
+}
+
+.reveal q { font-style: italic; }
+
+/* Стили для блоков кода */
+.reveal pre {
+  display: block;
+  position: relative;
+  width: 90%;
+  margin: var(--r-block-margin) auto;
+  text-align: left;
+  font-size: 0.55em;
+  font-family: var(--r-code-font);
+  line-height: 1.2em;
+  word-wrap: break-word;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.reveal code {
+  font-family: var(--r-code-font);
+  text-transform: none;
+  tab-size: 2;
+}
+
+.reveal pre code {
+  display: block;
+  padding: 5px;
+  overflow: auto;
+  max-height: 400px;
+  word-wrap: normal;
+}
+
+.reveal .code-wrapper {
+  white-space: normal;
+}
+
+.reveal .code-wrapper code {
+  white-space: pre;
+}
+
+/* Стили для таблиц */
+.reveal table {
+  margin: auto;
+  font-family: Laptev;
+  font-size: 40px;
+
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.reveal table th { font-weight: bold; }
+
+.reveal table th,
+.reveal table td {
+  text-align: left;
+  padding: 0.2em 0.5em 0.2em 0.5em;
+  border-bottom: 1px solid;
+}
+
+/* Выравнивание в таблицах */
+.reveal table th[align=center],
+.reveal table td[align=center] {
+  text-align: center;
+}
+
+.reveal table th[align=right],
+.reveal table td[align=right] {
+  text-align: right;
+}
+
+.reveal table tbody tr:last-child th,
+.reveal table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Стили для верхних и нижних индексов */
+.reveal sup {
+  vertical-align: super;
+  font-size: smaller;
+}
+
+.reveal sub {
+  vertical-align: sub;
+  font-size: smaller;
+}
+
+/* Стили для мелкого текста */
+.reveal small {
+  display: inline-block;
+  font-size: 0.6em;
+  line-height: 1.2em;
+  vertical-align: top;
+}
+
+.reveal small * {
+  vertical-align: top;
+}
+
+/* Отступы для изображений */
+.reveal img {
+  margin: var(--r-block-margin) 0;
+}
+
+/*********************************************
+ * СТИЛИ ССЫЛОК
+ *********************************************/
+.reveal a {
+  color: var(--r-link-color);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.reveal a:hover {
+  color: var(--r-link-color-hover);
+  text-shadow: none;
+  border: none;
+}
+
+.reveal .roll span:after {
+  color: #fff;
+  background: var(--r-link-color-dark);
+}
+
+/*********************************************
+ * СТИЛИ РАМОК
+ *********************************************/
+.reveal .r-frame {
+  border: 4px solid var(--r-main-color);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+.reveal a .r-frame {
+  transition: all 0.15s linear;
+}
+
+.reveal a:hover .r-frame {
+  border-color: var(--r-link-color);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.55);
+}
+
+/*********************************************
+ * НАВИГАЦИЯ
+ *********************************************/
+.reveal .controls {
+  color: var(--r-link-color);
+}
+
+/*********************************************
+ * ИНДИКАТОР ПРОГРЕССА
+ *********************************************/
+.reveal .progress {
+  background: rgba(0, 0, 0, 0.2);
+  color: var(--r-link-color);
+}
+
+/*********************************************
+ * СТИЛИ ДЛЯ ПЕЧАТИ
+ *********************************************/
+@media print {
+  .backgrounds {
+    background-color: var(--r-background-color);
+  }
+}
+
+/*********************************************
+ * ПОДКЛЮЧЕНИЕ ШРИФТОВ
+ *********************************************/
+@font-face {
+  font-family: 'Hombre';
+  src: url('../../fonts/Hombre Italic Italic.otf') format('truetype');
+}
+
+@font-face {
+  font-family: 'denistina';
+  src: url('../../fonts/denistina_en.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'sriracha';
+  src: url('../../fonts/sriracha-cyrillic.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'beer money';
+  src: url('../../fonts/beer money.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'libertinusmath';
+  src: url('../../fonts/libertinusmath-regular.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Laptev';
+  src: url('../../fonts/Laptev_Brush.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'katherine';
+  src: url('../../fonts/katherine_plus.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'DuduCyrillic';
+  src: url('../../fonts/DuduCyrillic-BrWw.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/*********************************************
+ * АНИМАЦИИ ПРИ ПРОКРУТКЕ
+ *********************************************/
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scroll-animate.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Задержки для последовательного появления */
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+
+/*********************************************
+ * СПЕЦИАЛЬНЫЕ СТИЛИ ТЕКСТА
+ *********************************************/
+.txt{
+  align-content: center;
+  font-family: 'Laptev', sans-serif;
+  font-size: 40px; 
+  color: #0202ab; 
+  
+  line-height: 1.0;
+}
+
+/*********************************************
+ * СТИЛИ ДЛЯ SVG КОНТЕЙНЕРОВ
+ *********************************************/
+.svg-container {
+  margin-top: 0rem;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  margin: 1rem 0;
+  margin-top: 0px;
+}
+
+.svg-container svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.svg-responsive {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Для встроенных SVG через img */
+.svg-container img[src$=".svg"] {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/*********************************************
+ * АДАПТИВНЫЕ СТИЛИ
+ *********************************************/
+@media (max-width: 768px) {
+  .card {
+    background-size: cover; /* Изменение размера фона для мобильных */
+  }
+  
+  .svg-container {
+    width: 95%;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    background-image: url('introSVG/intro2-mobile.svg'); /* Мобильная версия фона */
+  }
+  
+  .svg-container svg,
+  .svg-container img[src$=".svg"] {
+    max-width: 95%;
+  }
+}
+
+/*********************************************
+ * СТИЛИ ДЛЯ IFRAME
+ *********************************************/
+ iframe {
+  image-rendering: crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  outline: 1px solid transparent;
+}
+
+/* Фикс для Retina-экранов */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  iframe {
+    image-rendering: pixelated;
+  }
+}
+
+/* Отключение масштабирования в мобильных браузерах */
+@viewport {
+  width: device-width;
+  zoom: 1.0;
+  user-zoom: fixed;
+}
+/* Защита от копирования */
+.text-content, .caption, h1, h2, h3, p, li {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  margin-left: 30px; /* Отступ текста от левого края */
+}
+
+/* Разрешаем выделение для интерактивных элементов */
+input, textarea, .plotly-container, .iframe-container {
+  -webkit-user-select: auto !important;
+  -moz-user-select: auto !important;
+  -ms-user-select: auto !important;
+  user-select: auto !important;
+}
+.media-container {
+  width: 100%;
+  margin: 0.7rem auto; /* auto по бокам для центрирования блока */
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  background: var(--light-bg);
+  display: flex;
+  justify-content: center; /* центрирование по горизонтали */
+  align-items: center;     /* центрирование по вертикали */
+  flex-direction: column;
+  padding: 0.rem;             /* исправлено: было "0.rem" */
+  position: relative;      /* исправлено: было "position: r" */
+}
+.ggb-iframe {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  transform: translateZ(0); /* Аппаратное ускорение */
+}
+/* Стили для кнопок-ссылок */
+.content-trigger {
+  font-family: 'Hombre';
+  font-size: 28px; 
+  color: #f506e1; 
+  cursor: pointer;
+  text-decoration: none;
+  margin: 10px 0;
+  display: inline-block;
+}
+
+/* Фон затемнения */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Само модальное окно */
+.modal-container {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+  width: 90%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow: auto;
+  position: relative;
+  animation: fadeIn 0.3s;
+}
+
+/* Заголовок окна */
+.modal-header {
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 10;
+}
+
+/* Кнопка закрытия */
+.modal-close {
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: bold;
+  color: #666;
+}
+
+/* Тело модального окна */
+.modal-body {
+  padding: 20px;
+}
