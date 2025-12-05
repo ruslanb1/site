@@ -1,0 +1,59 @@
+@import "tldraw/tldraw.css";
+
+/* Container style */
+.tldreveal {
+    /* Fill the full viewport by default, overlaid on the slide content */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0);
+}
+
+.tldreveal-inactive {
+    pointer-events: none;
+}
+
+.tldreveal-hidden {
+    display: none;
+}
+
+/* The tldraw canvas background should be transparent */
+.tldreveal .tl-container {
+    --color-background: rgba(255, 255, 255, 0);
+}
+
+/* Set the canvas size according to slide size and position it at the same place
+as the slides element. Note that we don't scale the canvas like the slides
+element is scaled, because that trips up tldraw. */
+.reveal .tldreveal .tl-canvas {
+    width: calc(var(--slide-width) * var(--slide-scale));
+    height: calc(var(--slide-height) * var(--slide-scale));
+    
+    margin: 0;
+
+    position: absolute;
+    inset: 50% auto auto 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Slide transition animation styles */
+.tldreveal.start-transition .tl-canvas {
+    transition: opacity 200ms cubic-bezier(0.260, 0.860, 0.440, 0.985);
+    opacity: 0;
+}
+
+.tldreveal.transitioning .tl-canvas {
+    transition: opacity 600ms cubic-bezier(0.260, 0.860, 0.440, 0.985);
+    opacity: 1;
+}
+
+.reveal[data-transition-speed="fast"] .tldreveal.transitioning .tl-canvas {
+    transition-duration: 200ms;
+}
+
+.reveal[data-transition-speed="slow"] .tldreveal.transitioning .tl-canvas {
+    transition-duration: 1000ms;
+}

@@ -1,0 +1,44 @@
+{
+  "name": "tldreveal",
+  "keywords": [
+    "reveal",
+    "tldraw"
+  ],
+  "version": "1.1.1",
+  "author": "Arthur Rump (https://arthurrump.com)",
+  "license": "MPL-2.0",
+  "repository": "github:arthurrump/tldreveal",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "/src",
+    "/dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "npm run clean && node build.js && tsc --emitDeclarationOnly --outDir dist",
+    "clean": "rimraf ./dist",
+    "prepublishOnly": "npm run build",
+    "prepack": "cp ../README.md README.md",
+    "postpack": "rm README.md"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.73",
+    "@types/react-dom": "^18.2.23",
+    "@types/reveal.js": "^5.0.3",
+    "esbuild": "^0.20.2",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.4.3"
+  },
+  "peerDependencies": {
+    "react": "^18",
+    "react-dom": "^18",
+    "reveal.js": "^5.0"
+  },
+  "dependencies": {
+    "@tldraw/state-react": "~2.4.4",
+    "browser-fs-access": "^0.35.0",
+    "tldraw": "~2.4.4"
+  }
+}
