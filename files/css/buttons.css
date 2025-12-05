@@ -1,0 +1,267 @@
+﻿﻿﻿﻿﻿﻿.ui-slider {
+	width: 12em;
+	margin: 8px 12px;
+	display: inline-block;
+	vertical-align: text-bottom;
+	background: #f0f0f0;
+	border: 2px solid #293080;
+	border-radius: 12px;
+	box-shadow: 2px 2px 4px rgba(41, 48, 128, 0.2);
+}
+
+.ui-spinner {
+	font-size: 0.9em;
+	text-align: left;
+	font-family: 'GOST_A', cursive;
+	color: #012245;
+}
+
+.ui-spinner-input {
+	width: 50px;
+	text-align: left;
+	border: 1px solid #4a5fc5;
+	border-radius: 4px;
+	background: #f4f6ff;
+	padding: 2px;
+	color: #012245;
+}
+
+.ui-icon {
+	font-size: 0.9em;
+	color: #293080;
+}
+
+.ui-button {
+	font-family: 'GOST_A', "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 0.95em;
+	background: #e6e9ff;
+	border: 2px solid #293080;
+	border-radius: 6px;
+	padding: 4px 8px;
+	box-shadow: 1px 1px 3px rgba(41, 48, 128, 0.3);
+	color: #012245;
+}
+
+.ui-slider .ui-slider-handle {
+	width: 1.6em;
+	height: 1.2em;
+	top: 50%;
+	margin-top: -0.7em;
+	margin-left: -0.8em;
+	line-height: 1.2em;
+	background: #4a5fc5;
+	border: 1px solid #293080;
+	border-radius: 4px;
+	box-shadow: 1px 1px 2px rgba(41, 48, 128, 0.4);
+}
+
+html .ui-button.withoutBorder {
+	border: 1px solid transparent;
+	background: none;
+	font-weight: normal;
+	color: #293080;
+	vertical-align: baseline;
+	-webkit-tap-highlight-color: transparent;
+	text-shadow: 0.5px 0.5px 1px rgba(41, 48, 128, 0.3);
+}
+
+html .ui-button.withoutBorder:hover {
+	border: 1px solid #6a7bd3;
+	border-radius: 3px;
+	background: #e6e9fa;
+	font-weight: normal;
+	color: #012245;
+	box-shadow: 0 0 3px rgba(41, 48, 128, 0.3);
+}
+
+/* Кнопки управления воспроизведением */
+.ui-button.play-button {
+    background: #f4f6ff;
+    border: 2px solid #293080;
+    border-radius: 8px;
+    padding: 8px 12px;
+    box-shadow: 
+        2px 2px 4px rgba(41, 48, 128, 0.2),
+        inset 1px 1px 2px rgba(255, 255, 255, 0.8);
+    position: relative;
+    font-family: 'GOST_A', cursive;
+    color: #012245;
+}
+
+.ui-button.play-button:before {
+    content: "▶";
+    margin-right: 4px;
+    font-size: 0.9em;
+    color: #293080;
+    text-shadow: 0.5px 0.5px 1px rgba(41, 48, 128, 0.4);
+}
+
+.ui-button.pause-button {
+    background: #f4f6ff;
+    border: 2px solid #293080;
+    border-radius: 8px;
+    padding: 8px 12px;
+    box-shadow: 
+        2px 2px 4px rgba(41, 48, 128, 0.2),
+        inset 1px 1px 2px rgba(255, 255, 255, 0.8);
+    position: relative;
+    font-family: 'GOST_A', cursive;
+    color: #012245;
+}
+
+.ui-button.pause-button:before {
+    content: "❚❚";
+    margin-right: 4px;
+    font-size: 0.9em;
+    color: #293080;
+    text-shadow: 0.5px 0.5px 1px rgba(41, 48, 128, 0.4);
+}
+
+.ui-button.stop-button {
+    background: #f4f6ff;
+    border: 2px solid #293080;
+    border-radius: 8px;
+    padding: 8px 12px;
+    box-shadow: 
+        2px 2px 4px rgba(41, 48, 128, 0.2),
+        inset 1px 1px 2px rgba(255, 255, 255, 0.8);
+    position: relative;
+    font-family: 'GOST_A', cursive;
+    color: #012245;
+}
+
+.ui-button.stop-button:before {
+    content: "■";
+    margin-right: 4px;
+    font-size: 0.9em;
+    color: #293080;
+    text-shadow: 0.5px 0.5px 1px rgba(41, 48, 128, 0.4);
+}
+
+.ui-button.rewind-button {
+    background: #f4f6ff;
+    border: 2px solid #293080;
+    border-radius: 8px;
+    padding: 8px 12px;
+    box-shadow: 
+        2px 2px 4px rgba(41, 48, 128, 0.2),
+        inset 1px 1px 2px rgba(255, 255, 255, 0.8);
+    position: relative;
+    font-family: 'GOST_A', cursive;
+    color: #012245;
+}
+
+.ui-button.rewind-button:before {
+    content: "⏪";
+    margin-right: 4px;
+    font-size: 0.9em;
+    color: #293080;
+    text-shadow: 0.5px 0.5px 1px rgba(41, 48, 128, 0.4);
+}
+
+.ui-button.forward-button {
+    background: #f4f6ff;
+    border: 2px solid #293080;
+    border-radius: 8px;
+    padding: 8px 12px;
+    box-shadow: 
+        2px 2px 4px rgba(41, 48, 128, 0.2),
+        inset 1px 1px 2px rgba(255, 255, 255, 0.8);
+    position: relative;
+    font-family: 'GOST_A', cursive;
+    color: #012245;
+}
+
+.ui-button.forward-button:before {
+    content: "⏩";
+    margin-right: 4px;
+    font-size: 0.9em;
+    color: #293080;
+    text-shadow: 0.5px 0.5px 1px rgba(41, 48, 128, 0.4);
+}
+
+/* Эффекты при наведении */
+.ui-button.play-button:hover,
+.ui-button.pause-button:hover,
+.ui-button.stop-button:hover,
+.ui-button.rewind-button:hover,
+.ui-button.forward-button:hover {
+    background: #d6dcff;
+    border-color: #4a5fc5;
+    box-shadow: 
+        1px 1px 3px rgba(41, 48, 128, 0.3),
+        inset 1px 1px 2px rgba(255, 255, 255, 0.6);
+    transform: translateY(1px);
+    color: #012245;
+}
+
+/* Активное состояние */
+.ui-button.play-button:active,
+.ui-button.pause-button:active,
+.ui-button.stop-button:active,
+.ui-button.rewind-button:active,
+.ui-button.forward-button:active {
+    background: #c8cee8;
+    box-shadow: 
+        inset 2px 2px 3px rgba(41, 48, 128, 0.2),
+        inset -1px -1px 2px rgba(255, 255, 255, 0.5);
+    transform: translateY(2px);
+    color: #012245;
+}
+
+/* Группа кнопок управления */
+.control-group {
+    display: inline-flex;
+    gap: 5px;
+    padding: 5px;
+    background: rgba(244, 246, 255, 0.7);
+    border-radius: 10px;
+    border: 1px solid #6a7bd3;
+    box-shadow: 
+        2px 2px 5px rgba(41, 48, 128, 0.2),
+        inset 1px 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Альтернативный вариант с рукописными иконками */
+.ui-button.hand-drawn {
+    background: #f4f6ff;
+    border: 2px solid #293080;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-family: 'GOST_A', cursive;
+    position: relative;
+    box-shadow: 
+        2px 2px 4px rgba(41, 48, 128, 0.25),
+        inset 1px 1px 2px rgba(255, 255, 255, 0.8);
+    color: #012245;
+}
+
+/* Эффект неровных границ для рукописного вида */
+.ui-button.hand-drawn:after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 1px solid rgba(41, 48, 128, 0.2);
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+/* Эффект чернильных пятен для некоторых элементов */
+.ui-button.ink-effect {
+    position: relative;
+}
+
+.ui-button.ink-effect:before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    width: 8px;
+    height: 8px;
+    background: rgba(41, 48, 128, 0.3);
+    border-radius: 50%;
+    pointer-events: none;
+}

@@ -1,0 +1,69 @@
+﻿/*
+* © by Sitsanlis Ilias
+* This notice shall be included in all copies or substantial portions of the Software.
+* Creative Commons 4.0/CC BY - NC - SA 4.0.
+*/
+
+html {
+	min-height: 100%;
+	touch-action: pan-x pan-y;
+    overflow:hidden;
+}
+canvas {
+	touch-action: none;
+}
+
+body,td,th {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	text-align: left;
+	font-size: 12px;
+	height: 100%;
+	margin: 0px;
+	min-height: 100vh;
+}
+
+#myCanvas {
+    border: 2px solid #9C9898;
+}
+
+.math {
+    font-family: Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif"; 
+    font-style: italic;
+    font-size: 1.1em;
+	/*vertical-align: -1px;*/
+}
+
+.units {
+    font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
+    font-size: 1.1em;
+    /*vertical-align: -1px;*/
+}
+
+.floatLeft {
+    position: relative;
+    float: left;
+    left: 0;
+	-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;
+}
+
+.floatRight {
+	float: left;
+	position: relative;
+	-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none; 
+	/*touch-action: none;*/;
+}
+
+.widget{
+	display: inline-block;
+	padding: 1px;
+    vertical-align:middle;
+	/*vertical-align:baseline;*/
+}
+
+.widget fixLen {
+	display: inline-block;
+}
+
+.field {
+    width: 180px;
+}

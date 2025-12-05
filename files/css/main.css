@@ -1,0 +1,196 @@
+﻿@font-face {
+    font-family: 'GOST_A';
+    src: url('../fonts/GOST_A.TTF') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'GOST_A';
+    src: url('../fonts/GOST_A.TTF') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+html {
+	min-height: 100%;
+	touch-action: pan-x pan-y;
+	background: #f5f5f5;
+	background-image: 
+		linear-gradient(90deg, transparent 99%, rgba(1, 34, 69, 0.1) 99%),
+		linear-gradient(transparent 99%, rgba(1, 34, 69, 0.1) 99%);
+	background-size: 20px 20px;
+}
+
+canvas {
+	touch-action: none;
+	filter: brightness(0.98) contrast(1.3);
+}
+
+body,td,th {
+	font-family: 'GOST_A', "Trebuchet MS", Arial, Helvetica, sans-serif;
+	text-align: left;
+	font-size: 13px;
+	height: 100%;
+	margin: 0px;
+	min-height: 100vh;
+	color: #012245;
+	text-shadow: 0.3px 0.3px 0.5px rgba(1, 34, 69, 0.2);
+}
+
+.math {
+    font-family: "Times New Roman", Times, serif;
+    font-style: italic;
+    font-size: 1.1em;
+    vertical-align: -1px;
+    color: #293080;
+}
+
+.units {
+    font-family: "GOST_A", Times, serif;
+    font-size: 1.1em;
+    vertical-align: -1px;
+    letter-spacing: 0.5px;
+    color: #012245;
+}
+
+.floatLeft {
+	float: left;
+	-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;
+	filter: drop-shadow(1px 1px 1px rgba(1, 34, 69, 0.2));
+}
+
+.floatRight {
+	float: left;
+	position: relative;
+	-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;
+	filter: drop-shadow(1px 1px 1px rgba(1, 34, 69, 0.2));
+}
+
+.widget{
+	display: inline-block;
+	padding: 4px;
+	vertical-align: middle;
+	background: rgba(244, 246, 255, 0.7);
+	border-radius: 3px;
+	margin: 1px;
+	border: 1px solid rgba(41, 48, 128, 0.3);
+}
+
+.widget fixLen {
+	display: inline-block;
+	letter-spacing: 0.3px;
+}
+
+/* Дополнение для контейнера кнопок */
+.controls-container {
+    background: rgba(230, 233, 255, 0.9);
+    border: 1px solid #4a5fc5;
+    border-radius: 12px;
+    padding: 10px;
+    margin: 10px 0;
+    box-shadow: 
+        3px 3px 6px rgba(41, 48, 128, 0.2),
+        inset 1px 1px 3px rgba(255, 255, 255, 0.7);
+    display: inline-block;
+}
+
+/* Стили для подписей кнопок */
+.button-label {
+    font-family: 'GOST_A', cursive;
+    font-size: 0.85em;
+    color: #293080;
+    margin-left: 3px;
+    text-shadow: 0.3px 0.3px 0.5px rgba(41, 48, 128, 0.3);
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .ui-button.play-button,
+    .ui-button.pause-button,
+    .ui-button.stop-button,
+    .ui-button.rewind-button,
+    .ui-button.forward-button {
+        padding: 10px 14px;
+        font-size: 1.1em;
+    }
+    
+    .control-group {
+        gap: 8px;
+        padding: 8px;
+    }
+    
+    body,td,th {
+        font-size: 14px;
+    }
+}
+
+/* Дополнительные эффекты для чернильного стиля */
+.pencil-texture {
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(1, 34, 69, 0.05) 1px, transparent 1px),
+        radial-gradient(circle at 80% 60%, rgba(1, 34, 69, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+}
+
+.hand-drawn-border {
+    border: 2px solid #293080;
+    border-radius: 8px;
+    position: relative;
+}
+
+.hand-drawn-border:before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border: 1px solid rgba(41, 48, 128, 0.2);
+    border-radius: 10px;
+    pointer-events: none;
+}
+
+/* Эффект бумажной текстуры с синими линиями */
+.paper-texture {
+    background-color: #fefefe;
+    background-image: 
+        linear-gradient(90deg, transparent 79px, #c8cee8 79px, #c8cee8 81px, transparent 81px),
+        linear-gradient(#e6e9fa .1em, transparent .1em);
+    background-size: 100% 1.2em;
+}
+
+/* Эффект чернильных клякс */
+.ink-blot {
+    position: relative;
+}
+
+.ink-blot:after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    width: 12px;
+    height: 12px;
+    background: radial-gradient(circle, rgba(41, 48, 128, 0.4) 30%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* Эффект подтека чернил */
+.ink-bleed {
+    position: relative;
+}
+
+.ink-bleed:before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 10%;
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(41, 48, 128, 0.3), transparent);
+    pointer-events: none;
+}
