@@ -1,0 +1,13 @@
+﻿/*!
+* © by Sitsanlis Ilias
+* This notice shall be included in all copies or substantial portions of the Software.
+*/
+
+
+function mouseDownGen(a){a.target.offset={x:a.target.x-720/canvas.width*a.stageX,y:a.target.y-420/canvas.height*a.stageY};a.target.addEventListener("pressmove",pressMoveGen);isDraggin=!0}
+function pressMoveGen(a){var b=720/canvas.width*a.stageX+a.target.offset.x,d=420/canvas.height*a.stageY+a.target.offset.y,c="body1"==a.target.name?R1:R2;b>Xmax-c*xScale&&(b=Xmax-c*xScale);b<Xmin+c*xScale&&(b=Xmin+c*xScale);d>Ymin+c*yScale&&(d=Ymin+c*yScale);d<Ymax-c*yScale&&(d=Ymax-c*yScale);a.target.x=b;a.target.y=d;afterNewPos(a.target.name)}
+function afterNewPos(a){x01=x1=(body1.x-X0)/xScale;y01=y1=(body1.y-Y0)/yScale;x02=x2=(body2.x-X0)/xScale;y02=y2=(body2.y-Y0)/yScale;var b=Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));b<=R1+R2-.001&&("body1"==a?arrangeBody1():"body2"==a&&arrangeBody2());helpLines.graphics.clear();Math.abs(y2-y1)<3/xScale?"body1"==a?(y1=y01=y2,helpLines.graphics.ss(1).sd([2,2],2).s("#666").mt(Xmin,Y0+y1*yScale).lt(Xmax,Y0+y1*yScale)):(y2=y02=y1,helpLines.graphics.ss(1).sd([2,2],2).s("#666").mt(Xmin,Y0+y2*yScale).lt(Xmax,
+Y0+y2*yScale)):"body1"==a?(b=Math.atan2(y2-y1,x2-x1),2>Math.abs((b-\u03b81)*toDeg)&&(b=Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1)),a=x02+b*Math.cos(\u03b81+PI),b=y02+b*Math.sin(\u03b81+PI),a>=xMin+R1&&a<=xMax-R1&&b<=yMax-R1&&b>=yMin+R1&&(x1=x01=a,y1=y01=b,helpLines.graphics.ss(1).sd([2,2],2).s("#666").mt(X0+x1*xScale,Y0+y1*yScale).lt(body2.x,body2.y)))):"body2"==a&&(b=Math.atan2(y1-y2,x1-x2),2>Math.abs((b-\u03b82)*toDeg)&&(b=Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1)),a=x01+b*Math.cos(\u03b82+PI),b=
+y01+b*Math.sin(\u03b82+PI),a>=xMin+R2&&a<=xMax-R2&&b<=yMax-R2&&b>=yMin+R2&&(x2=x02=a,y2=y02=b,helpLines.graphics.ss(1).sd([2,2],2).s("#666").mt(X0+x2*xScale,Y0+y2*yScale).lt(body1.x,body1.y))));positions()}function pressUpGen(a){helpLines.graphics.clear();isDraggin=!1;a.target.removeEventListener("pressmove",pressMoveGen);stage.update()}
+function arrangeBody1(){var a=Math.atan2(y2-y1,x2-x1);x2=x02=x1+(R1+R2)*Math.cos(a);y2=y02=y1+(R1+R2)*Math.sin(a);a=Math.atan2(y1-y2,x1-x2);x2<=xMin+R2+.001?x2=x02=xMin+R2:x2>=xMax-R2-.001&&(x2=x02=xMax-R2);y2>=yMax-R2-.001?y2=y02=yMax-R2:y2<=yMin+R2+.001&&(y2=y02=yMin+R2);x1=x01=x2+(R1+R2)*Math.cos(a);y1=y01=y2+(R1+R2)*Math.sin(a)}
+function arrangeBody2(){var a=Math.atan2(y1-y2,x1-x2);x1=x01=x2+(R1+R2)*Math.cos(a);y1=y01=y2+(R1+R2)*Math.sin(a);a=Math.atan2(y2-y1,x2-x1);x1<=xMin+R1+.001?x1=x01=xMin+R1:x1>=xMax-R1-.001&&(x1=x01=xMax-R1);y1>=yMax-R1-.001?y1=y01=yMax-R1:y1<=yMin+R1+.001&&(y1=y01=yMin+R1);x2=x02=x1+(R1+R2)*Math.cos(a);y2=y02=y1+(R1+R2)*Math.sin(a)};
