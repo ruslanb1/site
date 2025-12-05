@@ -1,0 +1,8 @@
+﻿/*!
+* © by Sitsanlis Ilias
+* This notice shall be included in all copies or substantial portions of the Software.
+* Creative Commons 4.0/CC BY - NC - SA 4.0. 
+*/
+
+
+function mouseDownGen(t){var e=canvas.width,a=canvas.height;t.target.offset={x:t.target.x-t.stageX*(720/e),y:t.target.y-t.stageY*(420/a)},t.target.addEventListener("pressmove",pressMoveGen)}function pressMoveGen(t){var e=canvas.width,a=canvas.height,r=t.stageX*(720/e)+t.target.offset.x,s=t.stageY*(420/a)+t.target.offset.y;t.target.x=r,t.target.y=s,positions()}function pressUpGen(t){t.target.removeEventListener("pressmove",pressMoveGen)}function mouseDownRuler(t){var e=canvas.width,a=canvas.height;t.target.offset={x:t.target.parent.x-t.stageX*(720/e),y:t.target.parent.y-t.stageY*(420/a)},t.target.addEventListener("pressmove",pressMoveRuler),t.target.oldRotation=t.target.parent.rotation,t.target.φi=Math.atan2(-t.target.offset.y,-t.target.offset.x)*toDeg,t.target.oldMouse={x:t.stageX*(720/e),y:t.stageY*(420/a)}}function pressMoveRuler(t){var e=canvas.width,a=canvas.height,r=t.stageX*(720/e)+t.target.offset.x,s=t.stageY*(420/a)+t.target.offset.y;if("rotator"==t.target.name){var n=t.stageX*(720/e)-t.target.parent.x,g=t.stageY*(420/a)-t.target.parent.y,o=Math.atan2(g,n)*toDeg-t.target.φi,v=t.target.oldRotation+o;Math.abs(v)<5&&(v=0),Math.abs(Math.abs(v)-180)<5&&(v=180*Math.round(φ/180)),t.target.parent.rotation=v}else t.target.parent.x=r,t.target.parent.y=s;stage.update()}function pressUpRuler(t){t.target.removeEventListener("pressmove",pressMoveRuler)}

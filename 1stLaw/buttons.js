@@ -1,0 +1,11 @@
+﻿/*!
+* © by Sitsanlis Ilias
+* This notice shall be included in all copies or substantial portions of the Software.
+* Creative Commons 4.0/CC BY - NC - SA 4.0. 
+*/
+
+var bMax=5,mMax=20.05;$(function(){$("#stop").button({text:!1,icons:{primary:"ui-icon-arrowrefresh-1-e"}}).click(function(){playMovie=!1;dt=dtSlow;restart();$(this).blur()})});
+$(function(){$("#bSpinner").spinner({min:0,max:20,step:.5,numberFormat:"n",spin:function(a,c){updateValue_b(a,c.value)},change:function(a){updateValue_b(a,this.value)}}).val(b);$("#bSpinner").keypress(function(a){$(this).val()>bMax?$(this).val(bMax):0>$(this).val()&&$(this).val(0);13==a.which&&(a.preventDefault(),updateValue_b(a,this.value))});$("#mSpinner").spinner({min:.1,max:mMax,step:.1,numberFormat:"n",spin:function(a,c){updateValue_m(a,c.value)},change:function(a){updateValue_m(a,this.value)}}).val(m);
+$("#mSpinner").keypress(function(a){$(this).val()>mMax?$(this).val(mMax):.1>$(this).val()&&$(this).val(.1);13==a.which&&(a.preventDefault(),updateValue_m(a,this.value))})});function updateValue_b(a,c){b=Number(c);$("#bSlider").slider({value:c});positions()}function updateValue_m(a,c){m=Number(c);$("#mSlider").slider({value:c});positions()}$(function(){$("#bSlider").slider({range:"min",min:0,max:bMax,step:.5,value:b,slide:function(a,c){b=Number(c.value);$("#bSpinner").spinner().val(c.value);positions()}})});
+$(function(){$("#mSlider").slider({range:"min",min:.1,max:mMax,step:.1,value:m,slide:function(a,c){m=Number(c.value);$("#mSpinner").spinner().val(c.value);positions()}})});$(function(){$("#vectorScaleSlider").slider({range:"min",min:0,max:2,step:.01,value:vectorScale,slide:function(a,c){vectorScale=Number(c.value);positions()},stop:function(a,c){vectorScale=Number(c.value);.2>=Math.abs(vectorScale-1)&&(vectorScale=1,$("#vectorScaleSlider").slider({value:vectorScale}));positions()}})});
+$(document).on("keydown",function(a){32==a.keyCode?(playMovie=!playMovie)||(forceBeforeStop=forceIsAct):16==a.keyCode&&0==playMovie&&showCircle()});$(document).on("keyup",function(a){16==a.keyCode&&(circle.graphics.clear(),stage.update())});
