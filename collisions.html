@@ -1,0 +1,176 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=1115, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	
+	<title>Столкновения</title>
+	<style>
+		html {
+			touch-action: pan-x pan-y;
+		}
+		canvas {
+			touch-action: none;
+		}
+		.bottom-right {
+			position: absolute;
+			bottom: 2px;
+			right: 4px;
+			font-size: 12px;
+		}
+		#custom-handle, #textVectorsScaleSlider {
+			width: 3em;
+			height: 1.6em;
+			top: 50%;
+			margin-top: -.8em;
+			margin-left:-1.5em;
+			text-align: center;
+			line-height: 1.6em;
+		}
+	</style>	
+
+	<script src="files/jquery/external/jquery/jquery.js"></script>
+	<script src="files/jquery/jquery-ui.js"></script>
+	<link href="files/jquery/jquery-ui.css" rel="stylesheet">
+	<link href="files/jquery/jquery-ui-1.12.icon-font.min.css" rel="stylesheet">
+	<script src="files/jquery/jquery.ui.touch-punch.min.js"></script>
+	<script src="files/createjs/easeljs.min.js"></script>
+	
+	<script src="files/scripts/cT.min.js"></script>
+	<script src="myScript.js"></script>
+	
+	<link rel="stylesheet" href="files/css/main.css">
+	<link rel="stylesheet" href="files/css/buttons.css">
+	
+	<script src="files/scripts/ui.js"></script>
+	<script src="files/scripts/infos.js"></script>
+	
+	<script src="collisions/buttons.js"></script>
+	<script src="collisions/dragAndDrop.js"></script>
+	<script src="collisions/functions.js"></script>
+	<script src="collisions/shapes.js"></script>
+	<script src="collisions/app.js"></script>
+	
+</head>
+
+<body onLoad="init()">
+	<div id="main">
+		<!--КНОПКИ И ХОЛСТ-->
+		<div id="left" class="floatLeft">
+			<div style="display: table;margin-right: auto; margin-left: auto;">
+				<!--КНОПКИ-->
+				<div id="foo" style="z-index: 1; visibility: hidden;">
+					<button id="rewind" class="withoutBorder">Медленно назад</button>
+					<button id="stop" class="withoutBorder">Сброс</button>
+					<button id="forward" class="withoutBorder">Медленно вперед</button>
+					<button id="beginning" class="withoutBorder">Кадр назад</button>
+					<button id="play" class="withoutBorder">&#9658;Старт</button>
+					<button id="end" class="withoutBorder">Кадр вперед</button>
+
+					<input type="checkbox" id="slowMotion" /><label for="slowMotion" class="withoutBorder">Замедление</label>
+					<input type="checkbox" id="cm" /><label for="cm" class="withoutBorder">Центр масс</label>
+					<input type="checkbox" id="path" /><label for="path" class="withoutBorder">Траектория</label>
+					<input type="checkbox" id="momentum" checked/><label for="momentum" class="withoutBorder">Импульс</label>
+				</div>
+				<!--ХОЛСТ-->
+				<canvas id="demoCanvas" width="720" height="420" style="background-color:rgba(255, 255, 255, 1.00);visibility: hidden">
+					Ваш браузер должен поддерживать HTML5
+				</canvas>
+			</div>
+		</div>
+
+		<!-- ПАРАМЕТРЫ -->
+		<div id="right" class="floatRight" >
+			<div id="variables" style="display: table;margin-right: auto; margin-left: auto;  border: 0px solid #9C9898;background-color:#ffffff;visibility: hidden">
+				<!--ПЕРЕМЕННЫЕ-->
+				<div style="padding: 5px; text-align: center">
+					<!--1-е ТЕЛО-->
+					<div class="widget">
+						<fieldset>
+							<legend>1-е тело</legend>
+							<!--Масса 1-->
+							<div class="widget">
+								<label for="m1spinner" class="ui-controlgroup-label"><span class="math">m</span><span class="units"><sub>1</sub> = </span></label>
+								<input id="m1Spinner"><span class="units"> кг&nbsp;</span>
+
+								<span class="math"></span><div id="m1Slider"></div>
+							</div>
+
+							<!--Скорость 1-->
+							<div class="widget">
+								<label for="v1spinner" class="ui-controlgroup-label"><span class="math">v</span><span class="units"><sub>1</sub> = </span></label>
+								<input id="v1Spinner"><span class="units"> м/с&nbsp;</span>
+
+								<span class="math"></span><div id="v1Slider"></div>
+							</div>
+
+							<!--Начальный угол 1-->
+							<div class="widget">
+								<label for="θ1spinner" class="ui-controlgroup-label"><span class="math">θ</span><span class="units"><sub>1</sub> = </span></label>
+								<input id="θ1Spinner"><span class="units"> °&nbsp;</span>
+
+								<span class="math"></span><div id="θ1Slider"></div>
+							</div>
+
+						</fieldset>
+					</div>
+
+
+					<div class="widget">
+						<fieldset>			
+							<legend>2-е тело</legend>
+							<!--Масса 2-->
+							<div class="widget">
+
+								<label for="m2spinner" class="ui-controlgroup-label"><span class="math">m</span><span class="units"><sub>2</sub> = </span></label>
+								<input id="m2Spinner"><span class="units"> кг&nbsp;</span>
+
+								<span class="math"></span><div id="m2Slider"></div>
+							</div>
+
+							<!--Скорость 2-->
+							<div class="widget">
+								<label for="v2spinner" class="ui-controlgroup-label"><span class="math">v</span><span class="units"><sub>2</sub> = </span></label>
+								<input id="v2Spinner"><span class="units"> м/с&nbsp;</span>
+
+								<span class="math"></span><div id="v2Slider"></div>
+							</div>
+
+							<!--Начальный угол 2-->
+							<div class="widget">
+								<label for="θ2spinner" class="ui-controlgroup-label"><span class="math">θ</span><span class="units"><sub>2</sub> = </span></label>
+								<input id="θ2Spinner"><span class="units"> °&nbsp;</span>
+
+								<span class="math"></span><div id="θ2Slider"></div>
+							</div>
+
+						</fieldset>
+					</div>
+
+
+
+					<div class="widget">
+						Масштаб векторов &nbsp;
+						<div id="vectorsScaleSlider">
+							<div id="textVectorsScaleSlider" class="ui-slider-handle"></div>
+						</div>
+					</div>
+
+					<input type="hidden" id="refresh" value="no">
+				</div>
+
+				<div id="CI" style="visibility:hidden">
+
+					<div class="bottom-right">
+						© seilias.gr <span class="ui-icon ui-icon-marker "></span>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

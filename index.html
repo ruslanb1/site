@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <title>Введение </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="revealjs/dist/reveal.css">
+    <link rel="stylesheet" href="revealjs/dist/theme/white.css" id="theme">
+    <link rel="stylesheet" href="revealjs/third-party-plugin/chalkboard/style.css">
+    <link rel="stylesheet" href="revealjs/third-party-plugin/customcontrols/style.css">
+    <link rel="stylesheet" href="mySetup/mylayout.css">
+    <link rel="stylesheet" href="revealjs/plugin/highlight/zenburn.css">
+    <link rel="stylesheet" href="https://unpkg.com/tldreveal/dist/bundle/index.css" />
+    <link rel="icon" type="image/png" href="images/icon/infinity32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="images/icon/infinity16.png" sizes="16x16">
+	
+     <script src="https://www.geogebra.org/apps/deployggb.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/plotly.js@latest/dist/plotly.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/MathCell/MathCell@latest/mathcell.min.js"></script>
+    <script src="https://www.geogebra.org/apps/deployggb.js"></script>
+    <script src="./applets/applets.js"></script>
+</head>
+<style>
+    /* Контейнер iframe с perfect centering */
+    .ultimate-iframe-container {
+        width: 78%;
+        height: 70vh;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: translateZ(0);
+        backface-visibility: hidden;
+        perspective: 1000px;
+    }
+
+    /* Сам iframe */
+    .ultimate-iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        background: white;
+        box-shadow: -40px 4px 20px rgba(243, 242, 242, 0.1);
+        transform: scale(1.001);
+        image-rendering: crisp-edges;
+        image-rendering: -webkit-optimize-contrast;
+    }
+
+    /* Фикс для Retina */
+    @media (-webkit-min-device-pixel-ratio: 2) {
+        .ultimate-iframe {
+            width: 99.95%;
+        }
+    }
+</style>
+
+
+
+
+
+
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <img  style="background: rgba(255,255,255,0.1);" width="164" height="110" data-src="logo_t.png" >
+				<h3 style="font-size:99%">Механика</h3>
+                
+				<div style="font-size:59%;text-align:left">
+					<table style="width: 100%;">
+						<tr>
+							<th colspan="3" style="text-align: center;">Изучение</th>
+							<th style="text-align: center;">Симуляторы &amp; Апплеты</th>
+						</tr>
+						<tr class="toc">
+							
+							<td>
+								<a href="impulse.html" target="_blank">#1. Исмпульс</a><br/>
+                                <a href="impulse.html" target="_blank">Закон сохранения</a><br/>
+								
+
+								
+
+
+
+								
+
+								
+							</td>
+							<td>
+								<a href="" target="_blank">Дополнительно</a><br/>
+								
+
+								
+
+						
+							</td>
+							<td>
+								<a href="" target="_blank">Профиль</a><br/>
+								
+
+							
+							</td>
+
+							<td>
+								
+								 <a href="" target="_blank">Симуляторы</a><br/>
+                                &#8226; 🖥️ <a href="collisions.html" target="_blank">Замкнутая система</a><br/>
+								&#8226; 🖥️ <a href="https://www.geogebra.org/m/eGNg58PU" target="_blank">Неупругий удар</a><br/>
+								
+
+								
+							</td>
+							
+							
+						</tr>
+
+					</table>
+
+				</div>
+
+				
+				
+				<br/><br/>
+			</section>
+
+
+
+        
+            
+                
+
+
+
+
+
+
+            
+
+            
+            
+
+        </div>
+    </div>
+
+
+
+
+
+
+    
+     <!-- СТРУКТУРА ЛАЙТБОКСА -->
+    <div id="general-lightbox" class="lightbox-overlay">
+        <div class="lightbox-content">
+            <span class="close-button">×</span>
+            <div id="lightbox-content-container" class="lightbox-image-container">
+                <!-- Сюда будет загружена увеличенная картинка -->
+            </div>
+        </div>
+    </div>
+
+    <script src="revealjs/dist/reveal.js"></script>
+    <script src="revealjs/plugin/math/math.js"></script>
+    <script src="revealjs/plugin/highlight/highlight.js"></script>
+    <script src="revealjs/plugin/zoom/zoom.js"></script>
+    <script src="revealjs/plugin/search/search.js"></script>
+    <script src="revealjs/third-party-plugin/chalkboard/plugin.js"></script>
+    <script src="revealjs/third-party-plugin/customcontrols/plugin.js"></script>
+    <script src="revealjs/third-party-plugin/menu/menu.js"></script>
+
+    <!-- Подключаем плагин appearance ПЕРЕД setup.js -->
+    <script src="revealjs/plugin/appearance/appearance.js"></script>
+
+    <!-- Наш файл setup.js, где происходит инициализация -->
+    <script src="mySetup/setup.js"></script>
+	
+    
+
+</body>
+</html>
