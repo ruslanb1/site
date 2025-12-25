@@ -365,7 +365,7 @@
             background-color: #f0f0f0;
         }
         
-        /* Модальное окно для документов */
+        /* Модальное окно для документов - ИСПРАВЛЕННЫЙ СТИЛЬ */
         .modal {
             display: none;
             position: fixed;
@@ -374,7 +374,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
+            background-color: rgba(0, 0, 0, 0.9);
             justify-content: center;
             align-items: center;
         }
@@ -397,19 +397,21 @@
         
         .close-modal {
             position: absolute;
-            top: 10px;
-            right: 15px;
+            top: 15px;
+            right: 20px;
             background-color: rgba(44, 62, 80, 0.8);
             color: white;
             border: none;
-            width: 30px;
-            height: 30px;
-            font-size: 1.2rem;
+            width: 40px;
+            height: 40px;
+            font-size: 1.5rem;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: 'IBM Plex Mono', 'Courier New', monospace;
+            border-radius: 50%;
+            z-index: 1001;
         }
         
         /* Адаптивность */
@@ -594,6 +596,21 @@
         a:hover {
             border-bottom: 1px solid #2c3e50;
         }
+        
+        /* Заглушка для изображений */
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+            color: #888;
+            font-family: 'IBM Plex Mono', 'Courier New', monospace;
+            font-size: 0.8rem;
+            text-align: center;
+            padding: 10px;
+        }
     </style>
 </head>
 <body>
@@ -688,7 +705,7 @@
                         <div class="document-gallery">
                             <div class="document-item" onclick="openModal('img/dip1.jpg')">
                                 <div class="document-preview">
-                                    <img src="img/dip1.jpg" alt="Диплом МГУ">
+                                    <img src="img/dip1.jpg" alt="Диплом МГУ" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'image-placeholder\'>Ошибка загрузки<br>dip1.jpg</div>';">
                                 </div>
                                
                             </div>
@@ -704,9 +721,9 @@
                         </div>
                         <!-- Галерея документов -->
                         <div class="document-gallery">
-                            <div class="document-item" onclick="openModal('./img/dip2.jpg')">
+                            <div class="document-item" onclick="openModal('img/dip2.jpg')">
                                 <div class="document-preview">
-                                    <img src="./img/dip2.jpg" alt="Диплом БашГУ">
+                                    <img src="img/dip2.jpg" alt="Диплом БашГУ" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'image-placeholder\'>Ошибка загрузки<br>dip2.jpg</div>';">
                                 </div>
                                
                             </div>
@@ -723,9 +740,9 @@
                         </div>
                         <!-- Галерея документов -->
                         <div class="document-gallery">
-                            <div class="document-item" onclick="openModal('./img/dip3.jpg')">
+                            <div class="document-item" onclick="openModal('img/dip3.jpg')">
                                 <div class="document-preview">
-                                    <img src="./img/dip3.jpg" alt="Диплом переподготовки">
+                                    <img src="img/dip3.jpg" alt="Диплом переподготовки" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'image-placeholder\'>Ошибка загрузки<br>dip3.jpg</div>';">
                                 </div>
                                
                             </div>
@@ -741,9 +758,9 @@
                         </div>
                         <!-- Галерея документов -->
                         <div class="document-gallery">
-                            <div class="document-item" onclick="openModal('./img/dip4.jpg')">
+                            <div class="document-item" onclick="openModal('img/dip4.jpg')">
                                 <div class="document-preview">
-                                    <img src="./img/dip4.jpg" alt="Диплом БАС">
+                                    <img src="img/dip4.jpg" alt="Диплом БАС" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'image-placeholder\'>Ошибка загрузки<br>dip4.jpg</div>';">
                                 </div>
                                 
                             </div>
@@ -760,9 +777,9 @@
                         </div>
                         <!-- Галерея документов -->
                         <div class="document-gallery">
-                            <div class="document-item" onclick="openModal('./img/dip5.jpg')">
+                            <div class="document-item" onclick="openModal('img/dip5.jpg')">
                                 <div class="document-preview">
-                                    <img src="./img/dip5.jpg" alt="Удостоверение">
+                                    <img src="img/dip5.jpg" alt="Удостоверение" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'image-placeholder\'>Ошибка загрузки<br>dip5.jpg</div>';">
                                 </div>
                                 
                             </div>
@@ -775,9 +792,9 @@
                             <br><br>
                     <!-- Галерея документов репетиторства -->
                     <div class="document-gallery">
-                        <div class="document-item" onclick="openModal('./img/magister.jpg')">
+                        <div class="document-item" onclick="openModal('img/magister.jpg')">
                             <div class="document-preview">
-                                <img src="./img/magister.jpg" alt="Стобальница 2019">
+                                <img src="img/magister.jpg" alt="Стобальница 2019" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'image-placeholder\'>Ошибка загрузки<br>magister.jpg</div>';">
                             </div>
                             
                         </div>
@@ -794,21 +811,21 @@
                     
                     <!-- Галерея документов общественных наград -->
                     <div class="document-gallery">
-                        <div class="document-item" onclick="openModal('./img/linar1.png')">
+                        <div class="document-item" onclick="openModal('img/linar1.png')">
                             <div class="document-preview">
-                                <img src="./img/linar1.png" alt="Почетная грамота">
+                                <img src="img/linar1.png" alt="Почетная грамота" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'image-placeholder\'>Ошибка загрузки<br>linar1.png</div>';">
                             </div>
                             
                         </div>
-                        <div class="document-item" onclick="openModal('./img/linar.png')">
+                        <div class="document-item" onclick="openModal('img/linar.png')">
                             <div class="document-preview">
-                                <img src="./img/linar.png" alt="Диплом Отец года">
+                                <img src="img/linar.png" alt="Диплом Отец года" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'image-placeholder\'>Ошибка загрузки<br>linar.png</div>';">
                             </div>
                             
                         </div>
-                        <div class="document-item" onclick="openModal('./img/linar2.png')">
+                        <div class="document-item" onclick="openModal('img/linar2.png')">
                             <div class="document-preview">
-                                <img src="./img/linar2.png" alt="Благодарность">
+                                <img src="img/linar2.png" alt="Благодарность" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'image-placeholder\'>Ошибка загрузки<br>linar2.png</div>';">
                             </div>
                            
                         </div>
@@ -821,9 +838,9 @@
                             <br><br>
                     <!-- Галерея документов репетиторства -->
                     <div class="document-gallery">
-                        <div class="document-item" onclick="openModal('./img/katya.PNG')">
+                        <div class="document-item" onclick="openModal('img/katya.PNG')">
                             <div class="document-preview">
-                                <img src="./img/katya.PNG" alt="Стобальница 2019">
+                                <img src="img/katya.PNG" alt="Стобальница 2019" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'image-placeholder\'>Ошибка загрузки<br>katya.PNG</div>';">
                             </div>
                             
                         </div>
@@ -860,9 +877,9 @@
                                 <td>Призер XXIV Научно-практической конференции школьников «Познание и творчество»</td>
                                 <td>2020 г., Уфа</td>
                                 <td>
-                                    <div class="document-item" onclick="openModal('./img/egorka.jpeg')">
+                                    <div class="document-item" onclick="openModal('img/egorka.jpeg')">
                                         <div class="document-preview">
-                                            <img src="./img/egorka.jpeg" alt="Призер конференции">
+                                            <img src="img/egorka.jpeg" alt="Призер конференции" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'image-placeholder\'>Ошибка<br>загрузки</div>';">
                                         </div>
                                     </div>
                                 </td>
@@ -871,9 +888,9 @@
                                 <td>Победитель Республиканского этапа Всероссийской олимпиады учебно-исследовательских проектов детей и молодежи «Созвездие — 2020»</td>
                                 <td>2019 г., Уфа</td>
                                 <td>
-                                    <div class="document-item" onclick="openModal('./img/lev1_1.PNG')">
+                                    <div class="document-item" onclick="openModal('img/lev1_1.PNG')">
                                         <div class="document-preview">
-                                            <img src="./img/lev1.PNG" alt="Победитель Созвездие">
+                                            <img src="img/lev1.PNG" alt="Победитель Созвездие" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'image-placeholder\'>Ошибка<br>загрузки</div>';">
                                         </div>
                                     </div>
                                 </td>
@@ -882,9 +899,9 @@
                                 <td>Победители  Научно-практической конференции школьников «Завтра начинается сегодня» в номинации «Физика», Орджоникидзевского района г. Уфа</td>
                                 <td>2019 г., Уфа</td>
                                 <td>
-                                    <div class="document-item" onclick="openModal('./img/ilia_artur.PNG')">
+                                    <div class="document-item" onclick="openModal('img/ilia_artur.PNG')">
                                         <div class="document-preview">
-                                            <img src="./img/ilia_artur.PNG" alt="Победитель физика">
+                                            <img src="img/ilia_artur.PNG" alt="Победитель физика" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'image-placeholder\'>Ошибка<br>загрузки</div>';">
                                         </div>
                                     </div>
                                 </td>
@@ -893,9 +910,9 @@
                                 <td>Победитель  Научно-практической конференции школьников «Завтра начинается сегодня» в номинации «Наука и техника», Орджоникидзевского района г. Уфа</td>
                                 <td>2019 г., Уфа</td>
                                 <td>
-                                    <div class="document-item" onclick="openModal('./img/lev3.PNG')">
+                                    <div class="document-item" onclick="openModal('img/lev3.PNG')">
                                         <div class="document-preview">
-                                            <img src="./img/lev3.PNG" alt="Победитель наука и техника">
+                                            <img src="img/lev3.PNG" alt="Победитель наука и техника" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'image-placeholder\'>Ошибка<br>загрузки</div>';">
                                         </div>
                                     </div>
                                 </td>
@@ -904,9 +921,9 @@
                                 <td>Призер  Научно-практической конференции школьников «Завтра начинается сегодня» в номинации «Наука и техника», Орджоникидзевского района г. Уфа</td>
                                 <td>2019 г., Уфа</td>
                                 <td>
-                                    <div class="document-item" onclick="openModal('./img/kamilla.PNG')">
+                                    <div class="document-item" onclick="openModal('img/kamilla.PNG')">
                                         <div class="document-preview">
-                                            <img src="./img/kamilla.PNG" alt="Призер физика">
+                                            <img src="img/kamilla.PNG" alt="Призер физика" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'image-placeholder\'>Ошибка<br>загрузки</div>';">
                                         </div>
                                     </div>
                                 </td>
@@ -915,23 +932,23 @@
                                 <td>Призер муниципального этапа Всероссийской олимпиады школьников по физике</td>
                                 <td>2019 г., Уфа</td>
                                 <td>
-                                    <a href="./xls/fisica_olimp_ufa.xls">Ссылка на документ</a>
+                                    <a href="xls/fisica_olimp_ufa.xls">Ссылка на документ</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Призер муниципального этапа Всероссийской олимпиады школьников по астрономии</td>
                                 <td>2019 г., Уфа</td>
                                 <td>
-                                    <a href="./xls/astro.xls">Ссылка на документ</a>
+                                    <a href="xls/astro.xls">Ссылка на документ</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Победитель международной конференции молодых ученых «Актуальные проблемы науки и техники» УГНТУ</td>
                                 <td>2018-2019 гг., Уфа</td>
                                 <td>
-                                    <div class="document-item" onclick="openModal('./img/6.linar_ugntu.jpg')">
+                                    <div class="document-item" onclick="openModal('img/6.linar_ugntu.jpg')">
                                         <div class="document-preview">
-                                            <img src="./img/6.linar_ugntu.jpg" alt="Победители УГНТУ">
+                                            <img src="img/6.linar_ugntu.jpg" alt="Победители УГНТУ" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'image-placeholder\'>Ошибка<br>загрузки</div>';">
                                         </div>
                                     </div>
                                 </td>
@@ -940,9 +957,9 @@
                                 <td>Призер международной конференции молодых ученых «Актуальные проблемы науки и техники» УГНТУ</td>
                                 <td>2018-2019 гг., Уфа</td>
                                 <td>
-                                    <div class="document-item" onclick="openModal('./img/angelina.jpg.jpg')">
+                                    <div class="document-item" onclick="openModal('img/angelina.jpg.jpg')">
                                         <div class="document-preview">
-                                            <img src="./img/angelina.jpg" alt="Победители УГНТУ">
+                                            <img src="img/angelina.jpg" alt="Победители УГНТУ" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'image-placeholder\'>Ошибка<br>загрузки</div>';">
                                         </div>
                                     </div>
                                 </td>
@@ -951,9 +968,9 @@
                                 <td>Призер Научно-практической конференции школьников «Интеллект будущего»</td>
                                 <td>2019 г., Белебей</td>
                                 <td>
-                                    <div class="document-item" onclick="openModal('./img/kasim.jpg')">
+                                    <div class="document-item" onclick="openModal('img/kasim.jpg')">
                                         <div class="document-preview">
-                                            <img src="./img/kasim.jpg" alt="Призер Интеллект будущего">
+                                            <img src="img/kasim.jpg" alt="Призер Интеллект будущего" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'image-placeholder\'>Ошибка<br>загрузки</div>';">
                                         </div>
                                     </div>
                                 </td>
@@ -962,16 +979,16 @@
                                 <td>Призер муниципального этапа Всероссийской олимпиады школьников по информатике</td>
                                 <td>2019 г., Белебей</td>
                                 <td>
-                                    <a href="./img/infa_olimp.jpg">Ссылка на документ</a>
+                                    <a href="img/infa_olimp.jpg">Ссылка на документ</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Призер республиканского конкурса работ по информационным технологиям «КРИТ-2018»</td>
                                 <td>2018 г., Уфа</td>
                                 <td>
-                                    <div class="document-item" onclick="openModal('./img/krit.jpg')">
+                                    <div class="document-item" onclick="openModal('img/krit.jpg')">
                                         <div class="document-preview">
-                                            <img src="./img/krit.jpg" alt="Призер КРИТ-2018">
+                                            <img src="img/krit.jpg" alt="Призер КРИТ-2018" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'image-placeholder\'>Ошибка<br>загрузки</div>';">
                                         </div>
                                     </div>
                                 </td>
@@ -980,9 +997,9 @@
                                 <td>Два призера Конкурса научных и творческих проектов по физике СФ БашГУ</td>
                                 <td>2018 г., Стерлитамак</td>
                                 <td>
-                                    <div class="document-item" onclick="openModal('./img/sterlik.jpg')">
+                                    <div class="document-item" onclick="openModal('img/sterlik.jpg')">
                                         <div class="document-preview">
-                                            <img src="./img/sterlik.jpg" alt="Призеры физика БашГУ">
+                                            <img src="img/sterlik.jpg" alt="Призеры физика БашГУ" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'image-placeholder\'>Ошибка<br>загрузки</div>';">
                                         </div>
                                     </div>
                                 </td>
@@ -991,9 +1008,9 @@
                                 <td>Победители и призеры муниципальных этапов Кубка имени Ю.А. Гагарина</td>
                                 <td>2018 г., Белебей</td>
                                 <td>
-                                    <div class="document-item" onclick="openModal('./img/gagarin.jpg')">
+                                    <div class="document-item" onclick="openModal('img/gagarin.jpg')">
                                         <div class="document-preview">
-                                            <img src="./img/gagarin.jpg" alt="Призер Гагарин">
+                                            <img src="img/gagarin.jpg" alt="Призер Гагарин" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'image-placeholder\'>Ошибка<br>загрузки</div>';">
                                         </div>
                                     </div>
                                 </td>
@@ -1003,9 +1020,9 @@
                                 <td>Призер муниципального этапа Всероссийской олимпиады школьников по информатике</td>
                                 <td>2016 г., Белебей</td>
                                 <td>
-                                    <div class="document-item" onclick="openModal('./img/holkin.jpg')">
+                                    <div class="document-item" onclick="openModal('img/holkin.jpg')">
                                         <div class="document-preview">
-                                            <img src="./img/holkin.jpg" alt="Призер информатика">
+                                            <img src="img/holkin.jpg" alt="Призер информатика" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'image-placeholder\'>Ошибка<br>загрузки</div>';">
                                         </div>
                                     </div>
                                 </td>
@@ -1025,21 +1042,21 @@
                     <!-- Галерея документов общественных наград -->
                     <div class="document-gallery">
                         
-                        <div class="document-item" onclick="openModal('./img/dip6.jpg')">
+                        <div class="document-item" onclick="openModal('img/dip6.jpg')">
                             <div class="document-preview">
-                                <img src="./img/dip6.jpg" alt="Диплом Отец года">
+                                <img src="img/dip6.jpg" alt="Диплом Отец года" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'image-placeholder\'>Ошибка загрузки<br>dip6.jpg</div>';">
                             </div>
                             
                         </div>
-                        <div class="document-item" onclick="openModal('./img/IMG_20230505_165233.jpg')">
+                        <div class="document-item" onclick="openModal('img/IMG_20230505_165233.jpg')">
                             <div class="document-preview">
-                                <img src="./img/IMG_20230505_165233.jpg" alt="Почетная грамота">
+                                <img src="img/IMG_20230505_165233.jpg" alt="Почетная грамота" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'image-placeholder\'>Ошибка загрузки<br>IMG_20230505_165233.jpg</div>';">
                             </div>
                             
                         </div>
-                        <div class="document-item" onclick="openModal('./img/mku.jpg')">
+                        <div class="document-item" onclick="openModal('img/mku.jpg')">
                             <div class="document-preview">
-                                <img src="./img/mku.jpg" alt="Благодарность">
+                                <img src="img/mku.jpg" alt="Благодарность" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'image-placeholder\'>Ошибка загрузки<br>mku.jpg</div>';">
                             </div>
                             
                         </div>
@@ -1059,15 +1076,15 @@
                     </div>
                     <!-- Галерея документов волонтерской деятельности -->
                     <div class="document-gallery">
-                        <div class="document-item" onclick="openModal('./img/vol.jpg')">
+                        <div class="document-item" onclick="openModal('img/vol.jpg')">
                             <div class="document-preview">
-                                <img src="./img/vol.jpg" alt="Волонтерская деятельность">
+                                <img src="img/vol.jpg" alt="Волонтерская деятельность" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'image-placeholder\'>Ошибка загрузки<br>vol.jpg</div>';">
                             </div>
                             
                         </div>
-                        <div class="document-item" onclick="openModal('./img/vol2.jpg')">
+                        <div class="document-item" onclick="openModal('img/vol2.jpg')">
                             <div class="document-preview">
-                                <img src="./img/vol2.jpg" alt="Волонтерская деятельность">
+                                <img src="img/vol2.jpg" alt="Волонтерская деятельность" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'image-placeholder\'>Ошибка загрузки<br>vol2.jpg</div>';">
                             </div>
                             
                         </div>
@@ -1083,8 +1100,13 @@
             <div>Басантаев Р. Н.</div>
         </div>
         
-        <!-- Модальное окно для просмотра документов -->
-        
+        <!-- Модальное окно для просмотра документов - ЭТО НУЖНО ДОБАВИТЬ -->
+        <div id="documentModal" class="modal">
+            <div class="modal-content">
+                <button class="close-modal" onclick="closeModal()">&times;</button>
+                <img id="modalImage" class="modal-image" src="" alt="Документ" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg width=\"400\" height=\"300\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"100%\" height=\"100%\" fill=\"%23f0f0f0\"/><text x=\"50%\" y=\"50%\" font-family=\"Arial\" font-size=\"16\" fill=\"%23888\" text-anchor=\"middle\" dy=\".3em\">Изображение не найдено</text></svg>';">
+            </div>
+        </div>
         
         <footer>
             
@@ -1095,12 +1117,18 @@
     </div>
     
     <script>
-        
-        
-        // Модальное окно для документов
+        // Модальное окно для документов - ИСПРАВЛЕННЫЙ КОД
         function openModal(imageSrc) {
+            console.log('Открытие модального окна:', imageSrc);
             const modal = document.getElementById('documentModal');
             const modalImage = document.getElementById('modalImage');
+            
+            if (!modal || !modalImage) {
+                console.error('Модальное окно не найдено в DOM');
+                alert('Модальное окно не загружено. Пожалуйста, обновите страницу.');
+                return;
+            }
+            
             modalImage.src = imageSrc;
             modal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
@@ -1108,20 +1136,48 @@
         
         function closeModal() {
             const modal = document.getElementById('documentModal');
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
         }
         
         // Закрытие модального окна при клике вне изображения
-        document.getElementById('documentModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('documentModal');
+            if (modal) {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        closeModal();
+                    }
+                });
             }
+            
+            // Добавляем обработчик ошибок для всех изображений
+            document.querySelectorAll('.document-preview img').forEach(img => {
+                img.addEventListener('error', function() {
+                    console.error('Ошибка загрузки изображения:', this.src);
+                    this.style.display = 'none';
+                    if (!this.parentElement.querySelector('.image-placeholder')) {
+                        const placeholder = document.createElement('div');
+                        placeholder.className = 'image-placeholder';
+                        placeholder.textContent = 'Изображение не загружено';
+                        this.parentElement.appendChild(placeholder);
+                    }
+                });
+            });
         });
         
         // Добавляем возможность печати резюме
         document.querySelector('.print-button').addEventListener('click', function() {
             window.print();
+        });
+        
+        // Закрытие модального окна по клавише ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
         });
     </script>
 </body>
