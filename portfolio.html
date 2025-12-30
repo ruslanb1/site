@@ -1629,21 +1629,21 @@
                         <!-- Слайд 1: HTML презентация 1 -->
                         <div class="demo-slide active" data-index="0">
                             <div class="iframe-container">
-                                <iframe class="demo-iframe" src="isobaric.html" title="Изобарический процесс - Физика"></iframe>
+                                <iframe class="demo-iframe" src="1_intro_barebones.html" title="Изобарический процесс - Физика"></iframe>
                             </div>
                         </div>
                         
                         <!-- Слайд 2: HTML презентация 2 -->
                         <div class="demo-slide" data-index="1">
                             <div class="iframe-container">
-                                <iframe class="demo-iframe" src="metod_plochdei.html" title="Изобарический процесс - Физика"></iframe>
+                                <iframe class="demo-iframe" src="isobaric.html" title="Изобарический процесс - Физика"></iframe>
                             </div>
                         </div>
                         
                         <!-- Слайд 3: HTML презентация 3 -->
                         <div class="demo-slide" data-index="2">
                             <div class="iframe-container">
-                                <iframe class="demo-iframe" id="htmlDemo3" title="Веб-презентация: Астрономия"></iframe>
+                                <iframe class="demo-iframe" src="metod_plochdei.html" title="Веб-презентация: Астрономия"></iframe>
                             </div>
                         </div>
                         
@@ -2156,7 +2156,15 @@
         // Данные для карусели
         // Данные для карусели
         const demoData = [
+           
+            
             {
+                title: "Законы термодинамики",
+                description: "Визуализация основных законов термодинамики",
+                type: "html",
+                url: "1_intro_barebones.html"
+            },
+             {
                 title: "Изобарический процесс",
                 description: "Интерактивная визуализация изобарического процесса в термодинамике",
                 type: "html",
@@ -2167,12 +2175,6 @@
                 description: "Интерактивная визуализация адиабатического процесса",
                 type: "html",
                 url: "metod_plochdei.html"
-            },
-            {
-                title: "Законы термодинамики",
-                description: "Визуализация основных законов термодинамики",
-                type: "html",
-                url: "thermodynamics.html"
             },
             {
                 title: "Видеоурок: Квантовая физика",
