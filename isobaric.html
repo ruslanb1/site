@@ -1,0 +1,213 @@
+﻿
+
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=1350, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	
+	<title>Изменения состояния газа - Изобарный процесс</title>
+	<style>
+		@font-face {
+			font-family: 'GOST_A';
+			src: url('fonts/GOST_A.TTF') format('truetype');
+			font-weight: normal;
+			font-style: normal;
+			font-display: swap;
+		}
+	</style>	
+
+	<!--<script src="files/jquery/external/jquery/jquery-3.4.1.min.js"></script>-->
+	<script src="files/jquery/external/jquery/jquery.js"></script>
+	<script src="files/jquery/jquery-ui.js"></script>
+	<link href="files/jquery/jquery-ui.css" rel="stylesheet">
+	<link href="files/jquery/jquery-ui-1.12.icon-font.min.css" rel="stylesheet">
+	<script src="files/jquery/jquery.ui.touch-punch.min.js"></script>
+	<script src="files/createjs/easeljs.min.js"></script>
+	
+	<link rel="stylesheet" href="files/css/main.css">
+	<link rel="stylesheet" href="files/css/buttons.css">
+	
+	<script src="files/scripts/cT.min.js"></script>
+	<script src="myScript.js"></script>
+	
+	<script src="files/scripts/ui.js"></script>
+	<script src="files/scripts/infos.js"></script>
+	<script src="files/scripts/mainButtons.js"></script>
+	
+	<script src="isobaric/buttons.js"></script>
+	<script src="isobaric/dragAndDrop.js"></script>
+	<script src="isobaric/functions.js"></script>
+	<script src="isobaric/appFunctions.js"></script>
+	<script src="isobaric/shapes.js"></script>
+	<script src="isobaric/app.js"></script>
+	
+</head>
+	
+<body onLoad="init()">
+	<div id="main">
+	<!--КНОПКИ И CANVAS-->
+	<div id="left" class="floatLeft">
+		<div style="display: table;margin-right: auto; margin-left: auto;">
+			<!--КНОПКИ-->
+			<div id="foo" style="z-index: 1; visibility: hidden;font-size:0.95em ">
+				
+				<button id="stop" class="withoutBorder">Перезапуск</button>
+				<button id="forward" class="withoutBorder">Медленное движение вперед</button>
+				
+				<button id="play" class="withoutBorder">&#9658;Пуск</button>
+				
+				
+				<input type="checkbox" id="showMoleculesID" checked/><label for="showMoleculesID" class="withoutBorder">Молекулы</label>
+				
+				<span id="buttons">
+					<input type="checkbox" id="plotsID" checked/><label for="plotsID" class="withoutBorder">Графики</label>
+					<input type="checkbox" id="workID"/><label for="workID" class="withoutBorder">Площадь</label>
+					<input type="checkbox" id="vectorsID"/><label for="vectorsID" class="withoutBorder">Векторы</label>
+					Точки: <button id="plus" class="withoutBorder">Добавить точку</button>
+					<button id="minus" class="withoutBorder">Удалить точку</button>
+					<button id="clear" class="withoutBorder">очистить</button>
+				</span>
+				
+				
+			</div>
+			<!--CANVAS-->
+			<canvas id="demoCanvas" width="720" height="420" style="background-color:rgba(255, 255, 255, 1.00);visibility: hidden">
+				Ваш браузер должен поддерживать HTML5
+			</canvas>
+		</div>
+	</div>
+	
+	<!-- ПАРАМЕТРЫ -->
+	<div id="right" class="floatRight" >
+		<div id="variables" style="display: table;margin-right: auto; margin-left: auto;  border: 0px solid #9C9898;background-color:#ffffff;visibility: hidden">
+			<!--ПЕРЕМЕННЫЕ-->
+			<div style="padding: 5px; text-align: center;font-size:0.95em">
+				
+				
+				<!--Давление-->
+				<div class="widget">
+					<fieldset>
+						<legend>Давление</legend>
+						
+						<fixLen>
+							<label for="pSpinner" class="ui-controlgroup-label"><span class="math">p</span><span class="units"> = </span></label>
+							<input id="pSpinner"><span class="units"> атм&nbsp;</span>
+						</fixLen>
+
+						<div id="pSlider" style="width: 11em"></div>
+					</fieldset>
+				</div>
+				
+				<!--Объем-->
+				<div class="widget">
+					<fieldset>
+						<legend>Объем</legend>
+						
+						<fixLen>
+							<label for="VSpinner" class="ui-controlgroup-label"><span class="math">V</span><span class="units"> = </span></label>
+							<input id="VSpinner"><span class="units"> л&nbsp;</span>
+						</fixLen>
+
+						<div id="VSlider" style="width: 11em"></div>
+					</fieldset>
+				</div>
+				
+				<!--Температура-->
+				<div class="widget">
+					<fieldset>
+						<legend>Температура</legend>
+						
+						<fixLen>
+							<label for="TSpinner" class="ui-controlgroup-label"><span class="math">T</span><span class="units"> = </span></label>
+							<input id="TSpinner"><span class="units"> К&nbsp;</span>
+						</fixLen>
+
+						<div id="TSlider" style="width: 11em"></div>
+					</fieldset>
+				</div>
+				
+				
+				<!--моль-->
+				<div class="widget">
+					<fieldset>
+						<legend>моль</legend>
+						
+						<fixLen>
+							<label for="nSpinner" class="ui-controlgroup-label"><span class="math">n</span><span class="units"> = </span></label>
+							<input id="nSpinner"> <span class="units"> моль&nbsp;</span>
+						</fixLen>
+
+						<div id="nSlider" style="width: 11em"></div>
+					</fieldset>
+				</div>
+				
+				<!--Скорость теплообмена-->
+				<div class="widget">
+					<fieldset>
+						<legend>Скорость теплообмена</legend>
+						
+						<fixLen>
+							<label for="dQSpinner" class="ui-controlgroup-label"><span class="math">dQ/dt</span><span class="units"> = </span></label>
+							<input id="dQSpinner"><span class="units"> Дж/с&nbsp;</span>
+						</fixLen>
+
+						<div id="dQSlider" style="width: 11em"></div>
+					</fieldset>
+				</div>
+				
+				<div class="widget">
+					
+					<fieldset>
+						<legend>Диаграмма</legend>
+						<div class="widget">
+							<label for="pV" ><span class="math">p</span> — <span class="math">V</span></label>
+							<input type="radio" name="radio-1" id="pV" value="0" checked>
+						</div>
+						<div class="widget">
+							<label for="pT" ><span class="math">p</span> — <span class="math">T</span></label>
+							<input type="radio" name="radio-1" id="pT" value="1">
+						</div>
+						<div class="widget">
+							<label for="VT" ><span class="math">V</span> — <span class="math">T</span></label>
+							<input type="radio" name="radio-1" id="VT" value="2">
+						</div>
+						<div class="widget">
+							<label for="none">Нет</label>
+							<input type="radio" name="radio-1" id="none" value="3">
+						</div>
+					</fieldset>
+					
+						
+					
+				</div>
+				<div class="widget" id="copys">
+					<fieldset>
+						<legend>Копии</legend>
+					<div class="widget">
+						<button id="cloneGraph" ><span class="ui-icon ui-icon-camera"></span></button>
+					</div>
+					<div class="widget">
+						<button id="both" >очистить</button>
+					</div>
+					</fieldset>
+				</div>
+				
+				
+				
+				
+				
+				
+				
+				<input type="hidden" id="refresh" value="no">
+			</div>
+
+			
+			
+		</div>
+	</div>
+	</div>
+	
+</body>
+</html>
