@@ -1554,8 +1554,8 @@
                 <div class="hero-photo-section">
                     <div class="photo-container">
                         <div class="photo-placeholder">
-                            <i class="fas fa-user-graduate"></i>
-                            <!-- Замените на <img src="mobile-navigation-animation/dist/0dVAI6hSGItsMBfYwSBEcs9InA6BLkmw3Iu_71qno-vrOnsrX89E6ayIf4yFvtEb_t-EjavZJ-L7IXu1hBf8FfgZ.jpg" alt="Руслан Басантаев"> -->
+                            <!-- ФОТО ПРОФИЛЯ - ЗАМЕНИТЕ НА ВАШЕ ИЗОБРАЖЕНИЕ -->
+                            <img src="img/profile-photo.jpg" alt="Руслан Басантаев" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
                         </div>
                     </div>
                     <div class="photo-info">
@@ -2154,10 +2154,7 @@
         const demoIndicators = document.querySelectorAll('.demo-indicator');
         
         // Данные для карусели
-        // Данные для карусели
         const demoData = [
-           
-            
             {
                 title: "Законы термодинамики",
                 description: "Визуализация основных законов термодинамики",
@@ -2423,6 +2420,8 @@
         // Modal functions для вертикальных фото
         function openModal(itemId) {
             const modal = document.getElementById('imageModal');
+            
+            // Названия для модального окна
             const itemTitles = {
                 'gold-medal': 'Золотой медалист МФТИ',
                 'ege-100': '100 баллов на ЕГЭ',
@@ -2440,6 +2439,7 @@
                 'doc6': 'Победитель международной конференции УГНТУ'
             };
             
+            // Описания для модального окна
             const itemDescriptions = {
                 'gold-medal': 'Документы, подтверждающие наставничество магистранта МФТИ - золотого медалиста олимпиады «Я-профессионал».',
                 'ege-100': 'Подтверждение результата ученицы на ЕГЭ по физике (100 баллов).',
@@ -2448,9 +2448,63 @@
                 'magister': 'Диплом II степени регионального конкурса "Magister posterum / Учитель будущего".',
                 'father-award': 'Диплом лауреата общественной награды «Отцовская доблесть».',
                 'education-award': 'Почетная грамота за заслуги в области просвещения.',
-                'teacher-year': 'Благодарность за подготовку призера конкурса «Учитель года».'
+                'teacher-year': 'Благодарность за подготовку призера конкурса «Учитель года».',
+                'doc1': 'Призер XXIV Научно-практической конференции школьников «Познание и творчество».',
+                'doc2': 'Победитель Республиканского этапа Всероссийской олимпиады «Созвездие — 2020».',
+                'doc3': 'Победители Научно-практической конференции «Завтра начинается сегодня» (Физика).',
+                'doc4': 'Призер муниципального этапа Всероссийской олимпиады по физике.',
+                'doc5': 'Призер муниципального этапа Всероссийской олимпиады по астрономии.',
+                'doc6': 'Победитель международной конференции «Актуальные проблемы науки и техники» УГНТУ.'
             };
             
+            // МАССИВЫ С ССЫЛКАМИ НА ЛОКАЛЬНЫЕ ИЗОБРАЖЕНИЯ
+            // ВАЖНО: Замените пути на реальные пути к вашим изображениям в папке img/
+            const documentImages = {
+                // Дипломы высшего образования (3 страницы)
+                'dip1': [
+                    'img/diplomas/dip1-page1.jpg',
+                    'img/diplomas/dip1-page2.jpg',
+                    'img/diplomas/dip1-page3.jpg'
+                ],
+                // Профессиональная переподготовка (2 документа)
+                'dip3': [
+                    'img/certificates/cert1.jpg',
+                    'img/certificates/cert2.jpg'
+                ],
+                // Золотой медалист МФТИ
+                'gold-medal': [
+                    'img/achievements/gold-medal-certificate.jpg'
+                ],
+                // 100 баллов ЕГЭ
+                'ege-100': [
+                    'img/achievements/ege-100-certificate.jpg'
+                ],
+                // Учитель будущего
+                'magister': [
+                    'img/awards/teacher-future-diploma.jpg'
+                ],
+                // Отцовская доблесть
+                'father-award': [
+                    'img/awards/father-award.jpg'
+                ],
+                // Заслуги в просвещении
+                'education-award': [
+                    'img/awards/education-award.jpg'
+                ],
+                // Подготовка призера конкурса
+                'teacher-year': [
+                    'img/awards/teacher-year-certificate.jpg'
+                ],
+                // Достижения учеников
+                'doc1': ['img/student-achievements/achievement1.jpg'],
+                'doc2': ['img/student-achievements/achievement2.jpg'],
+                'doc3': ['img/student-achievements/achievement3.jpg'],
+                'doc4': ['img/student-achievements/achievement4.jpg'],
+                'doc5': ['img/student-achievements/achievement5.jpg'],
+                'doc6': ['img/student-achievements/achievement6.jpg']
+            };
+            
+            // Устанавливаем заголовок и описание
             document.getElementById('modalTitle').textContent = itemTitles[itemId] || `Документ: ${itemId}`;
             document.getElementById('modalDescription').textContent = itemDescriptions[itemId] || 'Здесь будут отображены изображения документов.';
             
@@ -2458,47 +2512,38 @@
             currentSlide = 0;
             updateCarousel();
             
-            // Создаем вертикальные фото (1080x1920)
-            const imageUrls = [];
-            for (let i = 1; i <= 3; i++) {
-                imageUrls.push(`data:image/svg+xml,${encodeURIComponent(createVerticalDocumentSVG(itemTitles[itemId] || 'Документ', i))}`);
+            // Получаем изображения для текущего itemId
+            const imageUrls = documentImages[itemId] || [];
+            
+            // Скрываем/показываем слайды в зависимости от количества изображений
+            slides.forEach((slide, index) => {
+                if (index < imageUrls.length) {
+                    slide.style.display = 'block';
+                    // Устанавливаем реальное изображение
+                    document.getElementById(`modalImage${index + 1}`).src = imageUrls[index];
+                } else {
+                    slide.style.display = 'none';
+                }
+            });
+            
+            // Обновляем индикаторы
+            const indicatorsContainer = document.querySelector('.carousel-indicators');
+            indicatorsContainer.innerHTML = ''; // Очищаем старые индикаторы
+            
+            for (let i = 0; i < imageUrls.length; i++) {
+                const indicator = document.createElement('div');
+                indicator.className = 'carousel-indicator';
+                if (i === 0) indicator.classList.add('active');
+                indicator.onclick = () => goToSlide(i);
+                indicatorsContainer.appendChild(indicator);
             }
             
-            // Устанавливаем изображения
-            document.getElementById('modalImage1').src = imageUrls[0];
-            document.getElementById('modalImage2').src = imageUrls[1];
-            document.getElementById('modalImage3').src = imageUrls[2];
+            // Обновляем счетчик
+            document.getElementById('modalCounter').textContent = `1/${imageUrls.length}`;
             
+            // Показываем модальное окно
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
-        }
-
-        function createVerticalDocumentSVG(title, number) {
-            return `<svg xmlns='http://www.w3.org/2000/svg' width='1080' height='1920' viewBox='0 0 1080 1920'>
-                <rect width='1080' height='1920' fill='#0f172a'/>
-                <rect x='40' y='40' width='1000' height='1840' fill='#1e293b' stroke='#3b82f6' stroke-width='3'/>
-                
-                <!-- Верхняя часть документа -->
-                <rect x='100' y='100' width='880' height='150' fill='rgba(59, 130, 246, 0.1)' rx='10'/>
-                <text x='540' y='180' font-family='Arial' font-size='48' fill='#3b82f6' text-anchor='middle' font-weight='bold'>${title}</text>
-                
-                <!-- Содержимое документа -->
-                <rect x='100' y='300' width='880' height='1400' fill='rgba(255, 255, 255, 0.05)' rx='15'/>
-                
-                <!-- Печать -->
-                <circle cx='540' cy='1000' r='120' fill='none' stroke='#fbbf24' stroke-width='8' stroke-dasharray='20,10'/>
-                <text x='540' y='1010' font-family='Arial' font-size='36' fill='#fbbf24' text-anchor='middle'>ПЕЧАТЬ</text>
-                
-                <!-- Подпись -->
-                <line x1='350' y1='1600' x2='730' y2='1600' stroke='#3b82f6' stroke-width='4'/>
-                <text x='540' y='1650' font-family='Arial' font-size='32' fill='#cbd5e1' text-anchor='middle'>Подпись и печать</text>
-                
-                <!-- Номер страницы -->
-                <text x='540' y='1850' font-family='Arial' font-size='28' fill='#64748b' text-anchor='middle'>Страница ${number} из 3</text>
-                
-                <!-- Водяной знак -->
-                <text x='540' y='1200' font-family='Arial' font-size='120' fill='rgba(59, 130, 246, 0.05)' text-anchor='middle' font-weight='bold' transform='rotate(-45, 540, 1200)'>ОБРАЗЕЦ</text>
-            </svg>`;
         }
 
         function closeModal() {
