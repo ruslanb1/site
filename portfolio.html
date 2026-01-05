@@ -1132,9 +1132,8 @@
             letter-spacing: 1px;
         }
 
-        /* Modal with Carousel для вертикальных фото */
+        /* Modal with Carousel для вертикальных фото - ИСПРАВЛЕНО */
         .modal {
-            display: none;
             position: fixed;
             top: 0;
             left: 0;
@@ -1145,16 +1144,15 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
+            display: flex;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
 
         .modal.active {
-            display: flex;
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            opacity: 1;
+            visibility: visible;
         }
 
         .modal-content {
@@ -1732,7 +1730,7 @@
                         <i class="fas fa-university"></i>
                     </div>
                     <h3>Высшее образование</h3>
-                    <p>Два высших образования в технической и педагогической сферах</p>
+                    <p>Два высших образований в технической и педагогической сферах</p>
                     
                     <div class="education-details">
                         <p><i class="fas fa-graduation-cap"></i> <strong>Магнитогорский государственный университет</strong></p>
@@ -2177,13 +2175,13 @@
                 title: "Видеоурок: Квантовая физика",
                 description: "Объяснение основ квантовой механики с визуализацией",
                 type: "video",
-                url: "https://www.youtube.com/embed/dQw4w9WgXcQ" // Замените на ваше видео
+                url: "https://www.youtube.com/embed/dQw4w9WgXcQ"
             },
             {
                 title: "Видеоурок: Оптика",
                 description: "Демонстрация опытов по геометрической оптике",
                 type: "video",
-                url: "https://www.youtube.com/embed/dQw4w9WgXcQ" // Замените на ваше видео
+                url: "https://www.youtube.com/embed/dQw4w9WgXcQ"
             }
         ];
         
@@ -2201,172 +2199,6 @@
             // Обновляем заголовок и описание
             document.getElementById('demoTitle').textContent = demoData[currentDemoSlide].title;
             document.getElementById('demoDescription').textContent = demoData[currentDemoSlide].description;
-            
-            // Загружаем контент для текущего слайда
-            loadDemoContent(currentDemoSlide);
-        }
-        
-        function loadDemoContent(slideIndex) {
-            const data = demoData[slideIndex];
-            
-            if (data.type === "html") {
-                // Для HTML-презентаций
-                const iframeId = `htmlDemo${slideIndex + 1}`;
-                const iframe = document.getElementById(iframeId);
-                
-                // Устанавливаем src для iframe
-                // В реальном проекте раскомментируйте строку ниже и замените URL
-                // iframe.src = data.url;
-                
-                // Для демонстрации создаем простой HTML
-                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-                iframeDoc.open();
-                iframeDoc.write(`
-                    <!DOCTYPE html>
-                    <html>
-                    <head>
-                        <style>
-                            body {
-                                margin: 0;
-                                padding: 0;
-                                font-family: Arial, sans-serif;
-                                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                                color: white;
-                                height: 100vh;
-                                display: flex;
-                                flex-direction: column;
-                                align-items: center;
-                                justify-content: center;
-                                text-align: center;
-                            }
-                            .container {
-                                max-width: 800px;
-                                padding: 40px;
-                            }
-                            h1 {
-                                font-size: 2.5rem;
-                                margin-bottom: 20px;
-                                text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-                            }
-                            p {
-                                font-size: 1.2rem;
-                                line-height: 1.6;
-                                margin-bottom: 30px;
-                            }
-                            .demo-placeholder {
-                                background: rgba(255,255,255,0.1);
-                                border-radius: 10px;
-                                padding: 30px;
-                                margin: 20px 0;
-                                border: 2px dashed rgba(255,255,255,0.3);
-                            }
-                            .placeholder-title {
-                                font-size: 1.5rem;
-                                margin-bottom: 15px;
-                                color: #fbbf24;
-                            }
-                        </style>
-                    </head>
-                    <body>
-                        <div class="container">
-                            <h1>${data.title}</h1>
-                            <p>${data.description}</p>
-                            <div class="demo-placeholder">
-                                <div class="placeholder-title">Место для вашей HTML-презентации</div>
-                                <p>Здесь будет отображаться ваша интерактивная веб-презентация</p>
-                                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.7);">
-                                    Замените URL в файле script.js на адрес вашей презентации
-                                </p>
-                            </div>
-                            <p style="font-size: 0.9rem; margin-top: 20px;">
-                                Это демо-контент. В реальном проекте здесь будет ваша HTML-презентация.
-                            </p>
-                        </div>
-                    </body>
-                    </html>
-                `);
-                iframeDoc.close();
-                
-            } else if (data.type === "video") {
-                // Для видео
-                const videoId = `videoDemo${slideIndex - 2}`; // Индексы 3 и 4
-                const videoIframe = document.getElementById(videoId);
-                
-                // Устанавливаем src для видео iframe
-                // В реальном проекте раскомментируйте строку ниже и замените URL
-                // videoIframe.src = data.url;
-                
-                // Для демонстрации создаем заглушку
-                const videoDoc = videoIframe.contentDocument || videoIframe.contentWindow.document;
-                videoDoc.open();
-                videoDoc.write(`
-                    <!DOCTYPE html>
-                    <html>
-                    <head>
-                        <style>
-                            body {
-                                margin: 0;
-                                padding: 0;
-                                font-family: Arial, sans-serif;
-                                background: #0f172a;
-                                color: white;
-                                height: 100vh;
-                                display: flex;
-                                flex-direction: column;
-                                align-items: center;
-                                justify-content: center;
-                                text-align: center;
-                            }
-                            .video-placeholder {
-                                width: 100%;
-                                height: 100%;
-                                display: flex;
-                                flex-direction: column;
-                                align-items: center;
-                                justify-content: center;
-                                background: linear-gradient(135deg, #1e293b, #0f172a);
-                            }
-                            .video-icon {
-                                font-size: 5rem;
-                                color: #3b82f6;
-                                margin-bottom: 20px;
-                            }
-                            .video-title {
-                                font-size: 1.8rem;
-                                margin-bottom: 10px;
-                                color: #f8fafc;
-                            }
-                            .video-description {
-                                font-size: 1.1rem;
-                                color: #cbd5e1;
-                                max-width: 600px;
-                                margin-bottom: 30px;
-                            }
-                            .video-note {
-                                font-size: 0.9rem;
-                                color: #64748b;
-                                max-width: 600px;
-                            }
-                        </style>
-                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-                    </head>
-                    <body>
-                        <div class="video-placeholder">
-                            <div class="video-icon">
-                                <i class="fas fa-video"></i>
-                            </div>
-                            <div class="video-title">${data.title}</div>
-                            <div class="video-description">${data.description}</div>
-                            <div class="video-note">
-                                В реальном проекте здесь будет embedded video с YouTube или другого видеохостинга.<br>
-                                Замените URL в файле script.js на адрес вашего видео.
-                            </div>
-                        </div>
-                    </body>
-                    </html>
-                `);
-                videoDoc.close();
-            }
         }
         
         function nextDemoSlide() {
@@ -2419,6 +2251,8 @@
 
         // Modal functions для вертикальных фото
         function openModal(itemId) {
+            console.log('Открываем модальное окно для:', itemId);
+            
             const modal = document.getElementById('imageModal');
             
             // Названия для модального окна
@@ -2457,53 +2291,6 @@
                 'doc6': 'Победитель международной конференции «Актуальные проблемы науки и техники» УГНТУ.'
             };
             
-            // МАССИВЫ С ССЫЛКАМИ НА ЛОКАЛЬНЫЕ ИЗОБРАЖЕНИЯ
-            // ВАЖНО: Замените пути на реальные пути к вашим изображениям в папке img/
-            const documentImages = {
-                // Дипломы высшего образования (3 страницы)
-                'dip1': [
-                    'mobile-navigation-animation/dist/img/dip1.jpg',
-                    'mobile-navigation-animation/dist/img/dip2.jpg',
-                    'img/diplomas/dip1-page3.jpg'
-                ],
-                // Профессиональная переподготовка (2 документа)
-                'dip3': [
-                    'img/certificates/cert1.jpg',
-                    'img/certificates/cert2.jpg'
-                ],
-                // Золотой медалист МФТИ
-                'gold-medal': [
-                    'img/achievements/gold-medal-certificate.jpg'
-                ],
-                // 100 баллов ЕГЭ
-                'ege-100': [
-                    'img/achievements/ege-100-certificate.jpg'
-                ],
-                // Учитель будущего
-                'magister': [
-                    'img/awards/teacher-future-diploma.jpg'
-                ],
-                // Отцовская доблесть
-                'father-award': [
-                    'img/awards/father-award.jpg'
-                ],
-                // Заслуги в просвещении
-                'education-award': [
-                    'img/awards/education-award.jpg'
-                ],
-                // Подготовка призера конкурса
-                'teacher-year': [
-                    'img/awards/teacher-year-certificate.jpg'
-                ],
-                // Достижения учеников
-                'doc1': ['img/student-achievements/achievement1.jpg'],
-                'doc2': ['img/student-achievements/achievement2.jpg'],
-                'doc3': ['img/student-achievements/achievement3.jpg'],
-                'doc4': ['img/student-achievements/achievement4.jpg'],
-                'doc5': ['img/student-achievements/achievement5.jpg'],
-                'doc6': ['img/student-achievements/achievement6.jpg']
-            };
-            
             // Устанавливаем заголовок и описание
             document.getElementById('modalTitle').textContent = itemTitles[itemId] || `Документ: ${itemId}`;
             document.getElementById('modalDescription').textContent = itemDescriptions[itemId] || 'Здесь будут отображены изображения документов.';
@@ -2511,35 +2298,6 @@
             // Сброс карусели
             currentSlide = 0;
             updateCarousel();
-            
-            // Получаем изображения для текущего itemId
-            const imageUrls = documentImages[itemId] || [];
-            
-            // Скрываем/показываем слайды в зависимости от количества изображений
-            slides.forEach((slide, index) => {
-                if (index < imageUrls.length) {
-                    slide.style.display = 'block';
-                    // Устанавливаем реальное изображение
-                    document.getElementById(`modalImage${index + 1}`).src = imageUrls[index];
-                } else {
-                    slide.style.display = 'none';
-                }
-            });
-            
-            // Обновляем индикаторы
-            const indicatorsContainer = document.querySelector('.carousel-indicators');
-            indicatorsContainer.innerHTML = ''; // Очищаем старые индикаторы
-            
-            for (let i = 0; i < imageUrls.length; i++) {
-                const indicator = document.createElement('div');
-                indicator.className = 'carousel-indicator';
-                if (i === 0) indicator.classList.add('active');
-                indicator.onclick = () => goToSlide(i);
-                indicatorsContainer.appendChild(indicator);
-            }
-            
-            // Обновляем счетчик
-            document.getElementById('modalCounter').textContent = `1/${imageUrls.length}`;
             
             // Показываем модальное окно
             modal.classList.add('active');
