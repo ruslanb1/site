@@ -1456,7 +1456,7 @@
         }
     </style>
 </head>
-<body>
+    <body>
     <!-- Фон с летающими формулами и графиками -->
     <div class="formula-bg" id="formulaBg"></div>
 
@@ -1512,25 +1512,25 @@
                     </div>
                     
                     <div class="achievements-grid">
-                        <div class="achievement-card gold" onclick="openModal('gold-medal')">
+                        <div class="achievement-card gold" onclick="openModalWithImages('gold-medal', ['img/linar1.png', 'img/linar.png', 'img/linar2.png'], 'Золотой медалист МФТИ', 'Наставничество магистранта МФТИ - золотого медалиста олимпиады «Я-профессионал»')">
                             <div class="achievement-icon">
                                 <i class="fas fa-medal"></i>
                             </div>
                             <h3 class="achievement-title">Наставник золотого медалиста МФТИ</h3>
                             <p>Подготовил магистранта МФТИ — победителя Всероссийской олимпиады «Я-профессионал» с золотой медалью.</p>
-                            <a href="mobile-navigation-animation/dist/img/linar1.png" class="btn btn-small btn-secondary" style="margin-top: 15px;">
+                            <a href="#" onclick="openModalWithImages('gold-medal', ['img/linar1.png', 'img/linar.png', 'img/linar2.png'], 'Золотой медалист МФТИ', 'Наставничество магистранта МФТИ - золотого медалиста олимпиады «Я-профессионал»'); return false;" class="btn btn-small btn-secondary" style="margin-top: 15px;">
                                 <i class="fas fa-external-link-alt"></i>
                                 <span>Смотреть материалы</span>
                             </a>
                         </div>
                         
-                        <div class="achievement-card success" onclick="openModal('ege-100')">
+                        <div class="achievement-card success" onclick="openModalWithImages('ege-100', ['img/katya.PNG'], '100 баллов на ЕГЭ', 'Подтверждение результата ученицы на ЕГЭ по физике (100 баллов)')">
                             <div class="achievement-icon">
                                 <i class="fas fa-star"></i>
                             </div>
                             <h3 class="achievement-title">100 баллов на ЕГЭ</h3>
                             <p>Ученики сдают ЕГЭ по физике на максимальный балл благодаря авторской методике визуализации сложных тем.</p>
-                            <a href="#materials" class="btn btn-small btn-secondary" style="margin-top: 15px;">
+                            <a href="#" onclick="openModalWithImages('ege-100', ['img/katya.PNG'], '100 баллов на ЕГЭ', 'Подтверждение результата ученицы на ЕГЭ по физике (100 баллов)'); return false;" class="btn btn-small btn-secondary" style="margin-top: 15px;">
                                 <i class="fas fa-external-link-alt"></i>
                                 <span>Смотреть материалы</span>
                             </a>
@@ -1552,8 +1552,7 @@
                 <div class="hero-photo-section">
                     <div class="photo-container">
                         <div class="photo-placeholder">
-                            <!-- ФОТО ПРОФИЛЯ - ЗАМЕНИТЕ НА ВАШЕ ИЗОБРАЖЕНИЕ -->
-                            <img src="mobile-navigation-animation/dist/img/0dVAI6hSGItsMBfYwSBEcs9InA6BLkmw3Iu_71qno-vrOnsrX89E6ayIf4yFvtEb_t-EjavZJ-L7IXu1hBf8FfgZ.jpg" alt="Руслан Басантаев" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
+                            <img src="0dVAI6hSGItsMBfYwSBEcs9InA6BLkmw3Iu_71qno-vrOnsrX89E6ayIf4yFvtEb_t-EjavZJ-L7IXu1hBf8FfgZ.jpg" alt="Руслан Басантаев" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
                         </div>
                     </div>
                     <div class="photo-info">
@@ -1638,26 +1637,12 @@
                             </div>
                         </div>
                         
-                        <!-- Слайд 3: HTML презентация 3 
+                        <!-- Слайд 3: HTML презентация 3 -->
                         <div class="demo-slide" data-index="2">
                             <div class="iframe-container">
                                 <iframe class="demo-iframe" src="metod_plochdei.html" title="Веб-презентация: Астрономия"></iframe>
                             </div>
-                        </div>-->
-                        
-                        <!-- Слайд 4: Видео 1 
-                        <div class="demo-slide" data-index="3">
-                            <div class="iframe-container">
-                                <iframe class="video-iframe" id="videoDemo1" title="Видеоурок: Квантовая физика" allowfullscreen></iframe>
-                            </div>
-                        </div>-->
-                        
-                        <!-- Слайд 5: Видео 2 
-                        <div class="demo-slide" data-index="4">
-                            <div class="iframe-container">
-                                <iframe class="video-iframe" id="videoDemo2" title="Видеоурок: Оптика" allowfullscreen></iframe>
-                            </div>
-                        </div>-->
+                        </div>
                         
                         <button class="demo-carousel-btn prev" onclick="prevDemoSlide()">
                             <i class="fas fa-chevron-left"></i>
@@ -1670,8 +1655,6 @@
                             <div class="demo-indicator active" onclick="goToDemoSlide(0)"></div>
                             <div class="demo-indicator" onclick="goToDemoSlide(1)"></div>
                             <div class="demo-indicator" onclick="goToDemoSlide(2)"></div>
-                            <div class="demo-indicator" onclick="goToDemoSlide(3)"></div>
-                            <div class="demo-indicator" onclick="goToDemoSlide(4)"></div>
                         </div>
                     </div>
                     
@@ -1725,7 +1708,7 @@
             <p style="text-align: center; max-width: 800px; margin: 0 auto 40px;">Техническое и педагогическое образование, подтвержденное документами</p>
             
             <div class="education-grid">
-                <div class="education-card" onclick="openModal('dip1')">
+                <div class="education-card" onclick="openModalWithImages('dip1', ['img/dip1.jpg', 'img/dip2.jpg'], 'Дипломы высшего образования', 'Дипломы о высшем образовании в технической и педагогической сферах')">
                     <div class="education-icon">
                         <i class="fas fa-university"></i>
                     </div>
@@ -1741,7 +1724,7 @@
                     </div>
                 </div>
                 
-                <div class="education-card" onclick="openModal('dip3')">
+                <div class="education-card" onclick="openModalWithImages('dip3', ['img/dip3.jpg', 'img/dip4.jpg', 'img/dip5.jpg'], 'Профессиональная переподготовка', 'Документы о профессиональной переподготовке и повышении квалификации')">
                     <div class="education-icon">
                         <i class="fas fa-certificate"></i>
                     </div>
@@ -1770,7 +1753,7 @@
             <p style="text-align: center; max-width: 800px; margin: 0 auto 40px;">Профессиональные награды и признание</p>
             
             <div class="awards-grid">
-                <div class="award-item" onclick="openModal('magister')">
+                <div class="award-item" onclick="openModalWithImages('magister', ['img/magister.jpg'], 'Учитель будущего', 'Диплом II степени регионального конкурса "Magister posterum / Учитель будущего"')">
                     <div class="award-preview">
                         <div class="award-icon">
                             <i class="fas fa-trophy"></i>
@@ -1783,7 +1766,7 @@
                     </div>
                 </div>
                 
-                <div class="award-item" onclick="openModal('gold-medal')">
+                <div class="award-item" onclick="openModalWithImages('gold-medal', ['img/linar1.png', 'img/linar.png', 'img/linar2.png'], 'Золотой медалист МФТИ', 'Наставничество магистранта МФТИ - золотого медалиста олимпиады «Я-профессионал»')">
                     <div class="award-preview">
                         <div class="award-icon">
                             <i class="fas fa-medal"></i>
@@ -1796,7 +1779,7 @@
                     </div>
                 </div>
                 
-                <div class="award-item" onclick="openModal('ege-100')">
+                <div class="award-item" onclick="openModalWithImages('ege-100', ['img/katya.PNG'], '100 баллов на ЕГЭ', 'Подтверждение результата ученицы на ЕГЭ по физике (100 баллов)')">
                     <div class="award-preview">
                         <div class="award-icon">
                             <i class="fas fa-star"></i>
@@ -1831,32 +1814,32 @@
                         <tr>
                             <td>Призер XXIV Научно-практической конференции школьников «Познание и творчество»</td>
                             <td>2020 г., Уфа</td>
-                            <td><button class="view-doc-btn" onclick="openModal('doc1')">Посмотреть</button></td>
+                            <td><button class="view-doc-btn" onclick="openModalWithImages('doc1', ['img/egorka.jpeg'], 'Призер конференции «Познание и творчество»', 'Призер XXIV Научно-практической конференции школьников «Познание и творчество»')">Посмотреть</button></td>
                         </tr>
                         <tr>
                             <td>Победитель Республиканского этапа Всероссийской олимпиады «Созвездие — 2020»</td>
                             <td>2019 г., Уфа</td>
-                            <td><button class="view-doc-btn" onclick="openModal('doc2')">Посмотреть</button></td>
+                            <td><button class="view-doc-btn" onclick="openModalWithImages('doc2', ['img/lev1.PNG'], 'Победитель олимпиады «Созвездие — 2020»', 'Победитель Республиканского этапа Всероссийской олимпиады «Созвездие — 2020»')">Посмотреть</button></td>
                         </tr>
                         <tr>
                             <td>Победители Научно-практической конференции «Завтра начинается сегодня» (Физика)</td>
                             <td>2019 г., Уфа</td>
-                            <td><button class="view-doc-btn" onclick="openModal('doc3')">Посмотреть</button></td>
+                            <td><button class="view-doc-btn" onclick="openModalWithImages('doc3', ['img/ilia_artur.PNG'], 'Победители конференции «Завтра начинается сегодня»', 'Победители Научно-практической конференции «Завтра начинается сегодня» (Физика)')">Посмотреть</button></td>
                         </tr>
                         <tr>
                             <td>Призер муниципального этапа Всероссийской олимпиады по физике</td>
                             <td>2019 г., Уфа</td>
-                            <td><button class="view-doc-btn" onclick="openModal('doc4')">Посмотреть</button></td>
+                            <td><button class="view-doc-btn" onclick="window.open('xls/fisica_olimp_ufa.xls', '_blank')">Скачать XLS</button></td>
                         </tr>
                         <tr>
                             <td>Призер муниципального этапа Всероссийской олимпиады по астрономии</td>
                             <td>2019 г., Уфа</td>
-                            <td><button class="view-doc-btn" onclick="openModal('doc5')">Посмотреть</button></td>
+                            <td><button class="view-doc-btn" onclick="window.open('xls/astro.xls', '_blank')">Скачать XLS</button></td>
                         </tr>
                         <tr>
                             <td>Победитель международной конференции «Актуальные проблемы науки и техники» УГНТУ</td>
                             <td>2018-2019 гг., Уфа</td>
-                            <td><button class="view-doc-btn" onclick="openModal('doc6')">Посмотреть</button></td>
+                            <td><button class="view-doc-btn" onclick="openModalWithImages('doc6', ['img/6.linar_ugntu.jpg'], 'Победитель международной конференции УГНТУ', 'Победитель международной конференции «Актуальные проблемы науки и техники» УГНТУ')">Посмотреть</button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -1871,7 +1854,7 @@
             <p style="text-align: center; max-width: 800px; margin: 0 auto 40px;">Признание профессиональных и личных достижений в общественной деятельности</p>
             
             <div class="public-awards">
-                <div class="public-award-card" onclick="openModal('father-award')">
+                <div class="public-award-card" onclick="openModalWithImages('father-award', ['img/dip6.jpg'], 'Отцовская доблесть', 'Диплом лауреата общественной награды «Отцовская доблесть»')">
                     <div class="public-award-icon">
                         <i class="fas fa-hands-helping"></i>
                     </div>
@@ -1880,7 +1863,7 @@
                     <p style="color: var(--gold); font-weight: 600; margin-top: 15px;">Высшая общественная оценка отцовства</p>
                 </div>
                 
-                <div class="public-award-card" onclick="openModal('education-award')">
+                <div class="public-award-card" onclick="openModalWithImages('education-award', ['img/IMG_20230505_165233.jpg'], 'Заслуги в области просвещения', 'Почетная грамота за заслуги в области просвещения')">
                     <div class="public-award-icon">
                         <i class="fas fa-award"></i>
                     </div>
@@ -1889,7 +1872,7 @@
                     <p style="color: var(--gold); font-weight: 600; margin-top: 15px;">Официальное признание профессиональных достижений</p>
                 </div>
                 
-                <div class="public-award-card" onclick="openModal('teacher-year')">
+                <div class="public-award-card" onclick="openModalWithImages('teacher-year', ['img/mku.jpg'], 'Подготовка призера конкурса', 'Благодарность за подготовку призера конкурса «Учитель года»')">
                     <div class="public-award-icon">
                         <i class="fas fa-handshake"></i>
                     </div>
@@ -2037,13 +2020,16 @@
         <div class="modal-content">
             <div class="carousel-container" id="carouselContainer">
                 <div class="carousel-slide active" id="slide1">
-                    <img src="" alt="Документ 1" id="modalImage1">
+                    <img src="" alt="Документ 1" id="modalImage1" onerror="this.onerror=null; this.style.display='none'; this.parentElement.querySelector('.image-placeholder').style.display='flex';">
+                    <div class="image-placeholder" style="display:none;">Изображение не загружено</div>
                 </div>
                 <div class="carousel-slide" id="slide2">
-                    <img src="" alt="Документ 2" id="modalImage2">
+                    <img src="" alt="Документ 2" id="modalImage2" onerror="this.onerror=null; this.style.display='none'; this.parentElement.querySelector('.image-placeholder').style.display='flex';">
+                    <div class="image-placeholder" style="display:none;">Изображение не загружено</div>
                 </div>
                 <div class="carousel-slide" id="slide3">
-                    <img src="" alt="Документ 3" id="modalImage3">
+                    <img src="" alt="Документ 3" id="modalImage3" onerror="this.onerror=null; this.style.display='none'; this.parentElement.querySelector('.image-placeholder').style.display='flex';">
+                    <div class="image-placeholder" style="display:none;">Изображение не загружено</div>
                 </div>
                 
                 <button class="carousel-btn prev" onclick="prevSlide()">
@@ -2170,18 +2156,6 @@
                 description: "Интерактивная визуализация адиабатического процесса",
                 type: "html",
                 url: "metod_plochdei.html"
-            },
-            {
-                title: "Видеоурок: Квантовая физика",
-                description: "Объяснение основ квантовой механики с визуализацией",
-                type: "video",
-                url: "https://www.youtube.com/embed/dQw4w9WgXcQ"
-            },
-            {
-                title: "Видеоурок: Оптика",
-                description: "Демонстрация опытов по геометрической оптике",
-                type: "video",
-                url: "https://www.youtube.com/embed/dQw4w9WgXcQ"
             }
         ];
         
@@ -2249,59 +2223,119 @@
             updateCarousel();
         }
 
-        // Modal functions для вертикальных фото
-        function openModal(itemId) {
-            console.log('Открываем модальное окно для:', itemId);
+        // Новая функция для открытия модального окна с изображениями
+        function openModalWithImages(itemId, imageArray, title, description) {
+            console.log('Открываем модальное окно для:', itemId, 'с изображениями:', imageArray);
             
             const modal = document.getElementById('imageModal');
             
-            // Названия для модального окна
-            const itemTitles = {
-                'gold-medal': 'Золотой медалист МФТИ',
-                'ege-100': '100 баллов на ЕГЭ',
-                'dip1': 'Дипломы высшего образования',
-                'dip3': 'Профессиональная переподготовка',
-                'magister': 'Учитель будущего',
-                'father-award': 'Отцовская доблесть',
-                'education-award': 'Заслуги в просвещении',
-                'teacher-year': 'Подготовка призера конкурса',
-                'doc1': 'Призер конференции «Познание и творчество»',
-                'doc2': 'Победитель олимпиады «Созвездие — 2020»',
-                'doc3': 'Победители конференции «Завтра начинается сегодня»',
-                'doc4': 'Призер муниципальной олимпиады по физике',
-                'doc5': 'Призер муниципальной олимпиады по астрономии',
-                'doc6': 'Победитель международной конференции УГНТУ'
-            };
-            
-            // Описания для модального окна
-            const itemDescriptions = {
-                'gold-medal': 'Документы, подтверждающие наставничество магистранта МФТИ - золотого медалиста олимпиады «Я-профессионал».',
-                'ege-100': 'Подтверждение результата ученицы на ЕГЭ по физике (100 баллов).',
-                'dip1': 'Дипломы о высшем образовании в технической и педагогической сферах.',
-                'dip3': 'Документы о профессиональной переподготовке и повышении квалификации.',
-                'magister': 'Диплом II степени регионального конкурса "Magister posterum / Учитель будущего".',
-                'father-award': 'Диплом лауреата общественной награды «Отцовская доблесть».',
-                'education-award': 'Почетная грамота за заслуги в области просвещения.',
-                'teacher-year': 'Благодарность за подготовку призера конкурса «Учитель года».',
-                'doc1': 'Призер XXIV Научно-практической конференции школьников «Познание и творчество».',
-                'doc2': 'Победитель Республиканского этапа Всероссийской олимпиады «Созвездие — 2020».',
-                'doc3': 'Победители Научно-практической конференции «Завтра начинается сегодня» (Физика).',
-                'doc4': 'Призер муниципального этапа Всероссийской олимпиады по физике.',
-                'doc5': 'Призер муниципального этапа Всероссийской олимпиады по астрономии.',
-                'doc6': 'Победитель международной конференции «Актуальные проблемы науки и техники» УГНТУ.'
-            };
-            
             // Устанавливаем заголовок и описание
-            document.getElementById('modalTitle').textContent = itemTitles[itemId] || `Документ: ${itemId}`;
-            document.getElementById('modalDescription').textContent = itemDescriptions[itemId] || 'Здесь будут отображены изображения документов.';
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalDescription').textContent = description;
             
-            // Сброс карусели
+            // Скрываем все изображения и показываем плейсхолдеры сначала
+            for (let i = 1; i <= 3; i++) {
+                const slide = document.getElementById(`slide${i}`);
+                const img = slide.querySelector('img');
+                const placeholder = slide.querySelector('.image-placeholder');
+                
+                if (imageArray[i-1]) {
+                    img.src = imageArray[i-1];
+                    img.style.display = 'block';
+                    placeholder.style.display = 'none';
+                    img.onerror = function() {
+                        this.style.display = 'none';
+                        placeholder.style.display = 'flex';
+                    };
+                } else {
+                    img.src = '';
+                    img.style.display = 'none';
+                    placeholder.style.display = 'flex';
+                    placeholder.textContent = 'Изображение отсутствует';
+                }
+            }
+            
+            // Сброс карусели на первый слайд
             currentSlide = 0;
             updateCarousel();
             
             // Показываем модальное окно
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
+        }
+
+        // Старая функция openModal для совместимости
+        function openModal(itemId) {
+            // Сопоставляем старые itemId с новыми данными
+            const modalData = {
+                'gold-medal': {
+                    images: ['img/linar1.png', 'img/linar.png', 'img/linar2.png'],
+                    title: 'Золотой медалист МФТИ',
+                    description: 'Наставничество магистранта МФТИ - золотого медалиста олимпиады «Я-профессионал»'
+                },
+                'ege-100': {
+                    images: ['img/katya.PNG'],
+                    title: '100 баллов на ЕГЭ',
+                    description: 'Подтверждение результата ученицы на ЕГЭ по физике (100 баллов)'
+                },
+                'dip1': {
+                    images: ['img/dip1.jpg', 'img/dip2.jpg'],
+                    title: 'Дипломы высшего образования',
+                    description: 'Дипломы о высшем образовании в технической и педагогической сферах'
+                },
+                'dip3': {
+                    images: ['img/dip3.jpg', 'img/dip4.jpg', 'img/dip5.jpg'],
+                    title: 'Профессиональная переподготовка',
+                    description: 'Документы о профессиональной переподготовке и повышении квалификации'
+                },
+                'magister': {
+                    images: ['img/magister.jpg'],
+                    title: 'Учитель будущего',
+                    description: 'Диплом II степени регионального конкурса "Magister posterum / Учитель будущего"'
+                },
+                'father-award': {
+                    images: ['img/dip6.jpg'],
+                    title: 'Отцовская доблесть',
+                    description: 'Диплом лауреата общественной награды «Отцовская доблесть»'
+                },
+                'education-award': {
+                    images: ['img/IMG_20230505_165233.jpg'],
+                    title: 'Заслуги в области просвещения',
+                    description: 'Почетная грамота за заслуги в области просвещения'
+                },
+                'teacher-year': {
+                    images: ['img/mku.jpg'],
+                    title: 'Подготовка призера конкурса',
+                    description: 'Благодарность за подготовку призера конкурса «Учитель года»'
+                },
+                'doc1': {
+                    images: ['img/egorka.jpeg'],
+                    title: 'Призер конференции «Познание и творчество»',
+                    description: 'Призер XXIV Научно-практической конференции школьников «Познание и творчество»'
+                },
+                'doc2': {
+                    images: ['img/lev1.PNG'],
+                    title: 'Победитель олимпиады «Созвездие — 2020»',
+                    description: 'Победитель Республиканского этапа Всероссийской олимпиады «Созвездие — 2020»'
+                },
+                'doc3': {
+                    images: ['img/ilia_artur.PNG'],
+                    title: 'Победители конференции «Завтра начинается сегодня»',
+                    description: 'Победители Научно-практической конференции «Завтра начинается сегодня» (Физика)'
+                },
+                'doc6': {
+                    images: ['img/6.linar_ugntu.jpg'],
+                    title: 'Победитель международной конференции УГНТУ',
+                    description: 'Победитель международной конференции «Актуальные проблемы науки и техники» УГНТУ'
+                }
+            };
+            
+            if (modalData[itemId]) {
+                openModalWithImages(itemId, modalData[itemId].images, modalData[itemId].title, modalData[itemId].description);
+            } else {
+                console.warn('Не найдены данные для itemId:', itemId);
+                openModalWithImages(itemId, [], 'Документ', 'Описание документа');
+            }
         }
 
         function closeModal() {
@@ -2366,12 +2400,24 @@
                 card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
                 observer.observe(card);
             });
-            
-            // Автоматическое переключение демо карусели (отключено, чтобы не мешать просмотру)
-            // setInterval(() => {
-            //     nextDemoSlide();
-            // }, 8000);
         });
     </script>
+
+    <style>
+        /* Дополнительные стили для плейсхолдеров в модальном окне */
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+            color: #888;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
 </body>
 </html>
