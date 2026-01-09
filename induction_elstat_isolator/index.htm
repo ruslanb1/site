@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Conductor and Insulator - Javalab</title>
+<meta name='robots' content='max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
+	<link rel="alternate" href="https://javalab.org/ko/conductor_and_insulator/" hreflang="ko" />
+<link rel="alternate" href="https://javalab.org/ja/conductor_and_insulator_ja/" hreflang="ja" />
+<link rel="alternate" href="https://javalab.org/en/conductor_and_insulator_en/" hreflang="en" />
+<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="canonical" href="https://javalab.org/en/conductor_and_insulator_en/">
+<meta name="description" content="What happens when the charged body is close to the conductor and insulator? Conductor Electrostatic induction is a redistribution of electrical charge in an obj">
+<meta property="og:title" content="Conductor and Insulator - Javalab">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://javalab.org/wp-content/uploads/conductor_and_insulator.png">
+<meta property="og:image:width" content="1000">
+<meta property="og:image:height" content="444">
+<meta property="og:image:alt" content="Conductor and Insulator">
+<meta property="og:description" content="What happens when the charged body is close to the conductor and insulator? Conductor Electrostatic induction is a redistribution of electrical charge in an obj">
+<meta property="og:url" content="https://javalab.org/en/conductor_and_insulator_en/">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Javalab">
+<meta property="article:published_time" content="2019-09-21T17:00:59+09:00">
+<meta property="article:modified_time" content="2023-12-08T03:20:35+09:00">
+<meta property="og:updated_time" content="2023-12-08T03:20:35+09:00">
+<meta property="article:section" content="Static Electricity Simulation">
+<meta property="article:tag" content="Conductor">
+<meta property="article:tag" content="Electric Charge">
+<meta property="article:tag" content="Electrostatic Induction">
+<meta property="article:tag" content="Induction">
+<meta property="article:tag" content="Insulator">
+<meta property="article:tag" content="Metallic Bond">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://javalab.org/wp-content/uploads/conductor_and_insulator.png">
+<link rel='dns-prefetch' href='//www.googletagmanager.com' />
+<link rel="alternate" type="application/rss+xml" title="Javalab &raquo; Feed" href="https://javalab.org/en/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Javalab &raquo; Comments Feed" href="https://javalab.org/en/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Javalab &raquo; Conductor and Insulator Comments Feed" href="https://javalab.org/en/conductor_and_insulator_en/feed/" />
+<script>
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16.0.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16.0.1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/javalab.org\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.8.3"}};
+/*! This file is auto-generated */
+!function(s,n){var o,i,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),a=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===a[t]})}function u(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);for(var n=e.getImageData(16,16,1,1),a=0;a<n.data.length;a++)if(0!==n.data[a])return!1;return!0}function f(e,t,n,a){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!a(e,"\ud83e\udedf")}return!1}function g(e,t,n,a){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):s.createElement("canvas"),o=r.getContext("2d",{willReadFrequently:!0}),i=(o.textBaseline="top",o.font="600 32px Arial",{});return e.forEach(function(e){i[e]=t(o,e,n,a)}),i}function t(e){var t=s.createElement("script");t.src=e,t.defer=!0,s.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",i=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){s.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+g.toString()+"("+[JSON.stringify(i),f.toString(),p.toString(),u.toString()].join(",")+"));",a=new Blob([e],{type:"text/javascript"}),r=new Worker(URL.createObjectURL(a),{name:"wpTestEmojiSupports"});return void(r.onmessage=function(e){c(n=e.data),r.terminate(),t(n)})}catch(e){}c(n=g(i,f,p,u))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+</script>
+<style id='wp-emoji-styles-inline-css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+</style>
+<link rel='stylesheet' id='wp-block-library-css' href='https://javalab.org/wp-includes/css/dist/block-library/style.min.css?ver=6.8.3' media='all' />
+<style id='classic-theme-styles-inline-css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<style id='global-styles-inline-css'>
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--color--contrast: var(--contrast);--wp--preset--color--contrast-2: var(--contrast-2);--wp--preset--color--contrast-3: var(--contrast-3);--wp--preset--color--base: var(--base);--wp--preset--color--base-2: var(--base-2);--wp--preset--color--base-3: var(--base-3);--wp--preset--color--accent: var(--accent);--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+:root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}
+</style>
+<link rel='stylesheet' id='parent-style-css' href='https://javalab.org/wp-content/themes/generatepress/style.css?ver=6.8.3' media='all' />
+<link rel='stylesheet' id='child-style-css' href='https://javalab.org/wp-content/themes/generatepress-child/style.css?ver=6.8.3' media='all' />
+<link rel='stylesheet' id='generate-widget-areas-css' href='https://javalab.org/wp-content/themes/generatepress/assets/css/components/widget-areas.min.css?ver=3.5.1' media='all' />
+<link rel='stylesheet' id='generate-style-css' href='https://javalab.org/wp-content/themes/generatepress/assets/css/main.min.css?ver=3.5.1' media='all' />
+<style id='generate-style-inline-css'>
+@media (max-width:768px){}
+body{background-color:var(--base);color:var(--contrast);}a{color:var(--accent);}a:hover, a:focus{text-decoration:underline;}.entry-title a, .site-branding a, a.button, .wp-block-button__link, .main-navigation a{text-decoration:none;}a:hover, a:focus, a:active{color:var(--contrast);}.grid-container{max-width:1600px;}.wp-block-group__inner-container{max-width:1600px;margin-left:auto;margin-right:auto;}:root{--contrast:#222222;--contrast-2:#575760;--contrast-3:#b2b2be;--base:#f0f0f0;--base-2:#f7f8f9;--base-3:#ffffff;--accent:#1e73be;}:root .has-contrast-color{color:var(--contrast);}:root .has-contrast-background-color{background-color:var(--contrast);}:root .has-contrast-2-color{color:var(--contrast-2);}:root .has-contrast-2-background-color{background-color:var(--contrast-2);}:root .has-contrast-3-color{color:var(--contrast-3);}:root .has-contrast-3-background-color{background-color:var(--contrast-3);}:root .has-base-color{color:var(--base);}:root .has-base-background-color{background-color:var(--base);}:root .has-base-2-color{color:var(--base-2);}:root .has-base-2-background-color{background-color:var(--base-2);}:root .has-base-3-color{color:var(--base-3);}:root .has-base-3-background-color{background-color:var(--base-3);}:root .has-accent-color{color:var(--accent);}:root .has-accent-background-color{background-color:var(--accent);}.main-navigation a, .main-navigation .menu-toggle, .main-navigation .menu-bar-items{font-size:18px;}.top-bar{background-color:#636363;color:#ffffff;}.top-bar a{color:#ffffff;}.top-bar a:hover{color:#303030;}.site-header{background-color:var(--base-3);}.main-title a,.main-title a:hover{color:var(--contrast);}.site-description{color:var(--contrast-2);}.mobile-menu-control-wrapper .menu-toggle,.mobile-menu-control-wrapper .menu-toggle:hover,.mobile-menu-control-wrapper .menu-toggle:focus,.has-inline-mobile-toggle #site-navigation.toggled{background-color:rgba(0, 0, 0, 0.02);}.main-navigation,.main-navigation ul ul{background-color:var(--base-3);}.main-navigation .main-nav ul li a, .main-navigation .menu-toggle, .main-navigation .menu-bar-items{color:var(--contrast);}.main-navigation .main-nav ul li:not([class*="current-menu-"]):hover > a, .main-navigation .main-nav ul li:not([class*="current-menu-"]):focus > a, .main-navigation .main-nav ul li.sfHover:not([class*="current-menu-"]) > a, .main-navigation .menu-bar-item:hover > a, .main-navigation .menu-bar-item.sfHover > a{color:var(--accent);}button.menu-toggle:hover,button.menu-toggle:focus{color:var(--contrast);}.main-navigation .main-nav ul li[class*="current-menu-"] > a{color:var(--accent);}.navigation-search input[type="search"],.navigation-search input[type="search"]:active, .navigation-search input[type="search"]:focus, .main-navigation .main-nav ul li.search-item.active > a, .main-navigation .menu-bar-items .search-item.active > a{color:var(--accent);}.main-navigation ul ul{background-color:var(--base);}.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .one-container .container, .separate-containers .paging-navigation, .inside-page-header{background-color:var(--base-3);}.entry-title a{color:var(--contrast);}.entry-title a:hover{color:var(--contrast-2);}.entry-meta{color:var(--contrast-2);}.footer-widgets{background-color:var(--base-3);}.site-info{background-color:var(--base-3);}input[type="text"],input[type="email"],input[type="url"],input[type="password"],input[type="search"],input[type="tel"],input[type="number"],textarea,select{color:var(--contrast);background-color:#e8e8e8;border-color:var(--base);}input[type="text"]:focus,input[type="email"]:focus,input[type="url"]:focus,input[type="password"]:focus,input[type="search"]:focus,input[type="tel"]:focus,input[type="number"]:focus,textarea:focus,select:focus{color:var(--contrast);background-color:var(--base-2);border-color:var(--contrast-3);}button,html input[type="button"],input[type="reset"],input[type="submit"],a.button,a.wp-block-button__link:not(.has-background){color:#ffffff;background-color:#55555e;}button:hover,html input[type="button"]:hover,input[type="reset"]:hover,input[type="submit"]:hover,a.button:hover,button:focus,html input[type="button"]:focus,input[type="reset"]:focus,input[type="submit"]:focus,a.button:focus,a.wp-block-button__link:not(.has-background):active,a.wp-block-button__link:not(.has-background):focus,a.wp-block-button__link:not(.has-background):hover{color:#ffffff;background-color:#3f4047;}a.generate-back-to-top{background-color:rgba( 0,0,0,0.4 );color:#ffffff;}a.generate-back-to-top:hover,a.generate-back-to-top:focus{background-color:rgba( 0,0,0,0.6 );color:#ffffff;}:root{--gp-search-modal-bg-color:var(--base-3);--gp-search-modal-text-color:var(--contrast);--gp-search-modal-overlay-bg-color:rgba(0,0,0,0.2);}@media (max-width:768px){.main-navigation .menu-bar-item:hover > a, .main-navigation .menu-bar-item.sfHover > a{background:none;color:var(--contrast);}}.inside-header{padding:20px 20px 20px 0px;}.nav-below-header .main-navigation .inside-navigation.grid-container, .nav-above-header .main-navigation .inside-navigation.grid-container{padding:0px 8px 0px 12px;}.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header{padding:20px;}.site-main .wp-block-group__inner-container{padding:20px;}.separate-containers .paging-navigation{padding-top:20px;padding-bottom:20px;}.entry-content .alignwide, body:not(.no-sidebar) .entry-content .alignfull{margin-left:-20px;width:calc(100% + 40px);max-width:calc(100% + 40px);}.one-container.right-sidebar .site-main,.one-container.both-right .site-main{margin-right:20px;}.one-container.left-sidebar .site-main,.one-container.both-left .site-main{margin-left:20px;}.one-container.both-sidebars .site-main{margin:0px 20px 0px 20px;}.sidebar .widget, .page-header, .widget-area .main-navigation, .site-main > *{margin-bottom:30px;}.separate-containers .site-main{margin:30px;}.both-right .inside-left-sidebar,.both-left .inside-left-sidebar{margin-right:15px;}.both-right .inside-right-sidebar,.both-left .inside-right-sidebar{margin-left:15px;}.one-container.archive .post:not(:last-child):not(.is-loop-template-item), .one-container.blog .post:not(:last-child):not(.is-loop-template-item){padding-bottom:20px;}.separate-containers .featured-image{margin-top:30px;}.separate-containers .inside-right-sidebar, .separate-containers .inside-left-sidebar{margin-top:30px;margin-bottom:30px;}.main-navigation .main-nav ul li a,.menu-toggle,.main-navigation .menu-bar-item > a{padding-left:12px;padding-right:12px;line-height:36px;}.main-navigation .main-nav ul ul li a{padding:10px 12px 10px 12px;}.navigation-search input[type="search"]{height:36px;}.rtl .menu-item-has-children .dropdown-menu-toggle{padding-left:12px;}.menu-item-has-children .dropdown-menu-toggle{padding-right:12px;}.rtl .main-navigation .main-nav ul li.menu-item-has-children > a{padding-right:12px;}.widget-area .widget{padding:0px;}@media (max-width:768px){.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header{padding:30px;}.site-main .wp-block-group__inner-container{padding:30px;}.inside-top-bar{padding-right:30px;padding-left:30px;}.inside-header{padding-right:30px;padding-left:30px;}.widget-area .widget{padding-top:20px;padding-right:20px;padding-bottom:20px;padding-left:20px;}.footer-widgets-container{padding-top:30px;padding-right:30px;padding-bottom:30px;padding-left:30px;}.inside-site-info{padding-right:30px;padding-left:30px;}.entry-content .alignwide, body:not(.no-sidebar) .entry-content .alignfull{margin-left:-30px;width:calc(100% + 60px);max-width:calc(100% + 60px);}.one-container .site-main .paging-navigation{margin-bottom:30px;}}/* End cached CSS */.is-right-sidebar{width:20%;}.is-left-sidebar{width:20%;}.site-content .content-area{width:80%;}@media (max-width:768px){.main-navigation .menu-toggle,.sidebar-nav-mobile:not(#sticky-placeholder){display:block;}.main-navigation ul,.gen-sidebar-nav,.main-navigation:not(.slideout-navigation):not(.toggled) .main-nav > ul,.has-inline-mobile-toggle #site-navigation .inside-navigation > *:not(.navigation-search):not(.main-nav){display:none;}.nav-align-right .inside-navigation,.nav-align-center .inside-navigation{justify-content:space-between;}}
+.post-image:not(:first-child), .page-content:not(:first-child), .entry-content:not(:first-child), .entry-summary:not(:first-child), footer.entry-meta{margin-top:1em;}.post-image-above-header .inside-article div.featured-image, .post-image-above-header .inside-article div.post-image{margin-bottom:1em;}
+</style>
+<link rel='stylesheet' id='generate-child-css' href='https://javalab.org/wp-content/themes/generatepress-child/style.css?ver=1739800548' media='all' />
+
+<!-- Google tag (gtag.js) snippet added by Site Kit -->
+<!-- Google Analytics snippet added by Site Kit -->
+<script src="https://www.googletagmanager.com/gtag/js?id=G-ZWZ1QYYTJD" id="google_gtagjs-js" async></script>
+<script id="google_gtagjs-js-after">
+window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}
+gtag("set","linker",{"domains":["javalab.org"]});
+gtag("js", new Date());
+gtag("set", "developer_id.dZTNiMT", true);
+gtag("config", "G-ZWZ1QYYTJD");
+ window._googlesitekit = window._googlesitekit || {}; window._googlesitekit.throttledEvents = []; window._googlesitekit.gtagEvent = (name, data) => { var key = JSON.stringify( { name, data } ); if ( !! window._googlesitekit.throttledEvents[ key ] ) { return; } window._googlesitekit.throttledEvents[ key ] = true; setTimeout( () => { delete window._googlesitekit.throttledEvents[ key ]; }, 5 ); gtag( "event", name, { ...data, event_source: "site-kit" } ); };
+</script>
+<link rel="https://api.w.org/" href="https://javalab.org/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="https://javalab.org/wp-json/wp/v2/posts/13918" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://javalab.org/xmlrpc.php?rsd" />
+<meta name="generator" content="WordPress 6.8.3" />
+<link rel='shortlink' href='https://javalab.org/?p=13918' />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://javalab.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fjavalab.org%2Fen%2Fconductor_and_insulator_en%2F&#038;lang=en" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://javalab.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fjavalab.org%2Fen%2Fconductor_and_insulator_en%2F&#038;format=xml&#038;lang=en" />
+<meta name="generator" content="Site Kit by Google 1.168.0" />	<!-- 네이버 -->
+	<meta name="naver-site-verification" content="e63e04e2af64b139c04c5564d1a620818c2a8a07" />
+	<!-- 수식 표현을 위한 라텍스 -->
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+<link rel="pingback" href="https://javalab.org/xmlrpc.php">
+
+<!-- Google AdSense meta tags added by Site Kit -->
+<meta name="google-adsense-platform-account" content="ca-host-pub-2644536267352236">
+<meta name="google-adsense-platform-domain" content="sitekit.withgoogle.com">
+<!-- End Google AdSense meta tags added by Site Kit -->
+<link rel="icon" href="https://javalab.org/wp-content/uploads/cropped-javalab-3-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://javalab.org/wp-content/uploads/cropped-javalab-3-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://javalab.org/wp-content/uploads/cropped-javalab-3-180x180.png" />
+<meta name="msapplication-TileImage" content="https://javalab.org/wp-content/uploads/cropped-javalab-3-270x270.png" />
+		<style id="wp-custom-css">
+			/* 사이드바 폭을 300px로 고정 */
+.site-content .content-area {
+	//width: calc(100% - 300px);
+}
+.is-right-sidebar {
+	width: 300px;
+}
+
+.resize-featured-image .post-image img {
+	border: solid 1px #ddd;
+}
+
+.secondary-navigation .main-nav ul li a { font-weight: bold; }
+.main-title { font-size: 30px; }
+
+p, h2, h3, h4, h5, h6 {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+h1 { font-size: 24px; font-weight: 700; }
+h2 { font-size: 22px; font-weight: 700; margin-top: 2em; }
+h3 { font-size: 21px; font-weight: 700; margin-top: 2em; }
+h4 { font-size: 20px; font-weight: 700; margin-top: 2em; }
+h5 { font-size: 19px; font-weight: 700; margin-top: 2em; }
+h6 { font-size: 18px; font-weight: 700; margin-top: 2em; }
+.entry-title { margin-top: 0; }
+table { width: auto; }
+th { background-color: #eee; }
+th, td { 
+	text-align: center;
+  vertical-align: middle;
+}
+
+ol, ul, li>ol, li>ul {
+  margin: 1em;
+}
+
+/* 모바일에 꽉찬 화면 */
+@media screen and (max-width: 768px)
+{
+	#divFull, .flex1 {
+		margin-left: -20px;
+		margin-right: -20px;
+	}
+}
+
+/* 그림의 크기는 크지 않게 */
+.notbig {
+	width: 640px;	
+}
+
+/* 유튜브 영상도 크지 않게 
+.content-area iframe:has(html) */
+.flex1
+{
+	display: flex; 
+	justify-content: center; 
+	flex-wrap: wrap;
+}
+.flex2
+{
+	margin: 0;
+}
+.content-area iframe
+{
+	width: 640px;
+	height: 480px;
+	display: block;
+	border: 1px solid lightgray;
+	margin: 20px auto 20px auto;
+} 
+
+footer.entry-meta {
+	margin-top: 32px;
+}
+
+/* 하단의 불필요한 부분 삭제 */
+.inside-site-info {
+    display: none;
+}		</style>
+		</head>
+
+<body class="wp-singular post-template-default single single-post postid-13918 single-format-standard wp-embed-responsive wp-theme-generatepress wp-child-theme-generatepress-child post-image-above-header post-image-aligned-center right-sidebar nav-below-header separate-containers header-aligned-left dropdown-hover" itemtype="https://schema.org/Blog" itemscope>
+	<a class="screen-reader-text skip-link" href="#content" title="Skip to content">Skip to content</a>		<header class="site-header" id="masthead" aria-label="Site"  itemtype="https://schema.org/WPHeader" itemscope>
+			<div class="inside-header grid-container">
+				<div class="site-branding">
+						<p class="main-title" itemprop="headline">
+					<a href="https://javalab.org/en/" rel="home">Javalab</a>
+				</p>
+						<p class="site-description" itemprop="description">Science Simulations</p>
+					</div>			<div class="header-widget">
+				<aside id="search-5" class="widget inner-padding widget_search"><form method="get" class="search-form" action="https://javalab.org/en/">
+	<label>
+		<span class="screen-reader-text">Search for:</span>
+		<input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" title="Search for:">
+	</label>
+	<button class="search-submit" aria-label="Search"><span class="gp-icon icon-search"><svg viewBox="0 0 512 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path fill-rule="evenodd" clip-rule="evenodd" d="M208 48c-88.366 0-160 71.634-160 160s71.634 160 160 160 160-71.634 160-160S296.366 48 208 48zM0 208C0 93.125 93.125 0 208 0s208 93.125 208 208c0 48.741-16.765 93.566-44.843 129.024l133.826 134.018c9.366 9.379 9.355 24.575-.025 33.941-9.379 9.366-24.575 9.355-33.941-.025L337.238 370.987C301.747 399.167 256.839 416 208 416 93.125 416 0 322.875 0 208z" /></svg></span></button></form>
+</aside>			</div>
+						</div>
+		</header>
+				<nav class="main-navigation nav-align-center sub-menu-right" id="site-navigation" aria-label="Primary"  itemtype="https://schema.org/SiteNavigationElement" itemscope>
+			<div class="inside-navigation">
+								<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+					<span class="gp-icon icon-menu-bars"><svg viewBox="0 0 512 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M0 96c0-13.255 10.745-24 24-24h464c13.255 0 24 10.745 24 24s-10.745 24-24 24H24c-13.255 0-24-10.745-24-24zm0 160c0-13.255 10.745-24 24-24h464c13.255 0 24 10.745 24 24s-10.745 24-24 24H24c-13.255 0-24-10.745-24-24zm0 160c0-13.255 10.745-24 24-24h464c13.255 0 24 10.745 24 24s-10.745 24-24 24H24c-13.255 0-24-10.745-24-24z" /></svg><svg viewBox="0 0 512 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M71.029 71.029c9.373-9.372 24.569-9.372 33.942 0L256 222.059l151.029-151.03c9.373-9.372 24.569-9.372 33.942 0 9.372 9.373 9.372 24.569 0 33.942L289.941 256l151.03 151.029c9.372 9.373 9.372 24.569 0 33.942-9.373 9.372-24.569 9.372-33.942 0L256 289.941l-151.029 151.03c-9.373 9.372-24.569 9.372-33.942 0-9.372-9.373-9.372-24.569 0-33.942L222.059 256 71.029 104.971c-9.372-9.373-9.372-24.569 0-33.942z" /></svg></span><span class="mobile-menu">Menu</span>				</button>
+				<div id="primary-menu" class="main-nav"><ul id="menu-menu_en" class=" menu sf-menu"><li id="menu-item-52730" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-52730"><a href="https://javalab.org/en/category/measure_en/">Measure<span role="presentation" class="dropdown-menu-toggle"><span class="gp-icon icon-arrow"><svg viewBox="0 0 330 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M305.913 197.085c0 2.266-1.133 4.815-2.833 6.514L171.087 335.593c-1.7 1.7-4.249 2.832-6.515 2.832s-4.815-1.133-6.515-2.832L26.064 203.599c-1.7-1.7-2.832-4.248-2.832-6.514s1.132-4.816 2.832-6.515l14.162-14.163c1.7-1.699 3.966-2.832 6.515-2.832 2.266 0 4.815 1.133 6.515 2.832l111.316 111.317 111.316-111.317c1.7-1.699 4.249-2.832 6.515-2.832s4.815 1.133 6.515 2.832l14.162 14.163c1.7 1.7 2.833 4.249 2.833 6.515z" /></svg></span></span></a>
+<ul class="sub-menu">
+	<li id="menu-item-12759" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12759"><a href="https://javalab.org/en/category/measure_en/measurement_en/">Measurement</a></li>
+	<li id="menu-item-52731" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-52731"><a href="https://javalab.org/en/category/measure_en/data_science_en/">Data Science (CSV File)</a></li>
+	<li id="menu-item-55020" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-55020"><a href="https://javalab.org/en/category/measure_en/logger_en/">Javalab Logger</a></li>
+	<li id="menu-item-54902" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-54902"><a href="https://javalab.org/en/category/measure_en/relativity_en/">Theory of Relativity</a></li>
+</ul>
+</li>
+<li id="menu-item-12756" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor menu-item-has-children menu-item-12756"><a href="https://javalab.org/en/category/electricity_en/">Electricity &#038; Magnetism<span role="presentation" class="dropdown-menu-toggle"><span class="gp-icon icon-arrow"><svg viewBox="0 0 330 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M305.913 197.085c0 2.266-1.133 4.815-2.833 6.514L171.087 335.593c-1.7 1.7-4.249 2.832-6.515 2.832s-4.815-1.133-6.515-2.832L26.064 203.599c-1.7-1.7-2.832-4.248-2.832-6.514s1.132-4.816 2.832-6.515l14.162-14.163c1.7-1.699 3.966-2.832 6.515-2.832 2.266 0 4.815 1.133 6.515 2.832l111.316 111.317 111.316-111.317c1.7-1.699 4.249-2.832 6.515-2.832s4.815 1.133 6.515 2.832l14.162 14.163c1.7 1.7 2.833 4.249 2.833 6.515z" /></svg></span></span></a>
+<ul class="sub-menu">
+	<li id="menu-item-12783" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-custom-parent menu-item-12783"><a href="https://javalab.org/en/category/electricity_en/static_electricity_en/">Static Electricity</a></li>
+	<li id="menu-item-12781" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12781"><a href="https://javalab.org/en/category/electricity_en/ohms_law_en/">Ohms Law</a></li>
+	<li id="menu-item-12777" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12777"><a href="https://javalab.org/en/category/electricity_en/electric_circuit_en/">Electric Circuit</a></li>
+	<li id="menu-item-12776" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12776"><a href="https://javalab.org/en/category/electricity_en/ac_rlc_en/">Alternating Current &#038; RLC Circuit</a></li>
+	<li id="menu-item-12782" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12782"><a href="https://javalab.org/en/category/electricity_en/semiconductor_en/">Semiconductor</a></li>
+	<li id="menu-item-12780" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12780"><a href="https://javalab.org/en/category/electricity_en/magnetism_en/">Magnetism</a></li>
+	<li id="menu-item-12779" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12779"><a href="https://javalab.org/en/category/electricity_en/electromagnetism_en/">Electromagnetism</a></li>
+	<li id="menu-item-12778" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12778"><a href="https://javalab.org/en/category/electricity_en/electromagntic_wave_en/">Electromagnetic Wave</a></li>
+</ul>
+</li>
+<li id="menu-item-12760" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-12760"><a href="https://javalab.org/en/category/mechanics_en/">Mechanics<span role="presentation" class="dropdown-menu-toggle"><span class="gp-icon icon-arrow"><svg viewBox="0 0 330 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M305.913 197.085c0 2.266-1.133 4.815-2.833 6.514L171.087 335.593c-1.7 1.7-4.249 2.832-6.515 2.832s-4.815-1.133-6.515-2.832L26.064 203.599c-1.7-1.7-2.832-4.248-2.832-6.514s1.132-4.816 2.832-6.515l14.162-14.163c1.7-1.699 3.966-2.832 6.515-2.832 2.266 0 4.815 1.133 6.515 2.832l111.316 111.317 111.316-111.317c1.7-1.699 4.249-2.832 6.515-2.832s4.815 1.133 6.515 2.832l14.162 14.163c1.7 1.7 2.833 4.249 2.833 6.515z" /></svg></span></span></a>
+<ul class="sub-menu">
+	<li id="menu-item-12785" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12785"><a href="https://javalab.org/en/category/mechanics_en/force_en/">Force</a></li>
+	<li id="menu-item-12786" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12786"><a href="https://javalab.org/en/category/mechanics_en/inertia_en/">Inertia</a></li>
+	<li id="menu-item-12787" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12787"><a href="https://javalab.org/en/category/mechanics_en/movements_en/">Movements</a></li>
+	<li id="menu-item-12784" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12784"><a href="https://javalab.org/en/category/mechanics_en/collision_en/">Collision</a></li>
+	<li id="menu-item-12788" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12788"><a href="https://javalab.org/en/category/mechanics_en/oscillation_en/">Oscillation</a></li>
+</ul>
+</li>
+<li id="menu-item-12764" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-12764"><a href="https://javalab.org/en/category/energy_en/">Work &#038; Energy<span role="presentation" class="dropdown-menu-toggle"><span class="gp-icon icon-arrow"><svg viewBox="0 0 330 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M305.913 197.085c0 2.266-1.133 4.815-2.833 6.514L171.087 335.593c-1.7 1.7-4.249 2.832-6.515 2.832s-4.815-1.133-6.515-2.832L26.064 203.599c-1.7-1.7-2.832-4.248-2.832-6.514s1.132-4.816 2.832-6.515l14.162-14.163c1.7-1.699 3.966-2.832 6.515-2.832 2.266 0 4.815 1.133 6.515 2.832l111.316 111.317 111.316-111.317c1.7-1.699 4.249-2.832 6.515-2.832s4.815 1.133 6.515 2.832l14.162 14.163c1.7 1.7 2.833 4.249 2.833 6.515z" /></svg></span></span></a>
+<ul class="sub-menu">
+	<li id="menu-item-40961" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-40961"><a href="https://javalab.org/en/category/energy_en/principle_of_work_en/">Principle of Work</a></li>
+	<li id="menu-item-40985" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-40985"><a href="https://javalab.org/en/category/energy_en/energy_conversion_en/">Energy conversion</a></li>
+</ul>
+</li>
+<li id="menu-item-12757" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-12757"><a href="https://javalab.org/en/category/light_wave_en/">Light &#038; Wave<span role="presentation" class="dropdown-menu-toggle"><span class="gp-icon icon-arrow"><svg viewBox="0 0 330 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M305.913 197.085c0 2.266-1.133 4.815-2.833 6.514L171.087 335.593c-1.7 1.7-4.249 2.832-6.515 2.832s-4.815-1.133-6.515-2.832L26.064 203.599c-1.7-1.7-2.832-4.248-2.832-6.514s1.132-4.816 2.832-6.515l14.162-14.163c1.7-1.699 3.966-2.832 6.515-2.832 2.266 0 4.815 1.133 6.515 2.832l111.316 111.317 111.316-111.317c1.7-1.699 4.249-2.832 6.515-2.832s4.815 1.133 6.515 2.832l14.162 14.163c1.7 1.7 2.833 4.249 2.833 6.515z" /></svg></span></span></a>
+<ul class="sub-menu">
+	<li id="menu-item-12791" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12791"><a href="https://javalab.org/en/category/light_wave_en/reflection_en/">Reflection</a></li>
+	<li id="menu-item-12792" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12792"><a href="https://javalab.org/en/category/light_wave_en/refraction_en/">Refraction</a></li>
+	<li id="menu-item-12789" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12789"><a href="https://javalab.org/en/category/light_wave_en/color_en/">Color</a></li>
+	<li id="menu-item-12793" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12793"><a href="https://javalab.org/en/category/light_wave_en/wave_en/">Wave</a></li>
+	<li id="menu-item-12790" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12790"><a href="https://javalab.org/en/category/light_wave_en/interference_en/">Interference</a></li>
+	<li id="menu-item-12794" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12794"><a href="https://javalab.org/en/category/light_wave_en/standing_wave_en/">Standing Wave</a></li>
+</ul>
+</li>
+<li id="menu-item-12752" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-12752"><a href="https://javalab.org/en/category/atoms_en/">Atoms<span role="presentation" class="dropdown-menu-toggle"><span class="gp-icon icon-arrow"><svg viewBox="0 0 330 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M305.913 197.085c0 2.266-1.133 4.815-2.833 6.514L171.087 335.593c-1.7 1.7-4.249 2.832-6.515 2.832s-4.815-1.133-6.515-2.832L26.064 203.599c-1.7-1.7-2.832-4.248-2.832-6.514s1.132-4.816 2.832-6.515l14.162-14.163c1.7-1.699 3.966-2.832 6.515-2.832 2.266 0 4.815 1.133 6.515 2.832l111.316 111.317 111.316-111.317c1.7-1.699 4.249-2.832 6.515-2.832s4.815 1.133 6.515 2.832l14.162 14.163c1.7 1.7 2.833 4.249 2.833 6.515z" /></svg></span></span></a>
+<ul class="sub-menu">
+	<li id="menu-item-12796" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12796"><a href="https://javalab.org/en/category/atoms_en/atomic_model_en/">Atomic model</a></li>
+	<li id="menu-item-12795" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12795"><a href="https://javalab.org/en/category/atoms_en/atom_light_en/">Atom &#038; Light</a></li>
+	<li id="menu-item-12797" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12797"><a href="https://javalab.org/en/category/atoms_en/radioactivity_en/">Radioactivity</a></li>
+</ul>
+</li>
+<li id="menu-item-12754" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-12754"><a href="https://javalab.org/en/category/chemistry_en/">Chemistry<span role="presentation" class="dropdown-menu-toggle"><span class="gp-icon icon-arrow"><svg viewBox="0 0 330 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M305.913 197.085c0 2.266-1.133 4.815-2.833 6.514L171.087 335.593c-1.7 1.7-4.249 2.832-6.515 2.832s-4.815-1.133-6.515-2.832L26.064 203.599c-1.7-1.7-2.832-4.248-2.832-6.514s1.132-4.816 2.832-6.515l14.162-14.163c1.7-1.699 3.966-2.832 6.515-2.832 2.266 0 4.815 1.133 6.515 2.832l111.316 111.317 111.316-111.317c1.7-1.699 4.249-2.832 6.515-2.832s4.815 1.133 6.515 2.832l14.162 14.163c1.7 1.7 2.833 4.249 2.833 6.515z" /></svg></span></span></a>
+<ul class="sub-menu">
+	<li id="menu-item-12801" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12801"><a href="https://javalab.org/en/category/chemistry_en/gas_en/">Gas, Liquid, Solid</a></li>
+	<li id="menu-item-12802" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12802"><a href="https://javalab.org/en/category/chemistry_en/heat_en/">Heat</a></li>
+	<li id="menu-item-12804" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12804"><a href="https://javalab.org/en/category/chemistry_en/molecules_in_motion_en/">Molecules in Motion</a></li>
+	<li id="menu-item-12805" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12805"><a href="https://javalab.org/en/category/chemistry_en/solution_en/">Solution</a></li>
+	<li id="menu-item-12799" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12799"><a href="https://javalab.org/en/category/chemistry_en/chemical_reaction_en/">Chemical Reaction</a></li>
+	<li id="menu-item-12798" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12798"><a href="https://javalab.org/en/category/chemistry_en/chemical_bonds_en/">Chemical Bonds</a></li>
+	<li id="menu-item-12800" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12800"><a href="https://javalab.org/en/category/chemistry_en/electrochemistry_en/">Electrochemistry</a></li>
+</ul>
+</li>
+<li id="menu-item-12755" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-12755"><a href="https://javalab.org/en/category/earth_en/">Earth<span role="presentation" class="dropdown-menu-toggle"><span class="gp-icon icon-arrow"><svg viewBox="0 0 330 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M305.913 197.085c0 2.266-1.133 4.815-2.833 6.514L171.087 335.593c-1.7 1.7-4.249 2.832-6.515 2.832s-4.815-1.133-6.515-2.832L26.064 203.599c-1.7-1.7-2.832-4.248-2.832-6.514s1.132-4.816 2.832-6.515l14.162-14.163c1.7-1.699 3.966-2.832 6.515-2.832 2.266 0 4.815 1.133 6.515 2.832l111.316 111.317 111.316-111.317c1.7-1.699 4.249-2.832 6.515-2.832s4.815 1.133 6.515 2.832l14.162 14.163c1.7 1.7 2.833 4.249 2.833 6.515z" /></svg></span></span></a>
+<ul class="sub-menu">
+	<li id="menu-item-12806" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12806"><a href="https://javalab.org/en/category/earth_en/atmosphere_en/">Atmosphere</a></li>
+	<li id="menu-item-12807" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12807"><a href="https://javalab.org/en/category/earth_en/geology_en/">Geology</a></li>
+</ul>
+</li>
+<li id="menu-item-12751" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-12751"><a href="https://javalab.org/en/category/astronomy_en/">Astronomy<span role="presentation" class="dropdown-menu-toggle"><span class="gp-icon icon-arrow"><svg viewBox="0 0 330 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M305.913 197.085c0 2.266-1.133 4.815-2.833 6.514L171.087 335.593c-1.7 1.7-4.249 2.832-6.515 2.832s-4.815-1.133-6.515-2.832L26.064 203.599c-1.7-1.7-2.832-4.248-2.832-6.514s1.132-4.816 2.832-6.515l14.162-14.163c1.7-1.699 3.966-2.832 6.515-2.832 2.266 0 4.815 1.133 6.515 2.832l111.316 111.317 111.316-111.317c1.7-1.699 4.249-2.832 6.515-2.832s4.815 1.133 6.515 2.832l14.162 14.163c1.7 1.7 2.833 4.249 2.833 6.515z" /></svg></span></span></a>
+<ul class="sub-menu">
+	<li id="menu-item-12808" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12808"><a href="https://javalab.org/en/category/astronomy_en/celestial_observation_en/">Celestial Observation</a></li>
+	<li id="menu-item-12811" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12811"><a href="https://javalab.org/en/category/astronomy_en/planet_earth_en/">Planet Earth</a></li>
+	<li id="menu-item-12810" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12810"><a href="https://javalab.org/en/category/astronomy_en/moon_en/">Moon</a></li>
+	<li id="menu-item-12814" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12814"><a href="https://javalab.org/en/category/astronomy_en/sun_en/">Sun</a></li>
+	<li id="menu-item-12812" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12812"><a href="https://javalab.org/en/category/astronomy_en/solar_system_en/">Solar System</a></li>
+	<li id="menu-item-12813" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12813"><a href="https://javalab.org/en/category/astronomy_en/star_en/">Star and Galaxy</a></li>
+</ul>
+</li>
+<li id="menu-item-12753" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12753"><a href="https://javalab.org/en/category/biology_en/">Biology</a></li>
+<li id="menu-item-12758" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-12758"><a href="https://javalab.org/en/category/math_en/">MatheMatics<span role="presentation" class="dropdown-menu-toggle"><span class="gp-icon icon-arrow"><svg viewBox="0 0 330 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M305.913 197.085c0 2.266-1.133 4.815-2.833 6.514L171.087 335.593c-1.7 1.7-4.249 2.832-6.515 2.832s-4.815-1.133-6.515-2.832L26.064 203.599c-1.7-1.7-2.832-4.248-2.832-6.514s1.132-4.816 2.832-6.515l14.162-14.163c1.7-1.699 3.966-2.832 6.515-2.832 2.266 0 4.815 1.133 6.515 2.832l111.316 111.317 111.316-111.317c1.7-1.699 4.249-2.832 6.515-2.832s4.815 1.133 6.515 2.832l14.162 14.163c1.7 1.7 2.833 4.249 2.833 6.515z" /></svg></span></span></a>
+<ul class="sub-menu">
+	<li id="menu-item-12818" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12818"><a href="https://javalab.org/en/category/math_en/mathematics_en/">Mathematics</a></li>
+	<li id="menu-item-12817" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12817"><a href="https://javalab.org/en/category/math_en/math_graphics_en/">Math Graphics</a></li>
+	<li id="menu-item-12816" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12816"><a href="https://javalab.org/en/category/math_en/fractal_en/">Fractal</a></li>
+	<li id="menu-item-16993" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-16993"><a href="https://javalab.org/en/category/math_en/chaos_en/">Chaos</a></li>
+</ul>
+</li>
+<li id="menu-item-16981" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-16981"><a href="https://javalab.org/en/category/tech_en/">Technology<span role="presentation" class="dropdown-menu-toggle"><span class="gp-icon icon-arrow"><svg viewBox="0 0 330 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M305.913 197.085c0 2.266-1.133 4.815-2.833 6.514L171.087 335.593c-1.7 1.7-4.249 2.832-6.515 2.832s-4.815-1.133-6.515-2.832L26.064 203.599c-1.7-1.7-2.832-4.248-2.832-6.514s1.132-4.816 2.832-6.515l14.162-14.163c1.7-1.699 3.966-2.832 6.515-2.832 2.266 0 4.815 1.133 6.515 2.832l111.316 111.317 111.316-111.317c1.7-1.699 4.249-2.832 6.515-2.832s4.815 1.133 6.515 2.832l14.162 14.163c1.7 1.7 2.833 4.249 2.833 6.515z" /></svg></span></span></a>
+<ul class="sub-menu">
+	<li id="menu-item-46669" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-46669"><a href="https://javalab.org/en/category/tech_en/ai_en/">A.I</a></li>
+	<li id="menu-item-54002" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-54002"><a href="https://javalab.org/en/category/tech_en/microbit_en/">Micro:bit</a></li>
+	<li id="menu-item-53554" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-53554"><a href="https://javalab.org/en/category/tech_en/3d_printing_en/">3D Printing</a></li>
+	<li id="menu-item-16966" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-16966"><a href="https://javalab.org/en/category/tech_en/block_coding_en/">Block Coding</a></li>
+	<li id="menu-item-12815" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12815"><a href="https://javalab.org/en/category/tech_en/puzzle_en/">Puzzle</a></li>
+</ul>
+</li>
+<li id="menu-item-12768" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-12768"><a href="/en">Etc<span role="presentation" class="dropdown-menu-toggle"><span class="gp-icon icon-arrow"><svg viewBox="0 0 330 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M305.913 197.085c0 2.266-1.133 4.815-2.833 6.514L171.087 335.593c-1.7 1.7-4.249 2.832-6.515 2.832s-4.815-1.133-6.515-2.832L26.064 203.599c-1.7-1.7-2.832-4.248-2.832-6.514s1.132-4.816 2.832-6.515l14.162-14.163c1.7-1.699 3.966-2.832 6.515-2.832 2.266 0 4.815 1.133 6.515 2.832l111.316 111.317 111.316-111.317c1.7-1.699 4.249-2.832 6.515-2.832s4.815 1.133 6.515 2.832l14.162 14.163c1.7 1.7 2.833 4.249 2.833 6.515z" /></svg></span></span></a>
+<ul class="sub-menu">
+	<li id="menu-item-60087" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-60087"><a href="https://javalab.org/en/category/resources_en/">Lecture Material</a></li>
+	<li id="menu-item-12763" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12763"><a href="https://javalab.org/en/category/ar_en/">Augmented Reality (with Webcam)</a></li>
+	<li id="menu-item-12767" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-12767"><a href="https://javalab.org/en/category/3d_vr_en/">3D (using VR)</a></li>
+	<li id="menu-item-55070" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-55070"><a href="https://www.google.com/search?tbm=bks&#038;q=javalab.org">Javalab Cited</a></li>
+</ul>
+</li>
+<li id="menu-item-66332-ko" class="lang-item lang-item-267 lang-item-ko lang-item-first menu-item menu-item-type-custom menu-item-object-custom menu-item-66332-ko"><a href="https://javalab.org/ko/conductor_and_insulator/" hreflang="ko-KR" lang="ko-KR">● 한국어</a></li>
+<li id="menu-item-66332-ja" class="lang-item lang-item-330 lang-item-ja menu-item menu-item-type-custom menu-item-object-custom menu-item-66332-ja"><a href="https://javalab.org/ja/conductor_and_insulator_ja/" hreflang="ja" lang="ja">● 日本語</a></li>
+<li id="menu-item-66332-en" class="lang-item lang-item-798 lang-item-en current-lang menu-item menu-item-type-custom menu-item-object-custom menu-item-66332-en"><a href="https://javalab.org/en/conductor_and_insulator_en/" hreflang="en-US" lang="en-US">● English</a></li>
+</ul></div>			</div>
+		</nav>
+		
+	<div class="site grid-container container hfeed" id="page">
+				<div class="site-content" id="content">
+			
+	<div class="content-area" id="primary">
+		<main class="site-main" id="main">
+			
+<article id="post-13918" class="post-13918 post type-post status-publish format-standard has-post-thumbnail hentry category-static_electricity_en tag-conductor tag-electric-charge tag-electrostatic-induction tag-induction tag-insulator tag-metallic-bond" itemtype="https://schema.org/CreativeWork" itemscope>
+	<div class="inside-article">
+					<header class="entry-header">
+				<h1 class="entry-title" itemprop="headline">Conductor and Insulator</h1>			</header>
+			
+		<div class="entry-content" itemprop="text">
+			<link rel="stylesheet" href="/lee/javalab.css">
+<div id="divFull">
+<div id="myContainer"></div>
+<div class="flexContainer">
+<div class="flexItem"><span id="radioA"></span></div>
+<div class="flexItem"><span id='titlecopy' style='font-weight: bold; font-size: 1.4em;'></span></div><div class='flexItem' style='margin: 5px 5px;'><a href='javascript: doFullScreen();' style='box-shadow: none;'>
+<svg width='40' height='40' viewBox='0 0 520 520' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xml:space='preserve' overflow='hidden'><g transform='translate(-2598 -260)'><rect x='2650' y='312' width='156' height='51.9999' fill='#7F7F7F'/><rect x='2650' y='364' width='52' height='78' fill='#7F7F7F'/><rect x='0' y='0' width='156' height='51.9999' fill='#7F7F7F' transform='matrix(-1 0 0 1 3066 312)'/><rect x='0' y='0' width='51.9999' height='78' fill='#7F7F7F' transform='matrix(-1 0 0 1 3066 364)'/><rect x='0' y='0' width='156' height='51.9999' fill='#7F7F7F' transform='matrix(1 0 0 -1 2650 623)'/><rect x='0' y='0' width='51.9999' height='78' fill='#7F7F7F' transform='matrix(1 0 0 -1 2650 571)'/><rect x='2910' y='571' width='156' height='51.9999' fill='#7F7F7F'/><rect x='3014' y='493' width='52' height='78' fill='#7F7F7F'/><rect x='2650' y='675' width='104' height='51.9999' fill='#7F7F7F'/><rect x='2806' y='675' width='104' height='51.9999' fill='#7F7F7F'/><rect x='2962' y='675' width='104' height='51.9999' fill='#7F7F7F'/></g></svg>
+</a></div><div class='flexItem' style='margin: 5px 5px;'><a href='javascript: doFullScreen2();' style='box-shadow: none;'>
+<svg width='40' height='40' viewBox='0 0 520 520' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xml:space='preserve' overflow='hidden'><g transform='translate(-3378 -260)'><rect x='3430' y='338' width='156' height='52.0003' fill='#7F7F7F'/><rect x='3430' y='390' width='52' height='103' fill='#7F7F7F'/><rect x='0' y='0' width='156' height='52.0003' fill='#7F7F7F' transform='matrix(-1 0 0 1 3846 338)'/><rect x='0' y='0' width='51.9999' height='103' fill='#7F7F7F' transform='matrix(-1 0 0 1 3846 390)'/><rect x='0' y='0' width='156' height='51.9999' fill='#7F7F7F' transform='matrix(1 0 0 -1 3430 706)'/><rect x='0' y='0' width='51.9999' height='104' fill='#7F7F7F' transform='matrix(1 0 0 -1 3430 654)'/><rect x='3690' y='649' width='156' height='51.9999' fill='#7F7F7F'/><rect x='3794' y='545' width='52' height='104' fill='#7F7F7F'/></g></svg>
+</a></div><div class='flexItem' style='margin: 5px 0px;'><iframe name='javalab_like' src='/javalab_like/?url=/en/conductor_and_insulator_en/' scrolling='no' style='width: 80px; height: 40px; border: solid 0px black; vertical-align: bottom; margin: 10px;'></iframe></div><div class='flexItem' style='margin: 5px 0px;'><iframe name='javalab_comment' src='/javalab_comment/?url=/en/conductor_and_insulator_en/' scrolling='no' style='width: 120px; height: 40px; border: solid 0px black; vertical-align: bottom; margin: 10px;'></iframe></div>
+</p></div>
+<div style="display: none;">
+        <script src="/lee/javalab.js"></script><br />
+        <script src="/lee/p5.min.js"></script><br />
+        <script src="/lee/p5.dom.min.js"></script><br />
+        <script>
+var language=2;var radioA;var img_hand_0;var img_hand_1;var xRod=150;var yRod=200;var oxRodCharge=[];var oyRodCharge=[];var maxMetal=16;var xMetalAtom=[];var yMetalAtom=[];var iMetalElectron=[];var jMetalElectron=[];var aMetalElectron=[];var tMetalElectron=[];var maxTrace=20;var xMetalElectron=[];var yMetalElectron=[];var maxInsulatorAtom=14;var xInsulatorAtom=[];var yInsulatorAtom=[];var tInsulatorElectron=[];var aInsulatorElectron=[];var bInsulatorElectron=[];var xInsulatorElectron=[];var yInsulatorElectron=[];function preload(){var url=getURL();var regexp="http";var m=match(url,regexp);var imagePrefix=(m=="http")?"/lee/image/":"";img_hand_0=loadImage(imagePrefix+"conductor_and_insulator_hand_0.png");img_hand_1=loadImage(imagePrefix+"conductor_and_insulator_hand_1.png")}function setup(){frameRate(60);var o=select("#myContainer");var a=0.5;var w=int(min(o.width,(window.innerHeight-160)/a));var h=int(w*a);myCanvas=createCanvas(w,h);myCanvas.parent("myContainer");myCanvas.id("myP5Canvas");radioA=createRadio("radioA");if(language==0)radioA.option("(+)로 대전 ","1");if(language==0)radioA.option("(-)로 대전 ","2");if(language==1)radioA.option("（+）に帯電 ","1");if(language==1)radioA.option("（-）に帯電 ","2");if(language==2)radioA.option("Charged with (+) ","1");if(language==2)radioA.option("Charged with (-) ","2");radioA.parent("radioA");radioA.value("2");for(var i=0;i<=16;i++){oxRodCharge[i]=random(-20,20);oyRodCharge[i]=map(i,0,20,-130,130)}for(var i=0;i<maxMetal;i++){xMetalAtom[i]=500+mod(i,8)*50;yMetalAtom[i]=90+int(i/8)*50;iMetalElectron[i]=mod(i,8);jMetalElectron[i]=int(i/8);aMetalElectron[i]=int(random(360)/15)*15;tMetalElectron[i]=(random(1)>0.5)?15:-15}var x;var y;for(var i=0;i<maxMetal;i++){x=xMetalAtom[i]+25*dcos[aMetalElectron[i]];y=yMetalAtom[i]+25*dsin[aMetalElectron[i]];xMetalElectron[i]=[];yMetalElectron[i]=[];for(var j=0;j<maxTrace;j++){xMetalElectron[i][j]=x;yMetalElectron[i][j]=y}}for(var i=0;i<maxInsulatorAtom;i++){xInsulatorAtom[i]=500+mod(i,7)*58;yInsulatorAtom[i]=230+int(i/7)*50;tInsulatorElectron[i]=int(random(360)/10)*10}}function windowResized(){var o=select("#myContainer");var a=0.5;var w=int(min(o.width,(window.innerHeight-160)/a));var h=int(w*a);resizeCanvas(w,h)}function drawProton(x,y){noStroke();fill(255,0,0);ellipse(x,y,18,18);fill(255);rect(x-5,y-1,10,2);rect(x-1,y-5,2,10)}function drawElectron(x,y){noStroke();fill(0,0,255);ellipse(x,y,12,12);fill(255);rect(x-4,y-1,8,2)}function getForce(){var f=map(xRod,100,420,0,1);return 4*f*f*f}function draw(){if(touches.length>1)return;background(240);strokeWeight(1);textSize(20);textAlign(CENTER,CENTER);imageMode(CENTER,CENTER);push();scale(width/900);var f=getForce();push();translate(xRod,yRod);image(img_hand_0,0,100,400,400);fill(255);stroke(0);rect(-20,-150,40,300,10);for(var i=0;i<10;i++){drawProton(0,map(i,0,9,-130,130))}if(radioA.value()==1)for(var i=0;i<oxRodCharge.length;i+=4){drawElectron(oxRodCharge[i],oyRodCharge[i])}if(radioA.value()==2)for(var i=0;i<oxRodCharge.length;i++){drawElectron(oxRodCharge[i],oyRodCharge[i])}image(img_hand_1,0,100,400,400);fill(0);noStroke();textAlign(RIGHT,CENTER);if(language==0)text("대전체",-30,0);if(language==1)text("帯電体",-30,0);if(language==2)text("Charged Body",-30,0);pop();{for(var i=0;i<maxMetal;i++){aMetalElectron[i]+=tMetalElectron[i];aMetalElectron[i]=mod(aMetalElectron[i],360);relocationMetalElectron(i)}for(var i=0;i<maxMetal;i++){var x=xMetalAtom[iMetalElectron[i]+8*jMetalElectron[i]]+25*dcos[aMetalElectron[i]];var y=yMetalAtom[iMetalElectron[i]+8*jMetalElectron[i]]+25*dsin[aMetalElectron[i]];for(var j=maxTrace-1;j>0;j--){xMetalElectron[i][j]=xMetalElectron[i][j-1];yMetalElectron[i][j]=yMetalElectron[i][j-1]}xMetalElectron[i][0]=x;yMetalElectron[i][0]=y}for(var i=0;i<maxInsulatorAtom;i++){aInsulatorElectron[i]=23+f;bInsulatorElectron[i]=23-f}for(var i=0;i<maxInsulatorAtom;i++){tInsulatorElectron[i]+=5;tInsulatorElectron[i]=mod(tInsulatorElectron[i],360);xInsulatorElectron[i]=aInsulatorElectron[i]*dcos[tInsulatorElectron[i]];yInsulatorElectron[i]=bInsulatorElectron[i]*dsin[tInsulatorElectron[i]]}}noStroke();fill(200);rect(xMetalAtom[0]-35,yMetalAtom[0]-35,20+8*50,20+2*50,40,40,40,40);noStroke();fill(255,191,191);rect(xInsulatorAtom[0]-35,yInsulatorAtom[0]-35,20+7*57,20+2*50,40,40,40,40);for(var i=0;i<maxMetal;i++){drawProton(xMetalAtom[i],yMetalAtom[i])}for(var i=0;i<maxInsulatorAtom;i++){drawProton(xInsulatorAtom[i],yInsulatorAtom[i])}strokeWeight(3);var a;for(var i=0;i<maxMetal;i++){for(var j=maxTrace-1;j>0;j--){a=map(j,0,maxTrace-1,0,200);stroke(a,a,255);line(xMetalElectron[i][j-1],yMetalElectron[i][j-1],xMetalElectron[i][j],yMetalElectron[i][j])}}for(var i=0;i<maxMetal;i++){drawElectron(xMetalElectron[i][0],yMetalElectron[i][0])}f*=2;if(radioA.value()==1)f*=-1;for(var i=0;i<maxInsulatorAtom;i++){noFill();stroke(128,128,222);ellipse(xInsulatorAtom[i]+f,yInsulatorAtom[i],2*aInsulatorElectron[i],2*bInsulatorElectron[i]);drawElectron(xInsulatorAtom[i]+f+xInsulatorElectron[i],yInsulatorAtom[i]+yInsulatorElectron[i])}fill(0);textAlign(CENTER,CENTER);if(language==0)text("도체(금속)",680,yMetalAtom[3]-55);if(language==0)text("부도체",680,yInsulatorAtom[10]+55);if(language==1)text("導体(金属)",680,yMetalAtom[3]-55);if(language==1)text("不導体",680,yInsulatorAtom[10]+55);if(language==2)text("Conductor(Metal)",680,yMetalAtom[3]-55);if(language==2)text("Insulator",680,yInsulatorAtom[10]+55);strokeWeight(1);pop();drawButtonDrag()}function relocationMetalElectron(i){var f=getForce();if(aMetalElectron[i]==0)if((iMetalElectron[i]+1)<8){var canJump=false;if(radioA.value()==2)if(f>1)if(random(f)>0.4)canJump=true;if(random(1)<0.5)canJump=true;if(canJump){iMetalElectron[i]++;aMetalElectron[i]=180;tMetalElectron[i]*=-1}return}if(aMetalElectron[i]==90)if((jMetalElectron[i]+1)<2)if(random(1)<0.5){jMetalElectron[i]++;aMetalElectron[i]=270;tMetalElectron[i]*=-1;return}if(aMetalElectron[i]==180)if(0<=(iMetalElectron[i]-1)){var canJump=false;if(radioA.value()==1)if(f>1)if(random(f)>0.4)canJump=true;if(random(1)<0.5)canJump=true;if(canJump){iMetalElectron[i]--;aMetalElectron[i]=0;tMetalElectron[i]*=-1}return}if(aMetalElectron[i]==270)if(0<=(jMetalElectron[i]-1))if(random(1)<0.5){jMetalElectron[i]--;aMetalElectron[i]=90;tMetalElectron[i]*=-1;return}}var dragged=false;var offsetX=0;function touchStarted(){if(!contain(mouseX,mouseY,0,0,width,height))return;dragged=true;offsetX=mouseX*900/width-xRod}function touchMoved(){if(touches.length>1)return;if(dragged){xRod=mouseX*900/width-offsetX;xRod=constrain(xRod,100,420);if(abs(mouseX-pmouseX)>abs(mouseY-pmouseY))return false}}function touchEnded(){dragged=false}
+        </script>
+    </div>
+</div>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9100298619080731"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style="display: block; margin-bottom: 10px;"
+     data-ad-format="fluid"
+     data-ad-layout-key="-f2+2f+cx-74-es"
+     data-ad-client="ca-pub-9100298619080731"
+     data-ad-slot="8128058764"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<p>What happens when the charged body is close to the conductor and insulator?</p>
+<ul>
+<li>Conductor<br />Electrostatic induction is a redistribution of electrical charge in an object caused by nearby charges&#8217; influence. In the presence of a charged body, an insulated conductor develops opposite charges on the near end and the same charges on the other end.</li>
+<li>Insulator<br />When a charged body is brought near a neutral substance, the distribution of charge in atoms and molecules is shifted slightly. An opposite charge is attracted nearer the charged rod, while the same charge is pushed.</li>
+</ul>
+<p><img decoding="async" src="/wp-content/uploads/electrostatic_induction_1.png" alt="Electrostatic Induction" width="624" height="auto" class="aligncenter size-full wp-image-46092" /></p>
+		</div>
+
+				<footer class="entry-meta" aria-label="Entry meta">
+			<span class="cat-links"><span class="gp-icon icon-categories"><svg viewBox="0 0 512 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M0 112c0-26.51 21.49-48 48-48h110.014a48 48 0 0143.592 27.907l12.349 26.791A16 16 0 00228.486 128H464c26.51 0 48 21.49 48 48v224c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V112z" /></svg></span><span class="screen-reader-text">Categories </span><a href="https://javalab.org/en/category/electricity_en/static_electricity_en/" rel="category tag">Static Electricity Simulation</a></span> <span class="tags-links"><span class="gp-icon icon-tags"><svg viewBox="0 0 512 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M20 39.5c-8.836 0-16 7.163-16 16v176c0 4.243 1.686 8.313 4.687 11.314l224 224c6.248 6.248 16.378 6.248 22.626 0l176-176c6.244-6.244 6.25-16.364.013-22.615l-223.5-224A15.999 15.999 0 00196.5 39.5H20zm56 96c0-13.255 10.745-24 24-24s24 10.745 24 24-10.745 24-24 24-24-10.745-24-24z"/><path d="M259.515 43.015c4.686-4.687 12.284-4.687 16.97 0l228 228c4.686 4.686 4.686 12.284 0 16.97l-180 180c-4.686 4.687-12.284 4.687-16.97 0-4.686-4.686-4.686-12.284 0-16.97L479.029 279.5 259.515 59.985c-4.686-4.686-4.686-12.284 0-16.97z" /></svg></span><span class="screen-reader-text">Tags </span><a href="https://javalab.org/en/tag/conductor/" rel="tag">Conductor</a>, <a href="https://javalab.org/en/tag/electric-charge/" rel="tag">Electric Charge</a>, <a href="https://javalab.org/en/tag/electrostatic-induction/" rel="tag">Electrostatic Induction</a>, <a href="https://javalab.org/en/tag/induction/" rel="tag">Induction</a>, <a href="https://javalab.org/en/tag/insulator/" rel="tag">Insulator</a>, <a href="https://javalab.org/en/tag/metallic-bond/" rel="tag">Metallic Bond</a></span> 		</footer>
+			</div>
+</article>
+		</main>
+	</div>
+
+	<div class="widget-area sidebar is-right-sidebar" id="right-sidebar">
+	<div class="inside-right-sidebar">
+		<aside id="text-9" class="widget inner-padding widget_text">			<div class="textwidget">
+</div>
+		</aside><aside id="text-10" class="widget inner-padding widget_text">			<div class="textwidget">
+</div>
+		</aside><aside id="text-11" class="widget inner-padding widget_text">			<div class="textwidget">
+</div>
+		</aside><aside id="wpkqcg_widget_qrcodewidget-2" class="widget inner-padding WPKQCG_Widget_qrcodewidget"><!-- START Kaya QR Code Generator --><div class="wpkqcg_qrcode_wrapper"><input type="hidden" id="wpkqcg_qrcode_outputimg_21695e0be3c485179_ecclevel" value="M" /><input type="hidden" id="wpkqcg_qrcode_outputimg_21695e0be3c485179_size" value="300" /><input type="hidden" id="wpkqcg_qrcode_outputimg_21695e0be3c485179_border" value="6" /><input type="hidden" id="wpkqcg_qrcode_outputimg_21695e0be3c485179_color" value="#000000" /><input type="hidden" id="wpkqcg_qrcode_outputimg_21695e0be3c485179_bgcolor" value="#FFFFFF" /><input type="hidden" id="wpkqcg_qrcode_outputimg_21695e0be3c485179_content" value="https://javalab.org/en/conductor_and_insulator_en/" /><img src="" id="wpkqcg_qrcode_outputimg_21695e0be3c485179" alt="QR Code" class="wpkqcg_qrcode" ><div style="clear: both;"></div></div><!-- END Kaya QR Code Generator --><div style="height: 0;clear: both;margin: 0;padding: 0;"></div></aside><aside id="custom_html-32" class="widget_text widget inner-padding widget_custom_html"><div class="textwidget custom-html-widget"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9100298619080731"
+     crossorigin="anonymous"></script>
+<!-- 사이드바 (디스플레이) -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9100298619080731"
+     data-ad-slot="6390955602"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div></aside><aside id="custom_html-42" class="widget_text widget inner-padding widget_custom_html"><div class="textwidget custom-html-widget"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9100298619080731"
+     crossorigin="anonymous"></script>
+<!-- 사이드바 아래 (디스플레이) -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9100298619080731"
+     data-ad-slot="2798921054"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div></aside>	</div>
+</div>
+
+	</div>
+</div>
+
+
+<div class="site-footer">
+				<div id="footer-widgets" class="site footer-widgets">
+				<div class="footer-widgets-container grid-container">
+					<div class="inside-footer-widgets">
+							<div class="footer-widget-1">
+		<aside id="polylang-4" class="widget inner-padding widget_polylang"><ul>
+	<li class="lang-item lang-item-267 lang-item-ko lang-item-first"><a lang="ko-KR" hreflang="ko-KR" href="https://javalab.org/ko/conductor_and_insulator/"><span style="margin-left:0.3em;">● 한국어</span></a></li>
+	<li class="lang-item lang-item-330 lang-item-ja"><a lang="ja" hreflang="ja" href="https://javalab.org/ja/conductor_and_insulator_ja/"><span style="margin-left:0.3em;">● 日本語</span></a></li>
+	<li class="lang-item lang-item-798 lang-item-en current-lang"><a lang="en-US" hreflang="en-US" href="https://javalab.org/en/conductor_and_insulator_en/" aria-current="true"><span style="margin-left:0.3em;">● English</span></a></li>
+</ul>
+</aside>	</div>
+		<div class="footer-widget-2">
+		<aside id="custom_html-15" class="widget_text widget inner-padding widget_custom_html"><div class="textwidget custom-html-widget"><p><a href="/copyright/">저작권 정책</a> / <a href="/ja/copyright_ja/">著作権ポリシー</a> / <a href="/en/copyright-policy/">Copyright policy</a><br><a href="/privacy/">개인정보 취급방침 Privacy policy(Korean)</a>
+<br>Designed in South Korea</p>
+
+<p>책임 운영자 : 이동준
+<br>jorland@hanmail.net
+<br><a href=https://www.facebook.com/profile.php?id=61556451693771>https://www.facebook.com/profile.php?id=61556451693771</a>
+</p>
+
+<p>
+협업과 관련된 문의는 당분간 받지 않습니다.
+<br>We do not accept collaboration proposals for a while.
+</p></div></aside>	</div>
+		<div class="footer-widget-3">
+		<aside id="custom_html-31" class="widget_text widget inner-padding widget_custom_html"><div class="textwidget custom-html-widget"><p>
+<a href="https://www.buymeacoffee.com/javalab" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/arial-yellow.png" alt="Buy Me A Coffee" style="width: 200px; height: auto;" ></a>
+<br>도움이 되었다면 개발자에게 커피를
+<br>開発者にコーヒーをごちそうする
+<br>Treat a developer to coffee
+</p></div></aside><aside id="custom_html-41" class="widget_text widget inner-padding widget_custom_html"><div class="textwidget custom-html-widget"></div></aside>	</div>
+						</div>
+				</div>
+			</div>
+					<footer class="site-info" aria-label="Site"  itemtype="https://schema.org/WPFooter" itemscope>
+			<div class="inside-site-info grid-container">
+								<div class="copyright-bar">
+					<span class="copyright">&copy; 2026 Javalab</span> &bull; Built with <a href="https://generatepress.com" itemprop="url">GeneratePress</a>				</div>
+			</div>
+		</footer>
+		</div>
+
+<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"\/*"},{"not":{"href_matches":["\/wp-*.php","\/wp-admin\/*","\/wp-content\/uploads\/*","\/wp-content\/*","\/wp-content\/plugins\/*","\/wp-content\/themes\/generatepress-child\/*","\/wp-content\/themes\/generatepress\/*","\/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<script id="generate-a11y">!function(){"use strict";if("querySelector"in document&&"addEventListener"in window){var e=document.body;e.addEventListener("mousedown",function(){e.classList.add("using-mouse")}),e.addEventListener("keydown",function(){e.classList.remove("using-mouse")})}}();</script><script type="application/ld+json" id="slim-seo-schema">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://javalab.org/#website","url":"https://javalab.org/","name":"Javalab","description":"Science Simulations","inLanguage":"en-US","potentialAction":{"@id":"https://javalab.org/#searchaction"},"publisher":{"@id":"https://javalab.org/#organization"}},{"@type":"SearchAction","@id":"https://javalab.org/#searchaction","target":"https://javalab.org/?s={search_term_string}","query-input":"required name=search_term_string"},{"@type":"BreadcrumbList","name":"Breadcrumbs","@id":"https://javalab.org/en/conductor_and_insulator_en/#breadcrumblist","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://javalab.org/"},{"@type":"ListItem","position":2,"name":"Electricity &amp; Magnetism Simulation","item":"https://javalab.org/en/category/electricity_en/"},{"@type":"ListItem","position":3,"name":"Static Electricity Simulation","item":"https://javalab.org/en/category/electricity_en/static_electricity_en/"},{"@type":"ListItem","position":4,"name":"Conductor and Insulator"}]},{"@type":"WebPage","@id":"https://javalab.org/en/conductor_and_insulator_en/#webpage","url":"https://javalab.org/en/conductor_and_insulator_en/","inLanguage":"en-US","name":"Conductor and Insulator - Javalab","description":"What happens when the charged body is close to the conductor and insulator? Conductor Electrostatic induction is a redistribution of electrical charge in an obj","datePublished":"2019-09-21T17:00:59+09:00","dateModified":"2023-12-08T03:20:35+09:00","isPartOf":{"@id":"https://javalab.org/#website"},"breadcrumb":{"@id":"https://javalab.org/en/conductor_and_insulator_en/#breadcrumblist"},"potentialAction":{"@id":"https://javalab.org/en/conductor_and_insulator_en/#readaction"},"primaryImageOfPage":{"@id":"https://javalab.org/en/conductor_and_insulator_en/#thumbnail"},"image":{"@id":"https://javalab.org/en/conductor_and_insulator_en/#thumbnail"}},{"@type":"ReadAction","@id":"https://javalab.org/en/conductor_and_insulator_en/#readaction","target":"https://javalab.org/en/conductor_and_insulator_en/"},{"@type":"Organization","@id":"https://javalab.org/#organization","url":"https://javalab.org/","name":"Javalab"},{"@type":"ImageObject","@id":"https://javalab.org/en/conductor_and_insulator_en/#thumbnail","url":"https://javalab.org/wp-content/uploads/conductor_and_insulator.png","contentUrl":"https://javalab.org/wp-content/uploads/conductor_and_insulator.png","width":1000,"height":444},{"@type":"Article","@id":"https://javalab.org/en/conductor_and_insulator_en/#article","url":"https://javalab.org/en/conductor_and_insulator_en/","headline":"Conductor and Insulator","datePublished":"2019-09-21T17:00:59+09:00","dateModified":"2023-12-08T03:20:35+09:00","wordCount":90,"keywords":["Conductor","Electric Charge","Electrostatic Induction","Induction","Insulator","Metallic Bond"],"articleSection":["Static Electricity Simulation"],"isPartOf":{"@id":"https://javalab.org/en/conductor_and_insulator_en/#webpage"},"mainEntityOfPage":{"@id":"https://javalab.org/en/conductor_and_insulator_en/#webpage"},"image":{"@id":"https://javalab.org/en/conductor_and_insulator_en/#thumbnail"},"publisher":{"@id":"https://javalab.org/#organization"},"author":{"@id":"https://javalab.org/#/schema/person/a66e5bd7829ffed743e0d65e95ac2612"}},{"@type":"Person","@id":"https://javalab.org/#/schema/person/a66e5bd7829ffed743e0d65e95ac2612","name":"javalab.org","image":"https://secure.gravatar.com/avatar/449883a072ab6a3d1062bb4fa9b9df338ed8ba536761f01eb7e64b880f418d6c?s=96&d=mm&r=g"}]}</script><script id="pll_cookie_script-js-after">
+(function() {
+				var expirationDate = new Date();
+				expirationDate.setTime( expirationDate.getTime() + 31536000 * 1000 );
+				document.cookie = "pll_language=en; expires=" + expirationDate.toUTCString() + "; path=/; secure; SameSite=Lax";
+			}());
+</script>
+<!--[if lte IE 11]>
+<script src="https://javalab.org/wp-content/themes/generatepress/assets/js/classList.min.js?ver=3.5.1" id="generate-classlist-js"></script>
+<![endif]-->
+<script id="generate-menu-js-extra">
+var generatepressMenu = {"toggleOpenedSubMenus":"1","openSubMenuLabel":"Open Sub-Menu","closeSubMenuLabel":"Close Sub-Menu"};
+</script>
+<script src="https://javalab.org/wp-content/themes/generatepress/assets/js/menu.min.js?ver=3.5.1" id="generate-menu-js"></script>
+<script src="https://javalab.org/wp-content/plugins/kaya-qr-code-generator/assets/qrcode-v2.min.js?ver=1.6.0" id="wpkqcg-asset-js"></script>
+<script src="https://javalab.org/wp-content/plugins/kaya-qr-code-generator/js/wpkqcg-pkg.min.js?ver=1.6.0" id="wpkqcg-pkg-js"></script>
+<script src="https://javalab.org/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
+<script src="https://javalab.org/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+<script src="https://javalab.org/wp-content/plugins/kaya-qr-code-generator/js/wpkqcg-display.min.js?ver=1.6.0" id="wpkqcg-display-js"></script>
+
+</body>
+</html>

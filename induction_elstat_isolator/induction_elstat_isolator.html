@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проводник и изолятор - Javalab</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+    <style>
+     @font-face {
+            font-family: 'GOST_A';
+            src: url('GOST_A.TTF') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+        
+        /* Стили логотипа */
+        .logo-container {
+            width: 100%;
+            max-width: 800px;
+            text-align: left;
+            font-family: Arial, sans-serif;
+            line-height: 1;
+            margin-bottom: 10px;
+            padding: 0;
+        }
+        
+        .school-name {
+            color: #441408;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0;
+            opacity: 0;
+            animation: fadeInLeft 0.5s ease-out forwards;
+        }
+        
+        .science-word {
+            color: #2E461D;
+            font-size: 18px;
+            font-weight: 700;
+            margin: 2px 0;
+            opacity: 0;
+            animation: fadeInLeft 0.5s ease-out 0.2s forwards;
+        }
+        
+        .red-a {
+            color: #ff0000;
+        }
+        
+        .main-title {
+            color: #441408;
+            font-size: 36px;
+            font-weight: 800;
+            margin: 0;
+            opacity: 0;
+            animation: fadeInLeft 0.5s ease-out 0.4s forwards;
+        }
+        
+        /* Анимация появления букв для заголовка */
+        .main-title span {
+            display: inline-block;
+            opacity: 0;
+            animation: letterAppear 0.25s ease-out forwards;
+        }
+        
+        /* Задержка для каждой буквы в заголовка */
+        .main-title span:nth-child(1) { animation-delay: 0.5s; } /* П */
+        .main-title span:nth-child(2) { animation-delay: 0.55s; } /* и */
+        .main-title span:nth-child(3) { animation-delay: 0.6s; } /* ф */
+        .main-title span:nth-child(4) { animation-delay: 0.65s; } /* а */
+        .main-title span:nth-child(5) { animation-delay: 0.7s; } /* г */
+        .main-title span:nth-child(6) { animation-delay: 0.75s; } /* о */
+        .main-title span:nth-child(7) { animation-delay: 0.8s; } /* р */
+        .main-title span:nth-child(8) { animation-delay: 0.85s; } /* У */
+        .main-title span:nth-child(9) { animation-delay: 0.9s; } /* м */
+        .main-title span:nth-child(10) { animation-delay: 0.95s; } /* . */
+        
+        /* Анимация красной буквы А */
+        .red-a {
+            position: relative;
+            animation: redAPulse 3s infinite 1.5s;
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes letterAppear {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes redAPulse {
+            0%, 100% {
+                transform: scale(1);
+                color: #ff0000;
+            }
+            50% {
+                transform: scale(1.05);
+                color: #ff4444;
+            }
+        }
+        
+        .flexContainer {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px auto;
+            max-width: 1000px;
+        }
+        
+        .flexItem {
+            margin: 5px;
+        }
+        
+        .control-panel {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            min-width: 200px;
+            box-shadow: 0 3px 10px #293080;
+            border: 1px solid #293080;
+        }
+        
+        .control-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #293080;
+            font-size: 15px;
+        }
+        
+        input[type="range"] {
+            width: 100%;
+            margin-top: 5px;
+            height: 6px;
+            border-radius: 3px;
+            background: #e1e5e9;
+            outline: none;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #293080;
+            cursor: pointer;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        #titlecopy {
+            font-weight: 600;
+            font-size: 1.8em;
+            padding: 10px;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        canvas {
+            display: block;
+            margin: 0 auto;
+            border: 2px solid #d1d9e6;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px #293080;
+        }
+        
+        .theory-button {
+            background: #293080;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 25px auto;
+            display: block;
+            transition: background 0.2s, transform 0.2s;
+            font-weight: 500;
+        }
+        
+        .theory-button:hover {
+            background: #293080;
+            transform: translateY(-2px);
+        }
+        
+        .theory-container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            overflow: hidden;
+            display: none;
+            border: 1px solid #e1e5e9;
+        }
+        
+        .theory-content {
+            padding: 25px;
+            line-height: 1.6;
+        }
+        
+        .theory-content h2 {
+            color: #2c3e50;
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #293080;
+            font-weight: 600;
+        }
+        
+        .theory-content h3 {
+            color: #2c3e50;
+            margin-top: 25px;
+            font-weight: 600;
+        }
+        
+        .theory-content ol, .theory-content ul {
+            padding-left: 20px;
+        }
+        
+        .theory-content li {
+            margin-bottom: 10px;
+        }
+        
+        .theory-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border: 1px solid #e1e5e9;
+            border-radius: 6px;
+        }
+        
+        .radio-group {
+            margin-top: 10px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border: 1px solid #e1e5e9;
+        }
+        
+        .radio-label {
+            display: block;
+            margin: 8px 0;
+            padding: 6px 10px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        
+        .radio-label:hover {
+            background: #eef2f7;
+        }
+        
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        
+        .charge-label {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 14px;
+        }
+        
+        .simulation-info {
+            text-align: center;
+            margin: 15px auto;
+            max-width: 900px;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        
+        .slider-value {
+            display: inline-block;
+            width: 30px;
+            text-align: center;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <!-- Логотип ПифагорУм -->
+    <div class="logo-container">
+        <div class="school-name">Школа</div>
+        <div class="science-word">Н<span class="red-a">А</span>УК</div>
+        <div class="main-title">
+            <span>П</span>
+            <span>и</span>
+            <span>ф</span>
+            <span>а</span>
+            <span>г</span>
+            <span>о</span>
+            <span>р</span>
+            <span>У</span>
+            <span>м</span>
+            
+        </div>
+    </div>
+
+    <div style="max-width: 800px; margin: 0 auto; padding: 20px;">
+        <h1 style="color: #1e73be; margin-bottom: 20px;">Проводник и изолятор</h1>
+        
+        <div id="simulation-container" style="width: 100%; height: 400px; border: 0px solid #ccc; margin-bottom: 20px;"></div>
+        
+        <div style="margin-bottom: 20px;">
+            <label style="margin-right: 15px;">
+                <input type="radio" name="chargeType" value="1" onchange="updateCharge()">
+                Тело заряжено (+)
+            </label>
+            <label>
+                <input type="radio" name="chargeType" value="2" checked onchange="updateCharge()">
+                Тело заряжено (-)
+            </label>
+        </div>
+        
+        <button onclick="toggleFullscreen()" style="background: #1e73be; color: white; border: none; padding: 10px 20px; cursor: pointer;">
+            Полный экран
+        </button>
+        
+        <div style="margin-top: 30px;">
+            <h2 style="color: #333; margin-bottom: 15px;">Что происходит?</h2>
+            <p>Что происходит, когда заряженное тело приближается к проводнику и изолятору?</p>
+            
+            <h3 style="margin-top: 20px; color: #555;">Проводник:</h3>
+            <p>Электростатическая индукция — это перераспределение электрических зарядов в объекте под влиянием соседних зарядов. В присутствии заряженного тела у изолированного проводника на ближнем конце возникают противоположные заряды, а на дальнем конце — такие же заряды.</p>
+            
+            <h3 style="margin-top: 20px; color: #555;">Изолятор:</h3>
+            <p>Когда заряженное тело приближают к нейтральному веществу, распределение зарядов в атомах и молекулах немного смещается. Противоположный заряд притягивается ближе к заряженному стержню, а такой же заряд отталкивается.</p>
+            
+            <h3 style="margin-top: 20px; color: #555;">Принцип работы:</h3>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li>Перетащите заряженное тело влево или вправо, чтобы приблизить его к проводнику и изолятору</li>
+                <li>Синие кружки — электроны (отрицательные заряды)</li>
+                <li>Красные кружки — протоны (положительные заряды)</li>
+                <li>Выберите тип заряда (+ или -) с помощью радиокнопок</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Конфигурация из оригинального файла
+        let language = 0; // Русский (0 - корейский, 1 - японский, 2 - английский, теперь 0 для русского)
+        let img_hand_0, img_hand_1;
+        let xRod = 150;
+        let yRod = 200;
+        let oxRodCharge = [];
+        let oyRodCharge = [];
+        let maxMetal = 16;
+        let xMetalAtom = [];
+        let yMetalAtom = [];
+        let iMetalElectron = [];
+        let jMetalElectron = [];
+        let aMetalElectron = [];
+        let tMetalElectron = [];
+        let maxTrace = 20;
+        let xMetalElectron = [];
+        let yMetalElectron = [];
+        let maxInsulatorAtom = 14;
+        let xInsulatorAtom = [];
+        let yInsulatorAtom = [];
+        let tInsulatorElectron = [];
+        let aInsulatorElectron = [];
+        let bInsulatorElectron = [];
+        let xInsulatorElectron = [];
+        let yInsulatorElectron = [];
+        let myCanvas;
+        let chargeType = 2; // По умолчанию: Заряжено (-)
+
+        // Pre-calculated sin/cos для производительности
+        let dcos = [];
+        let dsin = [];
+        for (let i = 0; i < 360; i++) {
+            dcos[i] = Math.cos(i * Math.PI / 180);
+            dsin[i] = Math.sin(i * Math.PI / 180);
+        }
+
+        // Загрузка изображений
+        function preload() {
+            // Используем путь из оригинального файла
+            img_hand_0 = loadImage('conductor_and_insulator_hand_0.png');
+            img_hand_1 = loadImage('conductor_and_insulator_hand_1.png');
+        }
+
+        // Настройка canvas
+        function setup() {
+            const container = document.getElementById('simulation-container');
+            myCanvas = createCanvas(container.offsetWidth, 400);
+            myCanvas.parent('simulation-container');
+            frameRate(60);
+            
+            // Инициализация зарядов на стержне
+            for (let i = 0; i <= 16; i++) {
+                oxRodCharge[i] = random(-20, 20);
+                oyRodCharge[i] = map(i, 0, 20, -130, 130);
+            }
+            
+            // Инициализация металла (проводник)
+            for (let i = 0; i < maxMetal; i++) {
+                xMetalAtom[i] = 500 + (i % 8) * 50;
+                yMetalAtom[i] = 90 + Math.floor(i / 8) * 50;
+                iMetalElectron[i] = i % 8;
+                jMetalElectron[i] = Math.floor(i / 8);
+                aMetalElectron[i] = Math.floor(random(360) / 15) * 15;
+                tMetalElectron[i] = (random(1) > 0.5) ? 15 : -15;
+            }
+            
+            // Инициализация следов электронов
+            for (let i = 0; i < maxMetal; i++) {
+                let x = xMetalAtom[i] + 25 * dcos[aMetalElectron[i]];
+                let y = yMetalAtom[i] + 25 * dsin[aMetalElectron[i]];
+                xMetalElectron[i] = [];
+                yMetalElectron[i] = [];
+                for (let j = 0; j < maxTrace; j++) {
+                    xMetalElectron[i][j] = x;
+                    yMetalElectron[i][j] = y;
+                }
+            }
+            
+            // Инициализация изолятора
+            for (let i = 0; i < maxInsulatorAtom; i++) {
+                xInsulatorAtom[i] = 500 + (i % 7) * 58;
+                yInsulatorAtom[i] = 230 + Math.floor(i / 7) * 50;
+                tInsulatorElectron[i] = Math.floor(random(360) / 10) * 10;
+            }
+        }
+
+        // Отрисовка протона
+        function drawProton(x, y) {
+            fill(255, 0, 0);
+            noStroke();
+            ellipse(x, y, 18, 18);
+            fill(255);
+            rect(x - 5, y - 1, 10, 2);
+            rect(x - 1, y - 5, 2, 10);
+        }
+
+        // Отрисовка электрона
+        function drawElectron(x, y) {
+            fill(0, 0, 255);
+            noStroke();
+            ellipse(x, y, 12, 12);
+            fill(255);
+            rect(x - 4, y - 1, 8, 2);
+        }
+
+        // Расчет силы влияния
+        function getForce() {
+            let f = map(xRod, 100, 420, 0, 1);
+            return 4 * f * f * f;
+        }
+
+        // Основная отрисовка
+        function draw() {
+            background(255);
+            strokeWeight(1);
+            textSize(20);
+            textAlign(CENTER, CENTER);
+            imageMode(CENTER);
+            
+            push();
+            scale(width / 900);
+            
+            let f = getForce();
+            
+            // Отрисовка заряженного тела
+            push();
+            translate(xRod, yRod);
+            image(img_hand_0, 0, 100, 400, 400);
+            
+            fill(255);
+            stroke(0);
+            rect(-20, -150, 40, 300, 10);
+            
+            // Положительные заряды на теле
+            for (let i = 0; i < 10; i++) {
+                drawProton(0, map(i, 0, 9, -130, 130));
+            }
+            
+            // Электроны на теле в зависимости от типа заряда
+            if (chargeType === 1) {
+                for (let i = 0; i < oxRodCharge.length; i += 4) {
+                    drawElectron(oxRodCharge[i], oyRodCharge[i]);
+                }
+            } else {
+                for (let i = 0; i < oxRodCharge.length; i++) {
+                    drawElectron(oxRodCharge[i], oyRodCharge[i]);
+                }
+            }
+            
+            image(img_hand_1, 0, 100, 400, 400);
+            fill(0);
+            noStroke();
+            textAlign(RIGHT, CENTER);
+            text("Тело", -30, 0);
+            pop();
+            
+            // Обновление положений электронов
+            for (let i = 0; i < maxMetal; i++) {
+                aMetalElectron[i] += tMetalElectron[i];
+                aMetalElectron[i] = aMetalElectron[i] % 360;
+                if (aMetalElectron[i] < 0) aMetalElectron[i] += 360;
+                relocationMetalElectron(i);
+            }
+            
+            // Обновление следов электронов
+            for (let i = 0; i < maxMetal; i++) {
+                let x = xMetalAtom[iMetalElectron[i] + 8 * jMetalElectron[i]] + 25 * dcos[aMetalElectron[i]];
+                let y = yMetalAtom[iMetalElectron[i] + 8 * jMetalElectron[i]] + 25 * dsin[aMetalElectron[i]];
+                for (let j = maxTrace - 1; j > 0; j--) {
+                    xMetalElectron[i][j] = xMetalElectron[i][j - 1];
+                    yMetalElectron[i][j] = yMetalElectron[i][j - 1];
+                }
+                xMetalElectron[i][0] = x;
+                yMetalElectron[i][0] = y;
+            }
+            
+            // Обновление электронов в изоляторе
+            for (let i = 0; i < maxInsulatorAtom; i++) {
+                aInsulatorElectron[i] = 23 + f;
+                bInsulatorElectron[i] = 23 - f;
+            }
+            
+            for (let i = 0; i < maxInsulatorAtom; i++) {
+                tInsulatorElectron[i] += 5;
+                tInsulatorElectron[i] = tInsulatorElectron[i] % 360;
+                xInsulatorElectron[i] = aInsulatorElectron[i] * dcos[tInsulatorElectron[i]];
+                yInsulatorElectron[i] = bInsulatorElectron[i] * dsin[tInsulatorElectron[i]];
+            }
+            
+            // Отрисовка проводника
+            noStroke();
+            fill(180);
+            rect(xMetalAtom[0] - 35, yMetalAtom[0] - 35, 20 + 8 * 50, 20 + 2 * 50, 40);
+            
+            // Отрисовка изолятора
+            fill(255, 191, 191);
+            rect(xInsulatorAtom[0] - 35, yInsulatorAtom[0] - 35, 20 + 7 * 57, 20 + 2 * 50, 40);
+            
+            // Атомы проводника
+            for (let i = 0; i < maxMetal; i++) {
+                drawProton(xMetalAtom[i], yMetalAtom[i]);
+            }
+            
+            // Атомы изолятора
+            for (let i = 0; i < maxInsulatorAtom; i++) {
+                drawProton(xInsulatorAtom[i], yInsulatorAtom[i]);
+            }
+            
+            // Следы электронов в проводнике
+            strokeWeight(3);
+            let a;
+            for (let i = 0; i < maxMetal; i++) {
+                for (let j = maxTrace - 1; j > 0; j--) {
+                    a = map(j, 0, maxTrace - 1, 0, 200);
+                    stroke(a, a, 255);
+                    line(xMetalElectron[i][j - 1], yMetalElectron[i][j - 1], 
+                         xMetalElectron[i][j], yMetalElectron[i][j]);
+                }
+            }
+            
+            // Электроны проводника
+            for (let i = 0; i < maxMetal; i++) {
+                drawElectron(xMetalElectron[i][0], yMetalElectron[i][0]);
+            }
+            
+            // Электроны изолятора
+            f *= 2;
+            if (chargeType === 1) f *= -1;
+            
+            for (let i = 0; i < maxInsulatorAtom; i++) {
+                noFill();
+                stroke(128, 128, 222);
+                ellipse(xInsulatorAtom[i] + f, yInsulatorAtom[i], 
+                        2 * aInsulatorElectron[i], 2 * bInsulatorElectron[i]);
+                drawElectron(xInsulatorAtom[i] + f + xInsulatorElectron[i], 
+                            yInsulatorAtom[i] + yInsulatorElectron[i]);
+            }
+            
+            // Подписи на русском
+            fill(0);
+            textAlign(CENTER, CENTER);
+            text("Проводник (Металл)", 680, yMetalAtom[3] - 55);
+            text("Изолятор", 680, yInsulatorAtom[10] + 55);
+            
+            strokeWeight(1);
+            pop();
+        }
+
+        // Перемещение электронов в проводнике
+        function relocationMetalElectron(i) {
+            let f = getForce();
+            
+            if (aMetalElectron[i] === 0) {
+                if ((iMetalElectron[i] + 1) < 8) {
+                    let canJump = false;
+                    if (chargeType === 2) {
+                        if (f > 1 && random(f) > 0.4) canJump = true;
+                    }
+                    if (random(1) < 0.5) canJump = true;
+                    if (canJump) {
+                        iMetalElectron[i]++;
+                        aMetalElectron[i] = 180;
+                        tMetalElectron[i] *= -1;
+                    }
+                }
+                return;
+            }
+            
+            if (aMetalElectron[i] === 90) {
+                if ((jMetalElectron[i] + 1) < 2 && random(1) < 0.5) {
+                    jMetalElectron[i]++;
+                    aMetalElectron[i] = 270;
+                    tMetalElectron[i] *= -1;
+                }
+                return;
+            }
+            
+            if (aMetalElectron[i] === 180) {
+                if ((iMetalElectron[i] - 1) >= 0) {
+                    let canJump = false;
+                    if (chargeType === 1) {
+                        if (f > 1 && random(f) > 0.4) canJump = true;
+                    }
+                    if (random(1) < 0.5) canJump = true;
+                    if (canJump) {
+                        iMetalElectron[i]--;
+                        aMetalElectron[i] = 0;
+                        tMetalElectron[i] *= -1;
+                    }
+                }
+                return;
+            }
+            
+            if (aMetalElectron[i] === 270) {
+                if ((jMetalElectron[i] - 1) >= 0 && random(1) < 0.5) {
+                    jMetalElectron[i]--;
+                    aMetalElectron[i] = 90;
+                    tMetalElectron[i] *= -1;
+                }
+                return;
+            }
+        }
+
+        // Вспомогательные функции
+        function mod(a, b) {
+            return ((a % b) + b) % b;
+        }
+
+        function map(value, start1, stop1, start2, stop2) {
+            return start2 + (stop2 - start2) * ((value - start1) / (stop1 - start1));
+        }
+
+        // Drag-and-drop для заряженного тела
+        let dragged = false;
+        let offsetX = 0;
+
+        function mousePressed() {
+            const scaleFactor = 900 / width;
+            const mx = mouseX * scaleFactor;
+            
+            const d = Math.abs(xRod - mx);
+            
+            if (d < 50) {
+                dragged = true;
+                offsetX = mx - xRod;
+            }
+        }
+
+        function mouseDragged() {
+            if (!dragged) return;
+            
+            const scaleFactor = 900 / width;
+            const mx = mouseX * scaleFactor;
+            
+            xRod = mx - offsetX;
+            xRod = constrain(xRod, 100, 420);
+        }
+
+        function mouseReleased() {
+            dragged = false;
+        }
+
+        function constrain(value, min, max) {
+            return Math.min(Math.max(value, min), max);
+        }
+
+        // Обновление типа заряда
+        function updateCharge() {
+            const radios = document.getElementsByName('chargeType');
+            for (let radio of radios) {
+                if (radio.checked) {
+                    chargeType = parseInt(radio.value);
+                    break;
+                }
+            }
+        }
+
+        // Полноэкранный режим
+        function toggleFullscreen() {
+            const elem = document.getElementById('simulation-container');
+            if (!document.fullscreenElement) {
+                // Сохраняем оригинальные стили
+                elem.dataset.originalStyle = elem.style.cssText;
+                
+                // Устанавливаем стили для полноэкранного режима
+                elem.style.position = 'fixed';
+                elem.style.top = '0';
+                elem.style.left = '0';
+                elem.style.width = '100%';
+                elem.style.height = '100vh';
+                elem.style.zIndex = '9999';
+                elem.style.backgroundColor = 'white';
+                elem.style.border = 'none';
+                elem.style.margin = '0';
+                elem.style.padding = '0';
+                
+                if (elem.requestFullscreen) {
+                    elem.requestFullscreen();
+                } else if (elem.webkitRequestFullscreen) {
+                    elem.webkitRequestFullscreen();
+                } else if (elem.mozRequestFullScreen) {
+                    elem.mozRequestFullScreen();
+                } else if (elem.msRequestFullscreen) {
+                    elem.msRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            }
+        }
+
+        // Обработчик выхода из полноэкранного режима
+        function handleFullscreenChange() {
+            const elem = document.getElementById('simulation-container');
+            
+            if (!document.fullscreenElement && 
+                !document.webkitFullscreenElement && 
+                !document.mozFullScreenElement && 
+                !document.msFullscreenElement) {
+                
+                // Восстанавливаем оригинальные стили
+                if (elem.dataset.originalStyle) {
+                    elem.style.cssText = elem.dataset.originalStyle;
+                }
+            }
+            
+            // Обновляем размер canvas
+            setTimeout(() => {
+                windowResized();
+            }, 100);
+        }
+
+        // Изменение размера окна
+        function windowResized() {
+            const container = document.getElementById('simulation-container');
+            const isFullscreen = document.fullscreenElement || 
+                                document.webkitFullscreenElement || 
+                                document.mozFullScreenElement || 
+                                document.msFullscreenElement;
+            
+            if (isFullscreen) {
+                // В полноэкранном режиме используем всю доступную высоту
+                resizeCanvas(window.innerWidth, window.innerHeight);
+            } else {
+                // В обычном режиме используем фиксированную высоту
+                resizeCanvas(container.offsetWidth, 400);
+            }
+        }
+
+        // Инициализация
+        function initialize() {
+            preload();
+            setup();
+            
+            // Добавляем обработчики событий
+            window.addEventListener('resize', windowResized);
+            document.addEventListener('fullscreenchange', handleFullscreenChange);
+            document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+            document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+            document.addEventListener('MSFullscreenChange', handleFullscreenChange);
+            
+            // Привязка событий мыши
+            myCanvas.mousePressed(mousePressed);
+            myCanvas.mouseDragged(mouseDragged);
+            myCanvas.mouseReleased(mouseReleased);
+        }
+
+        // Запуск при загрузке страницы
+        window.onload = initialize;
+    </script>
+</body>
+</html>
